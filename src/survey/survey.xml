@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Survey">
+	
+	
+	<select id="getCountAll" resultType="int">
+		select count(*) from dn_board
+	</select>
+	<!-- 메인게시판용 정렬시 설문 불러오기 -->
+	<select id="getSurveys" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 1 order by s_num desc 
+	</select>
+	<select id="getSursView" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 1 order by partnum desc
+	</select>
+	<select id="getSursHit" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 1 order by hits desc
+	</select>
+	<select id="getSursPoint" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 1 order by point desc
+	</select>
+	<select id="getTodaySurs" resultType="survey.SurveyDataBean">
+	 	select  A.* from (select * from dn_board order by partnum desc) A where rownum &lt;= 6 and b_tp_num = 1
+	</select>
+	
+	<!-- 보조게시판용 정렬시 설문 불러오기 -->
+	<select id="getSurveys2" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 2 order by s_num desc 
+	</select>
+	<select id="getSursView2" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 2 order by partnum desc
+	</select>
+	<select id="getSursHit2" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 2 order by hits desc
+	</select>
+	<select id="getSursPoint2" resultType="survey.SurveyDataBean">
+		select * from dn_board where b_tp_num = 2 order by point desc
+	</select>
+	<select id="getTodaySurs2" resultType="survey.SurveyDataBean">
+	 	select  A.* from (select * from dn_board order by partnum desc) A where rownum &lt;= 6 and b_tp_num = 2
+	</select>
+	<select id="getSearchSursSub" parameterType="String" resultType="survey.SurveyDataBean">
+		select * from dn_board  where subject like '%'||#{search}||'%'
+	</select>
+	
+	<insert id="insertSurvey" parameterType="main.BoardDataBean">
+		<selectKey keyProperty="s_num" resultType="int" order="BEFORE">
+			select nvl(max(s_num),0)+1 from dn_board	
+		</selectKey>
+		
+		insert into dn_board values(#{s_num},
+		#{b_tp_num}, #{ct_num}, #{s_tp_num},
+		#{subject}, #{writer}, #{thumb_path, jdbcType=VARCHAR},
+		#{point}, #{hits}, #{partnum}, #{s_date})
+	</insert>
+	
+	<insert id="insertTwo" parameterType="survey.TwoDataBean" >
+		
+		insert into dn_s_two values(SEQ_dn_s_two_two_id.nextval,
+		#{s_num}, #{q1}, #{imgname1}, #{imgname2},
+		#{q2, jdbcType=VARCHAR}, #{imgname3, jdbcType=VARCHAR},#{imgname4, jdbcType=VARCHAR},
+		#{q3},#{imgname5, jdbcType=VARCHAR},#{imgname6, jdbcType=VARCHAR},
+		#{q4},#{imgname7, jdbcType=VARCHAR},#{imgname8, jdbcType=VARCHAR},
+		#{q5},#{imgname9, jdbcType=VARCHAR},#{imgname10, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="getTwo" parameterType="String" resultType="survey.TwoDataBean">
+		select * from dn_s_two where s_num = #{s_num}
+	</select>
+	<update id="addHits" parameterType="String">
+		update dn_board set hits = hits+1 where s_num = #{s_num}
+	</update>
+	
+	<insert id="insertPart" parameterType="java.util.Map">
+		insert into dn_s_part( part_num, mem_id, s_num, q_num, cho_num, part_date )
+		select SEQ_dn_s_part_part_num.nextval, A.* from (
+		<foreach collection="choiceList" item="item" separator="UNION ALL">
+			select
+				#{id}, #{s_num},
+				#{item.q_num}, #{item.cho_num},
+				sysdate
+			from dual
+		</foreach>
+		)A
+	</insert>
+	
+	<insert id="insertSel" parameterType="java.util.Map">
+		insert into dn_s_sel( sel_id, mem_id, s_num, q_num, sel_num, gender, age, location)
+		select SEQ_dn_s_sel_sel_id.nextval, A.* from (
+		<foreach collection="choiceList" item="item" separator="UNION ALL">
+			select
+				#{id}, #{s_num},
+				#{item.q_num}, #{item.cho_num},
+				#{member.gender}, #{member.age}, #{member.location}
+			from dual
+		</foreach>
+		) A
+	</insert>
+	
+	<select id="getSurvey" parameterType="String" resultType="main.BoardDataBean">
+		select * from dn_board where s_num = #{s_num}
+	</select>
+	<update id="updatePoint" parameterType="java.util.Map">
+		update dn_member set point = point + #{point} where id=#{id}
+	</update>
+	<update id="addPart" parameterType="String">
+		update dn_board set partnum = partnum+1 where s_num = #{s_num}
+	</update>
+	<update id="getPartPoint" parameterType="java.util.Map">	
+		update dn_member set point = 0  
+		<foreach collection="s_numList" item="item">
+			+ (select point from dn_board where s_num=#{item})
+		</foreach>
+		where id=#{id}
+	</update>
+	<update id="getMyPoint" parameterType="String">
+		update dn_member set point = point + 
+		(select sum(hits)*100 + sum(partnum)*100 from dn_board where writer=#{id})
+		where id=#{id}
+	</update>
+	<select id="checkWriter" parameterType="String" resultType="int">
+		select count(*) from dn_board where writer=#{id}
+	</select>
+	<select id="checkPart" parameterType="String" resultType="int">
+		select count(*) from dn_s_part where mem_id=#{id}
+	</select>
+	<select id="getPartS_num" parameterType="String" resultType="String">
+		select s_num from dn_board
+		intersect select distinct s_num from dn_s_part where mem_id=#{id}
+	</select>
+	
+	<insert id="insertEight" parameterType="java.util.Map">
+		insert into dn_s_eight(eight_id, s_num, q_num, q_content, sel1_content, sel2_content, sel3_content, sel4_content)
+			select SEQ_dn_s_eight_eight_id.nextval, A.* from (
+			<foreach collection="qList" item="item" index="i" separator="UNION ALL">
+				select
+					#{s_num}, #{i}+1, #{item.qContent}, #{item.s1Content}, #{item.s2Content}, #{item.s3Content}, #{item.s4Content}
+				from dual
+			</foreach>
+			) A
+	</insert>
+
+	<select id="getEights" parameterType="String" resultType="survey.EightDataBean">
+		select * from dn_s_eight where s_num = #{s_num} order by Q_num asc
+	</select>
+	
+	<insert id="insertFive" parameterType="java.util.Map">
+		insert into dn_s_five(five_id, s_num, q_num, q_content, sel1_content, sel2_content, sel3_content, sel4_content, sel5_content)
+			select SEQ_dn_s_five_five_id.nextval, A.* from (
+			<foreach collection="qList" item="item" index="i" separator="UNION ALL">
+				select
+					#{s_num}, #{i}+1, #{item.qContent}, #{item.s1Content}, #{item.s2Content}, #{item.s3Content}, #{item.s4Content}, #{item.s5Content}
+				from dual
+			</foreach>
+			) A
+	</insert>
+	
+	<select id="getFives" parameterType="String" resultType="survey.FiveDataBean">
+		select * from dn_s_five where s_num = #{s_num} order by Q_num asc
+	</select>
+	
+	<select id="selected" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+		select cho_num from 
+		(select * from dn_s_part where s_num = #{s_num} and mem_id = #{id} order by part_num desc)
+		 where rownum <= #{size} order by q_num asc
+		]]>
+	</select>
+	
+	<insert id="insertTemp" parameterType="java.util.Map">
+		insert into dn_s_part_temp( part_num_t, id, s_num, q_num, cho_num)
+		select SEQ_dn_s_part_temp_part_num_t.nextval, A.* from (
+		<foreach collection="choiceList" item="item" separator="UNION ALL">
+			select
+				#{id}, #{s_num},
+				#{item.q_num}, #{item.cho_num}
+			from dual
+		</foreach>
+		) A
+	</insert>
+	
+	<select id="selectedTemp" parameterType="java.util.Map" resultType="String">
+		<![CDATA[
+		select cho_num from 
+		(select * from dn_s_part_temp where s_num = #{s_num} and id = #{id} order by part_num_t desc)
+		 where rownum <= #{size} order by q_num asc
+		]]>
+	</select>
+	
+	<select id="countList" parameterType="java.util.Map" resultType="int">
+    	<foreach collection="cList" item="item" separator="UNION ALL">
+        		SELECT COUNT(*) cnt FROM dn_s_part WHERE q_num=#{item.q_num} and cho_num=#{item.cho_num} and s_num=#{s_num}
+   	  	</foreach>
+    	</select>
+	
+	<select id="countHits" parameterType="String" resultType="int">
+		SELECT HITS FROM DN_BOARD WHERE S_NUM=#{S_NUM, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="countParts" parameterType="String" resultType="int">
+		SELECT PARTNUM FROM DN_BOARD WHERE S_NUM=#{S_NUM, jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getTitle" parameterType="String" resultType="String">
+		select subject from dn_board where s_num=#{s_num, jdbcType=VARCHAR}
+	</select>
+	
+	<insert id="insertFeed" parameterType="java.util.Map">
+		insert into dn_s_part_feed values(
+		SEQ_dn_s_part_feed_part_num_f.nextval, #{id}, #{feed_type}, #{cho_num})
+	</insert>
+	
+	<select id="getMyFeed" parameterType="java.util.Map" resultType="int">
+		<foreach collection="feed_type" item="i" separator="UNION ALL">
+			select cho_num from (select * from dn_s_part_feed where id=#{id} and feed_type=#{i} order by part_num_f desc) where rownum = 1
+		</foreach>
+	</select>
+	<select id="selectCount" parameterType="java.util.Map" resultType="String">
+        <foreach collection="cList" item="item" separator="UNION ALL">
+        	SELECT COUNT(*) cnt FROM dn_s_part WHERE q_num=#{item.q_num} and cho_num=#{item.cho_num} and s_num=#{s_num}
+        </foreach>
+    </select> 
+    
+</mapper>

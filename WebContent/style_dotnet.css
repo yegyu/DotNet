@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+
+/* 공통 스타일용 */
+
+body {
+	background-color: !important;
+	font-family: "Asap", sans-serif;
+	color: #989898;
+	margin: 10px;
+	font-size: 16px;
+}
+
+
+.btn{
+	background-color:rgba(227, 179, 255, 0.938);
+	border: 0;
+	color:white;
+}
+.btn:hover{
+	background-color: rgb(205, 133, 247) ;
+	color:white
+}
+
+
+
+
+
+.navbar-default {
+	background-color: rgba(227, 179, 255, 0.938);
+	height: 100px;
+}
+
+#logo {
+	font-family: 'Sniglet', cursive;
+	color: white;
+	font-size: 80px;
+	margin-top: 0px;
+}
+
+h2 #cardExp {
+	font-family: 'Sniglet', cursive;
+	color: #8585ad;
+	font-size: 1.3rem;
+	align: right;
+}
+
+a.navbar-brand {
+	height : 100px;
+}
+
+
+
+
+

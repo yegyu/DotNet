@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Admin">
+
+	<select id="getS_numList" resultType="Integer" parameterType="Integer">
+		select * from dn_board where s_tp_num = #{st} order by s_num desc
+	</select>
+	<select id="getQlen" parameterType="int" resultType="int">
+		select count(distinct(q_num)) qlen from dn_s_sel where s_num =#{s_num}
+		
+	</select>
+	<select id="getSSel" parameterType="int" resultType="admin.DnSSelDB">
+		select * from dn_s_sel  where s_num = #{s_sel} order by sel_id desc 
+	</select>
+	
+	<select id="getCntLoc" resultType="admin.CntMemDB">
+		select distinct(location) ,count(location) cnt from dn_member group by location	
+	</select>
+	<select id="getCntMemByDate" resultType="admin.CntMemDB">
+		select count(id) cnt,  to_char(signup_date,'yyyy-mm-dd') d from dn_member  group by to_char(signup_date,'yyyy-mm-dd')  order by to_char(signup_date,'yyyy-mm-dd') desc
+	</select>
+	<select id="getCntMWByDate" resultType="admin.CntMemDB" parameterType="int">
+		select count(id) cnt,  to_char(signup_date,'yyyy-mm-dd') d from dn_member where gender=#{gender} group by to_char(signup_date,'yyyy-mm-dd')  order by to_char(signup_date,'yyyy-mm-dd') desc
+	</select>
+	<select id="getPayHistory" resultType="user.GoodsStDataBean">
+		select g_name,t_num,mem_id,g_point,g_cnt,t_date,tst_num from dn_goods 
+		join
+		dn_goodstrade on dn_goods.g_num = dn_goodstrade.g_num where tst_num = 1 order by t_num desc
+	</select>
+	
+	<update id="updateTST" parameterType="int">
+		update dn_goodstrade set tst_num = 1 where t_num = #{t_num}
+	</update>
+	
+	<!-- 아성형님 -->
+	<select id="getCnt" resultType="int">
+  		select count(*) from dn_member
+  	</select>  	
+  	<select id="getSvyCnt" resultType="int">
+  		select count(*) from dn_board where b_tp_num = 1
+  	</select>
+  	<select id="getSvyCnt2" resultType="int">
+  		select count(*) from dn_board where b_tp_num = 2
+  	</select>
+  	<select id="getCatCnt" resultType="int">
+		select count(*) from dn_category
+	</select> 
+  	<select id="getMembers" parameterType="java.util.Map" resultType="admin.AdminMemberBean">
+		select mem_num,id,passwd,gender,age,zipcode,address,addressdetail,location,email,
+			   signup_date,point,user_state, r from 
+			   (select mem_num, id,passwd, gender, age, zipcode, address, addressdetail, location, email,
+			  	   signup_date,point,user_state, rownum r from 
+						( select * from dn_member)
+			   ) 
+		where r &gt;= #{start} and r &lt;= #{end}
+	</select>
+	<select id="getMemberSurveys" parameterType="java.util.Map" resultType="admin.AdminSurveyBean">	
+		select A.* , rownum r from 
+			(select b.s_num,b_tp_num,ct_num,s_tp_num,subject,writer,thumb_path,
+			point,hits,partnum,s_date from dn_board b, dn_s_part s where b.s_num = s.s_num and s.mem_id=#{memberid}) A
+			
+	</select>
+	<select id="getSurveys" parameterType="java.util.Map" resultType="admin.AdminSurveyBean">
+		select * from 
+			   (select s_num,b_tp_num,ct_num,s_tp_num,subject,writer,
+					thumb_path,point,hits,partnum,s_date, rownum r from 
+						( select * from dn_board)
+			   ) 
+		where r &gt;= #{start} and r &lt;= #{end} and b_tp_num = 1
+	</select>
+	<select id="getSurveys1" parameterType="java.util.Map" resultType="admin.AdminSurveyBean">
+		select s_num,b_tp_num,ct_num,s_tp_num,subject,writer,
+			thumb_path,point,hits,partnum,s_date, r from 
+			   (select s_num,b_tp_num,ct_num,s_tp_num,subject,writer,
+					thumb_path,point,hits,partnum,s_date, rownum r from 
+						( select * from dn_board)
+			   ) 
+		where r &gt;= #{start1} and r &lt;= #{end1}	
+	</select>	
+	<select id="getCategorys" resultType="admin.AdminCategoryBean">
+		select * from dn_category			 
+	</select>
+	<insert id="insertCategory" parameterType="admin.AdminCategoryBean">
+		insert into dn_category( ct_num, ct_name) 
+		values( #{ct_num}, #{ct_name})
+	</insert>	
+	<delete id="deleteCategory" parameterType="String">
+		delete from dn_category where ct_name=#{ct_name}   		
+	</delete>					
+	<select id="getMember" parameterType="int" resultType="admin.AdminMemberBean">
+		select * from dn_member where mem_num=#{mem_num}	
+	</select>	
+	<update id="updateUserState" parameterType="admin.AdminMemberBean">
+		update dn_member set user_state=#{user_state} where mem_num=#{mem_num}
+	</update>
+	<update id="updateBoardType" parameterType="admin.AdminSurveyBean">
+		update dn_board set b_tp_num=3 where s_num=#{s_num}
+	</update>
+</mapper>

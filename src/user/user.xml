@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="User">
+
+	<update id="updateSDelSt" parameterType="Integer"  >
+		update dn_message set s_mem_del_st= 1 where m_num =#{m_num}
+	</update>
+	<update id="updateRDelSt" parameterType="Integer"  >
+		update dn_message set r_mem_del_st= 1 where m_num =#{m_num}
+	</update>
+
+	<select id="myReceiveCnt" parameterType="String" resultType="Integer">
+		select count(*) from dn_message where r_mem_id = #{id} and r_mem_del_st = 0
+	</select>
+	<select id="getReceiveMsgs" parameterType="String" resultType="user.MessageDataBean">
+		select * from dn_message where r_mem_id =#{id} and r_mem_del_st = 0 order by m_date desc
+	</select>
+	
+	<select id="mySendCnt" parameterType="String" resultType="Integer">
+		select count(*) from dn_message where s_mem_id = #{id} and s_mem_del_st = 0
+	</select>
+	<select id="getSendMsgs" parameterType="String" resultType="user.MessageDataBean">
+		select * from dn_message where s_mem_id =#{id}  and s_mem_del_st = 0 order by m_date desc
+	</select>
+	<select id="getMsgNum" resultType="Integer">
+		select nvl(max(m_num), 1) from dn_message 
+	</select>
+	
+	<select id="getMemNum" parameterType="String" resultType="Integer">
+		select member_number from dn_member where s_mem_id=#{id}
+	</select>
+	<insert id="insertMsg" parameterType="user.MessageDataBean" >
+		insert into dn_message values(#{m_num},#{m_title},#{m_content},
+		#{s_mem_id},#{s_mem_del_st},#{r_mem_id},#{r_mem_del_st},#{m_date})
+	</insert>
+</mapper>

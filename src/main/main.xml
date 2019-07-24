@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Main">
+	
+	<select id="getComm" parameterType="int" resultType="user.CommentDataBean">
+		select * from dn_comment where s_num=#{s_num } order by dt desc
+	</select>
+
+	<insert id="insertComm" parameterType="user.CommentDataBean">
+		insert into dn_comment values(#{mem_id},#{s_num},#{content},sysdate,0)
+	</insert>
+
+	<update id="updateUserSt" parameterType="Map" >
+		update dn_member set user_state = #{state} where id = #{id}
+	
+	</update>
+	
+	<select id="getMembers" resultType="main.MemberDataBean">
+	select * from dn_member
+	</select>
+	<select id="getGoodsStAll" resultType="user.GoodsStDataBean">
+		
+			select g_name,t_num,mem_id,g_point,g_cnt,t_date,tst_num from dn_goods 
+			join
+			dn_goodstrade on dn_goods.g_num = dn_goodstrade.g_num where tst_num = 0
+			order by t_date desc
+
+	</select>
+
+	<select id="getMyTest" parameterType="String" resultType="user.LibDataBean">
+		select s_num , subject , point , hits, partnum , s_date, thumb_path from dn_board where writer = #{id} order by s_date desc
+	</select>
+	<select id="getLib" parameterType="String" resultType="user.LibDataBean">
+		select distinct(dn_s_part.s_num),mem_id, dn_board.subject, point,hits,partnum, to_char(part_date,'yyyy-mm-dd hh:mm:ss') d, thumb_path,s_tp_num from dn_s_part
+		join dn_board on dn_s_part.s_num = dn_board.s_num  where mem_id=#{id} order by d desc
+	</select>
+	<select id="getGoodsSt" parameterType="String" resultType="user.GoodsStDataBean">
+		select g_name,g_point,g_cnt,t_date,tst_num from dn_goods 
+		join
+		dn_goodstrade on dn_goods.g_num = dn_goodstrade.g_num
+		where mem_id=#{id}
+		order by t_date desc
+	</select>
+	<update id="updatePoint" parameterType="Map">
+		update dn_member set point = #{point} where id = #{mem_id}
+	</update>
+	<insert id="insertGoodsTrade" parameterType="Map" >
+		insert into dn_goodstrade values(#{t_num},#{mem_id},#{g_num},#{g_cnt},sysdate,0)
+	</insert>
+	<select id="getMaxTNum" resultType="Integer">
+		select nvl(max(t_num),1) from dn_goodstrade
+	</select>
+	<delete id="delGood" parameterType="String" >
+		delete from dn_goods where g_name = #{g_name}
+	</delete>
+
+	<insert id="insertGood" parameterType="map" >
+		insert into dn_goods values(#{g_num}, #{g_name}, #{g_point})
+	</insert>
+	<select id="getMaxG_num" resultType="Integer">
+		select max(g_num) from dn_goods
+	</select>
+	<select id="getGoods" resultType="user.GoodsDataBean">
+		select * from dn_goods 
+	</select>
+	<select id="getPoint" parameterType="String" resultType="int">
+		select point from dn_member where id=#{id}
+	</select>
+	
+	<select id="getPoList" parameterType="String" resultType="user.PointDataBean">
+		select s_num ,subject, point,s_date from dn_board where s_num in (select s_num from dn_s_part where mem_id=#{id}) order by s_date
+	</select>
+	
+	<select id="checkId" parameterType="String" resultType="int">
+		select count( * ) from dn_member where id = #{id}
+	</select>
+	
+	<select id="getMember" parameterType="String" resultType="main.MemberDataBean">
+		select * from dn_member where id = #{id}
+	</select>
+	
+	<insert id="insertMember" parameterType="main.MemberDataBean">
+		insert into dn_member values(SEQ_dn_member_mem_num.nextval,#{id},#{passwd},#{gender},#{age},#{zipcode},#{address},
+									#{addressDetail,jdbcType=VARCHAR},#{location},#{email},#{signupDate},0,0)
+	</insert>
+	
+	<select id="getSurveys" resultType="main.BoardDataBean">
+		select * from dn_board
+	</select>
+	
+	<update id="updateMember" parameterType="main.MemberDataBean">
+		update dn_member set passwd=#{passwd}, gender=#{gender}, age=#{age}, zipcode=#{zipcode}, address=#{address}, addressDetail=#{addressDetail}, email=#{email} where id=#{id}
+	</update>
+</mapper>
