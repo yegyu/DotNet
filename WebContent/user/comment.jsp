@@ -42,10 +42,15 @@ var day = date.getDate();	//d
 day = day >= 10 ? day : '0' + day;	//day 두자리로 저장 
 return year + '-' + month + '-' + day; }
 
+var session = '${sessionScope.memId}';
+
 $(document).ready(function(){
 	$('#inputComment').on('click',function(){
+		if(session == null || session == "") {
+			$(".commentbtn").attr("disabled","true");
+		}
+		
 	    com = {"content":$('#commentArea').val(), "s_num":${s_num}};
-	    console.log("com 은 이것이다. !!! :"+com.content)
 	    $.ajax({
 	    	type:"POST",
 	    	data:com,
@@ -66,10 +71,7 @@ $(document).ready(function(){
 	    	
 	    });
 	});
-	var session = '${sessionScope.memId}';
-	if(session == null || session == "") {
-		$(".commentbtn").attr("disabled","true");
-	}
+	
 })
 
 </script>

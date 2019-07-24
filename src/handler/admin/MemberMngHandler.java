@@ -1,6 +1,7 @@
 package handler.admin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import handler.CommandHandler;
 import main.MemberDao;
 import main.MemberDataBean;
+import survey.SurveyDataBean;
 
 @Controller
 public class MemberMngHandler implements CommandHandler{
@@ -70,5 +72,18 @@ public class MemberMngHandler implements CommandHandler{
 		System.out.println("user state update 성공?? " + rs);
 		
 		return "recover 성공";
+	}
+	
+	@RequestMapping(value = {"/searchMember"}, method = RequestMethod.POST, produces = "application/json;UTF-8")
+	@ResponseBody
+	public List<MemberDataBean> searchAjax(HttpServletRequest request) throws Exception {
+	
+		String searchId = request.getParameter("search");
+		
+		List<MemberDataBean> searchMems  = memberDao.searchMems(searchId);
+		
+//		map.put("member", searchMems);
+		
+		return searchMems;
 	}
 }

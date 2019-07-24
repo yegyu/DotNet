@@ -97,10 +97,10 @@ input.btn-info {
 												아직 회원이 아니신가요? <a href="signup.do" class="blue-text">
 													&nbsp;&nbsp;회원가입</a>
 											</p>
-											<p>
+											<!-- <p>
 												비밀번호를 잊어버렸나요?<a href="#" class="blue-text">&nbsp;&nbsp;Password
 													찾기 </a>
-											</p>
+											</p> -->
 										</div>
 										<div>
 											<button type="button"

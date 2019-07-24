@@ -179,7 +179,7 @@
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
-	    <c:forEach begin="${1}" end="${mainCnt/5+1}" varStatus="i">
+	    <c:forEach begin="${1}" end="${realSize}" varStatus="i">
 	    	<li class="page-item"><button class="page-link paging">${i.current}</button></li>
 	    </c:forEach>
 	    <li class="page-item">
@@ -260,7 +260,7 @@
 	        <span aria-hidden="true">&laquo;</span>
 	      </a>
 	    </li>
-	    <c:forEach begin="${1}" end="${subCnt/5+1}" varStatus="i">
+	    <c:forEach begin="${1}" end="${realSize2}" varStatus="i">
 	    	<li class="page-item"><button class="page-link paging2">${i.current}</button></li>
 	    </c:forEach>
 	    <li class="page-item">
@@ -430,11 +430,7 @@
 				
 				$(".tbody1").append(
 				
-					'<tr>' +
-						'<td class="custom-control custom-checkbox">' +
-		                    '<input class="custom-control-input" name="surveycheckbox" id="check'+(i+1)+'" type="checkbox">' +
-		                    '<label class="custom-control-label" for="check'+(i+1)+'"></label>' +
-		                '</td>' +  
+					'<tr>' + 
 						
 						'<td align="center">' +
 							mainSurveys[pageNum-1][i].s_num +
@@ -471,10 +467,6 @@
 				$(".tbody2").append(
 				
 					'<tr>' +
-						'<td class="custom-control custom-checkbox">' +
-		                    '<input class="custom-control-input" name="surveycheckbox" id="check2'+(i+1)+'" type="checkbox">' +
-		                    '<label class="custom-control-label" for="check2'+(i+1)+'"></label>' +
-		                '</td>' +  
 						
 						'<td align="center">' +
 							subSurveys[pageNum2-1][i].s_num +

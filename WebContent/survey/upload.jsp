@@ -219,12 +219,12 @@
   <script type="text/javascript">
 	var cnt = 1
 	jQuery("input[name=toggle]").on('click',function(){
-		alert("cnt : " + cnt);
+// 		alert("cnt : " + cnt);
 		if(cnt<5)
 			cnt++	
 	});
 	jQuery("input[name=del]").on('click',function(){
-		alert("cnt : " + cnt);
+// 		alert("cnt : " + cnt);
 		if(cnt>0)
 			cnt--
 	});

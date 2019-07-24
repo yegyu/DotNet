@@ -84,10 +84,10 @@
           </div>
 
 		  <div class="form-group row ">
-            <div class="col-xs-2">
+            <div class="col-xs-1">
               <label for="age">나이</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
-            <div class="col-xs-2">
+            <div class="col-xs-1">
               <select class="form-control" id="age" name="age">
                 <option value="10" selected="selected">10</option>
                 <option value="20">20</option>

@@ -24,7 +24,7 @@
 		<!-- css for this page -->
 		<style>
 		body{
-		 scroll:;
+		scroll:;
 		 overflow: ;
 		}
 		 #emialWin{
@@ -97,7 +97,6 @@
 
 <body>
 
-
 	<!-- 상단 바 -->
 
 	<nav class="navbar navbar-expand-md navbar-default" style="margin-bottom:0px">
@@ -129,7 +128,7 @@
 				<div class="btn-group">
 					<button type="button" class="btn btn-default" data-toggle="tooltip"
 						title="Refresh" onclick="history.go(0)">
-						&nbsp;새로고침&nbsp;
+						&nbsp;Trash&nbsp;
 					</button>
 				</div>
 				<hr style="margin-top:10px">
@@ -138,9 +137,9 @@
 					<span class="badge pull-right"></span> 쪽지&emsp;&emsp;</a></li>
 					
 					<li><a href="#mem" data-toggle="tab" id="sideMem" class="nav-link">회원관리</a></li>
-					<li><a href="#board" data-toggle="tab" id="sideBoard" class="nav-link">게시판관리</a></li>
 					<li><a href="#data" data-toggle="tab" id="sideData" class="nav-link">데이터관리</a></li>
 					<li><a href="#payment" data-toggle="tab" id="sidePay" class="nav-link">결제 관리</a></li>
+<!-- 					<li><a href="#myInfo" data-toggle="tab" id="sideMyInfo" class="nav-link">개인 정보 수정</a></li> -->
 
 				</ul>
 			</div>
@@ -151,11 +150,12 @@
 					<!--  -->
 					<div class="tab-pane fade in active show" id="mail">
 						<ul class="nav nav-tabs">
-							<li style="margin-right: 10px;">
+							<li style="margin-right: 10px">
   							 <button type="button" class="btn btn-default btn-sm" 
-  							 id="trash" > Trash </button>
+  							 id="trash" >
+          					<span class="glyphicon glyphicon-trash" ></span> Trash </button>
       					 	</li>
-							<li><a data-toggle="tab" href="#send" id="tabSend" class="nav-link active">보낸쪽지</a></li>
+							<li><a data-toggle="tab" href="#send" id="tabSend" class="nav-link active ">보낸쪽지</a></li>
 							<li><a data-toggle="tab" href="#receive" id="tabReceive" class="nav-link">받은쪽지</a></li>
 						</ul>
 					</div>
@@ -166,17 +166,12 @@
 <!-- 							<li><a data-toggle="tab" href="#like" id="tabLike" class="nav-link">좋아요</a></li> -->
 						</ul>
 					</div>
-					<div class="tab-pane fade in" id="board">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#boardManage" id="tabBoard" class="nav-link active">게시판관리</a></li>
-<!-- 							<li><a data-toggle="tab" href="#like" id="tabLike" class="nav-link">좋아요</a></li> -->
-						</ul>
-					</div>
 					<div class="tab-pane fade in" id="data">
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" href="#data1" id="tabData1" class="nav-link active">회원 관련</a></li>
-							<li><a data-toggle="tab" href="#data2" id="tabData2" class="nav-link ">문제</a></li>
-							<li><a data-toggle="tab" href="#data3" id="tabData3" class="nav-link ">데이터3</a></li>
+							<li><a data-toggle="tab" href="#data2" id="tabData2" class="nav-link ">양자택일</a></li>
+							<li><a data-toggle="tab" href="#data3" id="tabData3" class="nav-link ">오지선다</a></li>
+<!-- 							<li><a data-toggle="tab" href="#data4" id="tabData4" class="nav-link ">팔문팔답</a></li> -->
 <!-- 							<li><a data-toggle="tab" href="#goods" id="tabGoods" class="nav-link">포인트 이용</a></li> -->
 						</ul>
 					</div>
@@ -187,6 +182,13 @@
 							<li><a data-toggle="tab" href="#payMng" id="tabPay" class="nav-link ">결제 history</a></li>
 						</ul>
 					</div>
+					
+<!-- 					<div class="tab-pane fade in" id="myInfo"> -->
+<!-- 						<ul class="nav nav-tabs"> -->
+<!-- 							<li><a data-toggle="tab" href="#pointMng" id="tapMyInfo" class="nav-link active">회원 정보 수정</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+					
 						
 					
 				</div>
@@ -201,19 +203,15 @@
 					</div>
 					<div class="tab-pane fade in " id="receive">
 					<div class="table">
-						<table class="table table-fixed">
-							<jsp:include page="../receiveMail.do"></jsp:include>
-						</table>
-					</div>
+							<table class="table table-fixed">
+								<jsp:include page="../receiveMail.do"></jsp:include>
+							</table>
+							</div>
 					</div>
 					
 					<!--회원관리  -->
 					<div class="tab-pane fade in" id="memberManage">
 						<jsp:include page="../memberMng.do"></jsp:include>
-					</div>
-					<!--게시판관리  -->
-					<div class="tab-pane fade in" id="boardManage">
-						<jsp:include page="../adminBoard.do"></jsp:include>
 					</div>
 					
 					<!-- 데이터 관리 -->
@@ -224,16 +222,18 @@
 						<jsp:include page="../mwChart.do"></jsp:include>
 					</div>
 					<div class="tab-pane fade in" id="data3">
-						<h2>data 3</h2>
-<%-- 								<jsp:include page="../myFr.do"></jsp:include> --%>
+						<jsp:include page="../fiveChart.do"></jsp:include>
 					</div>
+<!-- 					<div class="tab-pane fade in" id="data4"> -->
+<%-- 						<jsp:include page="../eightChart.do"></jsp:include> --%>
+<!-- 					</div> -->
+					
 					<!-- 결제 관리 -->
 					<div class="tab-pane fade in" id="pointMng">
 						<jsp:include page="../adminPoMng.do"></jsp:include>
 					</div>
 					<div class="tab-pane fade in" id="goodsMng">
-						<h2>goods manage</h2>
-<%-- 						<jsp:include page="../recomFr.do"></jsp:include> --%>
+						<jsp:include page="../adminGoodsMng.do"></jsp:include>
 					</div>
 					<div class="tab-pane fade in" id="payMng">
 						<jsp:include page="../adminPayHistory.do"></jsp:include>
@@ -301,15 +301,6 @@
 			$("#realContent").children().removeClass('active show');
 			$("#memberManage").addClass('active show');
 		});
-		//게시판 관리
-		$("#sideBoard").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#boardManage").addClass('active show');
-		});
-		$("#tabBoard").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#boardManage").addClass('active show');
-		});
 		//데이터 관리
 		$("#sideData").on("click",function(){
 			$("#realContent").children().removeClass('active show');
@@ -327,6 +318,11 @@
 			$("#realContent").children().removeClass('active show');
 			$("#data3").addClass('active show');
 		});
+		$("#tabData4").on("click",function(){
+			$("#realContent").children().removeClass('active show');
+			$("#data4").addClass('active show');
+		});
+		
 		//결제관리
 		$("#sidePay").on("click",function(){
 			$("#realContent").children().removeClass('active show');
@@ -344,6 +340,15 @@
 			$("#realContent").children().removeClass('active show');
 			$("#payMng").addClass('active show');
 		});
+		//개인정보
+// 		$("#sideMyInfo").on("click",function(){
+// 			$("#realContent").children().removeClass('active show');
+// 			$("#myInfo").addClass('active show');
+// 		});
+// 		$("#tapMyInfo").on("click",function(){
+// 			$("#realContent").children().removeClass('active show');
+// 			$("#myInfo").addClass('active show');
+// 		});
 		
 	</script>
 	<script>
@@ -480,11 +485,7 @@ $(document).ready(function(){
 
     });
 
-    
-
 
 </script>
-
 </body>
-
 </html>

@@ -4,8 +4,18 @@
 
 
 <div class="table">
+  <div class="form-group row">
+    <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">회 원 검 색</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control form-control-lg" id="searchInput" placeholder="회원 이름을 검색하세요">
+    </div>
+    <div class="col-auto my-1">
+      <button type="button" class="btn btn-primary" id="searchButton">검색</button>
+    </div>
+  </div>	
 <table class="table">
-	<tr>
+<thead>
+	<tr class="infoRow">
 		<th>아이디</th>
 		<th>성별</th>
 		<th>나이대</th>
@@ -14,15 +24,17 @@
 		<th>상태</th>
 		<th></th>
 	</tr>
+</thead>
+<tbody class="membersRow">
 	<c:forEach var="mem" items="${memList }" >
-		<tr>
+		<tr >
 			<td>${mem.id }</td>
-				<c:if test="${mem.gender == 0 }">
-			<td>여자</td>
-			</c:if>
-			<c:if test="${mem.gender == 1}">
-				<td>남자</td>
-			</c:if>
+				<c:if test="${mem.gender == 2 }">
+				<td>여자</td>
+				</c:if>
+				<c:if test="${mem.gender == 1}">
+					<td>남자</td>
+				</c:if>
 			<td>${mem.age }</td>
 			<td>${mem.point }</td>
 			<td>${mem.signup_date }</td>
@@ -43,6 +55,7 @@
 			</td>
 		</tr>
 	</c:forEach>
+</tbody>
 </table>
 </div>
 <script>
@@ -99,6 +112,61 @@ $(document).ready(function(){
 			}
 		})
 	})
+	// 회원검색
+	$("#searchButton").on('click',
+        function () {
+            var data = { 
+            	"search": $("#searchInput").val()
+            };
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                data: data,
+                url: "searchMember.do",
+                success: function (data) {
+                    $(".membersRow").children().remove();
+                    for(var i = 0 ; i < data.length; i++){
+                    	var gender = null;
+                    	var button = null;
+                    	if(data[i].gender == 1) {
+                    		gender = "남자";
+                    	} else {
+                    		gender = "여자";
+                    	}
+                    	if(data[i].user_state == 0) {
+                    		button = '<button class="btn" name="stop" id="${mem.id}" value="1">중지</button>';
+                    	} else {
+                    		button = '<button class="btn" name="recover" id="${mem.id}" value="0">회복</button>';
+                    	}
+	                    $(".membersRow").append(
+	 						    '<tr>'+
+		 						    '<td>'+
+		 						 		data[i].id +
+		 						    '</td>'+
+		 						    '<td>'+
+		 						    	gender +
+		 						    '</td>'+
+		 						    '<td>'+
+		 						    	data[i].age +
+		 						    '</td>'+
+		 						    '<td>'+
+		 						    	data[i].point +
+		 						    '</td>'+
+		 						    '<td>'+
+	 						    		data[i].signup_date +
+	 						    	'</td>'+
+	 						    	'<td>' +
+	 						    		button +
+	 						    	'</td>' +
+	 						    '</tr>'               	
+	                    );
+                    }
+                },
+                error: function (e) {
+                    alert(e + "error");
+                }
+            });
+        });
 
 });
 

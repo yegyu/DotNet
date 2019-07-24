@@ -6,6 +6,10 @@
   
 <mapper namespace="Main">
 	
+	<select id="searchMems" parameterType="String" resultType="main.MemberDataBean">
+		select * from dn_member where id like '%'||#{id}||'%'
+	</select>
+	
 	<select id="getComm" parameterType="int" resultType="user.CommentDataBean">
 		select * from dn_comment where s_num=#{s_num } order by dt desc
 	</select>
@@ -32,11 +36,11 @@
 	</select>
 
 	<select id="getMyTest" parameterType="String" resultType="user.LibDataBean">
-		select s_num , subject , point , hits, partnum , s_date, thumb_path from dn_board where writer = #{id} order by s_date desc
+		select s_num , subject , point , hits, partnum, s_date, thumb_path, s_tp_num from dn_board where writer = #{id} order by s_date desc
 	</select>
 	<select id="getLib" parameterType="String" resultType="user.LibDataBean">
-		select distinct(dn_s_part.s_num),mem_id, dn_board.subject, point,hits,partnum, to_char(part_date,'yyyy-mm-dd hh:mm:ss') d, thumb_path,s_tp_num from dn_s_part
-		join dn_board on dn_s_part.s_num = dn_board.s_num  where mem_id=#{id} order by d desc
+		select distinct(dn_s_part.s_num),mem_id, dn_board.subject, point,hits,partnum, thumb_path,s_tp_num from dn_s_part
+        join dn_board on dn_s_part.s_num = dn_board.s_num  where mem_id='aaa' order by s_num desc
 	</select>
 	<select id="getGoodsSt" parameterType="String" resultType="user.GoodsStDataBean">
 		select g_name,g_point,g_cnt,t_date,tst_num from dn_goods 
@@ -85,7 +89,7 @@
 	
 	<insert id="insertMember" parameterType="main.MemberDataBean">
 		insert into dn_member values(SEQ_dn_member_mem_num.nextval,#{id},#{passwd},#{gender},#{age},#{zipcode},#{address},
-									#{addressDetail,jdbcType=VARCHAR},#{location},#{email},#{signupDate},0,0)
+									#{addressDetail,jdbcType=VARCHAR},#{location},#{email},#{signup_date},0,0)
 	</insert>
 	
 	<select id="getSurveys" resultType="main.BoardDataBean">

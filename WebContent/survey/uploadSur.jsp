@@ -72,7 +72,8 @@ html, body{
 /* } */
 img {
 	top: 180px;
-	 max-width: 100%;
+	width : 40%
+	max-width: 100%;
 	position: fixed;
 	display: none;
 	position: fixed;
@@ -93,47 +94,100 @@ img {
 	bottom: 0px;
 	right: 50%;
 }
+
+#sBtn {
+	height : 53px;
+}
+
 </style>
 </head>
 <body>
 <h1 align="center">설문번호 : ${two.s_num}</h1>
 <br>
-
-<c:set var="c" value="${0}" />
-<c:set var="size" value="${0}" />
-<c:forEach var="i" items="${qList}" varStatus="ii">
-	<c:if test="${i ne null}">
-		<h1 align="center" class="q">${i}</h1>
-		<div class="row justify-content-center" >
-			<div class="${ii.count} col " >
-				<c:set var="size" value="${ii.count}" />
-				<img src="/DotNet/save/${iList[c]}" border="0" class="float-right"
-					height="70%"  name="1" style="height:;width:;padding-left:auto">
+<!-- 추가~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ id = intro -->
+<div class="container-fluid mt-5" id="intro">
+	<div class="row justify-content-center">
+		<div class="form-group row w-50">
+			<label class="col-sm-2 col-form-label text-right">이름</label>
+			<div class="col-sm-8">
+				<c:if test="${sessionScope.memId eq null}">
+					<input type="text" class="form-control"  name="name"
+						placeholder="이름을 입력해주세요" form="choiceInfo" ><!--    -->
+				</c:if>
+				<c:if test="${sessionScope.memId ne null}">
+					<div class="alert alert-success" role="alert">
+						${sessionScope.memId} 님 환영합니다.</div>
+				</c:if>
 			</div>
-			<div class="${ii.count} col">
-				<img src="/DotNet/save/${iList[c+1]}" border="0" 
-					height="70%"  name="2" style="height:;width:">
-
-				<c:set var="c" value="${c+2}" />
-			</div>
+			<button type="button" class="btn" id="sBtn">시작!!</button>
 		</div>
-	</c:if>
-</c:forEach>
-
-<div class="bottom">
-	<input type="submit" value="완료" hidden>
-	<form action="uploadResult.do" method="post" name="choiceInfo">
-		<c:forEach var="ii" begin="${1}" end="${size}">
-			<input type="hidden" name="q${ii}">
-		</c:forEach>
-		<input type="hidden" name="s_num" value="${two.s_num}"> <input
-			type="hidden" name="point" value="${boardDto.point }">
-	</form>
-
-	<a href="main.do" class="tomain">메인으로</a>
+	</div>
 </div>
+<!-- 추가~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ id = startTwo-->
+<div id="startTwo">
 
+	<c:set var="c" value="${0}" />
+	<c:set var="size" value="${0}" />
+	<c:forEach var="i" items="${qList}" varStatus="ii">
+		<c:if test="${i ne null}">
+			<h1 align="center" class="q">${i}</h1>
+			<div class="row justify-content-center" >
+				<div class="${ii.count} col " >
+					<c:set var="size" value="${ii.count}" />
+					<img src="/DotNet/save/${iList[c]}" border="0" class="float-right"
+						height="70%"  name="1" style="height:;width:;padding-left:auto">
+				</div>
+				<div class="${ii.count} col">
+					<img src="/DotNet/save/${iList[c+1]}" border="0" 
+						height="70%"  name="2" style="height:;width:">
+	
+					<c:set var="c" value="${c+2}" />
+				</div>
+			</div>
+		</c:if>
+	</c:forEach>
+	
+	<div class="bottom">
+		<input type="submit" value="완료" hidden>
+		<form action="uploadResult.do" method="post" name="choiceInfo" id="choiceInfo">
+			<c:forEach var="ii" begin="${1}" end="${size}">
+				<input type="hidden" name="q${ii}">
+			</c:forEach>
+			<input type="hidden" name="s_num" value="${two.s_num}"> <input
+				type="hidden" name="point" value="${boardDto.point }">
+		</form>
+	
+		<a href="main.do" class="tomain">메인으로</a>
+	</div>
+</div>
 <script>
+/////////////추가!!!!!!!!!?//////////////////
+$(document).ready(function(){
+	$("#startTwo").hide();
+	$('#intro').show();
+	$("#sBtn").on('click', function(){
+		if($('input[name=name]').val() == ""){
+			alert("이름을 입력해 주세요!!");
+			return false;
+		}else{
+			$('#startTwo').show();
+			$('#intro').hide();
+		}
+	});
+	$("img").on( {
+		"mouseover" : function(){
+							$(this).css("border", "solid 3px #6666ff");
+						},
+		"mouseleave" : function(){
+							$(this).css("border", "hidden")
+						}
+		}
+	
+		
+	);
+	
+});
+/////////////추가!!!!끝끝끝끝끝끝!!!?//////////////////
 // 	var iList = [];
 // 	var qList = [];
 // 	for (var i = 0; i < $("img").length; i++) {

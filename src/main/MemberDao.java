@@ -38,4 +38,6 @@ public interface MemberDao {
 	
 	public List<CommentDataBean> getComm(int s_num); 
 	public int insertComm(CommentDataBean comm);
+	
+	public List<MemberDataBean> searchMems(String id);
 }

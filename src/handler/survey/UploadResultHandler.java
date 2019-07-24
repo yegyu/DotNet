@@ -32,6 +32,8 @@ public class UploadResultHandler implements CommandHandler {
 	@RequestMapping("/uploadResult")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		
 		// 파라미터 가져오기
 		HttpSession session = request.getSession();
 		String s_num = (String) request.getParameter("s_num");
@@ -45,7 +47,7 @@ public class UploadResultHandler implements CommandHandler {
 		} else {
 			id = request.getParameter("name");
 		}
-		
+
 		// 설문 정보 넘기기
 		TwoDataBean two = surveyDao.getTwo(s_num);
 		
@@ -78,7 +80,7 @@ public class UploadResultHandler implements CommandHandler {
 		
 		while (e.hasMoreElements()){
 		    String name = (String)e.nextElement();
-		    if(!name.equals("s_num")&&!name.equals("point")) { // 넘어온 데이터 중 s_num, point는 위에서 받으므로 제외
+		    if(name.startsWith("q")) { // 넘어온 데이터 중 s_num, point는 위에서 받으므로 제외
 			    choList.add(Integer.parseInt(request.getParameter(name)));
 		    }
 		}
@@ -110,7 +112,7 @@ public class UploadResultHandler implements CommandHandler {
 		map.put("choiceList", choiceList);
 		
 		// 로그인 하지 않았을 시에는 아무런 정보를 저장하지 않음
-		if(id != null) {
+		if(session.getAttribute("memId")!=null) {
 			// 참여수 증가
 			surveyDao.addPart(s_num);
 			
@@ -125,7 +127,7 @@ public class UploadResultHandler implements CommandHandler {
 			// 설문 참여 포인트 획득
 			surveyDao.updatePoint(map);
 		} else {	// 회원이 아닐 경우
-			// dn_s_sel_temp에 정보저장
+			// dn_s_part_temp에 정보저장
 			surveyDao.insertTemp(map);
 		}
 		

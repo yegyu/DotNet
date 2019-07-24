@@ -59,7 +59,7 @@
 	}
 	
 	div.table{
-		height: 40rem;
+		height: 35rem;
 		overflow: auto;
 	}
 	 table > thead > tr > th:nth-child(1){

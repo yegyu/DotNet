@@ -46,9 +46,6 @@ public class AdminBoardHandler implements CommandHandler {
 		adminSvy.setB_tp_num(b_tp_num);
 		adminSvy.setS_num(s_num);
 		
-		System.out.println("b_tp_num : " + b_tp_num);
-		System.out.println("s_num : " + s_num);
-		
 		result = adminDao.updateBoardType(adminSvy);
 		
 		map.put("result", result);
@@ -102,9 +99,9 @@ public class AdminBoardHandler implements CommandHandler {
 		List<SurveyDataBean> allMainSurveys = surveyDao.getSurs();
 		List<List<SurveyDataBean>> mainSurveys = new ArrayList<List<SurveyDataBean>>();
 		int mainCnt = allMainSurveys.size();
-
+		
 		int index = 0;
-		int realSize = mainCnt/listSize == 0 ? 1 : mainCnt/listSize+1;
+		int realSize = mainCnt/listSize == 0 ? 1 : mainCnt%listSize == 0 ? mainCnt/listSize : mainCnt/listSize+1;
 		for(int i = 0; i < realSize; i++) {
 			List<SurveyDataBean> mainSurPage = new ArrayList<SurveyDataBean>();
 			for(int j = 0; j < listSize; j++) {
@@ -122,10 +119,8 @@ public class AdminBoardHandler implements CommandHandler {
 		List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 		int subCnt = allSubSurveys.size();
 
-		System.out.println("subCnt : " + subCnt);
-		
 		int index2 = 0;
-		int realSize2 = subCnt/listSize == 0 ? 1 : subCnt/listSize+1;
+		int realSize2 = subCnt/listSize == 0 ? 1 : subCnt%listSize == 0? subCnt/listSize : subCnt/listSize+1;
 		for(int i = 0; i < realSize2; i++) {
 			List<SurveyDataBean> subSurPage = new ArrayList<SurveyDataBean>();
 			for(int j = 0; j < listSize; j++) {
@@ -160,7 +155,7 @@ public class AdminBoardHandler implements CommandHandler {
 //			System.out.println("size : " + mainCnt/listSize);
 			
 			int index = 0;
-			int realSize = mainCnt/listSize == 0 ? 1:mainCnt/listSize+1;
+			int realSize = mainCnt/listSize == 0 ? 1 : mainCnt%listSize == 0 ? mainCnt/listSize : mainCnt/listSize+1;
 			for(int i = 0; i < realSize; i++) {
 				List<SurveyDataBean> mainSurPage = new ArrayList<SurveyDataBean>();
 				for(int j = 0; j < listSize; j++) {
@@ -175,6 +170,7 @@ public class AdminBoardHandler implements CommandHandler {
 			
 			request.setAttribute( "mainSurveys", mainSurveys);
 			request.setAttribute("mainCnt", mainCnt);
+			request.setAttribute("realSize", realSize);
 			request.setAttribute("pageNum", pageNum);
 			
 			// 보조게시판용
@@ -182,10 +178,8 @@ public class AdminBoardHandler implements CommandHandler {
 			List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 			int subCnt = allSubSurveys.size();
 
-			System.out.println("subCnt : " + subCnt);
-			
 			int index2 = 0;
-			int realSize2 = subCnt/listSize == 0 ? 1 : subCnt/listSize+1;
+			int realSize2 = subCnt/listSize == 0 ? 1 : subCnt%listSize == 0? subCnt/listSize : subCnt/listSize+1;
 			for(int i = 0; i < realSize2; i++) {
 				List<SurveyDataBean> subSurPage = new ArrayList<SurveyDataBean>();
 				for(int j = 0; j < listSize; j++) {
@@ -199,6 +193,7 @@ public class AdminBoardHandler implements CommandHandler {
 			System.out.println("subSurveys : " + subSurveys );
 			request.setAttribute("subSurveys", subSurveys);
 			request.setAttribute("subCnt", subCnt);
+			request.setAttribute("realSize2", realSize2);
 			
 			List<AdminCategoryBean> categorys = adminDao.getCategorys();
 			request.setAttribute( "categorys", categorys );
