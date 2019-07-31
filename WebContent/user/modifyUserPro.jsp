@@ -15,8 +15,8 @@
 	<meta http-equiv="refresh" content="0; url=main.do">
 </c:if>
 <c:if test="${result != 0}">
-	<c:redirect url="main.do"/>
-</c:if>	
+    <c:redirect url="main.do?logout=true"/>
+</c:if>
 
 
 

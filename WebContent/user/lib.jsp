@@ -9,9 +9,8 @@
 			<td style="width:100px">
 				<a><img src="save/${l.thumb_path }" class="mylibimg" name="${l.s_tp_num }" id="${l.s_num }" style="height: 100px; width: 100px" ></a>
 			</td>
-			<td style="width:">${l.s_num}:${l.subject }</td>
-			<td style="width:">point:${l.point}</td>
-			<td style="width:">${l.d}</td>
+			<td style="width:">${l.s_num} : ${l.subject}</td>
+			<td style="width:">획득 가능 포인트 : ${l.point}</td>
 			<td>타입 : ${l.s_tp_num }</td>
 		</tr>
 	</c:forEach>

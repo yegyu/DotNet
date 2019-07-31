@@ -15,7 +15,7 @@
 </select>
 </div>
 <div class="col-md-4">
-<button class="btn" id="fsur">설문 보기</button>
+
 </div>
 <br>
 <br>
@@ -35,12 +35,7 @@
 
 </div>
 
-<script type="text/javascript">
-$("#fsur").on('click',function(){
-	var url="userMySurveyDetail.do?s_num=" + $("#fsnum").val();
-	window.open(url,'결과 테이블',"width=880, height=760, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-});
-</script>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 <script>
@@ -53,7 +48,7 @@ for(var i = 0 ; i < jfageArr.length; i+=jfageArr.length/7){
 	fk++;
 }
 var ar=[];
-for(var i = 0 ; i < farrAge[0].length; i+=5){
+for(var i = 0 ; i < farrAge.length; i+=5){
     for(var j =0  ; j<7; j++){
         ar.push(farrAge[j].slice(i,i+5))
     }

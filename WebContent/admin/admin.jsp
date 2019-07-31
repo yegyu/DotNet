@@ -137,9 +137,9 @@
 					<span class="badge pull-right"></span> 쪽지&emsp;&emsp;</a></li>
 					
 					<li><a href="#mem" data-toggle="tab" id="sideMem" class="nav-link">회원관리</a></li>
+					<li><a href="#board" data-toggle="tab" id="sideBoard" class="nav-link">게시판관리</a></li>
 					<li><a href="#data" data-toggle="tab" id="sideData" class="nav-link">데이터관리</a></li>
 					<li><a href="#payment" data-toggle="tab" id="sidePay" class="nav-link">결제 관리</a></li>
-<!-- 					<li><a href="#myInfo" data-toggle="tab" id="sideMyInfo" class="nav-link">개인 정보 수정</a></li> -->
 
 				</ul>
 			</div>
@@ -163,7 +163,11 @@
 					<div class="tab-pane fade in" id="mem">
 						<ul class="nav nav-tabs">
 							<li><a data-toggle="tab" href="#memberManage" id="tabMem" class="nav-link active">회원관리</a></li>
-<!-- 							<li><a data-toggle="tab" href="#like" id="tabLike" class="nav-link">좋아요</a></li> -->
+						</ul>
+					</div>
+					<div class="tab-pane fade in" id="board">
+						<ul class="nav nav-tabs">
+							<li><a data-toggle="tab" href="#boardManage" id="tabBoard" class="nav-link active">게시판관리</a></li>
 						</ul>
 					</div>
 					<div class="tab-pane fade in" id="data">
@@ -171,8 +175,6 @@
 							<li><a data-toggle="tab" href="#data1" id="tabData1" class="nav-link active">회원 관련</a></li>
 							<li><a data-toggle="tab" href="#data2" id="tabData2" class="nav-link ">양자택일</a></li>
 							<li><a data-toggle="tab" href="#data3" id="tabData3" class="nav-link ">오지선다</a></li>
-<!-- 							<li><a data-toggle="tab" href="#data4" id="tabData4" class="nav-link ">팔문팔답</a></li> -->
-<!-- 							<li><a data-toggle="tab" href="#goods" id="tabGoods" class="nav-link">포인트 이용</a></li> -->
 						</ul>
 					</div>
 					<div class="tab-pane fade in" id="payment">
@@ -182,14 +184,6 @@
 							<li><a data-toggle="tab" href="#payMng" id="tabPay" class="nav-link ">결제 history</a></li>
 						</ul>
 					</div>
-					
-<!-- 					<div class="tab-pane fade in" id="myInfo"> -->
-<!-- 						<ul class="nav nav-tabs"> -->
-<!-- 							<li><a data-toggle="tab" href="#pointMng" id="tapMyInfo" class="nav-link active">회원 정보 수정</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-					
-						
 					
 				</div>
 				<div class="tab-content" id="realContent" >
@@ -212,6 +206,10 @@
 					<!--회원관리  -->
 					<div class="tab-pane fade in" id="memberManage">
 						<jsp:include page="../memberMng.do"></jsp:include>
+					</div>
+					<!--게시판관리  -->
+					<div class="tab-pane fade in" id="boardManage">
+						<jsp:include page="../adminBoard.do"></jsp:include>
 					</div>
 					
 					<!-- 데이터 관리 -->
@@ -300,6 +298,15 @@
 		$("#tabRecent").on("click",function(){
 			$("#realContent").children().removeClass('active show');
 			$("#memberManage").addClass('active show');
+		});
+		//게시판 관리
+		$("#sideBoard").on("click",function(){
+			$("#realContent").children().removeClass('active show');
+			$("#boardManage").addClass('active show');
+		});
+		$("#tabBoard").on("click",function(){
+			$("#realContent").children().removeClass('active show');
+			$("#boardManage").addClass('active show');
 		});
 		//데이터 관리
 		$("#sideData").on("click",function(){

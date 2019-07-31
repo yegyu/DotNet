@@ -25,6 +25,7 @@ DROP TABLE dn_s_two CASCADE CONSTRAINTS;
 DROP TABLE dn_board CASCADE CONSTRAINTS;
 DROP TABLE dn_boardtype CASCADE CONSTRAINTS;
 DROP TABLE dn_category CASCADE CONSTRAINTS;
+DROP TABLE dn_comment CASCADE CONSTRAINTS;
 DROP TABLE dn_friend CASCADE CONSTRAINTS;
 DROP TABLE dn_goodstrade CASCADE CONSTRAINTS;
 DROP TABLE dn_goods CASCADE CONSTRAINTS;
@@ -100,6 +101,16 @@ CREATE TABLE dn_category
 	ct_num number NOT NULL,
 	ct_name varchar2(100) NOT NULL,
 	PRIMARY KEY (ct_num)
+);
+
+
+CREATE TABLE dn_comment
+(
+	mem_id varchar2(100) NOT NULL,
+	s_num number NOT NULL,
+	content varchar2(2000) NOT NULL,
+	dt date NOT NULL,
+	state number NOT NULL
 );
 
 

@@ -19,7 +19,7 @@
 </select>
 </div>
 <div class="col-md-4">
-<button class="btn" id="sur">설문 보기</button>
+
 </div>
 <br>
 <br>
@@ -31,12 +31,7 @@
 
 
 
-<script type="text/javascript">
-$("#sur").on('click',function(){
-	var url="userMySurveyDetail.do?s_num=" + $("#snum").val();
-	window.open(url,'결과 테이블',"width=880, height=760, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
-});
-</script>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 var jageArr=${jageArr}

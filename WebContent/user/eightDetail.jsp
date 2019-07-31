@@ -97,9 +97,6 @@
 				<!-- end row1 -->
 
 
-				<div class="card-footer">
-						<input type="button" class="btn btn-primary" name="prev" 	value="이전 페이지">
-					</div>
 				</div>
 			</div>
 		</div>

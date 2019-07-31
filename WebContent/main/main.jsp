@@ -23,14 +23,6 @@
 		<link rel="stylesheet" type="text/css" href="mainCss.css" />
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		<style>
 		.fixed-bottom{
 		display: none;
@@ -70,7 +62,7 @@
 		
 		}
 		#no_search{
-		display: none;
+			display: none;
 		}
 		#write_btn {
 			height : 45px;
@@ -327,7 +319,42 @@
 					e.preventDefault();
 				}
 			}
-		);		
+		);
+		
+		
+		var boardtype = sessionStorage.getItem("boardtype");
+		if(boardtype == null || boardtype == 1) {
+			$(".mainboard").html("<h4> 메인 </h4>");
+		} else if(boardtype == 2) {
+			$(".subboard").html("<h4> 보조 </h4>");
+		}
+		// 메인, 보조 게시판 클릭시 표시
+		$(".subboard").on(
+			"click",
+			function(){
+				sessionStorage.setItem("boardtype", "2");
+			}
+		);
+		$(".mainboard").on(
+			"click",
+			function(){
+				sessionStorage.setItem("boardtype", "1");
+			}
+		);
+		$(".notboard").on(
+			"click",
+			function(){
+				sessionStorage.setItem("boardtype", "3");
+			}
+		);
+		$("#logo").on(
+			"click",
+			function(){
+				sessionStorage.setItem("boardtype", "1");
+			}	
+		);
+			
+		
 	});
 	
 	

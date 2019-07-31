@@ -24,7 +24,7 @@ public class ModifyUserViewHandler implements CommandHandler {
 		
 		String id = (String) request.getSession().getAttribute( "memId" );
 		String passwd = request.getParameter( "passwd" );
-	
+		
 		int result = memberDao.check( id, passwd );
 		
 		request.setAttribute( "result", result );

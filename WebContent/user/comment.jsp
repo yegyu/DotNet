@@ -8,9 +8,9 @@
 <div class="row">
 
 <textarea class="form-control" maxlength="50" cols="70px" rows="2px" style="font-size: 20px;" id="commentArea" placeholder="댓글을 입력하세요~!~!~!"></textarea><br>
- <button class="commentbtn btn" style="position:relative; right: 0px" id="inputComment">댓글 입력</button>
+ <button class="commentbtn btn my-3" style="position:relative; right: 0px" id="inputComment">댓글 입력</button>
 </div>
-<table>
+<table width="100%">
 		<thead >
 		<tr >
 			<th width="20%" id="${s_num }">ID</th>

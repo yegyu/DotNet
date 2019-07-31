@@ -20,13 +20,14 @@
 		</tr>
 		<tr>
 			<th colspan="2">
-				<input class="inputbutton" type="submit" value="${btn_mod}">
-				<input class="inputbutton" type="button" value="${btn_mod_cancel}"
+				<input class="inputbutton btn" type="submit" value="${btn_mod}">
+				<input class="inputbutton btn" type="button" value="${btn_mod_cancel}"
 					onclick="location='main.do'">
 			</th>
 		</tr>
 	</table>
 </form>
+
 
 
 

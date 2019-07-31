@@ -97,6 +97,6 @@
 	</select>
 	
 	<update id="updateMember" parameterType="main.MemberDataBean">
-		update dn_member set passwd=#{passwd}, gender=#{gender}, age=#{age}, zipcode=#{zipcode}, address=#{address}, addressDetail=#{addressDetail}, email=#{email} where id=#{id}
-	</update>
+        update dn_member set passwd=#{passwd}, age=#{age}, zipcode=#{zipcode}, address=#{address}, addressDetail=#{addressDetail}, email=#{email}, user_state=#{user_state} where id=#{id}
+    </update>
 </mapper>

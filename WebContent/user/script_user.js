@@ -20,12 +20,42 @@ var loginiderror = "입력하신 아이디가 없습니다.\n다시 확인하세
 var loginpasswderror = "입력하신 비밀번호가 다릅니다.\n다시 확인하세요";
 var deleteerror = "회원 탈퇴에 실패했습니다.\n잠시 후 다시 시도하세요";
 var modifyerror = "회원 정보 수정에 실패했습니다.\n잠시 후 다시 시도하세요";
+var confirmdel = "회원탈퇴에 성공하였습니다!";
 
 function erroralert( msg ) {
 	alert( msg );
 	history.back();
 }
 
+function memmodifycheck() {
+	alert("삭제비번 : " + memmodifyform.delpasswd.value);
+	alert("원래비번 : " + memmodifyform.passwd.value);
+    if( ! memmodifyform.passwd.value ) {
+        alert( passwderror );
+        memmodifyform.passwd.focus();
+        return false;
+    }
+    if( memmodifyform.passwd.value != memmodifyform.repasswd.value ) {
+        alert( repasswderror );
+        memmodifyform.repasswd.focus();
+        return false;
+    }
+    if( ! memmodifyform.delpasswd.value ) {
+        alert( passwderror );
+        memmodifyform.delpasswd.focus();
+        return false;
+    }
+    if( memmodifyform.delpasswd.value != memmodifyform.passwd.value ) {
+        alert( repasswderror );
+        memmodifyform.delpasswd.focus();
+        return false;
+    }
+    if ( memmodifyform.delpasswd.value == memmodifyform.passwd.value) {
+        alert( confirmdel );
+        document.getElementById("userState").value = "2";
+        return true;
+    }  
+}
 
 // 회원 정보 수정
 function modifycheck() {

@@ -25,7 +25,7 @@ public class ModifyUserProHandler implements CommandHandler{
 	@RequestMapping("/modifyUserPro")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+		request.setCharacterEncoding("utf-8");
 
 		MemberDataBean memberDto = new MemberDataBean();
 //		
@@ -36,6 +36,7 @@ public class ModifyUserProHandler implements CommandHandler{
 		memberDto.setAddress(request.getParameter("address") );
 		memberDto.setAddressDetail(request.getParameter("addressDetail") );
 		memberDto.setEmail(request.getParameter("email") );
+		memberDto.setUser_state(Integer.parseInt(request.getParameter("user_state")));
 		
 		int result = memberDao.updateMember( memberDto );
 		request.setAttribute("result", result);

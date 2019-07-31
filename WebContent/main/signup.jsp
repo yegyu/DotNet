@@ -96,8 +96,6 @@
                 <option value="50">50</option>
                 <option value="60">60</option>
                 <option value="70">70</option>
-                <option value="80">80</option>
-                <option value="90">90</option>
               </select>
             </div>
             <div class="col-xs-1 "><div>대</div></div>
