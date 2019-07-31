@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dot Net</title>
+    <title>Dot Net - kimgheumju</title>
 
 <!--     Bootstrap core CSS
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
