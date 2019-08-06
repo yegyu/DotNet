@@ -84,7 +84,7 @@ public class EightProHandler implements CommandHandler {
 		for(int i=0; i < nameList.size(); i++) {
 			contentList.add(multi.getParameter(nameList.get(i)));
 		}
-		System.out.println("contentList : " + contentList);
+//		System.out.println("contentList : " + contentList);
 		
 		// 이미지 경로 넣기
 		info.put("upload1",multi.getFilesystemName("upload1"));
@@ -104,7 +104,7 @@ public class EightProHandler implements CommandHandler {
 		
 		surveyDao.insertSurvey(boardDto);
 		
-		System.out.println("info : " + info);
+//		System.out.println("info : " + info);
 		
 		// dn_s_eight에 넣기
 		int cnt=0;
@@ -118,15 +118,15 @@ public class EightProHandler implements CommandHandler {
 			qmap.put("s4Content", contentList.get(cnt++));
 			
 			qList.add(qmap);
-			System.out.println("qList : " + qList);
+//			System.out.println("qList : " + qList);
 		}
 		
 		map.put("qList", qList);
 		map.put("s_num", boardDto.getS_num());
-		System.out.println("map : " + map);
+//		System.out.println("map : " + map);
 		int eResult = surveyDao.insertEight(map);
 		
-		System.out.println("eResult : " + eResult);
+//		System.out.println("eResult : " + eResult);
 		
 		request.setAttribute("info", info);
 		

@@ -36,7 +36,7 @@ public class FriendFeedHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = request.getParameter("Friend");
 		int gender_type = 0;
-		System.out.println("현재 " + id + "님의 친구창입니다.");
+//		System.out.println("현재 " + id + "님의 친구창입니다.");
 		// 피드에 표시하기 위한 변수들
 		String[] personality = {"활동적인", "배려있는", "센스있는", "통찰력있는",
                 "이성적인", "감성적인", "도전적인", "안정적인"};
@@ -77,7 +77,7 @@ public class FriendFeedHandler implements CommandHandler {
 		selectList = surveyDao.getMyFeed(map);
 		friendList = frDao.getRealFrBtn(id);
 		
-		System.out.println(id + "님의 친구 목록은 " + friendList);
+//		System.out.println(id + "님의 친구 목록은 " + friendList);
 		
 		map.put("selectList", selectList);
 		map.put("friendList", friendList);
@@ -85,7 +85,7 @@ public class FriendFeedHandler implements CommandHandler {
 		map.put("personality", personality);
 		map.put("hobby", hobby);
 		map.put("folder_name", folder_name);
-		System.out.println("map : " + map);
+//		System.out.println("map : " + map);
 		request.setAttribute("map", map);
 		
 		return new ModelAndView("/user/friendFeed");

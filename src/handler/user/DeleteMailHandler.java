@@ -38,7 +38,7 @@ public class DeleteMailHandler {
 		ArrayList<String> r = new ArrayList<String>();
 		
 		String json = request.getParameter("val");
-		System.out.println(json);
+//		System.out.println(json);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		map = mapper.readValue(json,new com.fasterxml.jackson.core.type.TypeReference<Map<String,String>>(){});
@@ -61,18 +61,18 @@ public class DeleteMailHandler {
 //			smap.put("id",id);
 //			smap.put("m_num", s.get(i));
 			int rs=messageDao.updateSDelSt(Integer.valueOf(s.get(i) ));
-			System.out.println("result update s_del_st");
-			System.out.print(rs + " ");
+//			System.out.println("result update s_del_st");
+//			System.out.print(rs + " ");
 		}
 		for(int j = 0 ; j < r.size(); j++) {
 			int rr = messageDao.updateRDelSt(Integer.valueOf(r.get(j)));
-			System.out.println("result update r_del_st");
-			System.out.print(rr + " ");
+//			System.out.println("result update r_del_st");
+//			System.out.print(rr + " ");
 		}
 //		
-		System.out.println("map :" + map);
-		System.out.println("s : " + s);
-		System.out.println("r : " + r);
+//		System.out.println("map :" + map);
+//		System.out.println("s : " + s);
+//		System.out.println("r : " + r);
 		
 		
 		return map;

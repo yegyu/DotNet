@@ -52,7 +52,7 @@ public class UserMySureveyDetailHandler implements CommandHandler {
 		
 //		System.out.println("조회수"+hits);
 		TwoDataBean two = SqlMapClient.getSession().selectOne("Survey.getTwo", s_num);
-		System.out.println("s_num : " + s_num);
+//		System.out.println("s_num : " + s_num);
 		// 질문 개수
 		List<String> qList = new ArrayList<String>();
 		qList.add(two.getQ1());

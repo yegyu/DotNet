@@ -75,7 +75,7 @@ public class UploadProHandler implements CommandHandler {
 			}
 		}
 		
-		System.out.println("isAdmin : " + isAdmin);
+//		System.out.println("isAdmin : " + isAdmin);
 		// dn_board에 정보저장
 		BoardDataBean boardDto = new BoardDataBean();
 		boardDto.setB_tp_num(isAdmin);
@@ -128,7 +128,7 @@ public class UploadProHandler implements CommandHandler {
 //		}
 		
 		TwoDataBean two = new TwoDataBean();
-		System.out.println("s_num : " + boardDto.getS_num());
+//		System.out.println("s_num : " + boardDto.getS_num());
 		two.setS_num(boardDto.getS_num());
 		two.setQ1(qAndImg.get(0));
 		two.setImgname1(qAndImg.get(1));
@@ -147,7 +147,7 @@ public class UploadProHandler implements CommandHandler {
 		two.setImgname10(qAndImg.get(14));
 		
 		int ins_two_result = surveyDao.insertTwo(two);
-		System.out.println("ins_two_result : " + ins_two_result);
+//		System.out.println("ins_two_result : " + ins_two_result);
 		request.setAttribute("ins_two_result", ins_two_result);
 		request.setAttribute("two", two);
 		

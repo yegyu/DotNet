@@ -142,14 +142,14 @@ public class FiveChartHandler implements CommandHandler {
 
 		request.setAttribute("jfageArr", jfageArr);
 		
-		System.out.println("five chart handler 마직막");
+//		System.out.println("five chart handler 마직막");
 		return new ModelAndView("admin/fiveChart");
 	}
 
 	@RequestMapping(value = "fmw", method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> tp2chart(HttpServletRequest request) throws JSONException {
-		System.out.println("오지 ajax 들어옴");
+//		System.out.println("오지 ajax 들어옴");
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<Integer> getS_numList = adminDao.getS_numList(5);
@@ -158,7 +158,7 @@ public class FiveChartHandler implements CommandHandler {
 
 		if (request.getParameter("data") != null) {
 			s_num = Integer.parseInt(request.getParameter("data"));
-			System.out.println("in if s_num(ajax) : " + s_num);
+//			System.out.println("in if s_num(ajax) : " + s_num);
 		}
 
 		List<DnSSelDB> fsSellist = adminDao.getSSel(s_num);

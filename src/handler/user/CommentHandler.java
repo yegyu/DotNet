@@ -39,16 +39,16 @@ public class CommentHandler implements CommandHandler{
 //			System.out.println(getComm.get(0).getMem_id());
 			request.setAttribute("getComm", getComm);
 		}else {
-			System.out.println("getComm 은 null 입니다.");
+//			System.out.println("getComm 은 null 입니다.");
 		}
-		System.out.println("s_num : " + s_num + ", id : " + id	);
+//		System.out.println("s_num : " + s_num + ", id : " + id	);
 		return new ModelAndView("user/comment");
 	}
 
 	@RequestMapping(value = "comm" ,method = RequestMethod.POST)
 	@ResponseBody
 	public List<CommentDataBean> com(HttpServletRequest request){
-		System.out.println("comment ajax 들어옴");
+//		System.out.println("comment ajax 들어옴");
 		HttpSession sess = request.getSession();
 		String id = (String)sess.getAttribute("memId");
 		int s_num = Integer.parseInt(request.getParameter("s_num"));

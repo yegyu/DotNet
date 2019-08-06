@@ -36,11 +36,11 @@ public class AdminPoMngHandler implements CommandHandler{
 	@RequestMapping(value = "adminPay" , method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Integer adminPay(HttpServletRequest request	) {
-		System.out.println("adminPay 들어옴");
+//		System.out.println("adminPay 들어옴");
 		int t_num = Integer.parseInt(request.getParameter("t_num"));
 		int updateTST = adminDao.updateTST(t_num);
-		System.out.println("update tst 결과 : " + updateTST);
-		System.out.println(t_num);
+//		System.out.println("update tst 결과 : " + updateTST);
+//		System.out.println(t_num);
 		
 		
 		return t_num;

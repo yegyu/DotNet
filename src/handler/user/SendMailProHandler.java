@@ -38,7 +38,7 @@ public class SendMailProHandler implements CommandHandler{
 		
 		MemberDBBean memberDao = new MemberDBBean();
 		int checkId = memberDao.checkId(frId);
-		System.out.println("chechId rs : " + checkId );
+//		System.out.println("chechId rs : " + checkId );
 		if(checkId != 1) {
 			request.setAttribute("checkId", checkId);
 			return new ModelAndView("user/sendMailPro");
@@ -50,11 +50,11 @@ public class SendMailProHandler implements CommandHandler{
 		
 		int msgNum = 0;
 		MessageDataBean messageDto = new MessageDataBean();
-		System.out.println(messageDao.getMsgNum()== null ?"getMsgNum() 은 null" : "getMsgNum() 은 not null"+ messageDao.getMsgNum());
+//		System.out.println(messageDao.getMsgNum()== null ?"getMsgNum() 은 null" : "getMsgNum() 은 not null"+ messageDao.getMsgNum());
 		if(messageDao.getMsgNum() != null) {
 			msgNum = messageDao.getMsgNum();
 		}
-		System.out.println("msgNum : " + msgNum);
+//		System.out.println("msgNum : " + msgNum);
 		messageDto.setM_num(msgNum+1);
 		messageDto.setM_title(title);
 		messageDto.setM_content(content);
@@ -65,7 +65,7 @@ public class SendMailProHandler implements CommandHandler{
 		messageDto.setM_date(new Timestamp(System.currentTimeMillis() ));
 		
 		int insertMsgRs = messageDao.insertMsg(messageDto);
-		System.out.println("insertMssgResult : " + insertMsgRs);
+//		System.out.println("insertMssgResult : " + insertMsgRs);
 		request.setAttribute("insertMsgRs", insertMsgRs);
 		
 		return new ModelAndView("user/sendMailPro");

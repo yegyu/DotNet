@@ -87,7 +87,7 @@ public class MyFeedHandler implements CommandHandler {
 		map.put("personality", personality);
 		map.put("hobby", hobby);
 		map.put("folder_name", folder_name);
-		System.out.println("map : " + map);
+//		System.out.println("map : " + map);
 		request.setAttribute("map", map);
 		
 		return new ModelAndView("/user/myFeed");

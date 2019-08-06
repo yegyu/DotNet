@@ -66,13 +66,15 @@ public class LoginProHandler implements CommandHandler{
 			// 필요한 값을 map에 넣고
 			map.put("id", id);
 			map.put("s_numList", s_numList);
-			System.out.println("참여설문 포인트획득여부 : " + surveyDao.getPartPoint(map));
+			surveyDao.getPartPoint(map);
+//			System.out.println("참여설문 포인트획득여부 : " + surveyDao.getPartPoint(map));
 		}
 		// 작성한 설문이 있는지 확인
 		int wResult = surveyDao.checkWriter(id);			
-		System.out.println("작성한 설문여부 : " + wResult);
+//		System.out.println("작성한 설문여부 : " + wResult);
 		if(wResult != 0) {	// 작성한 설문이 있다
-			System.out.println("작성설문 포인트여부 : " + surveyDao.getMyPoint(id));
+			surveyDao.getMyPoint(id);
+//			System.out.println("작성설문 포인트여부 : " + surveyDao.getMyPoint(id));
 		}
 		
 		request.setAttribute("result", result);

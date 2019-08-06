@@ -67,7 +67,7 @@ public class GoodsHandler implements CommandHandler{
 		map = mapper.readValue(json,new TypeReference<Map<String,Object>>(){});
 		
 		Map<String,Object> rmap = new TreeMap<String, Object>();
-		System.out.println(map);
+//		System.out.println(map);
 		Integer maplen = (Integer) map.get("clen"); 
 		Integer tnum = 0;
 		int rs=0;

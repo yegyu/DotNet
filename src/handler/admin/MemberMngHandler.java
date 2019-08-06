@@ -45,7 +45,7 @@ public class MemberMngHandler implements CommandHandler{
 	@RequestMapping(value = "stopMem",method = RequestMethod.POST)
 	@ResponseBody
 	public String stopMem(HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("stopMem ajax");
+//		System.out.println("stopMem ajax");
 		String json = request.getParameter("json");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -54,14 +54,14 @@ public class MemberMngHandler implements CommandHandler{
 		
 		
 		int rs = memberDao.updateUserSt(map);
-		System.out.println("user state update 성공?? " + rs);
+//		System.out.println("user state update 성공?? " + rs);
 		
 		return "stop 성공";
 	}
 	@RequestMapping(value = "recoverMem",method = RequestMethod.POST)
 	@ResponseBody
 	public String recoverMem(HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException {
-		System.out.println("recoverMem ajax");
+//		System.out.println("recoverMem ajax");
 		String json = request.getParameter("json");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -69,7 +69,7 @@ public class MemberMngHandler implements CommandHandler{
 		map = mapper.readValue(json,new com.fasterxml.jackson.core.type.TypeReference<Map<String,Object>>(){});
 		
 		int rs = memberDao.updateUserSt(map);
-		System.out.println("user state update 성공?? " + rs);
+//		System.out.println("user state update 성공?? " + rs);
 		
 		return "recover 성공";
 	}

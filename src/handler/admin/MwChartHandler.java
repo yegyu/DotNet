@@ -156,13 +156,13 @@ public class MwChartHandler implements CommandHandler {
 	@ResponseBody
 	public Map<String, Object> tp2chart(HttpServletRequest request) throws JSONException {
 
-		System.out.println("양자택일 ajax 들어옴");
+//		System.out.println("양자택일 ajax 들어옴");
 		List<Integer> getS_numList = adminDao.getS_numList(2);
 		int s_num = getS_numList.get(0);
 
 		if (request.getParameter("data") != null) {
 			s_num = Integer.parseInt(request.getParameter("data"));
-			System.out.println("in if s_num(ajax) : " + s_num);
+//			System.out.println("in if s_num(ajax) : " + s_num);
 		}
 
 		List<CntMemDB> cm = adminDao.getCntMemByDate();

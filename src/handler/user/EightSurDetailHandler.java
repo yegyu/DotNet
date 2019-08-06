@@ -40,7 +40,7 @@ public class EightSurDetailHandler implements CommandHandler {
 		
 		// 질문, 보기 목록 가져오기
 		eightList = surveyDao.getEights(s_num);
-		System.out.println("eightList" + eightList);
+//		System.out.println("eightList" + eightList);
 		EightDataBean eight = new EightDataBean();
 		
 		List<EightDataBean> eiList = new ArrayList<EightDataBean>();
@@ -65,7 +65,7 @@ public class EightSurDetailHandler implements CommandHandler {
 		}
 		cMap.put("s_num", s_num);
 		cMap.put("cList", cList );
-		System.out.println("번호 : "+s_num);
+//		System.out.println("번호 : "+s_num);
 
 		List<String>counter = new ArrayList<String>();
 		counter=surveyDao.selectCount(cMap);
@@ -85,8 +85,8 @@ public class EightSurDetailHandler implements CommandHandler {
 		subject = surveyDao.getTitle(s_num);
 		request.setAttribute("subject", subject);
 		
-		System.out.println("List : " + counter );
-		System.out.println("q_content : " + q_content);
+//		System.out.println("List : " + counter );
+//		System.out.println("q_content : " + q_content);
 		
 		// MAP 객체 	
 		request.setAttribute("counter", counter);

@@ -190,7 +190,7 @@ public class AdminBoardHandler implements CommandHandler {
 				}
 				subSurveys.add(subSurPage);
 			}
-			System.out.println("subSurveys : " + subSurveys );
+//			System.out.println("subSurveys : " + subSurveys );
 			request.setAttribute("subSurveys", subSurveys);
 			request.setAttribute("subCnt", subCnt);
 			request.setAttribute("realSize2", realSize2);

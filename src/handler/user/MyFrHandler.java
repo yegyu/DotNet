@@ -50,13 +50,13 @@ public class MyFrHandler implements CommandHandler{
 //		String id = null;
 		String fr = request.getParameter("fr");
 		
-		System.out.println("fr : " + fr);
+//		System.out.println("fr : " + fr);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		map = mapper.readValue(fr, new TypeReference<Map<String,Object>>(){});
 		map.put("myId", myId);
 		
-			System.out.println(map);
+//			System.out.println(map);
 	
 //		id = map.get("id");
 //		System.out.println(map.get("btn") == "accBtn" ? "수락 버튼":"차단 버튼");

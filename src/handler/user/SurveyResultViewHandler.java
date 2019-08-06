@@ -64,7 +64,7 @@ public class SurveyResultViewHandler implements CommandHandler {
 				size++;
 			}
 		}
-		System.out.println("size : " + size);
+//		System.out.println("size : " + size);
 		
 		//이미지
 		List<String> iList = new ArrayList<String>();
@@ -95,7 +95,7 @@ public class SurveyResultViewHandler implements CommandHandler {
 				cnt++;
 			}
 		}
-		System.out.println("cList : " + cList);
+//		System.out.println("cList : " + cList);
 		map.put("s_num", s_num);
 		map.put("cList", cList);
 		map.put("id", id);
@@ -107,8 +107,8 @@ public class SurveyResultViewHandler implements CommandHandler {
 		// 실제 회원이 선택한 보기번호를 가져오는 List
 		List<String> selList = new ArrayList<String>();
 		selList = surveyDao.selected(map);
-		System.out.println("selList : " + selList);
-		System.out.println("chomap :" + cList);
+//		System.out.println("selList : " + selList);
+//		System.out.println("chomap :" + cList);
 		//질문 개수 -> ,, count 만기(ArrayList or List) param=int
 		//1. s_num = key value / Map( q_num, cho_num, c_name ) /
 		request.setAttribute( "qList", qList );
