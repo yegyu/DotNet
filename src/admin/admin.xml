@@ -14,7 +14,7 @@
 		
 	</select>
 	<select id="getSSel" parameterType="int" resultType="admin.DnSSelDB">
-		select * from dn_s_sel  where s_num = #{s_sel} order by sel_id desc 
+		select * from dn_s_sel  where s_num = #{s_num} order by sel_id desc 
 	</select>
 	
 	<select id="getCntLoc" resultType="admin.CntMemDB">

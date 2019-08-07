@@ -196,7 +196,7 @@ public class MwChartHandler implements CommandHandler {
 
 					for (int idx = 0; idx < sSellist.size(); idx++) {
 
-						if (sSellist.get(idx).getGender() == i) {
+						if (sSellist.get(idx).getGender() == i+1) {
 							// [0][][]
 							if (sSellist.get(idx).getQ_num() == j + 1) {
 								// [0][0][]
