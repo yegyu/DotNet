@@ -28,10 +28,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<style>
-	body{
-	scroll:;
-	 overflow: hidden
-	}
+	
 	 #emialWin{
 	margin:10px;
 	
@@ -564,9 +561,9 @@
 					$('.rContent').eq(idx/2).toggle(100);
 				}
 			});
-				$('button').on('click', function(){
+			/* 	$('button').on('click', function(){
 					    event.stopPropagation();
-				});
+				}); */
 			$('#topCheckS').on('click',function(){
 				if($(this).is(':checked')){
 					$('.sTable > th > input[type=checkbox]').prop('checked',true);
