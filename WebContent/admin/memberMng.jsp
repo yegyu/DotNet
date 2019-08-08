@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<!-- 사이드바  1-1 start-->
+<jsp:include page="/mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">회원활동 관리</h2>
+		<hr>
+		<h5>사이트 관리 > 회원활동 관리</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 <div class="table">
   <div class="form-group row">
     <label for="colFormLabelLg" class="col-sm-2 col-form-label col-form-label-lg">회 원 검 색</label>
@@ -39,17 +47,11 @@
 			<td>${mem.point }</td>
 			<td>${mem.signup_date }</td>
 			
-<%-- 			<c:if test="${mem.user_state ==0 }"> --%>
-<!-- 				<td>회원</td> -->
-<%-- 			</c:if>		 --%>
-<%-- 			<c:if test="${mem.user_state ==1 }">	 --%>
-<!-- 				<td>차단됨</td> -->
-<%-- 			</c:if> --%>
 			<td>
-				<c:if test="${mem.user_state == 0 }">
+				<c:if test="${mem.userState == 0 }">
 				<button class="btn" name="stop" id="${mem.id}" value="1">중지</button>
 				</c:if>
-				<c:if test="${mem.user_state == 1 }">
+				<c:if test="${mem.userState == 1 }">
 				<button class="btn" name="recover" id="${mem.id}" value="0">회복</button>
 				</c:if>
 			</td>
@@ -58,6 +60,13 @@
 </tbody>
 </table>
 </div>
+		<!-- 사이드바 2-2 start --> 
+		
+	</div>
+	
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 <script>
 var id ={};
 var json = {};
@@ -171,3 +180,8 @@ $(document).ready(function(){
 });
 
 </script>
+
+</body>
+<!-- mypage.do의 body end -->
+</html>
+<!-- mypage.do의 html end -->

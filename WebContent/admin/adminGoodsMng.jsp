@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-    
+    <!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">상품 등록 관리</h2>
+		<hr>
+		<h5>회원 결제 관련 > 상품 등록 관리</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
     
 <br><br>
 <div class="row">
@@ -27,6 +36,11 @@
 </c:forEach>
 </div>
 </div>
+		<!-- 사이드바 2-2 start --> 
+	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 <script>
 var delGood={}
 

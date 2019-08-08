@@ -7,38 +7,26 @@
 <%@ include file="setting_admin.jsp" %>
 
 <script src="${project}script_admin.js"></script>
-<!-- <link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script> -->
-	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <title>Dot Net</title>
+    <title>게시물 관리</title>
 
-<!--     Bootstrap core CSS
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    Custom fonts for this template
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">   
- -->
-  </head>
-		<br><br>
-  	<body>
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">내 최근 참여 설문</h2>
+		<hr>
+		<h5>내 설문관리 > 내 최근 참여 설문</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
+
     
-	<div class="col table">    
-    
-   	<br><br>
-	<h4>◈ 설문 카테고리 관리 </h4>
 	<br>   
-	<div class="container cateContainer"> 
+	<div> 
 		<c:if test="${cnt == 0}">
 			<tr>
 				<td colspan="6" align="center">
@@ -65,7 +53,6 @@
 	                <h4 class="modal-title">카테고리 추가</h4>
 	                <button class="myModal1Close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
 	            </div>
-	       <!--      <form name="modifyform" method="post" action="adminBoardCatInPro.do">    -->
 		            <div class="modal-body">
 		                <p>카테고리 번호를 입력하세요.</p>               
 						<input autofocus class="input" type="text" name="category_num" maxlength="30">	
@@ -78,7 +65,6 @@
 		               		<input class="btn btn-danger active addCate" type="button" value="완료">
 							<input class="btn btn-primary active" type="reset" value="취소">				 	
 		            </div>
-	          <!--   </form> -->
 	        </div>
 	    </div>
 	</div>
@@ -90,7 +76,6 @@
 	                <h4 class="modal-title">카테고리 삭제</h4>
 	                <button class="myModal2Close" type="button" data-dismiss="modal"><i class="fas fa-times"></i></button>
 	            </div>
-	            <!-- <form name="modifyform" method="post" action="adminBoardCatDelPro.do">  -->  
 		            <div class="modal-body">
 		                <p>카테고리명을 입력하세요.</p>      
 		                       
@@ -102,7 +87,6 @@
 		               		<input class="btn btn-danger active delCate" type="button" value="완료">
 							<input class="btn btn-primary active" type="reset" value="취소">				 	
 		            </div>
-	            <!-- </form> -->
 	        </div>
 	    </div>
 	</div>
@@ -157,9 +141,7 @@
 						</td>
 						
 						<td>		        
-					      <!--  <form name="modifyform" method="post" action="adminBoardDelPro.do">	 -->					
 								<button type="button" class="btn btn-danger active delBoard" name="${mainSur.b_tp_num}" value="${mainSur.s_num}">삭제</button>											
-						  <!--  </form>	 -->						        	       	       
 		   				</td>
 					</tr>			
 				</c:forEach>	
@@ -272,7 +254,11 @@
 	</nav>
 	</div>
 	<br><br>
+			<!-- 사이드바 2-2 start --> 
 	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 	
 	<!-- script for thispage -->
  	<script type="text/javascript">
@@ -498,7 +484,6 @@
 			}
 		}
  	</script>
-</body>
 
 
 
