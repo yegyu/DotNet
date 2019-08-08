@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +40,7 @@ public class SignupProHandler implements CommandHandler{
 		int zipcode = Integer.parseInt(request.getParameter("zipcode"));
 		
 		MemberDataBean memberDto = new MemberDataBean();
+		 
 		memberDto.setId(id);
 		memberDto.setPasswd(passwd);
 		memberDto.setGender(gender);
@@ -51,7 +51,7 @@ public class SignupProHandler implements CommandHandler{
 		memberDto.setAddressDetail(addressDetail);
 		memberDto.setLocation(location);
 		memberDto.setPoint(0);
-		memberDto.setUser_state(0);
+		memberDto.setUserState(0);
 		
 		memberDto.setSignup_date(new Timestamp(System.currentTimeMillis()));
 		int result = memberDao.insertMember(memberDto);

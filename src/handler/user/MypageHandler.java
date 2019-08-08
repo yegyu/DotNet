@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import handler.CommandHandler;
 import main.MemberDao;
+import main.MemberDataBean;
 
 @Controller
 public class MypageHandler implements CommandHandler{
@@ -20,8 +21,11 @@ public class MypageHandler implements CommandHandler{
 	@RequestMapping("/mypage")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		
+		MemberDataBean memberDto = new MemberDataBean();
+		String id = (String) request.getSession().getAttribute( "memId" );
+		memberDao.getMember(id);
+		int point = memberDao.getPoint(id);
+		request.setAttribute("point", point);
 		
 		
 		return new ModelAndView("user/mypage");

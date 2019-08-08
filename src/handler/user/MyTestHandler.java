@@ -24,7 +24,6 @@ public class MyTestHandler implements CommandHandler{
 	@RequestMapping("mytest")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("memId");
 		

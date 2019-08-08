@@ -89,11 +89,11 @@ public class MemberDBBean implements MemberDao{
             if (!passwd.equals(memberDto.getPasswd())) {
                 result = -1;
             }
-            if( memberDto.getUser_state() == 1 ) {
+            if( memberDto.getUserState() == 1 ) {
                 
                 result = -2;
                 
-            } else if ( memberDto.getUser_state() == 2) {
+            } else if ( memberDto.getUserState() == 2) {
                 result = -3;
             }
         }
@@ -102,7 +102,6 @@ public class MemberDBBean implements MemberDao{
 	
 	@Override
 	public int checkId(String id) {
-		
 		return SqlMapClient.getSession().selectOne("Main.checkId", id);
 	}
 	@Override
