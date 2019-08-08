@@ -3,6 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">내 최근 참여 설문</h2>
+		<hr>
+		<h5>내 설문관리 > 내 최근 참여 설문</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 <style>
     .card-back {
         display: none;
@@ -34,27 +44,17 @@
 
                 </c:if>
             </c:forEach>
-<%--             <c:forEach var="arrCol" items="${arrRow }" varStatus="ci"> --%>
-<!--                 <div class="row"> -->
-<%--                     <div class="card card-back " id="b${ri.index}b${ci.index}" --%>
-<!--                         style="width: 1000px; margin-left: 50px; margin-right: 50px; margin-top:10px; "> -->
-<!--                         style="position: relative; top:300px; z-index:1;  -->
-<%--                         <div class="col-md-1">id : ${arrCol.id } ,gender : --%>
-<%--                             ${arrCol.gender } &nbsp;&nbsp;&nbsp; --%>
-<!--                         </div> -->
-<!--                         <div class="col-md-3"> -->
-<!--                             <img src="save/1.jpg" style="width:100%; margin-right:10px"> -->
-<!--                         </div> -->
-<!--                         <div class="col-md-3"> -->
-<!--                             <img src="save/2.jpg" style="width:100%;"> -->
-<!--                         </div> -->
-<!--                         <div class="col-md-3"> -->
-<!--                             <img src="save/default.jpg" style="width:100%;"> -->
-<!--                         </div> -->
-<!--                     </div> -->
-<!--                 </div> -->
-<%--             </c:forEach> --%>
+
+	<!-- 사이드바 2-2 start --> 
+	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
         </div>
         <br>
     </c:forEach>
 </div>
+</body>
+<!-- mypage.do의 body end -->
+</html>
+<!-- mypage.do의 html end -->

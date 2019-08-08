@@ -52,7 +52,7 @@ function memmodifycheck() {
     }
     if ( memmodifyform.delpasswd.value == memmodifyform.passwd.value) {
         alert( confirmdel );
-        document.getElementById("userState").value = "2";
+        document.getElementById("userState").value = 2;
         return true;
     }  
 }

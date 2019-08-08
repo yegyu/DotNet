@@ -50,7 +50,7 @@
 				${sessionScope.memId} 님
 				</li>
 				<c:if test="${sessionScope.isAdmin eq 2}">
-					<li><a class="nav-link notboard" href="/DotNet/mypage.do"><i class="fas fa-portrait"></i>
+					<li><a class="nav-link notboard" href="/DotNet/receiveMail.do"><i class="fas fa-portrait"></i>
                         My Page&nbsp;&nbsp;&nbsp;
                     </a></li>
 				</c:if>

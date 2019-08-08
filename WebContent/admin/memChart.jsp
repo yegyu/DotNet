@@ -2,8 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
 <div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">회원 현황</h2>
+		<hr>
+		<h5>사이트 데이터 관리 > 회원 현황</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 <br>
 <br>
 <div id="signup_date" style="height: 370px; width: 50%;"></div>
@@ -15,12 +23,11 @@
 <div id="loc" style="height: 370px; width: 50%;"></div>
 <br><br>
 </div>
-<!-- <div id="chartContainer3" style="height: 370px; width: 100%;"></div> -->
-<%-- <c:set var="data" value="${data }" /> --%>
-<%-- <c:set var="s_num" value="${s_num }" /> --%>
-<%-- <c:set var="qlen" value="${qlen }" /> --%>
-<%-- <c:set var="mwArr" value="${mwArr }" /> --%>
-<%-- ${data} --%>
+
+	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
 

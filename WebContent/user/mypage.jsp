@@ -1,25 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!-- 
 <!DOCTYPE html>
-<html>
+<html> -->
 
-<head>
-	<meta charset="UTF-8">
+<!-- <head> -->
+<meta charset="UTF-8">
 	<title>마이페이지</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-	<link rel="stylesheet" href="bootstrap.css">
-<!-- 	<link rel="stylesheet" -->
-<!-- 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
-	<link
-		href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap"
-		rel="stylesheet">
-	<!-- style_dotnet.csa -->
 	<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
+	<link rel="stylesheet" type="text/css" href="mypage.css" />
+
+	<link href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+       integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="bootstrap.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bootstrap.bundle.js"></script>
+	
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"  crossorigin="anonymous"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
-		<script type="text/javascript" src="bootstrap.bundle.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<style>
 	body{
 	scroll:;
@@ -75,6 +82,10 @@
 		width: 20%;
 	}
 	
+	a.brand:hover{
+	  background-color: #2FD6FF;
+	  color: white;
+	}
 	.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
 	    color: #fff;
 	    background-color: rgba(227, 179, 255, 0.938);
@@ -91,465 +102,525 @@
 	-moz-transform: scale(1.2);
 	-o-transform: scale(1.2);
 	transform: scale(1.2);
-}
-	</style>
-</head>
-
-<body>
-
-	<!-- 상단 바 -->
-	<nav class="navbar navbar-expand-md navbar-default" style="margin-bottom:0px">
-		<jsp:include page="../mainNav.do" flush="false"></jsp:include>
-	</nav>
-	<!-- 상단 바  끝-->
+	}
 	
-	<div class="container-fluid">
-		<h4 >마이페이지</h4>
-		<hr style="margin:10px">
-		<div class="row">
-			<div class="col-sm-9 col-md-10">
-				<!-- 뭐하는데지? -->
-			</div>
-		</div>
-		
-		<div class="row">
-			<!-- 왼쪽 사이드  -->
-			<div class="col-sm-2 ">
-				<div class="btn-group">
-					<button type="button" class="btn btn-primary"
-						id="writeEmail">쪽지 쓰기
-					</button>
-					
-				</div>
-				<div class="btn-group">
-					<button type="button" class="btn btn-default" data-toggle="tooltip"
-						title="Refresh" onclick="history.go(0)">
-						&nbsp;Trash&nbsp;
-					</button>
-				</div>
-				<hr style="margin-top:10px">
-				<ul class="nav nav-pills nav-stacked">
-					<li><a href="#mail" data-toggle="tab" id="sideMail" class="nav-link active"><!-- onclick="sideMailClick()" -->
-					<span class="badge pull-right"></span> 쪽지&emsp;&emsp;</a></li>
-					
-					<li><a href="#lib" data-toggle="tab" id="sideLib" class="nav-link">최근 기록</a></li>
-					<li><a href="#myTest" data-toggle="tab" id="sideWr" class="nav-link">내가 작성한 테스트</a></li>
-					<li><a href="#po" data-toggle="tab" id="sidePo" class="nav-link">포인트 내역</a></li>
-					<li><a href="#manageFr" data-toggle="tab" id="sideFr" class="nav-link">친구 관리</a></li>
-					<li><a href="#mod" data-toggle="tab" id="sideMy" class="nav-link">개인 정보 수정</a></li>
-					<li><a href="#feed" data-toggle="tab" id="sideFeed" class="nav-link">피드관리</a></li>
-
-				</ul>
-			</div>
-			<!--왼쪽 사이드 끝  -->
-			<!--내용-->
-			<div class="col-sm-9 col-md-10 ">
-				<div class="tab-content">
-					<div class="tab-pane fade in active show" id="mail">
-						<ul class="nav nav-tabs" >
-							<li style="margin-right: 10px;">
-  							 <button type="button" class="btn btn-default btn-sm" 
-  							 id="trash"> Trash </button>
-      					 	</li>
-							<li><a data-toggle="tab" href="#send" id="tabSend" class="nav-link active">보낸쪽지</a></li>
-							<li><a data-toggle="tab" href="#receive" id="tabReceive" class="nav-link">받은쪽지</a></li>
-						</ul>
-					</div>
-
-					<div class="tab-pane fade in" id="lib">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#recent" id="tabRecent" class="nav-link active">최근</a></li>
-							
-						</ul>
-					</div>
-					<div class="tab-pane fade in" id="myTest">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#mytest" id="tabMytest" class="nav-link active">작성글</a></li>
-							
-						</ul>
-					</div>
-					<div class="tab-pane fade in" id="po">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#recPo" id="tabRecPo" class="nav-link active">포인트 내역</a></li>
-							<li><a data-toggle="tab" href="#goods" id="tabGoods" class="nav-link">포인트 이용</a></li>
-						</ul>
-					</div>
-					<div class="tab-pane fade in" id="manageFr">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#myFr" id="tabMyFr" class="nav-link active">내 친구</a></li>
-							<li><a data-toggle="tab" href="#recomFr" id="tabRecomFr" class="nav-link">추천 친구</a></li>
-						</ul>
-					</div>
-					<div class="tab-pane fade in" id="mod">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#myMod" id="tabMod" class="nav-link active">개인 정보 수정</a></li>
-						</ul>
-					</div>
-					<div class="tab-pane fade in" id="feed">
-						<ul class="nav nav-tabs">
-							<li><a data-toggle="tab" href="#myFeed" id="tabMyFeed" class="nav-link active">내 피드 보기</a></li>
-						</ul>
-					</div>
-						
-					
-				</div>
-				<div class="tab-content" id="realContent" >
-					<!--쪽지  -->
-					<div class="tab-pane fade in active show" id="send">
-					<div class="table">
-						<table class="table table-fixed">
-							<jsp:include page="../sendMail.do"></jsp:include>
-						</table>
-					</div>
-					</div>
-					<div class="tab-pane fade in " id="receive">
-					<div class="table">
-						<table class="table table-fixed">
-							<jsp:include page="../receiveMail.do"></jsp:include>
-						</table>
-					</div>
-					</div>
-					<div class="tab-pane fade in" id="recent">
-					<div class="table">
-						<jsp:include page="../lib.do"></jsp:include>
-					</div>
-					</div>
-					
-					<div class="tab-pane fade in" id="mytest">
-					<div class="table">
-						<jsp:include page="../mytest.do"></jsp:include>
-					</div>
-					</div>
-					
-					
-					<div class="tab-pane fade in" id="recPo">
-						<div class="table">
-							<jsp:include page="../recPo.do"></jsp:include>
-						</div>
-					</div>
-					<div class="tab-pane fade in" id="goods">
-						<jsp:include page="../goods.do"></jsp:include>
-					</div>
-					<div class="tab-pane fade in" id="myFr">
-					<div class="table" style="height:560px">
-						<jsp:include page="../myFr.do"></jsp:include>
-					</div>
-					</div>
-					<div class="tab-pane fade in" id="recomFr">
-					<div class="table">
-<!-- 					<table class="table table-fixed"> -->
-						<jsp:include page="../recomFr.do"></jsp:include>
-<!-- 					</table> -->
-					</div>
-					</div>
-					<div class="tab-pane fade in" id="myMod">
-					<div class="table">
-						<jsp:include page="../modifyUser.do"></jsp:include>
-					</div>
-					</div>
-					<div class="tab-pane fade in" id="myFeed">
-					<div class="table">
-						<jsp:include page="../myFeed.do"></jsp:include>
-					</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+	body {
+	  margin: 0;
+	  font-family: "Lato", sans-serif;
+	}
 	
-<div class="container" id="mailCon">
-<!--     <div class="modal-dialog cascading-modal"> -->
-        <div class="shadow bg-white">
-            <!--Content-->
-			<div id="mailHead">
-			<button type="button" class="close" aria-label="Close">
-			  <span aria-hidden="true">&times;</span>
-			</button>
-			</div>
-            <form id="emailWin" action="sendMailPro.do" method="post">
-                <div class="form-group">
-                    <label for="frId">받을 사람 ID</label>
-                    <input type="text" class="form-control" id="frId" name="frId" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="title">제목</label>
-                    <input type="text" class="form-control" id="title" name="title" autocomplete='off' placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="content">글 내용</label>
-                    <textarea class="form-control" id="content" name="content" rows="10"></textarea>
-                </div>
-                <div class="form-group right">
-                    <input type="submit" class="btn btn-info" id="emailBtn" onclick="return checkMail();">
-                    <input type="reset" class="btn btn-info" >
-                </div>
-            </form>
+	.sidebar {
+	  margin: 0;
+	  padding: 0;
+	  width: 280px;
+	  background-color: #2FD6FF;
+	  position: fixed;
+	  height: 100%;
+	  overflow: auto;
+	  text-align: center;
+	  font-size: 25px;
+	}
+	
+	.sidebar a {
+	  display: block;
+	  color: black;
+	  padding: 16px;
+	  text-decoration: none;
+	}
+	 
+	.sidebar a.nav-link:hover {
+	  background-color: #555;
+	  color: white;
+	}
+	
+	.sidebar a.nav-link:hover:not(.active) {
+	  background-color: #555;
+	  color: white;
+	}
+	
+	div.content {
+	  margin-left: 200px;
+	  padding: 1px 16px;
+	  height: 1000px;
+	}
+	
+	@media screen and (max-width: 700px) {
+	  .sidebar {
+	    width: 100%;
+	    height: auto;
+	    position: relative;
+	  }
+	  .sidebar a {float: left;}
+	  div.content {margin-left: 0;}
+	}
+	
+	@media screen and (max-width: 400px) {
+	  .sidebar a {
+	    text-align: center;
+	    float: none;
+	  }
+	}
+</style>
+<!-- </head> -->
+
+<!-- <body> -->
+
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+      <a class="navbar-brand" href="main.do"><h1 id="logo">.Net</h1> </a>
+           <div id="close-sidebar">
+          <i class="fas fa-times"></i>
         </div>
-<!--     </div> -->
-</div>
-<c:set var = "id" value="${sessionScope.memId}"/>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture"  style="width:50px; height:50px;"><br>
+        </div>
+        <div class="user-info">
+          <span class="user-name">
+            
+          </span>
+          <c:if test="${memId != 'admin'}">
+          <span class="badge badge-pill badge-primary">일반회원</span>
+         <span class="badge badge-pill badge-warning mt-1">보유 포인트 ${point}P</span>
+         </c:if>
+         <c:if test="${memId == 'admin'}">
+          <span class="badge badge-pill badge-primary">관리자</span>
+         <span class="badge badge-pill badge-warning mt-1"> 기업사용자 문의</span>
+         <span class="badge badge-pill badge-warning mt-1"> 일반회원 문의</span>
+         </c:if>
+          <span class="user-status">
+            <i class="fa fa-circle"></i>
+            <span>Online</span>
+          </span>
+        </div>
+      </div>
+      <!-- sidebar-header  -->
+      <div class="sidebar-search">
+        <div>
+  <!--         <div class="input-group">
+            <input type="text" class="form-control search-menu" placeholder="Search...">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </span>
+            </div>
+          </div> -->
+					<c:if test="${memId != 'admin'}">
+						<a href="#">${memId}님의 마이페이지</a>
+						<br>
+					</c:if>
+					<c:if test="${memId	== 'admin'}">
+						<a href="#">관리자 페이지</a>
+						<br>
+					</c:if>					
+				</div>
+      </div>
+      <c:if test="${memId != 'admin'}">
+				<div class="sidebar-menu">
+        <ul>
+          <li class="header-menu"> <span>일반 메뉴</span> </li>
+          <li class="sidebar-dropdown">
+          <a href="#"><i class="fas fa-file-invoice"></i>
+              <span>내 설문 관리 </span>
+           </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/lib.do" id="lib">내 최근 참여 설문
+                    
+                  </a>
+                </li>
+                <li>
+                  <a href="/DotNet/mytest.do" >내가 작성한 설문 </a>
+                </li>
+                <li>
+                  <a href="#">내 스탬프 </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fas fa-copyright"></i>
+              <span>내 포인트 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/recPo.do">포인트 적립 / 사용 내역
+                  </a>
+                </li>
+                <li>
+                  <a href="/DotNet/goods.do">상품 신청 / 결제</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-envelope"></i>
+              <span>내 메세지 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/receiveMail.do">받은 메세지함</a>
+                </li>
+                <li>
+                  <a href="/DotNet/sendMail.do">보낸 메세지함</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fas fa-users"></i>
+              <span>내 친구 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/myFr.do">친구 신청 현황</a>
+                </li>
+                <li>
+                  <a href="#">내 친구 목록</a>
+                </li>
+                <li>
+                  <a href="/DotNet/recomFr.do">추천 친구 목록</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>회원 정보 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">나의 피드 보기</a>
+                </li>
+                <li>
+                  <a href="#">회원 정보 수정</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          </c:if>
+          
+          				<div class="sidebar-menu">
+        <ul>
+          <li class="header-menu"> <span>일반 메뉴</span> </li>
+          <li class="sidebar-dropdown">
+          <a href="#"><i class="fas fa-file-invoice"></i>
+              <span>사이트 관리 </span>
+           </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/memberMng.do" id="lib">회원 활동 관리
+                    
+                  </a>
+                </li>
+                <li>
+                  <a href="/DotNet/adminBoard.do" >게시물 관리 </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fas fa-copyright"></i>
+              <span>사이트 데이터 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/memChart.do">회원 현황
+                  </a>
+                </li>
+                <li>
+                  <a href="/DotNet/mwChart.do">설문유형 2 </a>
+                </li>
+                <li>
+                  <a href="/DotNet/fiveChart.do">설문유형 5 </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="far fa-envelope"></i>
+              <span>내 메세지 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/receiveMail.do">받은 메세지함</a>
+                </li>
+                <li>
+                  <a href="/DotNet/sendMail.do">보낸 메세지함</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fas fa-users"></i>
+              <span>회원 결제 관련</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="/DotNet/adminPoMng.do">포인트 결제 관리</a>
+                </li>
+                <li>
+                  <a href="/DotNet/adminGoodsMng.do">상품 등록 관리</a>
+                </li>
+                <li>
+                  <a href="/DotNet/adminPayHistory.do">회원 결제 내역</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          
+          <c:if test="${memId!='admin'}">
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>회원 정보 관리</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">나의 피드 보기</a>
+                </li>
+                <li>
+                  <a href="#">회원 정보 수정</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          </c:if>
+          
+          <li class="header-menu">
+            <span>자주 쓰는 메뉴&nbsp;&nbsp;<i class="fas fa-bolt"></i></span>
+          </li>
+          <li>
+            <a href="#" id="writeEmail">
+              <i class="fa fa-envelope"></i>
+              <span>메세지 작성</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-calendar"></i>
+              <span>Calendar</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-folder"></i>
+              <span>Examples</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+	</div>
+			<!--왼쪽 사이드 끝  -->
 
-
-	<script >
-		//두번째 탭들이 잘 이동하게끔 함
-		//쪽지
-		$("#sideMail").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#send").addClass('active show');
-		});
-		$("#tabSend").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#send").addClass('active show');
-		});
-		$("#tabReceive").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#receive").addClass('active show');
-		});
-		//최근
-		$("#sideLib").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#recent").addClass('active show');
-		});
-		$("#tabRecent").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#recent").addClass('active show');
-		});
-		$("#tabLike").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#like").addClass('active show');
-		});
-		//mytest
-		$("#sideWr").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#mytest").addClass('active show');
-		});
-		$("#tabMytest").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#mytest").addClass('active show');
-		});
-		//친구
-		$("#sideFr").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myFr").addClass('active show');
-		});
-		$("#tabMyFr").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myFr").addClass('active show');
-		});
-		$("#tabRecomFr").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#recomFr").addClass('active show');
-		});
-		//point
-		$("#sidePo").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#recPo").addClass('active show');
-		});
-		$("#tabRecPo").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#recPo").addClass('active show');
-		});
-		$("#tabGoods").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#goods").addClass('active show');
-		});
-		// 개인 정보 수정
-		$("#sideMy").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myMod").addClass('active show');
-		});
-		$("#tabMod").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myMod").addClass('active show');
-		});
-		// feed
-		$("#sideFeed").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myFeed").addClass('active show');
-		});
-		$("#tabMyFeed").on("click",function(){
-			$("#realContent").children().removeClass('active show');
-			$("#myFeed").addClass('active show');
+	<li style="margin-right: 10px;">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default btn-sm" id="trash">
+				Trash</button>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -
+    <div class="sidebar-footer">
+      <a href="#">
+        <i class="fa fa-bell"></i>
+        <span class="badge badge-pill badge-warning notification">3</span>
+      </a>
+      <a href="#" id="writeEmail">
+        <i class="fa fa-envelope"></i>
+        <span class="badge badge-pill badge-success notification">7</span>
+      </a>
+      <a href="#">
+        <i class="fa fa-cog"></i>
+        <span class="badge-sonar"></span>
+      </a>
+    </div-->
+  </nav>
+  <!-- sidebar-wrapper  -->
+  		<!-- 메일 작성 박스 -->
+		<div class="container" id="mailCon">
+		        <div class="shadow bg-white">
+					<div id="mailHead">
+					<button type="button" class="close" aria-label="Close">
+					  <span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+		            <form id="emailWin" action="sendMailPro.do" method="post">
+		                <div class="form-group">
+		                    <label for="frId">받을 사람 ID</label>
+		                    <input type="text" class="form-control" id="frId" name="frId" placeholder="">
+		                </div>
+		                <div class="form-group">
+		                    <label for="title">제목</label>
+		                    <input type="text" class="form-control" id="title" name="title" autocomplete='off' placeholder="">
+		                </div>
+		                <div class="form-group">
+		                    <label for="content">글 내용</label>
+		                    <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+		                </div>
+		                <div class="form-group right">
+		                    <input type="submit" class="btn btn-info" id="emailBtn" onclick="return checkMail();">
+		                    <input type="reset" class="btn btn-info" >
+		                </div>
+		            </form>
+		        </div>
+		<!--     </div> -->
+		</div>
+		<!-- 작성자는 세션 ID -->
+		<c:set var = "id" value="${sessionScope.memId}"/>
+		<!-- 사이드바 드롭박스 스크립트 -->
+		<script>
+		jQuery(function ($) {
+		
+		    $(".sidebar-dropdown > a").click(function() {
+		  $(".sidebar-submenu").slideUp(200);
+		  if (
+		    $(this)
+		      .parent()
+		      .hasClass("active")
+		  ) {
+		    $(".sidebar-dropdown").removeClass("active");
+		    $(this)
+		      .parent()
+		      .removeClass("active");
+		  } else {
+		    $(".sidebar-dropdown").removeClass("active");
+		    $(this)
+		      .next(".sidebar-submenu")
+		      .slideDown(200);
+		    $(this)
+		      .parent()
+		      .addClass("active");
+		  }
 		});
 		
-	</script>
-	<script>
-		$('#writeEmail, .close').on('click', function(){
-			$('#mailCon').toggle("slow");
-		})
-		
-		function checkMail(){
-			if(!$("#frId").val() || !$("#content").val() || !$("#title").val()){
-				alert("빠진 부분을 확인해 주세요")
-				return false;
-			}
+		$("#close-sidebar").click(function() {
+		  $(".page-wrapper").removeClass("toggled");
+		});
+		$("#show-sidebar").click(function() {
+		  $(".page-wrapper").addClass("toggled");
+		});
+		});
+		</script>
+		<!-- 메일쓰기  기능 -->	
+		<script>
+				$('#writeEmail, .close').on('click', function(){
+					$('#mailCon').toggle("slow");
+				})
+				
+				function checkMail(){
+					if(!$("#frId").val() || !$("#content").val() || !$("#title").val()){
+						alert("빠진 부분을 확인해 주세요")
+						return false;
+					}
+				};
+		</script>
+		<!-- 메일함 체크박스 기능 -->
+		<script>
+		var json = new Object();
+		var	pJson = new Object();
+		var jsonStr;
+		(function () {
+				  $("a > img").hover(function () {
+				    $(this).addClass('transition');
+				  }, function () {
+				    $(this).removeClass('transition');
+				  });
+				})();
+		$(document).ready(function(){
+			$('.sTable').click(function(){
+				if(event.target.nodeName != 'INPUT'){
+					var idx = $(this).index(); 
+					$('.sContent').eq(idx/2).toggle(100);
+				}
+			});
 			
-		};
-	</script>
-	<!-- 	sendMial -->
-	
-	
-<script>
-//쪽지 삭제 Ajax에서 {'json':{'ddd':'ddd','fff':'fff',...}} 만드는 거
-// var json ={s :[] , r:[]};
-var json = new Object();
-var	pJson = new Object();
-var jsonStr;
-
-// var len = $('.card-front').length;
-// for(var i = 0 ; i < len ; i++){
-//  	$('.card-front').eq(i).on('click',function(){
-// 		$('.card-back').eq(i).toggle();
-	
-// 	});
-// }
-(function () {
-
-		  $("a > img").hover(function () {
-
-		    $(this).addClass('transition');
-		  }, function () {
-
-		    $(this).removeClass('transition');
-		  });
-		})();
-$(document).ready(function(){
-	
-	$('.sTable').click(function(){
-		if(event.target.nodeName != 'INPUT'){
-			var idx = $(this).index(); 
-			$('.sContent').eq(idx/2).toggle(100);
-		}
-	});
-	
-	$('.rTable').click(function(){
-		if(event.target.nodeName != 'INPUT'){
+			$('.rTable').click(function(){
+				if(event.target.nodeName != 'INPUT'){
+					var idx = $(this).index(); 
+					$('.rContent').eq(idx/2).toggle(100);
+				}
+			});
+				$('button').on('click', function(){
+					    event.stopPropagation();
+				});
+			$('#topCheckS').on('click',function(){
+				if($(this).is(':checked')){
+					$('.sTable > th > input[type=checkbox]').prop('checked',true);
+				}else{
+					$('.sTable > th > input[type=checkbox]').prop('checked',false);
+				}
+			});
+			$('#topCheckR').on('click',function(){
+				if($(this).is(':checked')){
+					$('.rTable > th > input[type=checkbox]').prop('checked',true);
+				}else{
+					$('.rTable > th > input[type=checkbox]').prop('checked',false);
+				}
+			});
 			
-			var idx = $(this).index(); 
-			$('.rContent').eq(idx/2).toggle(100);
-		}
-	});
-	// for delete chckbox checked mail formmat to JSON 
-	
-	//친구 피드?? 효과
-// 	if(!$('button').click()){
-// 		$('.card-front').on('click',function(){
-// 				$(this).next().next().next().children().toggle(100);
-// 		});
-		
-		$('button').on('click', function(){
-			    event.stopPropagation();
 		});
-// 	}
+		    //check box 삭제 ajax
+		    $(document).ready(function () {
+		        $("button[id=trash]").on('click', function () {
+		            if ($('input[type=checkbox]').is(':checked')) {
+		                if (confirm("정말 삭제하시겠습니까??") == true) {    //확인
+							var selected = [];
+				    		$('input:checked').each(function() {
+				    		    selected.push($(this).attr('id'));
+				    		});
+				    		var Ob =[];
+				    		$.each(selected, function(index,item){
+				    		Ob.push(item.split('_'))   }  );  
+				    		for(var i = 0 ; i < Ob.length; i++){
+				    		    json[Ob[i][0]]=Ob[i][1]
+				    		}
+				    		
+				    		jsonStr = JSON.stringify(json);
+		                	var pJson = {"val" : jsonStr }
+		                    $.ajax({
+		                        type: "POST",
+		                        dataType: "json",
+		                        data: pJson,
+		                        url: "deleteMail.do",
+		                        success: function (data) {
+		                            location.reload();
+		                        },
+		                        error: function (e) {
+		                            console.log("ajax 실패")
+		                        }
+		                    });//ajax 끝
 		
-		
-	
-	
-	//nav-link 로 구현됨 -,.-
-	/* 쪽지 tab border */  
-// 	$("#tabSend").on('click',function(){
-// 		$(this).css("border-color","rgba(227, 179, 255, 0.938)");
-// 		$("#tabReceive").css("border-color","transparent")
-// 	});
-// 	$("#tabReceive").on('click',function(){
-// 		$(this).css("border-color","rgba(227, 179, 255, 0.938)");
-// 		$("#tabSend").css("border-color","transparent")
-// 	});
-// 	/* 친구 */  
-// 	$("#tabMyFr").on('click',function(){
-// 		$(this).css("border-color","rgba(227, 179, 255, 0.938)");
-// 		$("#tabRecomFr").css("border-color","transparent")
-// 	});
-// 	$("#tabRecomFr").on('click',function(){
-// 		$(this).css("border-color","rgba(227, 179, 255, 0.938)");
-// 		$("#tabMyFr").css("border-color","transparent")
-// 	});
-	
-	
-// 	인터넷
-// 	$("#checkAll").click(function() {
-//		$("input[name=box]:checkbox").each(function() {
-//			$(this).attr("checked", true);
-//		});
-//	});
-	//쪽지에서 체크박스 확인용??
-	$('#topCheckS').on('click',function(){
-		if($(this).is(':checked')){
-			$('.sTable > th > input[type=checkbox]').prop('checked',true);
-		}else{
-			$('.sTable > th > input[type=checkbox]').prop('checked',false);
-		}
-	});
-	$('#topCheckR').on('click',function(){
-		if($(this).is(':checked')){
-			$('.rTable > th > input[type=checkbox]').prop('checked',true);
-		}else{
-			$('.rTable > th > input[type=checkbox]').prop('checked',false);
-		}
-	});
-	
-});
-    //check box 삭제 ajax
-    $(document).ready(function () {
-    	
-//     	$('input[type=checkbox]').on('click',function(){
-    		
-    		
-//     	});
-    	
-        $("button[id=trash]").on('click', function () {
-            if ($('input[type=checkbox]').is(':checked')) {
-                if (confirm("정말 삭제하시겠습니까??") == true) {    //확인
-// 					console.log("josn : " + json);
-//                 	console.log("jsonStr : " + jsonStr)
-					var selected = [];
-		    		$('input:checked').each(function() {
-		    		    selected.push($(this).attr('id'));
-		    		});
-		    		var Ob =[];
-		    		$.each(selected, function(index,item){
-		    		Ob.push(item.split('_'))   }  );  
-		
-		//     		var json = new Object();	
-		
-		    		for(var i = 0 ; i < Ob.length; i++){
-		    		    json[Ob[i][0]]=Ob[i][1]
-		    		}
-		    		
-		    		jsonStr = JSON.stringify(json);
-                	var pJson = {"val" : jsonStr }
-//                 	console.log(pJson)
-                    $.ajax({
-                        type: "POST",
-                        dataType: "json",
-                        data: pJson,
-//                         contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-                        url: "deleteMail.do",
-                        success: function (data) {
-                            location.reload();
-                        },
-                        error: function (e) {
-                            console.log("ajax 실패")
-                        }
-                    });//ajax 끝
-
-                } else {   //취소
-                    return false;
-                }
-            } else {
-                alert('선택된 쪽지가 없습니다.');
-                return false;
-            }
-        });
-
-    });
-
-    
-
-
-</script>
-
-</body>
-
-</html>
+		                } else {   //취소
+		                    return false;
+		                }
+		            } else {
+		                alert('선택된 쪽지가 없습니다.');
+		                return false;
+		            }
+		        });
+		    });
+		</script>

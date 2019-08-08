@@ -106,14 +106,14 @@ th {
 							<th>회원활동여부</th>
 							
 							<td>
-								<input id="userState" name="user_state" type="hidden" value="${memberDto.user_state}">
+								<input id="userState" name="userState" type="hidden" value="${memberDto.userState}">
 								
 								<label>
 									<c:choose>
-										<c:when test="${memberDto.user_state eq 1 }">
+										<c:when test="${memberDto.userState eq 1 }">
 											활동 정지된 회원
 										</c:when>
-										<c:when test="${memberDto.user_state eq 2 }">
+										<c:when test="${memberDto.userState eq 2 }">
 											탈퇴된 회원
 										</c:when>
 										<c:otherwise>

@@ -12,18 +12,6 @@ body {
 }
 
 
-.btn{
-	background-color:rgba(227, 179, 255, 0.938);
-	border: 0;
-	color:white;
-}
-.btn:hover{
-	background-color: rgb(205, 133, 247) ;
-	color:white
-}
-
-
-
 
 
 .navbar-default {

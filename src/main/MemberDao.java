@@ -29,6 +29,7 @@ public interface MemberDao {
 	public int delGood(String g_name);
 	
 	public List<GoodsStDataBean> getGoodsSt(String id);
+	
 	public List<LibDataBean> getLib(String id);
 	public List<LibDataBean> getMyTest(String id);
 	
