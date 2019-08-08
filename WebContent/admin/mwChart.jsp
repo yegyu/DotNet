@@ -79,6 +79,8 @@
 <script>
 	window.onload = function() {
 	
+	////////////////////////////////// 해당 설문 전체 데이터 ///////////////////////////////////////	
+		
 	// 해당 설문 전체 참여 성별 분포
 	var sexAllchart = new CanvasJS.Chart("sexAll", {
 		animationEnabled: true,
@@ -126,6 +128,8 @@
 	});
 	
 	ageAllchart.render();
+	
+	////////////////////////////////// 질문별 데이터 /////////////////////////////////////
 	
 	// 보기 1번 성별 분포
 	var sexSel1chart = new CanvasJS.Chart("sexSel1", {

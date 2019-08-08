@@ -297,7 +297,7 @@ function makefChart(fqlen){
 			//axisYType: "secondary",
 			showInLegend: true,
 			yValueFormatString: "#,##0.# 명",
-			dataPoints: jarr[fqlen+4]
+			dataPoints: jarr[qlen+4]
 		}]
 	});
 	
