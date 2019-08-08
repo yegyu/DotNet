@@ -3,14 +3,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
 <meta charset="UTF-8">
-<title>arthur</title>
-</head>
-<body>
-	<div class="col table">
-		
-		<!-- 		<div class="table"> -->
+<title>회원 포인트 관리</title>
+		<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">포인트 결제 관리</h2>
+		<hr>
+		<h5>회원 결제 관련 > 포인트 결제 관리</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 		<table class="table ">
 			<thead>
 				<tr>
@@ -37,7 +41,11 @@
 				</c:forEach>
 			</tbody>
 		</table>
+				<!-- 사이드바 2-2 start --> 
 	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 	<script>
 		$(document).ready(function(){
 			$('.btn.req').on('click', function(){
@@ -59,5 +67,3 @@
 			});
 		});
 	</script>
-</body>
-</html>

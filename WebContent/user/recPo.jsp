@@ -3,26 +3,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
-
-<style>
-input {
-	border: 0;
-	border-bottom: 1px solid rgb(82, 82, 82);
-	outline: 0;
-/* 	text-align: right; */
-}
-
-
-</style>
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">내 포인트 사용/적립내역</h2>
+		<hr>
+		<h5>내 포인트 관리 > 내 포인트 사용/적립내역</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 <div class="container-fluid">
 	<br> <br> <label  style="float:right;position:relative;left:-100px;font-size: 20px"> 현재 포인트 <input type="text"
-		readonly="readonly" value="${point }">
+		readonly="readonly" value="${point}">
 	</label>
 	<br><br>
 
 	<div class="row ">
-<!-- 	<div class="table"> -->
 		<div class="col" >
 		<h3>얻은 포인트</h3>
 		<div class="table" style="height:430px;">
@@ -47,7 +44,6 @@ input {
 				</tbody>
 			</table>
 			</div>
-<!-- 			</div> -->
 		</div>
 		
 		<div class="col">
@@ -86,4 +82,13 @@ input {
 		</div>
 	</div>
 
+		<!-- 사이드바 2-2 start --> 
+	</div>
 </div>
+</main>
+<!-- 사이드바 2-2 end -->
+</div>
+</body>
+<!-- mypage.do의 body end -->
+</html>
+<!-- mypage.do의 html end -->

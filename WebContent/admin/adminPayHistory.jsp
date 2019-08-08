@@ -2,9 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-	<div class="col table">
-	<h1>Jeong</h1>
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">회원 결제 내역</h2>
+		<hr>
+		<h5>회원 결제 관련 > 회원 결제 내역</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
+	
 		<!-- 		<div class="table"> -->
 		<table class="table ">
 			<thead>
@@ -35,4 +43,8 @@
 				</c:forEach>
 			</tbody>
 		</table>
+			<!-- 사이드바 2-2 start --> 
 	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 

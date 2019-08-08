@@ -2,6 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do"/>
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">설문 유형 5 데이터</h2>
+		<hr>
+		<h5>사이트 데이터관리 > 설문유형 5 데이터</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
 <br>
 <br>
 <div class="row">
@@ -35,6 +45,11 @@
 
 </div>
 
+		<!-- 사이드바 2-2 start --> 
+	</div>
+</div>
+</main>
+<!-- 사이드바 2-2 end --> 
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 

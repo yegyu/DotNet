@@ -15,7 +15,7 @@ public class MemberDataBean {
 	private String email;
 	private Timestamp signup_date;
 	private int point;
-	private int user_state;
+	private int userState;
 
 	public int getMem_num() {
 		return mem_num;
@@ -91,12 +91,13 @@ public class MemberDataBean {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-	public int getUser_state() {
-		return user_state;
+	public int getUserState() {
+		return userState;
 	}
-	public void setUser_state(int user_state) {
-		this.user_state = user_state;
+	public void setUserState(int userState) {
+		this.userState = userState;
 	}
+
 	
 
 }

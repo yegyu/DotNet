@@ -21,6 +21,18 @@
 
 
 </style>
+<!-- 사이드바  1-1 start-->
+<jsp:include page="../mypage.do" />
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-10">
+		<h2 class="mt-3">내 친구 관리</h2>
+		<hr>
+		<h5>내 친구 관리 > 친구신청 현황</h5>
+		<hr>
+		<!-- 사이드바  1-1 end -->
+		
+		
 <c:set var="accBtn" value="${ getAccBtnId}" />
 <c:set var="waitBtn" value="${getWatiBtnId }" />
 <c:set var="getRealFrBtn" value="${getRealFrBtn }"/>
@@ -42,7 +54,6 @@
                             style="width: 170px; height:180px; ">
                         <div class="card-body">
                             <p></p>
-                                <%-- 							location :${arrCol.location } email : ${arrCol.email } r mod 3:${r mod 3 } emotion : ${emotion[r mod 3]}</p> --%>
 
                                 <c:if test="${!fn:contains(accBtn,arrCol.id) and !fn:contains(waitBtn,arrCol.id) }">
                                 	<p></p>
@@ -63,7 +74,12 @@
                    </div>
         <br>
     </c:forEach>
+    
 </div>
+</div>
+ </div>
+</main>
+<!-- 사이드바 2-2 end --> 
  
 <script>
 $(document).ready(function(){
@@ -88,8 +104,6 @@ $(document).ready(function(){
 			data:data,
 			url:"frBtn.do",
 			success:function(data){
-// 				alert("ajax 성공");
-// 				$('#sideFr').click().$('#tabMyFr').click()
 				location.reload();
 			},
 			error:function(){
@@ -102,3 +116,7 @@ $(document).ready(function(){
 			
 });
 </script>
+</body>
+<!-- mypage.do의 body end -->
+</html>
+<!-- mypage.do의 html end -->

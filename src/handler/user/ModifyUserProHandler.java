@@ -36,7 +36,7 @@ public class ModifyUserProHandler implements CommandHandler{
 		memberDto.setAddress(request.getParameter("address") );
 		memberDto.setAddressDetail(request.getParameter("addressDetail") );
 		memberDto.setEmail(request.getParameter("email") );
-		memberDto.setUser_state(Integer.parseInt(request.getParameter("user_state")));
+		memberDto.setUserState(Integer.parseInt(request.getParameter("user_state")));
 		
 		int result = memberDao.updateMember( memberDto );
 		request.setAttribute("result", result);

@@ -15,6 +15,7 @@ import main.MemberDBBean;
 import main.MemberDao;
 import survey.SurveyDBBean;
 import survey.SurveyDao;
+import user.CompDao;
 import user.FrDBBean;
 import user.FrDao;
 import user.MessageDBBean;
@@ -63,6 +64,11 @@ public class CreateBean {
 		AdminDBBean adminDao = new AdminDBBean();
 		return adminDao;
 	}
+//	@Bean
+//	public CompDao compDao() {
+//		AdminDBBean compDao = new AdminDBBean();
+//		return CompDao;
+//	}
 }
 
 

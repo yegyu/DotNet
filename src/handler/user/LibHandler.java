@@ -28,10 +28,7 @@ public class LibHandler  implements CommandHandler{
 		String id = (String) session.getAttribute("memId");
 		
 		List<LibDataBean> lib = memberDao.getLib(id);
-		
 		request.setAttribute("lib", lib);
-		
-		
 		
 		return new ModelAndView("user/lib");
 	}

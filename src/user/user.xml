@@ -33,8 +33,14 @@
 	<select id="getMemNum" parameterType="String" resultType="Integer">
 		select member_number from dn_member where s_mem_id=#{id}
 	</select>
+	
 	<insert id="insertMsg" parameterType="user.MessageDataBean" >
 		insert into dn_message values(#{m_num},#{m_title},#{m_content},
 		#{s_mem_id},#{s_mem_del_st},#{r_mem_id},#{r_mem_del_st},#{m_date})
 	</insert>
+	
+	<insert id="insertQuestion" parameterType="user.CompanyDataBean">
+		insert into dn_ask_co values(#(a_num),#(co_email),#(a_name),#(co_content),#(co_type),#(co_code),#(w_date))
+	</insert>
+	
 </mapper>
