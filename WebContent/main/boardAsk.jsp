@@ -363,6 +363,30 @@
 // if(boardtype == 3){
 	$(".askboard").html("<h4> .Net 질문 </h4>");
 // }
+    $(".subboard").on(
+            "click",
+            function(){
+                sessionStorage.setItem("boardtype", "2");
+            }
+        );
+        $(".mainboard").on(
+            "click",
+            function(){
+                sessionStorage.setItem("boardtype", "1");
+            }
+        );
+        $(".askboard").on(
+            "click",
+            function(){
+                sessionStorage.setItem("boardtype", "3");
+            }
+        );
+        $("#logo").on(
+            "click",
+            function(){
+                sessionStorage.setItem("boardtype", "1");
+            }    
+        );
  </script>
 </body>
 </html>
