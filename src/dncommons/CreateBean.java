@@ -64,6 +64,11 @@ public class CreateBean {
 		AdminDBBean adminDao = new AdminDBBean();
 		return adminDao;
 	}
+	@Bean
+	public BoardAskDao boardAskDao() {
+		BoardAskDBBean boardAskDao = new BoardAskDBBean();
+		return boardAskDao;
+	}
 //	@Bean
 //	public CompDao compDao() {
 //		AdminDBBean compDao = new AdminDBBean();

@@ -155,6 +155,24 @@ public class MainHandler implements CommandHandler {
 		} else {
 			todaysurs = surveyDao.getTodaySurs();
 		}
+		if(b_tp == 3) {
+			//ask 게시판 
+			int getCount = boardAskDao.getCount();
+			request.setAttribute("asksCnt", getCount);
+			List<BoardAskDataBean> asks = boardAskDao.getAsks();
+//			for(BoardAskDataBean el : asks) {
+//				System.out.println(el.getNum());
+//			}System.out.println("------");
+			request.setAttribute("asks", asks);
+			String id =(String) session.getAttribute("memId");
+//			System.out.println("in MainHanlder of  게시판  id : " + id);
+			if(id != null) {
+				request.setAttribute("id", id);
+			}else {
+				request.setAttribute("id", "-1");
+			}
+			return new ModelAndView("main/boardAsk");
+		}
 		
 //
 //		// 정렬에서
