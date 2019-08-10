@@ -15,10 +15,10 @@ html {
 ensure equal card height inside carousel
 .carousel-inner>.row-equal.active, .carousel-inner>.row-equal.next,
 	.carousel-inner>.row-equal.prev {
-	display: flex;
+/* 	display: flex; */
 }
  
-prevent flicker during transition
+/* prevent flicker during transition */
 .carousel-inner>.row-equal.active.left, .carousel-inner>.row-equal.active.right
 	{
 	opacity: 0.5;
@@ -138,17 +138,17 @@ div.zoom {
 
 button {
 	font-size: 40px;
-	width: 60px;
-	height: 60px;
+/* 	width: 60px; */
+/* 	height: 60px; */
 	border-radius: 50%;
 }
-div.form-group{
-    padding-left: 20px;
-    padding-top: 10px;
-    width: 120px;
-    height: 70px;
-    margin-bottom: 0px;
-}
+/* div.form-group{ */
+/*     padding-left: 20px; */
+/*     padding-top: 10px; */
+/*     width: 120px; */
+/*     height: 70px; */
+/*     margin-bottom: 0px; */
+/* } */
 
 
 

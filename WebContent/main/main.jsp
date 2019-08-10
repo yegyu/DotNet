@@ -22,7 +22,9 @@
 		<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
 		<link rel="stylesheet" type="text/css" href="mainCss.css" />
 		
-		
+		<head>
+ 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+		</head>
 		<style>
 		.fixed-bottom{
 		display: none;
@@ -41,13 +43,14 @@
 			border: transparent;
 		}
 		button#searchButton{
-		position:relative;
-		border:0px;
-		bottom: 10px;
-		background-color:transparent;
-		
+/* 	 	position:relative; */
+/* 		border:0px; */
+/* 		border-radius:; */
+/* 		bottom: 10px; */
+/* 		background-color:transparent; */
+	 
 		}
-		.search_input {
+		/* .search_input {
 			position:relative;
 			bottom:35px;
 			color: white;
@@ -60,20 +63,20 @@
 			width: 450px;
 			
 		
-		}
+		} */
 		#no_search{
-			display: none;
+		display: none;
 		}
 		#write_btn {
-			height : 45px;
+			/* height : 45px;
 			width : 100px;
-			margin : 10px;
+			margin : 10px; */
 			
 		}
 		
 		</style>
 	</head>
-
+<body onscroll="SetDivPosition()">
 	<!-- 상단 바 -->
 	
 	<nav class="navbar navbar-expand-md navbar-default">
@@ -107,7 +110,7 @@
 		            <div class="card-deck">
 		                <c:forEach var="col" items="${todaysurs}" begin="0" end="2" varStatus="index">
 							
-		                    <div class="card zoom text-center" >
+		                    <div class="card zoom" >
 		                        <div class="card-img-top card-img-top-250">
 		                            <c:if test="${empty col.thumb_path}">
 		                                <a href="sur.do?s_num=${col.s_num}&s_tp_num=${col.s_tp_num}" class="fancybox" rel="ligthbox"> 
@@ -123,8 +126,8 @@
 		                        <div class="card-block p-t-2">
 		                            <h6 class="small text-wide p-b-2">포인트:${col.point}</h6>
 		                            <h2>
-		                                <a href>
-		                                	${col.subject}<br>참여자수 : ${col.partnum}<br>조회수 : ${col.hits}<br>
+		                                <a href>참여자 수 : ${col.partnum}<br>like : ${col.hits }<br>
+		                                    type:${col.s_tp_num}
 		                                </a>
 		                            </h2>
 		                        </div>
@@ -137,7 +140,7 @@
 	            <div class="carousel-item ">
 	            	<div class="card-deck">
 		                <c:forEach var="col" items="${todaysurs }" begin="3" end="5" varStatus="index">
-		                    <div class="card zoom text-center">
+		                    <div class="card zoom">
 		                        <div class="card-img-top card-img-top-250">
 		                            <c:if test="${empty col.thumb_path }">
 		                                <a href="sur.do?s_num=${col.s_num}&s_tp_num=${col.s_tp_num}" class="fancybox" rel="ligthbox"> <img src="/DotNet/defaultImg/default.jpg"
@@ -153,8 +156,8 @@
 		                        <div class="card-block p-t-2">
 		                            <h6 class="small text-wide p-b-2">포인트:${col.point}</h6>
 		                            <h2>
-		                                <a href>
-											${col.subject}<br>참여자수 : ${col.partnum}<br>조회수 : ${col.hits}<br>
+		                                <a href>참여자 수 : ${col.partnum}<br>like : ${col.hits }<br>
+		                                    ${index.index }
 		                                </a>
 		                            </h2>
 		                        </div>
@@ -170,7 +173,7 @@
 
 	<!-- 슬라이드 버튼 -->
 	<div class="container">
-		<div class="row justify-content-center">
+		<div class="row ">
 			<div class="col-xs-12 text-md-center lead ">
 				<a class="btn btn-outline-secondary prev" href="" title="left"><i
 					class="fa fa-lg fa-chevron-left"><span
@@ -190,24 +193,33 @@
 	<input type="hidden" name="b_tp_num" value="${b_tp}">
 	<div class="container h-100">
 		<!-- 	<div class="row"> -->
-		<div class="d-flex justify-content-center h-100">
-			<div class="searchbar">
-				<input class="search_input" type="text" name="searchInput" id="searchInput"
-					placeholder="Search..."> <button id="searchButton"><i
-					class="glyphicon glyphicon-search" id="i_search" ></i></button>
+		<div class="row justify-content-center h-100">
+			<div class="col-sm-5">
+<!-- 				<div class="searchbar"> -->
+				<input class="search_input form-control" type="text" name="searchInput" id="searchInput" placeholder="Search..."> 
 			</div>
-			<div class="form-group">
-				<!-- 			<label for="sel1">정렬</label>  -->
-				<select class="form-control selectpicker" id="align" name="align" >
-	
-					<option value="recent" >최신순</option>
-					<option value="partnum" >조회순</option>
-					<option value="hits">인기순</option>
-					<option value="point">포인트순</option>
-				</select>
+			<div class="col-sm-1">
+				<button id="searchButton" class="btn "><i class="fas fa-search"></i></button>
+			</div>			
+<!-- 				</div> -->
+<!-- 			</div> -->
+			<div class="col-sm-2">
+				<div class="form-group">
+					<!-- 			<label for="sel1">정렬</label>  -->
+					<select class="form-control selectpicker" id="align" name="align" >
+		
+						<option value="recent" >최신순</option>
+						<option value="partnum" >조회순</option>
+						<option value="hits">인기순</option>
+						<option value="point">포인트순</option>
+					</select>
+				</div>
 			</div>
-			
-			<a id="write_btn" class="btn btn-outline-secondary" href="surveyMakeSelect.do" style="padding-top : 15px" >글쓰기</a>
+			<div class="col-sm-2">
+<!-- 				<div class="form-group"> -->
+					<a href="surveyMakeSelect.do"><button id="write_btn" class="btn " >글쓰기</button></a>
+<!-- 				</div> -->
+			</div>
 		</div>
 		<div class="d-flex justify-content-center h-100">
 			<div id="no_search" ><h2>검색결과가 없습니다.</h2></div>
@@ -274,7 +286,7 @@
 			return false;
 		});
 		$('.carousel').carousel({
-			interval : 4000
+			interval : 3000
 		});
 	})(jQuery);
 	
@@ -289,12 +301,12 @@
 		  });
 		})();
 	
-	$("document").ready(function(){
-		$('html, body').animate({
-	        scrollTop : 0
-	    }, 100);
+// 	$("document").ready(function(){
+// 		$('html, body').animate({
+// 	        scrollTop : 0
+// 	    }, 100);
 		
-	});	
+// 	});	
 	$("#searchInput").keyup(function(e){
 		if(e.which == 13){
 			$("#searchButton").click();
@@ -319,48 +331,73 @@
 					e.preventDefault();
 				}
 			}
-		);
-		
-		
-		var boardtype = sessionStorage.getItem("boardtype");
-		if(boardtype == null || boardtype == 1) {
-			$(".mainboard").html("<h4> 메인 </h4>");
-		} else if(boardtype == 2) {
-			$(".subboard").html("<h4> 보조 </h4>");
-		}
-		// 메인, 보조 게시판 클릭시 표시
-		$(".subboard").on(
-			"click",
-			function(){
-				sessionStorage.setItem("boardtype", "2");
-			}
-		);
-		$(".mainboard").on(
-			"click",
-			function(){
-				sessionStorage.setItem("boardtype", "1");
-			}
-		);
-		$(".notboard").on(
-			"click",
-			function(){
-				sessionStorage.setItem("boardtype", "3");
-			}
-		);
-		$("#logo").on(
-			"click",
-			function(){
-				sessionStorage.setItem("boardtype", "1");
-			}	
-		);
-			
-		
+		);		
 	});
 	
+    var boardtype = sessionStorage.getItem("boardtype");
+    if(boardtype == null || boardtype == 1) {
+        $(".mainboard").html("<h4> 메인 </h4>");
+    } else if(boardtype == 2) {
+        $(".subboard").html("<h4> 보조 </h4>");
+    }
+//     else if(boardtype == 3){
+//     	$(".askboard").html("<h4> .Net 질문 </h4>");
+//     }
+    // 메인, 보조 게시판 클릭시 표시
+    $(".subboard").on(
+        "click",
+        function(){
+            sessionStorage.setItem("boardtype", "2");
+        }
+    );
+    $(".mainboard").on(
+        "click",
+        function(){
+            sessionStorage.setItem("boardtype", "1");
+        }
+    );
+    $(".askboard").on(
+        "click",
+        function(){
+            sessionStorage.setItem("boardtype", "3");
+        }
+    );
+    $("#logo").on(
+        "click",
+        function(){
+            sessionStorage.setItem("boardtype", "1");
+        }    
+    );
 	
 	</script>
 
+<!-- 스크롤 위치 기억하여 뿌려주기 시작 -->
+<script language="javascript" for="plan6" event="onload">
 
+//plan6이라는 frame이 onload될때 스크립트를 실행.
+
+ var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
+ if(strCook.indexOf("!~")!=0) {
+  var intS = strCook.indexOf("!~");
+  var intE = strCook.indexOf("~!");
+  var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
+  document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
+  }
+ document.plan6.resizeFrame(this);
+</script>
+
+<!-- 스크롤 위치 쿠키에 저장 -->
+
+  <script type = "text/javascript">
+
+ function SetDivPosition()
+ {
+  var intY = document.body.scrollTop;
+  document.cookie = "yPos=!~"+intY+"~!";
+ }
+ </script>
+ 
+</body>
 </html>
 
 

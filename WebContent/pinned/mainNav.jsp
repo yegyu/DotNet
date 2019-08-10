@@ -35,8 +35,8 @@
 				href="main.do?b_tp=1">메인&nbsp;&nbsp;&nbsp;</a></li>
 			<li class="nav-item"><a class="nav-link subboard"
 				href="main.do?b_tp=2">보조</a></li>
-			<li class="nav-item"><a class="nav-link subboard"
-				href="main.do?b_tp=3">아무 질문</a></li>
+			<li class="nav-item"><a class="nav-link askboard"
+				href="main.do?b_tp=3">.Net 질문</a></li>
 		</ul>
 	</div>
 	

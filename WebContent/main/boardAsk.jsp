@@ -359,6 +359,10 @@
   var intY = document.body.scrollTop;
   document.cookie = "yPos=!~"+intY+"~!";
  }
+ 
+// if(boardtype == 3){
+	$(".askboard").html("<h4> .Net 질문 </h4>");
+// }
  </script>
 </body>
 </html>
