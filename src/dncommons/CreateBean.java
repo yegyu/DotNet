@@ -9,6 +9,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import admin.AdminDBBean;
 import admin.AdminDao;
+import main.BoardAskDBBean;
+import main.BoardAskDao;
 import main.BoardDBBean;
 import main.BoardDao;
 import main.MemberDBBean;

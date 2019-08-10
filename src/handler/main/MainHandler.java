@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.JsonObject;
 
 import handler.CommandHandler;
+import main.BoardAskDao;
+import main.BoardAskDataBean;
 import main.MemberDao;
 import survey.SurveyDBBean;
 import survey.SurveyDao;
@@ -34,12 +36,15 @@ public class MainHandler implements CommandHandler {
 
 	@Resource
 	private SurveyDao surveyDao;
+	
+	@Resource
+	private BoardAskDao boardAskDao;
 
 	@RequestMapping(value = {"/a", "/search" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
 
-//		System.out.println("alignAjax 함수 들어옴");
+//		System.out.println("alignAjax �븿�닔 �뱾�뼱�샂");
 
 //		SurveyDBBean surveyDao = new SurveyDBBean();
 
@@ -156,7 +161,7 @@ public class MainHandler implements CommandHandler {
 			todaysurs = surveyDao.getTodaySurs();
 		}
 		if(b_tp == 3) {
-			//ask 게시판 
+			//ask 寃뚯떆�뙋 
 			int getCount = boardAskDao.getCount();
 			request.setAttribute("asksCnt", getCount);
 			List<BoardAskDataBean> asks = boardAskDao.getAsks();
@@ -165,7 +170,7 @@ public class MainHandler implements CommandHandler {
 //			}System.out.println("------");
 			request.setAttribute("asks", asks);
 			String id =(String) session.getAttribute("memId");
-//			System.out.println("in MainHanlder of  게시판  id : " + id);
+//			System.out.println("in MainHanlder of  寃뚯떆�뙋  id : " + id);
 			if(id != null) {
 				request.setAttribute("id", id);
 			}else {
@@ -175,13 +180,13 @@ public class MainHandler implements CommandHandler {
 		}
 		
 //
-//		// 정렬에서
+//		// �젙�젹�뿉�꽌
 		String align = "recent";
 		if (request.getParameter("align") != null)
 			align = request.getParameter("align");
 		request.setAttribute("align", align);
 //
-//		// 전체 설문 수
+//		// �쟾泥� �꽕臾� �닔
 //		int cnt = surveyDao.getCountAll();
 //		
 
@@ -192,7 +197,7 @@ public class MainHandler implements CommandHandler {
 
 		int c = 0;
 
-		// today (2 x 3 이라고 확정함 null 생각 x)
+		// today (2 x 3 �씠�씪怨� �솗�젙�븿 null �깮媛� x)
 		for (int i = 0; i < arrToday.length; i++) {
 			for (int j = 0; j < arrToday[0].length; j++) {
 				if(c < todaysurs.size()) {
