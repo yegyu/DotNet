@@ -48,7 +48,7 @@
 		<br>
 		<div class=row>
 			<c:forEach begin="1" end="${q_len}" varStatus="i">
-				<input class="btn btn-primary ml-4 btn${i.count}" type="button" value="질문${i.count}">
+				<input class="btn btn-primary ml-4" type="button" value="질문${i.count}" id="${i.count}">
 			</c:forEach>
 		</div>
 		<br>
@@ -263,7 +263,70 @@ window.onload = function() {
 	
 	///////////////////////////////////////// ajax 처리 영역 //////////////////////////////////////////////
 	//sexAllChart.options.data[0].dataPoints = sacData;
-	$()
+	var data = null;
+	
+	$('.btn').on('click',function(){
+		data = $(this).attr("id");
+		$.ajax({
+			data:{"q_num" : data},
+			dataType:"json",
+			type:"POST",
+			url:"changeQ_num.do",
+			
+			success:function(d){
+				
+			},
+			error:function(){
+				console.log("q_num ajax fail");
+			}
+		});
+	});
+
 	}// function
 	
 </script>
+<!-- 
+var data = null;
+$(document).ready(function(){
+	$('#snum').on('change',function(){
+		data = $(this).val();
+		console.log({data:data})
+		$.ajax({
+			data:{data:data},
+			
+			dataType:"json",
+			type:"POST",
+			url:"mw.do",
+			
+			success:function(d){
+				console.log("s_num ajax success");
+				$("#ap").children().remove();
+				$("#ap").append('<div id="mw2" style="height: 370px; width: 50%;"></div><br><div id="age" style="height: 370px; width: 50%;"><br>' );
+				
+				 jmwArr = JSON.parse( d.jmwArr)
+				 console.log("jmwARr"+jmwArr)
+				 qlen = d.qlen;
+// 				 slen = d.slen;
+				 s_num = d.s_num;
+				 console.log("in ajax s_num :"+ s_num)
+				 wArr = jmwArr.slice(0,jmwArr.length/2);
+				 mArr = jmwArr.slice(jmwArr.length/2);
+				 
+				 jageArr = JSON.parse( d.jageArr);
+				 k=0;
+				 for(var i = 0 ; i < jageArr.length; i+=jageArr.length/7){
+						arrAge[k]  = jageArr.slice(i,i+jageArr.length/7);
+						k++;
+				}
+				 
+				 makeChart();
+				 
+				 
+				
+			},
+			error:function(){
+				console.log("s_num ajax fail");
+			}
+		});
+	});
+}); -->
