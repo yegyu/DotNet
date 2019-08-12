@@ -7,7 +7,15 @@ import dncommons.SqlMapClient;
 import user.GoodsStDataBean;
 
 public class AdminDBBean implements AdminDao{
-
+	
+	@Override
+	public List<Integer> getDataForEachQ(Map<String, Object> mapForAll) {
+		return SqlMapClient.getSession().selectList("Admin.getDataForEachQ", mapForAll);
+	}
+	@Override
+	public List<Integer> getDataForAll(Map<String,Object> mapForAll) {
+		return SqlMapClient.getSession().selectList("Admin.getDataForAll", mapForAll);
+	}
 	@Override
 	public List<CntMemDB> getCntLoc() {
 		return SqlMapClient.getSession().selectList("Admin.getCntLoc");
