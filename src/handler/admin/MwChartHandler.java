@@ -188,8 +188,43 @@ public class MwChartHandler implements CommandHandler {
 	@RequestMapping(value = "changeQ_num", method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> dataChange(HttpServletRequest request) throws JSONException {
-		String q_num = request.getParameter("q_num");
-		System.out.println("들어왔다. q_num = " + q_num);
+		
+//		List<Integer> getS_numList = adminDao.getS_numList(2);
+		int s_num = Integer.parseInt(request.getParameter("s_num"));
+		int q_len = adminDao.getQlen(s_num);
+		int q_num = Integer.parseInt(request.getParameter("q_num"));
+		String[] strForData = {"gender=1", "gender=2", 
+				"age=10", "age=20", "age=30", "age=40", "age=50", "age=60", "age=70"};
+		System.out.println("들어왔다. q_num : " + q_num + " s_num : " + s_num);
+		List<Integer> dataForAll = new ArrayList<Integer>();
+		Map<String,Object> mapForAll = new HashMap<String, Object>();
+		mapForAll.put("s_num", s_num);
+		mapForAll.put("q_len", q_len);
+		mapForAll.put("q_num", q_num);
+		mapForAll.put("strForData", strForData);
+		
+		dataForAll = adminDao.getDataForAll(mapForAll);		// 해당 설문의 전체 참여 정보를 불러온다. 
+															// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
+		
+//		request.setAttribute("q_len", q_len);
+//		request.setAttribute("getS_numList", getS_numList);
+//		request.setAttribute("dataForAll", dataForAll);
+		
+		List<Integer> dataForEachQ = new ArrayList<Integer>();
+		dataForEachQ = adminDao.getDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
+															//    보기1번        보기2번
+															// [ 전체선택수, 전체선택수
+															//   남자선택수, 남자선택수
+															//   여자선택수, 여자선택수			전체,성별,연령 순. 홀수 index는 보기1번, 짝수 index는 보기2번
+															//   10대선택수, 10대선택수
+															//   		~
+															//   70대선택수, 70대선택수
+															
+		// ajax로 넘겨줄 데이터 map
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dataForEachQ", dataForEachQ);
+		map.put("dataForAll", dataForAll);
+		return map;
 // 예규 작업
 ////		System.out.println("양자택일 ajax 들어옴");
 //		List<Integer> getS_numList = adminDao.getS_numList(2);
@@ -313,7 +348,7 @@ public class MwChartHandler implements CommandHandler {
 //		}
 //
 //
-		Map<String, Object> map = new HashMap<String, Object>();
+		
 //
 //		map.put("jmwArr", jmwArr.toString());
 //		map.put("getS_numList", getS_numList);
@@ -322,6 +357,6 @@ public class MwChartHandler implements CommandHandler {
 //		map.put("slen", slen);
 //		map.put("jageArr",jageArr.toString());
 
-		return map;
+		
 	}
 }

@@ -29,7 +29,7 @@
 		
 			<label>양자 택일 번호</label>
 			<div class="col-md-4">
-				<select class="form-control" id="snum" >
+				<select class="form-control" id="s_num" >
 					<c:forEach var="el" items="${getS_numList}"> 
 						<option>${el}</option>
 					</c:forEach>
@@ -109,8 +109,6 @@ window.onload = function() {
 			]
 		}]
 	});
-		
-	sexAllChart.render();
 	
 	// 해당 설문 전체 참여 연령 분포
 	var ageAllChart = new CanvasJS.Chart("ageAll", {
@@ -136,8 +134,6 @@ window.onload = function() {
 		}]
 	});
 	
-	ageAllChart.render();
-	
 	////////////////////////////////// 질문별 데이터 /////////////////////////////////////
 	
 	// 보기 1번 성별 분포
@@ -159,8 +155,6 @@ window.onload = function() {
 			]
 		}]
 	});
-	
-	sexSel1Chart.render();
 	
 	// 보기 1번 연령 분포
 	var ageSel1Chart = new CanvasJS.Chart("ageSel1", {
@@ -187,9 +181,6 @@ window.onload = function() {
 		}]
 	});
 	
-	ageSel1Chart.render();
-	
-	
 	// 질문 보기 선택수
 	var selAllChart = new CanvasJS.Chart("selAll", {
 		animationEnabled: true,
@@ -208,9 +199,6 @@ window.onload = function() {
 			]
 		}]
 	});
-	
-	selAllChart.render();
-	
 	
 	// 보기 2번 성별 분포
 	var sexSel2Chart = new CanvasJS.Chart("sexSel2", {
@@ -231,8 +219,6 @@ window.onload = function() {
 			]
 		}]
 	});
-	
-	sexSel2Chart.render();
 	
 	// 보기 2번 연령 분포
 	var ageSel2Chart = new CanvasJS.Chart("ageSel2", {
@@ -259,22 +245,143 @@ window.onload = function() {
 		}]
 	});
 	
-	ageSel2Chart.render();
-	
+	function makechart() {
+		sexAllChart.render();
+		ageAllChart.render();
+		sexSel1Chart.render();
+		ageSel1Chart.render();
+		selAllChart.render();
+		sexSel2Chart.render();
+		ageSel2Chart.render();
+	}
+	makechart();
 	///////////////////////////////////////// ajax 처리 영역 //////////////////////////////////////////////
 	//sexAllChart.options.data[0].dataPoints = sacData;
 	var data = null;
+	var s_num = null;
 	
+	// 질문번호 눌렀을때 ajax
 	$('.btn').on('click',function(){
 		data = $(this).attr("id");
+		s_num = $("#s_num").val();
 		$.ajax({
-			data:{"q_num" : data},
+			data:{ "q_num" : data,
+				"s_num" : s_num },
 			dataType:"json",
 			type:"POST",
 			url:"changeQ_num.do",
 			
 			success:function(d){
+				var selAllData = [
+					{ label : "보기1번선택수", y: d.dataForEachQ[0] },
+					{ label : "보기2번선택수", y: d.dataForEachQ[1] }
+				];
+				var sexSel1Data = [
+					{ y: d.dataForEachQ[2], label: "남자" },
+					{ y: d.dataForEachQ[4], label: "여자" },
+				];
+				var ageSel1Data = [
+					{ x: 10, y: d.dataForEachQ[6] },
+					{ x: 20, y: d.dataForEachQ[8] },
+					{ x: 30, y: d.dataForEachQ[10] },
+					{ x: 40, y: d.dataForEachQ[12] },
+					{ x: 50, y: d.dataForEachQ[14] },
+					{ x: 60, y: d.dataForEachQ[16] },
+					{ x: 70, y: d.dataForEachQ[18] },
+					
+				];
+				var sexSel2Data = [
+					{ y: d.dataForEachQ[3], label: "남자" },
+					{ y: d.dataForEachQ[5], label: "여자" },
+				];
+				var ageSel2Data = [
+					{ x: 10, y: d.dataForEachQ[7] },
+					{ x: 20, y: d.dataForEachQ[9] },
+					{ x: 30, y: d.dataForEachQ[11] },
+					{ x: 40, y: d.dataForEachQ[13] },
+					{ x: 50, y: d.dataForEachQ[15] },
+					{ x: 60, y: d.dataForEachQ[17] },
+					{ x: 70, y: d.dataForEachQ[19] },
+					
+				];
+				selAllChart.options.data[0].dataPoints = selAllData;
+				sexSel1Chart.options.data[0].dataPoints = sexSel1Data;
+				ageSel1Chart.options.data[0].dataPoints = ageSel1Data;
+				sexSel2Chart.options.data[0].dataPoints = sexSel2Data;
+				ageSel2Chart.options.data[0].dataPoints = ageSel2Data;
+				makechart();				
+			},
+			error:function(){
+				console.log("q_num ajax fail");
+			}
+		});
+	});
+	
+	$('#s_num').on('change',function(){
+		data = 1;
+		s_num = $("#s_num").val();
+		$.ajax({
+			data:{ "q_num" : data,
+				"s_num" : s_num },
+			dataType:"json",
+			type:"POST",
+			url:"changeQ_num.do",
+			
+			success:function(d){
+				var sexAllData = [
+					{ y : d.dataForAll[0], label : "남자" },
+					{ y : d.dataForAll[1], label : "여자" }
+				];
+				var ageAllData = [
+					{ y : d.dataForAll[2], label : "10대" },
+					{ y : d.dataForAll[3], label : "20대" },
+					{ y : d.dataForAll[4], label : "30대" },
+					{ y : d.dataForAll[5], label : "40대" },
+					{ y : d.dataForAll[6], label : "50대" },
+					{ y : d.dataForAll[7], label : "60대" },
+					{ y : d.dataForAll[8], label : "70대" }
+				];
+				var selAllData = [
+					{ label : "보기1번선택수", y: d.dataForEachQ[0] },
+					{ label : "보기2번선택수", y: d.dataForEachQ[1] }
+				];
+				var sexSel1Data = [
+					{ y: d.dataForEachQ[2], label: "남자" },
+					{ y: d.dataForEachQ[4], label: "여자" },
+				];
+				var ageSel1Data = [
+					{ x: 10, y: d.dataForEachQ[6] },
+					{ x: 20, y: d.dataForEachQ[8] },
+					{ x: 30, y: d.dataForEachQ[10] },
+					{ x: 40, y: d.dataForEachQ[12] },
+					{ x: 50, y: d.dataForEachQ[14] },
+					{ x: 60, y: d.dataForEachQ[16] },
+					{ x: 70, y: d.dataForEachQ[18] },
+					
+				];
+				var sexSel2Data = [
+					{ y: d.dataForEachQ[3], label: "남자" },
+					{ y: d.dataForEachQ[5], label: "여자" },
+				];
+				var ageSel2Data = [
+					{ x: 10, y: d.dataForEachQ[7] },
+					{ x: 20, y: d.dataForEachQ[9] },
+					{ x: 30, y: d.dataForEachQ[11] },
+					{ x: 40, y: d.dataForEachQ[13] },
+					{ x: 50, y: d.dataForEachQ[15] },
+					{ x: 60, y: d.dataForEachQ[17] },
+					{ x: 70, y: d.dataForEachQ[19] },
+					
+				];
+				sexAllChart.options.data[0].dataPoints = sexAllData;
+				ageAllChart.options.data[0].dataPoints = ageAllData;
+				selAllChart.options.data[0].dataPoints = selAllData;
+				sexSel1Chart.options.data[0].dataPoints = sexSel1Data;
+				ageSel1Chart.options.data[0].dataPoints = ageSel1Data;
+				sexSel2Chart.options.data[0].dataPoints = sexSel2Data;
+				ageSel2Chart.options.data[0].dataPoints = ageSel2Data;
 				
+				makechart();
 			},
 			error:function(){
 				console.log("q_num ajax fail");
