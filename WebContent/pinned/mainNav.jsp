@@ -54,7 +54,6 @@
 				<li style="padding-top: 15px; padding-right: 10px;">
 				${sessionScope.memId} 님
 				</li>
-<<<<<<< HEAD
 				
 				<li><a class="nav-link notboard" href="/DotNet/receiveMail.do"><i class="fas fa-portrait"></i>
                        My Page&nbsp;&nbsp;&nbsp;
@@ -62,19 +61,6 @@
 				
 				
 				<li><a class="nav-link notboard" href="main.do?logout=true"><i class="fas fa-user-circle"></i>
-=======
-				<c:if test="${sessionScope.isAdmin eq 2}">
-					<li><a class="nav-link" href="/DotNet/mypage.do"><i class="fas fa-portrait"></i>
-                        My Page&nbsp;&nbsp;&nbsp;
-                    </a></li>
-				</c:if>
-				<c:if test="${sessionScope.isAdmin eq 1}">
-					<li><a class="nav-link" href="/DotNet/admin.do"><i class="fas fa-portrait"></i>
-                        My Page&nbsp;&nbsp;&nbsp;
-                    </a></li>
-				</c:if>
-				<li><a class="nav-link" href="main.do?logout=true"><i class="fas fa-user-circle"></i>
->>>>>>> 87b195e1e51a40dfb67c1967b2cbadf9c9304bbe
                      Logout&nbsp;&nbsp;&nbsp;
                 </a></li>
 			</c:when>
