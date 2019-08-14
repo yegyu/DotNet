@@ -66,6 +66,9 @@
 	<update id="updateView" parameterType="int">
 		update dn_boardAsk set views=views+1 where num =#{num}
 	</update>
+	<update id="updateGB" parameterType="Map" >
+		update dn_askReply set good=#{good} , bad=#{bad} where num = #{num} and rnum=#{rnum}
+	</update>
 </mapper>
 <!-- <select id="getCount" resultType="int"> -->
 <!-- 		select count(*) from board -->

@@ -376,9 +376,9 @@ body {
   height: 0px;
 }
 ::-webkit-scrollbar-thumb {
-  background: #525965;
+  background: lightslategrey;
   border: 0px none #ffffff;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #525965;
@@ -405,7 +405,7 @@ body {
 /*-----------------------------chiller-theme-------------------------------------------------*/
 
 .chiller-theme .sidebar-wrapper {
-    background: #31353D;
+    background: rgba(227, 179, 255, 0.7);
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-header,

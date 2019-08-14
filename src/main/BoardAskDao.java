@@ -25,6 +25,7 @@ public interface BoardAskDao {
 	
 	
 	public int updateView(int num);
+	public int updateGB(Map<String,Integer> map);
 	
 	
 	

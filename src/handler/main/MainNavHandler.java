@@ -41,6 +41,14 @@ public class MainNavHandler implements CommandHandler{
 		return new ModelAndView("pinned/mainNav");
 	}
 	
+	@RequestMapping(value = "logout", method = RequestMethod.POST)
+	@ResponseBody
+	public void logoutFunc(HttpServletRequest re) {
+		HttpSession session = re.getSession();
+		session.removeAttribute("memId");
+		session.removeAttribute("isAdmin");
+	}
+	
 	
 	@RequestMapping(value = "login",method = RequestMethod.POST)
 	@ResponseBody
@@ -50,40 +58,40 @@ public class MainNavHandler implements CommandHandler{
 		
 		String id = request.getParameter("id");
 		String passwd = request.getParameter("passwd");
-		
-		// 아이디, 비밀번호 확인
+		// �븘�씠�뵒, 鍮꾨�踰덊샇 �솗�씤
 			int result = memberDao.check(id,passwd);
 			if(result == 1) {
-				if(id.equals("admin")) {	// 관리자인지 확인
+				if(id.equals("admin")) {	// 愿�由ъ옄�씤吏� �솗�씤
 					session.setAttribute("isAdmin", 1);
 				} else {
 					session.setAttribute("isAdmin", 2);
 				}
-				// 세션에 id추가
+				// �꽭�뀡�뿉 id異붽�
 				session.setAttribute("memId", id );
 			}
-			// 포인트 획득을 위한 변수들
-			Map<String, Object> map = new HashMap<String, Object>();	// myBatis에 넘길 map
-			List<String> s_numList = new ArrayList<String>();	// 참여한 설문 목록
+			// �룷�씤�듃 �쉷�뱷�쓣 �쐞�븳 蹂��닔�뱾
+			Map<String, Object> map = new HashMap<String, Object>();	// myBatis�뿉 �꽆湲� map
+			List<String> s_numList = new ArrayList<String>();	// 李몄뿬�븳 �꽕臾� 紐⑸줉
 			
-			// 로그인 될 때 포인트 갱신
-			// 참여한 설문이 있는지 확인
+			// 濡쒓렇�씤 �맆 �븣 �룷�씤�듃 媛깆떊
+			// 李몄뿬�븳 �꽕臾몄씠 �엳�뒗吏� �솗�씤
 			int pResult = surveyDao.checkPart(id);
-//				System.out.println("참여한 설문여부 : " + pResult);
-			if(pResult != 0) {	// 참여한 설문이 있다
-				// 참여한 설문의 목록을 받아온다
+//				System.out.println("李몄뿬�븳 �꽕臾몄뿬遺� : " + pResult);
+			if(pResult != 0) {	// 李몄뿬�븳 �꽕臾몄씠 �엳�떎
+				// 李몄뿬�븳 �꽕臾몄쓽 紐⑸줉�쓣 諛쏆븘�삩�떎
 				s_numList = surveyDao.getPartS_num(id);
-				// 필요한 값을 map에 넣고
+				// �븘�슂�븳 媛믪쓣 map�뿉 �꽔怨�
 				map.put("id", id);
 				map.put("s_numList", s_numList);
-//					System.out.println("참여설문 포인트획득여부 : " + surveyDao.getPartPoint(map));
+//					System.out.println("李몄뿬�꽕臾� �룷�씤�듃�쉷�뱷�뿬遺� : " + surveyDao.getPartPoint(map));
 			}
-				// 작성한 설문이 있는지 확인
+				// �옉�꽦�븳 �꽕臾몄씠 �엳�뒗吏� �솗�씤
 			int wResult = surveyDao.checkWriter(id);			
-//				System.out.println("작성한 설문여부 : " + wResult);
-			if(wResult != 0) {	// 작성한 설문이 있다
-//					System.out.println("작성설문 포인트여부 : " + surveyDao.getMyPoint(id));
+//				System.out.println("�옉�꽦�븳 �꽕臾몄뿬遺� : " + wResult);
+			if(wResult != 0) {	// �옉�꽦�븳 �꽕臾몄씠 �엳�떎
+//					System.out.println("�옉�꽦�꽕臾� �룷�씤�듃�뿬遺� : " + surveyDao.getMyPoint(id));
 			}
+			
 			return String.valueOf(result);
 				
 				
