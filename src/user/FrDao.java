@@ -11,13 +11,13 @@ public interface FrDao {
 	//my recom fr
 	public List<MemberDataBean> getRecomFr(Map<String,Object> map);
 
-	//친구 요청한 사람의 친구창에 상대방 사진에 요청 대기 버튼 
+	//移쒓뎄 �슂泥��븳 �궗�엺�쓽 移쒓뎄李쎌뿉 �긽��諛� �궗吏꾩뿉 �슂泥� ��湲� 踰꾪듉 
 	public List<String> getWatiBtnId(String id);
 	
-	//친구 응답할  사람의 친구창에 상대방 사진에 수락, 및 차단 버튼 2개 넣기
+	//移쒓뎄 �쓳�떟�븷  �궗�엺�쓽 移쒓뎄李쎌뿉 �긽��諛� �궗吏꾩뿉 �닔�씫, 諛� 李⑤떒 踰꾪듉 2媛� �꽔湲�
 	public List<String> getAccBtnId(String id);
 //	public Integer getReqSt() 
-	//state 1 -> 서로 친구 인 상태
+	//state 1 -> �꽌濡� 移쒓뎄 �씤 �긽�깭
 	public List<String> getRealFrBtn(String id);
 	
 	public int updateForAccFr(Map<String,Object> map);
@@ -25,4 +25,6 @@ public interface FrDao {
 	public int insertFr(Map<String,Object> map);
 	
 	public int getMaxFrNum();
+	
+	public Integer checkFr(Map<String,Object> map);
 }

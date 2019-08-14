@@ -29,6 +29,7 @@ public class AdminPoMngHandler implements CommandHandler{
 		
 		List<GoodsStDataBean> memPoPay = memberDao.getGoodsStAll();
 		request.setAttribute("memPoPay", memPoPay);
+		
 		return new ModelAndView("admin/adminPoMng");
 	}
 	
@@ -36,10 +37,10 @@ public class AdminPoMngHandler implements CommandHandler{
 	@RequestMapping(value = "adminPay" , method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Integer adminPay(HttpServletRequest request	) {
-//		System.out.println("adminPay 들어옴");
+//		System.out.println("adminPay �뱾�뼱�샂");
 		int t_num = Integer.parseInt(request.getParameter("t_num"));
 		int updateTST = adminDao.updateTST(t_num);
-//		System.out.println("update tst 결과 : " + updateTST);
+//		System.out.println("update tst 寃곌낵 : " + updateTST);
 //		System.out.println(t_num);
 		
 		

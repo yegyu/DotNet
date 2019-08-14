@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 
-<!DOCTYPE html>
-<html> -->
+
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
 
 <!-- <head> -->
-<meta charset="UTF-8">
+
 	<title>마이페이지</title>
 	
 	<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
@@ -16,22 +16,22 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
        integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="bootstrap.css">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 	
-    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"  crossorigin="anonymous"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<!-- 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
+<!-- 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+<!-- 	<script type="text/javascript" src="bootstrap.bundle.js"></script> -->
+	
+<!--     <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"  crossorigin="anonymous"></script> -->
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<!-- 	<script type="text/javascript" src="jquery-3.4.1.js"></script> -->
 
+	<link rel="stylesheet" href="bootstrap.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<style>
-	body{
-	scroll:;
-	 overflow: hidden
-	}
+/* 	body{ */
+/* 	scroll:; */
+/* 	 overflow: hidden */
+/* 	} */
 	 #emialWin{
 	margin:10px;
 	
@@ -161,337 +161,282 @@
 	  }
 	}
 </style>
-<!-- </head> -->
+ 	
 
-<!-- <body> -->
+    <div class="page-wrapper chiller-theme toggled">
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+                <div class="sidebar-brand">
+                    <a class="navbar-brand" href="main.do">
+                        <h1 id="logo">.Net</h1>
+                    </a>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+                <div class="sidebar-header">
+                    <div class="user-pic">
+                        <img class="img-rounded"
+                            src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                            alt="User picture" style="width:50px; height:50px;"><br>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">
 
-<div class="page-wrapper chiller-theme toggled">
-  <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-    <i class="fas fa-bars"></i>
-  </a>
-  <nav id="sidebar" class="sidebar-wrapper">
-    <div class="sidebar-content">
-      <div class="sidebar-brand">
-      <a class="navbar-brand" href="main.do"><h1 id="logo">.Net</h1> </a>
-           <div id="close-sidebar">
-          <i class="fas fa-times"></i>
-        </div>
-      </div>
-      <div class="sidebar-header">
-        <div class="user-pic">
-          <img class="img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-            alt="User picture"  style="width:50px; height:50px;"><br>
-        </div>
-        <div class="user-info">
-          <span class="user-name">
-            
-          </span>
-          <c:if test="${memId != 'admin'}">
-          <span class="badge badge-pill badge-primary">일반회원</span>
-         <span class="badge badge-pill badge-warning mt-1">보유 포인트 ${point}P</span>
-         </c:if>
-         <c:if test="${memId == 'admin'}">
-          <span class="badge badge-pill badge-primary">관리자</span>
-         <span class="badge badge-pill badge-warning mt-1"> 기업사용자 문의</span>
-         <span class="badge badge-pill badge-warning mt-1"> 일반회원 문의</span>
-         </c:if>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
-          </span>
-        </div>
-      </div>
-      <!-- sidebar-header  -->
-      <div class="sidebar-search">
-        <div>
-  <!--         <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div> -->
-					<c:if test="${memId != 'admin'}">
-						<a href="#">${memId}님의 마이페이지</a>
-						<br>
-					</c:if>
-					<c:if test="${memId	== 'admin'}">
-						<a href="#">관리자 페이지</a>
-						<br>
-					</c:if>					
-				</div>
-      </div>
-      <c:if test="${memId != 'admin'}">
-				<div class="sidebar-menu">
-        <ul>
-          <li class="header-menu"> <span>일반 메뉴</span> </li>
-          <li class="sidebar-dropdown">
-          <a href="#"><i class="fas fa-file-invoice"></i>
-              <span>내 설문 관리 </span>
-           </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/lib.do" id="lib">내 최근 참여 설문
-                    
-                  </a>
-                </li>
-                <li>
-                  <a href="/DotNet/mytest.do" >내가 작성한 설문 </a>
-                </li>
-                <li>
-                  <a href="#">내 스탬프 </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fas fa-copyright"></i>
-              <span>내 포인트 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/recPo.do">포인트 적립 / 사용 내역
-                  </a>
-                </li>
-                <li>
-                  <a href="/DotNet/goods.do">상품 신청 / 결제</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="far fa-envelope"></i>
-              <span>내 메세지 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/receiveMail.do">받은 메세지함</a>
-                </li>
-                <li>
-                  <a href="/DotNet/sendMail.do">보낸 메세지함</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fas fa-users"></i>
-              <span>내 친구 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/myFr.do">친구 신청 현황</a>
-                </li>
-                <li>
-                  <a href="#">내 친구 목록</a>
-                </li>
-                <li>
-                  <a href="/DotNet/recomFr.do">추천 친구 목록</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-globe"></i>
-              <span>회원 정보 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">나의 피드 보기</a>
-                </li>
-                <li>
-                  <a href="#">회원 정보 수정</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          </c:if>
-          
-          				<div class="sidebar-menu">
-        <ul>
-          <li class="header-menu"> <span>일반 메뉴</span> </li>
-          <li class="sidebar-dropdown">
-          <a href="#"><i class="fas fa-file-invoice"></i>
-              <span>사이트 관리 </span>
-           </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/memberMng.do" id="lib">회원 활동 관리
-                    
-                  </a>
-                </li>
-                <li>
-                  <a href="/DotNet/adminBoard.do" >게시물 관리 </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fas fa-copyright"></i>
-              <span>사이트 데이터 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/memChart.do">회원 현황
-                  </a>
-                </li>
-                <li>
-                  <a href="/DotNet/mwChart.do">설문유형 2 </a>
-                </li>
-                <li>
-                  <a href="/DotNet/fiveChart.do">설문유형 5 </a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="far fa-envelope"></i>
-              <span>내 메세지 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/receiveMail.do">받은 메세지함</a>
-                </li>
-                <li>
-                  <a href="/DotNet/sendMail.do">보낸 메세지함</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fas fa-users"></i>
-              <span>회원 결제 관련</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="/DotNet/adminPoMng.do">포인트 결제 관리</a>
-                </li>
-                <li>
-                  <a href="/DotNet/adminGoodsMng.do">상품 등록 관리</a>
-                </li>
-                <li>
-                  <a href="/DotNet/adminPayHistory.do">회원 결제 내역</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          
-          <c:if test="${memId!='admin'}">
-          <li class="sidebar-dropdown">
-            <a href="#">
-              <i class="fa fa-globe"></i>
-              <span>회원 정보 관리</span>
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">나의 피드 보기</a>
-                </li>
-                <li>
-                  <a href="#">회원 정보 수정</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          </c:if>
-          
-          <li class="header-menu">
-            <span>자주 쓰는 메뉴&nbsp;&nbsp;<i class="fas fa-bolt"></i></span>
-          </li>
-          <li>
-            <a href="#" id="writeEmail">
-              <i class="fa fa-envelope"></i>
-              <span>메세지 작성</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-calendar"></i>
-              <span>Calendar</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="fa fa-folder"></i>
-              <span>Examples</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-	</div>
-			<!--왼쪽 사이드 끝  -->
+                        </span>
+                        <c:if test="${memId != 'admin'}">
+                            <span class="badge badge-pill badge-primary">일반회원</span>
+                            <span class="badge badge-pill badge-warning mt-1">보유 포인트 ${point}P</span>
+                        </c:if>
+                        <c:if test="${memId == 'admin'}">
+                            <span class="badge badge-pill badge-primary">관리자</span>
+                            <span class="badge badge-pill badge-warning mt-1">문의</span>
+                        </c:if>
+                        <span class="user-status">
+                            <i class="fa fa-circle"></i>
+                            <span>Online</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- sidebar-header  -->
+                <div class="sidebar-search">
+                    <div>
+                        <c:if test="${memId != 'admin'}">
+                            <a href="">${memId}님의 마이페이지</a>
+                        </c:if>
+                        <c:if test="${memId	== 'admin'}">
+                            <a href="">관리자 페이지</a>
+                        </c:if>
+                        <br>
+                        <a href="main.do" id="logoutSide"><i class="fas fa-user-circle"></i>
+                            Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </a>
+                        <a href=""  data-toggle="modal" data-target="#navMail"><i class="far fa-envelope" ></i>쪽지 쓰기</a>
+                    </div>
+                </div>
+                <c:if test="${memId != 'admin'}">
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu"> <span>일반 메뉴</span> </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#"><i class="fas fa-file-invoice"></i>
+                                    <span>내 설문 관리 </span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="lib.do" id="lib">내 최근 참여 설문</a>
+                                        </li>
+                                        <li>
+                                            <a href="mytest.do">내가 작성한 설문 </a>
+                                        </li>
 
-	<li style="margin-right: 10px;">
-		<div class="btn-group">
-			<button type="button" class="btn btn-default btn-sm" id="trash">
-				Trash</button>
-      <!-- sidebar-menu  -->
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fas fa-copyright"></i>
+                                    <span>내 포인트 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="recPo.do">포인트 적립 / 사용 내역
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="goods.do">상품 신청 / 결제</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="far fa-envelope"></i>
+                                    <span>내 메세지 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="receiveMail.do">받은 메세지함</a>
+                                        </li>
+                                        <li>
+                                            <a href="sendMail.do">보낸 메세지함</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fas fa-users"></i>
+                                    <span>내 친구 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="myFr.do">친구 목록 신청 현황</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="recomFr.do">추천 친구 목록</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-globe"></i>
+                                    <span>회원 정보 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">나의 피드 보기</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">회원 정보 수정</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </c:if>
+                <c:if test="${memId == 'admin'}">
+
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu"> <span>일반 메뉴</span> </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#"><i class="fas fa-file-invoice"></i>
+                                    <span>사이트 관리 </span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="memberMng.do" id="lib">회원 활동 관리
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="adminBoard.do">게시물 관리 </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fas fa-copyright"></i>
+                                    <span>사이트 데이터 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="memChart.do">회원 현황
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="mwChart.do">설문유형 2 </a>
+                                        </li>
+                                        <li>
+                                            <a href="fiveChart.do">설문유형 5 </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="far fa-envelope"></i>
+                                    <span>내 메세지 관리</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="receiveMail.do">받은 메세지함</a>
+                                        </li>
+                                        <li>
+                                            <a href="sendMail.do">보낸 메세지함</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fas fa-users"></i>
+                                    <span>회원 결제 관련</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="adminPoMng.do">포인트 결제 관리</a>
+                                        </li>
+                                        <li>
+                                            <a href="adminGoodsMng.do">상품 등록 관리</a>
+                                        </li>
+                                        <li>
+                                            <a href="adminPayHistory.do">회원 결제 내역</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </c:if>
+            </div>
+            <!--왼쪽 사이드 끝  -->
+        </nav>
     </div>
-    <!-- sidebar-content  -
-    <div class="sidebar-footer">
-      <a href="#">
-        <i class="fa fa-bell"></i>
-        <span class="badge badge-pill badge-warning notification">3</span>
-      </a>
-      <a href="#" id="writeEmail">
-        <i class="fa fa-envelope"></i>
-        <span class="badge badge-pill badge-success notification">7</span>
-      </a>
-      <a href="#">
-        <i class="fa fa-cog"></i>
-        <span class="badge-sonar"></span>
-      </a>
-    </div-->
-  </nav>
-  <!-- sidebar-wrapper  -->
-  		<!-- 메일 작성 박스 -->
-		<div class="container" id="mailCon">
-		        <div class="shadow bg-white">
-					<div id="mailHead">
-					<button type="button" class="close" aria-label="Close">
-					  <span aria-hidden="true">&times;</span>
-					</button>
-					</div>
-		            <form id="emailWin" action="sendMailPro.do" method="post">
-		                <div class="form-group">
-		                    <label for="frId">받을 사람 ID</label>
-		                    <input type="text" class="form-control" id="frId" name="frId" placeholder="">
-		                </div>
-		                <div class="form-group">
-		                    <label for="title">제목</label>
-		                    <input type="text" class="form-control" id="title" name="title" autocomplete='off' placeholder="">
-		                </div>
-		                <div class="form-group">
-		                    <label for="content">글 내용</label>
-		                    <textarea class="form-control" id="content" name="content" rows="10"></textarea>
-		                </div>
-		                <div class="form-group right">
-		                    <input type="submit" class="btn btn-info" id="emailBtn" onclick="return checkMail();">
-		                    <input type="reset" class="btn btn-info" >
-		                </div>
-		            </form>
-		        </div>
-		<!--     </div> -->
-		</div>
+            <!--     </div> -->
+            <!-- 쪽지 모달 -->
+ <div class="modal fade " id="navMail" tabindex="-1" role="dialog" aria-labelledby="navMailTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="navMailTitle" align="center">쪽지 </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- sidebar-wrapper  -->
+                        <!-- 메일 작성 박스 -->
+                        <form id="emailWin" >
+                            <div class="form-group">
+                                <label for="frId">받을 사람 ID</label>
+                                <input type="text" class="form-control" id="frId" name="frId" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="title">제목</label>
+                                <input type="text" class="form-control" id="title" name="title" autocomplete='off'
+                                    placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="content">글 내용</label>
+                                <textarea class="form-control" id="content" name="content" rows="10"></textarea>
+                            </div>
+                        </form>
+                     </div>
+                       <div class="modal-footer">
+                           <div class="form-group right">
+                               <button type="button" class="btn " id="emailBtn" onclick="return checkMail();">보내기</button>
+                               <button type="reset" class="btn ">리셋</button>
+                           </div>
+                       </div>
+                </div>
+            </div>
+        </div>
+            
 		<!-- 작성자는 세션 ID -->
 		<c:set var = "id" value="${sessionScope.memId}"/>
 		<!-- 사이드바 드롭박스 스크립트 -->
+		<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<script type="text/javascript" src="bootstrap.bundle.js"></script>
 		<script>
 		jQuery(function ($) {
 		
@@ -524,6 +469,9 @@
 		  $(".page-wrapper").addClass("toggled");
 		});
 		});
+		
+		
+		$('.page-content').prop('position','absolute')
 		</script>
 		<!-- 메일쓰기  기능 -->	
 		<script>
@@ -535,6 +483,27 @@
 					if(!$("#frId").val() || !$("#content").val() || !$("#title").val()){
 						alert("빠진 부분을 확인해 주세요")
 						return false;
+					}else{
+						var maildata = {frId : $("#frId").val() , title:$("#title").val(), content : $("#content").val()}
+						$.ajax({
+							data:maildata,
+							type:"post",
+							dataType:"text",
+							url:"sendMail.do",
+							success:function(data){
+								if(data == 1){
+									alert("성공")
+									$('#navMail').modal('toggle');
+								}else if(data == -1){
+									alert("해당 아이디가 존재하지 않아요ㅠㅠ")
+								}else if(data == 0){
+									alert("전송 실패")
+									$('#navMail').modal('toggle');
+								}
+								
+								
+							}
+						});
 					}
 				};
 		</script>
@@ -624,3 +593,28 @@
 		        });
 		    });
 		</script>
+		<script>
+		$(document).ready(function(){
+			$("#logoutSide").on('click',function(){
+				var dd = {1:"1"};
+				$.ajax({
+					data:dd,
+					dataType:"text",
+					type:"post",
+					url:"logout.do",
+					success:function(){
+						location.reload = "main.do"
+					}
+				
+				})
+			});
+			
+			$('.close').on('click',function(){
+				$('#navMail').modal('toggle');
+// 				$(this).attr('data-dismiss','modal');
+// 				console.log("put put")
+			});
+			
+			
+		});
+	</script>

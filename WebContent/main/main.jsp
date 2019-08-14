@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html >
 
 	<head>
 		<meta charset="utf-8">
@@ -78,7 +78,7 @@
 	</head>
 <body onscroll="SetDivPosition()">
 	<!-- 상단 바 -->
-	
+<div class="container-fluid">
 	<nav class="navbar navbar-expand-md navbar-default">
 		<jsp:include page="../mainNav.do" flush="false"></jsp:include>
 	</nav>
@@ -173,7 +173,7 @@
 
 	<!-- 슬라이드 버튼 -->
 	<div class="container">
-		<div class="row ">
+		<div class="row justify-content-center">
 			<div class="col-xs-12 text-md-center lead ">
 				<a class="btn btn-outline-secondary prev" href="" title="left"><i
 					class="fa fa-lg fa-chevron-left"><span
@@ -229,7 +229,7 @@
 
 	<!-- up 이동 -->
 	<div class="fixed-bottom">
-	<a href="" class="btn btn-info btn-lg">
+	<a href="" class="btn ">
 		<span class="glyphicon glyphicon-chevron-up" id="MOVE_TOP_BTN"></span> TOP
 	</a>
 	</div>
@@ -248,6 +248,8 @@
 		</div>
 		<!--test board end  -->
 	</div>
+</div>
+
 
 
 <script type="text/javascript" src="jquery-3.4.1.js"></script>

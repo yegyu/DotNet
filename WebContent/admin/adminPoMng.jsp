@@ -3,11 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="UTF-8">
-<title>회원 포인트 관리</title>
 		<!-- 사이드바  1-1 start-->
+</head>
+<body>
 <jsp:include page="../mypage.do"/>
-<main class="page-content">
+<div class="page-content">
 <div class="container-fluid">
 	<div class="card col-md-10">
 		<h2 class="mt-3">포인트 결제 관리</h2>
@@ -44,7 +46,8 @@
 				<!-- 사이드바 2-2 start --> 
 	</div>
 </div>
-</main>
+</div>
+</body>
 <!-- 사이드바 2-2 end --> 
 	<script>
 		$(document).ready(function(){

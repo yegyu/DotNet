@@ -1,6 +1,7 @@
 package handler.main;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +33,10 @@ import handler.CommandHandler;
 import main.AskReplyDataBean;
 import main.BoardAskDao;
 import main.BoardAskDataBean;
+import main.MemberDao;
+import user.FrDao;
+import user.MessageDao;
+import user.MessageDataBean;
 
 @Controller
 public class AskContentHandler implements CommandHandler{
@@ -162,6 +167,70 @@ public class AskContentHandler implements CommandHandler{
 		return 1; 
 	}
 	
+//	
+//	@Resource
+//	private MemberDao memberDao;
+	@Resource
+	private MessageDao messageDao;
+	@Resource
+	private FrDao frDao;
+	
+	@RequestMapping(value = "reqFrAsk" , method = RequestMethod.POST)
+	@ResponseBody
+	public String reqFrFromAsk(HttpServletRequest request) throws Exception {
+		
+//		request.setCharacterEncoding("utf-8");
+
+		HttpSession session = request.getSession();
+		String myId = (String)session.getAttribute("memId");
+		String frId =request.getParameter("id");
+		if(myId.equals(frId)) {
+			return "0";
+		}
+		//친구
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("myId", myId);
+		map.put("id",frId);
+		Integer checkRs = frDao.checkFr(map);
+		System.out.println(checkRs +  " <<  친구 상태 확인 ?? 없으면 아직 친구가 아닌거지");
+		if(checkRs != null) {
+			if(checkRs == 0) {
+				return "1";
+			}else if(checkRs == 1) {
+				return "2";
+			}else if(checkRs == 2 ) {
+				return "3";
+			}
+		}else {
+			//친구 신청 가능
+			String title= request.getParameter("title");
+			String content = request.getParameter("contents");
+			
+			
+			int msgNum = 0;
+			MessageDataBean messageDto = new MessageDataBean();
+//			System.out.println(messageDao.getMsgNum()== null ?"getMsgNum() �� null" : "getMsgNum() �� not null"+ messageDao.getMsgNum());
+			if(messageDao.getMsgNum() != null) {
+				msgNum = messageDao.getMsgNum();
+			}
+//			System.out.println("msgNum : " + msgNum);
+			messageDto.setM_num(msgNum+1);
+			messageDto.setM_title(title);
+			messageDto.setM_content(content);
+			messageDto.setS_mem_id(myId);
+			messageDto.setS_mem_del_st(0);
+			messageDto.setR_mem_id(frId);
+			messageDto.setR_mem_del_st(0);
+			messageDto.setM_date(new Timestamp(System.currentTimeMillis() ));
+			
+			int insertMsgRs = messageDao.insertMsg(messageDto);
+			
+			int insertFr = frDao.insertFr(map);
+			
+			return "4";
+		}
+		return "결과를 알 수없니다. Ask Contnet 로 오세요";
+	}
 	
 	
 	

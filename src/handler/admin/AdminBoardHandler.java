@@ -86,7 +86,7 @@ public class AdminBoardHandler implements CommandHandler {
 		
 		return map;
 	}
-	@RequestMapping(value = {"/paging", "/search" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
+	@RequestMapping(value = {"/paging" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> adminBorad(HttpServletRequest request) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -95,7 +95,7 @@ public class AdminBoardHandler implements CommandHandler {
 		String page2 = request.getParameter("page2");
 		int listSize = 5;
 		
-		// 메인게시판용
+		// 硫붿씤寃뚯떆�뙋�슜
 		List<SurveyDataBean> allMainSurveys = surveyDao.getSurs();
 		List<List<SurveyDataBean>> mainSurveys = new ArrayList<List<SurveyDataBean>>();
 		int mainCnt = allMainSurveys.size();
@@ -114,7 +114,7 @@ public class AdminBoardHandler implements CommandHandler {
 			mainSurveys.add(mainSurPage);
 		}
 		
-		// 보조게시판용
+		// 蹂댁“寃뚯떆�뙋�슜
 		List<SurveyDataBean> allSubSurveys = surveyDao.getSurs2();
 		List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 		int subCnt = allSubSurveys.size();
@@ -145,9 +145,9 @@ public class AdminBoardHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {		
 				
 			int listSize = 5;
-			int pageNum = 0;	// 처음 페이지 번호(+1로 계산)
+			int pageNum = 0;	// 泥섏쓬 �럹�씠吏� 踰덊샇(+1濡� 怨꾩궛)
 			
-			// 메인게시판용
+			// 硫붿씤寃뚯떆�뙋�슜
 			List<SurveyDataBean> allMainSurveys = surveyDao.getSurs();
 			List<List<SurveyDataBean>> mainSurveys = new ArrayList<List<SurveyDataBean>>();
 			int mainCnt = allMainSurveys.size();
@@ -173,7 +173,7 @@ public class AdminBoardHandler implements CommandHandler {
 			request.setAttribute("realSize", realSize);
 			request.setAttribute("pageNum", pageNum);
 			
-			// 보조게시판용
+			// 蹂댁“寃뚯떆�뙋�슜
 			List<SurveyDataBean> allSubSurveys = surveyDao.getSurs2();
 			List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 			int subCnt = allSubSurveys.size();

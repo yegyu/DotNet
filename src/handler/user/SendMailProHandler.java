@@ -36,21 +36,19 @@ public class SendMailProHandler implements CommandHandler{
 		String title= request.getParameter("title");
 		String content = request.getParameter("content");
 		
-		MemberDBBean memberDao = new MemberDBBean();
 		int checkId = memberDao.checkId(frId);
 //		System.out.println("chechId rs : " + checkId );
 		if(checkId != 1) {
 			request.setAttribute("checkId", checkId);
 			return new ModelAndView("user/sendMailPro");
 		}
-		MessageDBBean messageDao = new MessageDBBean();
 		
 //		int sMemNum = messageDao.getMemNum(myId);
 //		int rMemNum = messageDao.getMemNum(frId);
 		
 		int msgNum = 0;
 		MessageDataBean messageDto = new MessageDataBean();
-//		System.out.println(messageDao.getMsgNum()== null ?"getMsgNum() 은 null" : "getMsgNum() 은 not null"+ messageDao.getMsgNum());
+//		System.out.println(messageDao.getMsgNum()== null ?"getMsgNum() �� null" : "getMsgNum() �� not null"+ messageDao.getMsgNum());
 		if(messageDao.getMsgNum() != null) {
 			msgNum = messageDao.getMsgNum();
 		}

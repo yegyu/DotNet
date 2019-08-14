@@ -87,7 +87,7 @@
 						<tr>
 							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
 							<td ><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
-							<td>${re.id }</td>
+							<td class="frfr" id="${re.id }" data-toggle="modal" data-target="#reqFr">${re.id }</td>
 							<td>${re.reply }</td>
 							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/>  </td>
 						</tr>
@@ -99,11 +99,90 @@
 		</div>
 	</div>
  </div>
+ <div class="modal fade" id="reqFr" tabindex="-1" role="dialog" aria-labelledby="reqFrLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reqFrLabel">친구 요청</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="reqMsg" class="col-form-label">아이디</label>
+            <input type="text" class="form-control" id="idFuFr" >
+          </div>
+          <div class="form-group">
+            <label for="reqMsg" class="col-form-label">인사글을 남겨보세요~~</label>
+            <textarea rows="5" class="form-control" id="reqMsg"></textarea>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="reqFrBtn">친구 요청</button>
+      </div>
+    </div>
+  </div>
+</div>
 <label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
-
+<script>
+function reqFriend(data1){
+	$.ajax({
+		data:data1,
+		type:"post",
+		dataTyp:"text",
+		url:"reqFrAsk.do",
+		success:function(data){
+			switch(data){
+			case "0":alert("본인 아이디네요 ㅎㅎ");break;
+			case "1":alert("이미 친구 요청 상태이네요 한번확인해 보세요");break;
+			case "2":alert("현재 친구 상태입니다.");break;
+			case "3":alert("어이쿠 현재 차단상태입니다. 자세한 사항은 문의해주세요");break;
+			case "4":alert("친구 요청이 완료됐습니다. 요청 수락까지 기다려 주세요.");break;
+			default :alert("알수 없는 결과내요 문의 주시면 고맙겠습니다.")
+			}
+// 			$('#reqFr').modal('toggle');
+			$('.close').click();
+			$('.modal-backdrop').remove();
+		}
+	})
+}
+var frid;
+	$('.frfr').on('mouseenter',function(){
+		$('body').append('<div class="animated infinite bounce " id="showBit" style="position:fixed; top:50%; right:30%;"><h1>좋은 친구가 되겠군...Click id </h1></div>')
+		setTimeout(function(){
+			$('#showBit').remove()	
+		},2000)
+		
+	})
+	$('.frfr').on('click',function(){
+		frid=$(this).attr('id')
+		$('#idFuFr').val(frid).prop("readonly",true);
+		
+	});
+	$('#reqFrBtn').on('click',function(){
+		if($('#reqMsg').val() ==""){			
+			var confirmFrMsg = confirm('글을 남기지 않겠습니까?')
+			if(confirmFrMsg){
+				var data2 = {id : frid, title:"친구 요청" , contents:"친구 요청이 들어오셨어요 ㅎㅎㅎ" }
+				reqFriend(data2)
+			}else{
+				return false;
+			}
+		
+		}else{
+			var data1 = {id : frid, title:"친구 요청" ,	 contents:$('#reqMsg').val() }
+			reqFriend(data1);
+		}
+		
+	});
+</script>
 <!-- 스크롤 위치 쿠키에 저장 -->
 
   <script>
@@ -186,10 +265,6 @@
 		}
 	};
 	
-	
-	
-
- 
 	 function SetDivPosition()
 	 {
 	  var intY = document.body.scrollTop;

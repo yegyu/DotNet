@@ -9,6 +9,10 @@ import main.MemberDataBean;
 public class FrDBBean implements FrDao{
 
 	@Override
+	public Integer checkFr(Map<String, Object> map) {
+		return SqlMapClient.getSession().selectOne("checkFr", map);
+	}
+	@Override
 	public int getMaxFrNum() {
 		return SqlMapClient.getSession().selectOne("getMaxFrNum");
 	}

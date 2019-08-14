@@ -54,9 +54,9 @@ public class MemberMngHandler implements CommandHandler{
 		
 		
 		int rs = memberDao.updateUserSt(map);
-//		System.out.println("user state update 성공?? " + rs);
+//		System.out.println("user state update �꽦怨�?? " + rs);
 		
-		return "stop 성공";
+		return "stop ";
 	}
 	@RequestMapping(value = "recoverMem",method = RequestMethod.POST)
 	@ResponseBody
@@ -69,9 +69,9 @@ public class MemberMngHandler implements CommandHandler{
 		map = mapper.readValue(json,new com.fasterxml.jackson.core.type.TypeReference<Map<String,Object>>(){});
 		
 		int rs = memberDao.updateUserSt(map);
-//		System.out.println("user state update 성공?? " + rs);
+//		System.out.println("user state update �꽦怨�?? " + rs);
 		
-		return "recover 성공";
+		return "recover ";
 	}
 	
 	@RequestMapping(value = {"/searchMember"}, method = RequestMethod.POST, produces = "application/json;UTF-8")

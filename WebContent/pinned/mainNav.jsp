@@ -27,94 +27,91 @@
 		}
 	</style>
 	
-	
-	<div class="navbar-collapse collapse w-100 order-1 order-md-0 "
-		id="myNavbar">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item"><a class="nav-link mainboard"
-				href="main.do?b_tp=1">메인&nbsp;&nbsp;&nbsp;</a></li>
-			<li class="nav-item"><a class="nav-link subboard"
-				href="main.do?b_tp=2">보조</a></li>
-			<li class="nav-item"><a class="nav-link askboard"
-				href="main.do?b_tp=3">.Net 질문</a></li>
-		</ul>
-	</div>
-	
-	
-	
-	
-	<div class="mx-auto">
-		<a class="navbar-brand" href="main.do"><h1 id="logo">.Net</h1> </a>
-	</div>
-	<div class="navbar-collapse collapse w-100 order-3 " id="myNavbar">
-		<ul class="navbar-nav ml-auto navbar-right">
-		
-		<c:choose>
-			<c:when test="${not empty sessionScope.memId }">
-				<li style="padding-top: 15px; padding-right: 10px;">
-				${sessionScope.memId} 님
-				</li>
-				<c:if test="${sessionScope.isAdmin eq 2}">
-					<li><a class="nav-link" href="/DotNet/mypage.do"><i class="fas fa-portrait"></i>
-                        My Page&nbsp;&nbsp;&nbsp;
-                    </a></li>
-				</c:if>
-				<c:if test="${sessionScope.isAdmin eq 1}">
-					<li><a class="nav-link" href="/DotNet/admin.do"><i class="fas fa-portrait"></i>
-                        My Page&nbsp;&nbsp;&nbsp;
-                    </a></li>
-				</c:if>
-				<li><a class="nav-link" href="main.do" id="logoutNav"><i class="fas fa-user-circle"></i>
-                     Logout&nbsp;&nbsp;&nbsp;
-                </a></li>
-			</c:when>
-			<c:otherwise>
-				<!-- change login form to modal -->
-                <li><a class="nav-link" href="" id="loginModal" data-toggle="modal" data-target="#navLogin"><i class="far fa-user-circle"></i>
-                     Login&nbsp;&nbsp;&nbsp;
-                </a></li>
-                
-                <li><a class="nav-link" href="/DotNet/signup.do"><i class="fas fa-user-plus"></i>
-                         Sign Up&nbsp;&nbsp;&nbsp;
-                </a></li>
-			</c:otherwise>
-		
-		</c:choose>
-			
-			
-			
-		</ul>
-	</div>
-	
-	<div class="modal fade" id="navLogin" tabindex="-1" role="dialog"
-		aria-labelledby="navLoginTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="navLoginTitle" align="center">로그인</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form id="loginForm">
-						<div class="form-group">
-							<label for="navId" class="col-form-label">아이디</label>
-							<input type="text" class="form-control" id="navId">
-						</div>
-							<label for="navPasswd" class="col-form-label">비밀번호</label>
-							<input type="password" class="form-control" id="navPasswd" placeholder="">
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button id="loginBtn" type="button" class="btn btn-primary" data-dismiss=""  >로그인</button>
-					<input type="reset" class="btn btn-secondary" form="loginForm">
-						
-				</div>
-			</div>
-		</div>
-	</div>
+<!-- <nav class="navbar navbar-expand-lg"> -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
+            aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="" id="myNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link mainboard" href="main.do?b_tp=1">메인&nbsp;&nbsp;&nbsp;</a></li>
+                <li class="nav-item"><a class="nav-link subboard" href="main.do?b_tp=2">보조</a></li>
+                <li class="nav-item"><a class="nav-link askboard" href="main.do?b_tp=3">.Net 질문</a></li>
+            </ul>
+        </div>
+
+       	<div class="mx-auto">
+	        <a class="navbar-brand" href="main.do">
+	            <h1 id="logo">.Net</h1>
+	        </a>
+       	</div>
+        <div class="" id="myNavbar">
+
+            <ul class="navbar-nav ml-auto navbar-right">
+
+                <c:choose>
+                    <c:when test="${not empty sessionScope.memId }">
+                        <li style="padding-top: 15px; padding-right: 10px;">
+                            ${sessionScope.memId} 님
+                        </li>
+                        <c:if test="${sessionScope.isAdmin eq 2}">
+                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                                    My Page&nbsp;&nbsp;&nbsp;
+                                </a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.isAdmin eq 1}">
+                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                                    My Page&nbsp;&nbsp;&nbsp;
+                                </a></li>
+                        </c:if>
+                        <li><a class="nav-link" href="main.do" id="logoutNav"><i class="fas fa-user-circle"></i>
+                                Logout&nbsp;&nbsp;&nbsp;
+                            </a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- change login form to modal -->
+                        <li><a class="nav-link" href="" id="loginModal" data-toggle="modal" data-target="#navLogin"><i
+                                    class="far fa-user-circle"></i>
+                                Login&nbsp;&nbsp;&nbsp;
+                            </a></li>
+
+                        <li><a class="nav-link" href="signup.do"><i class="fas fa-user-plus"></i>
+                                Sign Up&nbsp;&nbsp;&nbsp;
+                            </a></li>
+                    </c:otherwise>
+                </c:choose>
+            </ul>
+        </div>
+<!--     </nav> -->
+    <div class="modal fade" id="navLogin" tabindex="-1" role="dialog" aria-labelledby="navLoginTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="navLoginTitle" align="center">로그인</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="navId" class="col-form-label">아이디</label>
+                            <input type="text" class="form-control" id="navId">
+                        </div>
+                        <label for="navPasswd" class="col-form-label">비밀번호</label>
+                        <input type="password" class="form-control" id="navPasswd" placeholder="">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="loginBtn" type="button" class="btn btn-primary" data-dismiss="">로그인</button>
+                    <input type="reset" class="btn btn-secondary" form="loginForm">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 	
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>

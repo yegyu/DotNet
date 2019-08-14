@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- 사이드바  1-1 start-->
 <jsp:include page="../mypage.do"/>
-<main class="page-content">
+<div class="page-content">
 <div class="container-fluid">
 	<div class="card col-md-10">
 		<h2 class="mt-3">내 포인트 사용/적립내역</h2>
@@ -85,7 +85,7 @@
 		<!-- 사이드바 2-2 start --> 
 	</div>
 </div>
-</main>
+</div>
 <!-- 사이드바 2-2 end -->
 </div>
 </body>
