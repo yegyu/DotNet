@@ -5,7 +5,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Admin">
-
+	<select id="getDataForEachQ" parameterType="java.util.Map" resultType="int">
+		select count(case when q_num=#{q_num} and sel_num=1 then 1 end) from 
+		(select * from dn_s_sel where s_num = #{s_num})
+		UNION ALL
+		select count(case when q_num=#{q_num} and sel_num=2 then 1 end) from 
+		(select * from dn_s_sel where s_num = #{s_num})
+		UNION ALL
+		<foreach collection="strForData" item="str" separator="UNION ALL">
+			<![CDATA[
+			select count(case when q_num=#{q_num} and sel_num=1 and ${str} then 1 end) from 
+			(select * from dn_s_sel where s_num = #{s_num})
+			UNION ALL
+			select count(case when q_num=#{q_num} and sel_num=2 and ${str} then 1 end) from 
+			(select * from dn_s_sel where s_num = #{s_num})
+			]]>
+		</foreach>
+	</select>
+	
+	<select id="getDataForAll" parameterType="java.util.Map" resultType="int">
+		<foreach collection="strForData" item="str" separator="UNION ALL">
+			<![CDATA[
+			select count(case when ${str} then 1 end)/#{q_len} from
+			(select * from dn_s_sel where s_num = #{s_num})
+			]]>
+		</foreach>
+	</select>
 	<select id="getS_numList" resultType="Integer" parameterType="Integer">
 		select * from dn_board where s_tp_num = #{st} order by s_num desc
 	</select>
@@ -13,9 +38,9 @@
 		select count(distinct(q_num)) qlen from dn_s_sel where s_num =#{s_num}
 		
 	</select>
-	<select id="getSSel" parameterType="int" resultType="admin.DnSSelDB">
+	<!-- <select id="getSSel" parameterType="int" resultType="admin.DnSSelDB">
 		select * from dn_s_sel  where s_num = #{s_num} order by sel_id desc 
-	</select>
+	</select> -->
 	
 	<select id="getCntLoc" resultType="admin.CntMemDB">
 		select distinct(location) ,count(location) cnt from dn_member group by location	
