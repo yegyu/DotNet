@@ -1,0 +1,23 @@
+create table dn_boardAsk(
+num number primary key,
+title varchar2(500) not null,
+contents varchar2(2000) not null,
+id varchar2(100) not null,
+passwd varchar2(100) not null,
+aDate date not null,
+aState number not null,
+views number not null,
+secret number not null
+);
+
+create table dn_askReply(
+rnum number not null,
+num number not null,
+id varchar2(100) not null,
+reply varchar2(2000) not null,
+rDate date not null,
+rState number not null,
+good number not null,
+bad number not null
+)
+

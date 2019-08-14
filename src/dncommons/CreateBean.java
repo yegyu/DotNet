@@ -9,6 +9,8 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import admin.AdminDBBean;
 import admin.AdminDao;
+import main.BoardAskDBBean;
+import main.BoardAskDao;
 import main.BoardDBBean;
 import main.BoardDao;
 import main.MemberDBBean;
@@ -63,6 +65,11 @@ public class CreateBean {
 	public AdminDao adminDao() {
 		AdminDBBean adminDao = new AdminDBBean();
 		return adminDao;
+	}
+	@Bean
+	public BoardAskDao boardAskDao() {
+		BoardAskDBBean boardAskDao = new BoardAskDBBean();
+		return boardAskDao;
 	}
 //	@Bean
 //	public CompDao compDao() {

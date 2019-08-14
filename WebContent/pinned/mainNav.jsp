@@ -35,8 +35,13 @@
 				href="main.do?b_tp=1">메인&nbsp;&nbsp;&nbsp;</a></li>
 			<li class="nav-item"><a class="nav-link subboard"
 				href="main.do?b_tp=2">보조</a></li>
+			<li class="nav-item"><a class="nav-link askboard"
+				href="main.do?b_tp=3">.Net 질문</a></li>
 		</ul>
 	</div>
+	
+	
+	
 	
 	<div class="mx-auto">
 		<a class="navbar-brand" href="main.do"><h1 id="logo">.Net</h1> </a>
@@ -49,6 +54,7 @@
 				<li style="padding-top: 15px; padding-right: 10px;">
 				${sessionScope.memId} 님
 				</li>
+<<<<<<< HEAD
 				
 				<li><a class="nav-link notboard" href="/DotNet/receiveMail.do"><i class="fas fa-portrait"></i>
                        My Page&nbsp;&nbsp;&nbsp;
@@ -56,15 +62,29 @@
 				
 				
 				<li><a class="nav-link notboard" href="main.do?logout=true"><i class="fas fa-user-circle"></i>
+=======
+				<c:if test="${sessionScope.isAdmin eq 2}">
+					<li><a class="nav-link" href="/DotNet/mypage.do"><i class="fas fa-portrait"></i>
+                        My Page&nbsp;&nbsp;&nbsp;
+                    </a></li>
+				</c:if>
+				<c:if test="${sessionScope.isAdmin eq 1}">
+					<li><a class="nav-link" href="/DotNet/admin.do"><i class="fas fa-portrait"></i>
+                        My Page&nbsp;&nbsp;&nbsp;
+                    </a></li>
+				</c:if>
+				<li><a class="nav-link" href="main.do?logout=true"><i class="fas fa-user-circle"></i>
+>>>>>>> 87b195e1e51a40dfb67c1967b2cbadf9c9304bbe
                      Logout&nbsp;&nbsp;&nbsp;
                 </a></li>
 			</c:when>
 			<c:otherwise>
-                <li><a class="nav-link notboard" href="/DotNet/login.do"><i class="far fa-user-circle"></i>
+				<!-- change login form to modal -->
+                <li><a class="nav-link" href="" id="loginModal" data-toggle="modal" data-target="#navLogin"><i class="far fa-user-circle"></i>
                      Login&nbsp;&nbsp;&nbsp;
                 </a></li>
                 
-                <li><a class="nav-link notboard" href="/DotNet/signup.do"><i class="fas fa-user-plus"></i>
+                <li><a class="nav-link" href="/DotNet/signup.do"><i class="fas fa-user-plus"></i>
                          Sign Up&nbsp;&nbsp;&nbsp;
                 </a></li>
 			</c:otherwise>
@@ -76,4 +96,70 @@
 		</ul>
 	</div>
 	
+	<div class="modal fade" id="navLogin" tabindex="-1" role="dialog"
+		aria-labelledby="navLoginTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="navLoginTitle" align="center">로그인</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="loginForm">
+						<div class="form-group">
+							<label for="navId" class="col-form-label">아이디</label>
+							<input type="text" class="form-control" id="navId">
+						</div>
+							<label for="navPasswd" class="col-form-label">비밀번호</label>
+							<input type="password" class="form-control" id="navPasswd" placeholder="">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="loginBtn" type="button" class="btn btn-primary" data-dismiss=""  >로그인</button>
+					<input type="reset" class="btn btn-secondary" form="loginForm">
+						
+				</div>
+			</div>
+		</div>
+	</div>
 	
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<script type="text/javascript" src="bootstrap.bundle.js"></script>
+	<script>
+	$(document).ready(function(){
+		$('#loginBtn').on('click',function(){
+			if(!$('#navId').val()){
+				alert("아이디를 입력해 주세용 ~~");
+				return false;
+			}else if(! $('#navPasswd').val()){
+				alert("비밀번호를 입력해 주세요~~");
+				return false;
+			}else{
+				var navData = {id : $('#navId').val(), passwd : $('#navPasswd').val()};
+			
+				$.ajax({
+					data:navData,
+					dataType:"text",
+					type:"post",
+					url:"login.do",
+					success:function(data){
+						if(data == "1"){
+							alert('로그인 성공');
+							$("#askSubmit").attr("data-dismiss","modal");
+							location.reload();
+						}else if(data == "0"){
+							alert('아이디 존재하지 않아요 ㅠㅠ\n다시한번 확인해 주세요')
+						}else if(data == "-1"){
+							alert('비밀번호가 달라요ㅠㅠ');
+						}
+						
+					}
+					
+				});
+			}
+		});
+	});
+	</script>

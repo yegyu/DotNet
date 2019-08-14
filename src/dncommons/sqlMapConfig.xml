@@ -25,5 +25,6 @@
 		<mapper resource="main/main.xml"/>
 		<mapper resource="survey/survey.xml"/>
 		<mapper resource="admin/admin.xml"/>
+		<mapper resource ="main/ask.xml"/>
 	</mappers>
 </configuration>
