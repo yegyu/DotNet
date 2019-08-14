@@ -58,7 +58,7 @@
 							<tr class=${el.aState }>
 								<th>${el.num }</th>
 								<th>
-									<a href="askContent.do?num=${el.num }" class="${el.secret }">${el.title}</a>
+									<a href="askContent.do?num=${el.num }" class="${el.secret}">${el.title}</a>
 								</th>
 								<th>${el.id}</th>
 								<th>${el.aDate}</th>
@@ -153,44 +153,55 @@
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 	<label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 	<script>
+	
+	//관리자는 비밀글안보이고 바로 free-pass 없음.
+	function adminForSecAsk(){
+		if($('#hidid').text() == 'admin'){
+			$('a.1').removeClass('1').addClass('0');
+		}	
+	}
+	
 	var dataS;
 	var numS;
 	//num 받기 위한
-	$('a.0').on('click',function(){
-		numS = $(this).parent().siblings().eq(0).text();
-	});
-	$("a.1").on('click',function(){
-		numS = $(this).parent().siblings().eq(0).text();
-		
-		$(this).attr('href','')
-		$("#secPasswdModal").modal()
-		
-	});
-	//비밀글 비밀번호 check and pass or not in modal
-	$('#secSubmit').on('click',function(){
-		if($('#secPasswd').val() == ""){
-			alert("비밀번호를 확인해 주세요");
-			return false;
-		}else{
-		 	
-			dataS = { secPasswd : $('#secPasswd').val() , num : numS}
-		 	console.log(dataS.secPasswd +" , " + dataS.num);
-		 	$.ajax({
-		 		data:dataS,
-		 		type:"post",
-		 		url:"secretPass.do",
-		 		dataType:"text",
-		 		success:function(check){
-		 			if(check == "true"){
-		 				location.href = "askContent.do?num=" + dataS.num;
-		 			}else{
-		 				alert("비밀번호가 일치하지 않아요 ㅠㅠ")
-		 				return false;
-		 			}
-		 		}
-		 	});
-		}
-	});
+	function secFunc(){
+		$('a.0').on('click',function(){
+			numS = $(this).parent().siblings().eq(0).text();
+		});
+		$("a.1").on('click',function(){
+			numS = $(this).parent().siblings().eq(0).text();
+			
+// 			$(this).attr('href','')
+// 			$("#secPasswdModal").modal()
+			
+		});
+		//비밀글 비밀번호 check and pass or not in modal
+		$('#secSubmit').on('click',function(){
+			if($('#secPasswd').val() == ""){
+				alert("비밀번호를 확인해 주세요");
+				return false;
+			}else{
+			 	
+				dataS = { secPasswd : $('#secPasswd').val() , num :eval( numS)}
+			 	console.log(dataS.secPasswd +" , " + dataS.num);
+			 	$.ajax({
+			 		data:dataS,
+			 		type:"post",
+			 		url:"secretPass.do",
+			 		dataType:"text",
+			 		success:function(check){
+			 			if(check == "true"){
+			 				location.href = "askContent.do?num=" + dataS.num;
+			 			}else{
+			 				alert("비밀번호가 일치하지 않아요 ㅠㅠ")
+			 				return false;
+			 			}
+			 		}
+			 	});
+			}
+		});
+	}
+	
 
 	// 아이디에 비회원 띄우기
 	function noMem(){ $('tr.1').each(function(d,item){
@@ -209,8 +220,11 @@
 			});
 		});
 	}
+	adminForSecAsk();
 	sec();
+	secFunc();
 	noMem();
+	
 	let rownum = 0;
 	let end = 0;
 	//무한 스크롤 용
@@ -257,9 +271,12 @@
 										'<th>'+formatDate(new Date(data[i].aDate))+'</th><th>'+data[i].views+'</th></tr>').hide().fadeIn(2000);//fadeInRightBig  addClass('animated fadeIn delay-1s')
 								$("#askBody").append(list[i]);
 							}
+							adminForSecAsk();
 							SetDivPosition();
 							noMem();
 							sec();
+							secFunc();
+							
 						}
 					});
 				}else{
@@ -359,9 +376,10 @@
   var intY = document.body.scrollTop;
   document.cookie = "yPos=!~"+intY+"~!";
  }
+ SetDivPosition();
  
 // if(boardtype == 3){
-	$(".askboard").html("<h4> .Net 질문 </h4>");
+	$(".askboard").html("<h4> ...Net 질문 </h4>");
 // }
     $(".subboard").on(
             "click",

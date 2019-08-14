@@ -11,6 +11,10 @@ import main.BoardAskDataBean;
 public class BoardAskDBBean implements BoardAskDao{
 
 	@Override
+	public int updateGB(Map<String, Integer> map) {
+		return SqlMapClient.getSession().update("updateGB", map);
+	}
+	@Override
 	public int updateView(int num) {
 		return SqlMapClient.getSession().update("updateView", num);
 	}
@@ -108,37 +112,37 @@ public class BoardAskDBBean implements BoardAskDao{
 //	
 //	
 //	// ref re_step re_level
-//	// 제목글 10 0 0
-//	// ㄴ 답글 10 2 1
-//	// ㄴ 재답글 10 3 2
-//	// ㄴ 답글 10 1 1
+//	// �젣紐⑷� 10 0 0
+//	// �꽩 �떟湲� 10 2 1
+//	// �꽩 �옱�떟湲� 10 3 2
+//	// �꽩 �떟湲� 10 1 1
 //
 //	// ref re_step re_level
-//	// 제목글 10 0 0
-//	// ㄴ 답글 10 1 1
-//	// ㄴ 답글 10 2 1
-//	// ㄴ 재답글 10 3 2
+//	// �젣紐⑷� 10 0 0
+//	// �꽩 �떟湲� 10 1 1
+//	// �꽩 �떟湲� 10 2 1
+//	// �꽩 �옱�떟湲� 10 3 2
 //
-//	int num = boardDto.getNum(); // 제목글 / 답변글
+//	int num = boardDto.getNum(); // �젣紐⑷� / �떟蹂�湲�
 //	int ref = boardDto.getRef();
 //	int re_step = boardDto.getRe_step();
 //	int re_level = boardDto.getRe_level();
 //	String sql = null;
 //	if (num == 0) {
-//		// 제목글
+//		// �젣紐⑷�
 //		int count = getCount();
 //		if (count != 0) {
-//			// 글이 있는 경우
+//			// 湲��씠 �엳�뒗 寃쎌슦
 //			ref = (Integer)SqlMapClient.getSession().selectOne("Mb.selectMax");
-//			ref = ref + 1; // 그룹화아이디 = 글번호 최대값 + 1
+//			ref = ref + 1; // 洹몃９�솕�븘�씠�뵒 = 湲�踰덊샇 理쒕�媛� + 1
 //		} else {
-//			// 글이 없는 경우
+//			// 湲��씠 �뾾�뒗 寃쎌슦
 //			ref = 1;
 //		}
 //		re_step = 0;
 //		re_level = 0;
 //	} else {
-//		// 답변글
+//		// �떟蹂�湲�
 //		SqlMapClient.getSession().update("Mb.updateRefRestep",boardDto );
 //		
 //		re_step++;
@@ -174,10 +178,10 @@ public class BoardAskDBBean implements BoardAskDao{
 //	int count = SqlMapClient.getSession().selectOne("Mb.deleteCount",boardDto); 
 //
 //	if (count != 0) {
-//		// 답글이 있다
+//		// �떟湲��씠 �엳�떎
 //		result = -1;
 //	} else {
-//		// 답글이 없다
+//		// �떟湲��씠 �뾾�떎
 //		SqlMapClient.getSession().update("Mb.deleteUpdate", boardDto);
 //
 //		SqlMapClient.getSession().update("Mb.delete",num);

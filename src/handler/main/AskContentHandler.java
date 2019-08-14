@@ -1,7 +1,11 @@
 package handler.main;
 
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 import handler.CommandHandler;
 import main.AskReplyDataBean;
@@ -101,7 +112,7 @@ public class AskContentHandler implements CommandHandler{
 	
 	@RequestMapping(value = "reply", method= RequestMethod.POST)
 	@ResponseBody
-	public AskReplyDataBean reply(HttpServletRequest request) {
+	public AskReplyDataBean reply(HttpServletRequest request) throws Exception {
 		AskReplyDataBean ar = new AskReplyDataBean();
 		int num = Integer.parseInt(request.getParameter("num"));
 		int rnum = 0;
@@ -127,6 +138,31 @@ public class AskContentHandler implements CommandHandler{
 		return reply;
 		
 	}
+	
+	@RequestMapping(value = "goodBad", method = RequestMethod.POST)
+	@ResponseBody
+	public int goodBadFunc(HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException {
+		 
+		Object gb = JSONObject.stringToValue(request.getParameter("gb"));
+		Map<String,Map<String,Integer>> map = new HashMap<String, Map<String,Integer>>();
+		ObjectMapper mapper = new ObjectMapper();
+		map = mapper.readValue(gb.toString(), new TypeReference<HashMap<String, Map<String,Integer	>>>() {} );
+		
+		for ( String key : map.keySet()) {
+			System.out.println("key :" +  key +  ", good : " + map.get(key).get("good") + " , bad : " + map.get(key).get("bad") + ",num : " + map.get(key).get("num"));
+				Map<String, Integer> map1 = new HashMap<String, Integer>(); 
+				map1.put("num", map.get(key).get("num"));
+				map1.put("rnum", Integer.parseInt(key));
+				map1.put("good",map.get(key).get("good"));
+				map1.put("bad",map.get(key).get("bad"));
+				int udateGoodBad = boardAskDao.updateGB(map1);
+				System.out.println(udateGoodBad + " << update result");
+			}
+		System.out.println();
+		return 1; 
+	}
+	
+	
 	
 	
 	

@@ -25,7 +25,7 @@
 	<br>
 
 	<div class="container">
-		
+		<hidden id = ${num }>
 		<h3 align="center" id="num" >${num} 번 질문  </h3>	
 		<div class="form-group">
 			<div class="row">
@@ -75,7 +75,6 @@
 						<tr>
 							<th style="width:5%">번호</th>
 							<th style="width:11%">Good & Bad</th>	
-							
 							<th style="width:10%" id="${s_num }">ID</th>
 							<th  style="width:45%">답변 내용</th>
 							<th style="width:20%">날짜</th>
@@ -86,8 +85,8 @@
 						
 						<c:forEach var="re" items="${replys}">
 						<tr>
-							<td>${re.rnum }</td>
-							<td><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
+							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
+							<td ><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
 							<td>${re.id }</td>
 							<td>${re.reply }</td>
 							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/>  </td>
@@ -102,43 +101,114 @@
  </div>
 <label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 
-
-
-
-
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 
 <!-- 스크롤 위치 쿠키에 저장 -->
 
   <script>
+  // 질문번호,답글번호=good,bad
+  // 6gb5=1gb0
+  //쿠키들의 배열
+	var cookies =  document.cookie.split(';')
 
-
-	
- function SetDivPosition()
- {
-  var intY = document.body.scrollTop;
-  document.cookie = "yPos=!~"+intY+"~!";
- }
- </script>
-	<script>
-	if($('#reBody').children().length == 0){
-		$('div.table').append('<br><br><h1 class="animated infinite bounce">첫 답변을 해주세요 ^^</h1>')
-	}else{
-		$('div.table > h1').remove();
-	}
 	var ob = {}
 	var numArr = [];
 	var numArrIndex = 0;
 	var gFlag = 0;
 	var bFlag = 0;
+	var rnum;
+	var num =parseInt($('hidden').eq(0).prop('id'));
+	var arrr =[];
+	var arrr = [];
+	var d;
+  	var setCookie = function(name, value, exp) {
+	  var date = new Date();
+	  date.setTime(date.getTime() + exp*24*60*60*1000);
+	  document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+	};
+	
+	
+	function checkGB(){
+// 		var re = new RegExp('/^ {'+num+'}'+'[gb]/')
+// 		var newArr =cookies.filter(function(i,ind,arr){
+// 		    	return !!~i.search(re);
+// 		    });
+// 		console.log(newArr);
+// 		newArr.forEach(function(item,index, array){
+// 			var c = cookies[index].split('=');
+// // 			[num , rnum]
+// 			var numRnum = c[0].split('gb');
+// // 			[good , bad]
+// 			var gbgb = c[1].split("gb");
+// // 			if(numRnum[0] == ' '+ num ){
+// 				//질문 답글 번호가 같은 것
+// 				if($('.tdRnum').eq(j).text()== numRnum[1]){
+// 					var d = $('.tdRnum').eq(j).next().children();
+// 					j++;
+// 					console.log(j)
+// 					if(gbgb[0]==1){
+// 						//gFlag == 1
+// 						d.eq(0).css('color','gold')
+// 					}else if(gbgb[1]==1){
+// 						//bFlag ==1 
+// 						d.eq(1).css('color','gold')
+// 					}
+// 				}			
+// // 			}
+// 		})
+		var j = 0 ;
+		 for(var i = 0 ; i < $('.tdRnum').length ; i++){arrr[i] = $('.tdRnum').eq(i).text()}
+		for(var i =0;i < cookies.length; i++){
+			//c 는 배열들의 집합['num gb rnum','good gb bad']
+			var c = cookies[i].split('=');
+// 			[num , rnum]
+			var numRnum = c[0].split('gb');
+// 			[good , bad]
+			var gbgb = c[1].split("gb")
+			
+			//질문번호가 같은것
+			if(numRnum[0] == ' '+ num ){
+				//질문 답글 번호가 같은 것
+				if(arrr.includes(numRnum[1])){
+					d = $('#'+numRnum[1]).next().children();//;
+// 					j++;
+					if(gbgb[0]==1){
+						//gFlag == 1
+						d.eq(0).css('color','gold')
+					}else if(gbgb[1]==1){
+						//bFlag ==1 
+						d.eq(1).css('color','gold')
+					}
+				}	
+				
+			}
+		}
+	};
+	
+	
+	
+
+ 
+	 function SetDivPosition()
+	 {
+	  var intY = document.body.scrollTop;
+	  document.cookie = "yPos=!~"+intY+"~!";
+	 }
+ 
+	if($('#reBody').children().length == 0){
+		$('div.table').append('<br><br><h1 class="animated infinite bounce">첫 답변을 해주세요 ^^</h1>')
+	}else{
+		$('div.table > h1').remove();
+	}
+	
 	//Good & Bad & pointer Func
 	function forGoodBad(){
 		$('.far, .fas').on('mouseenter',function(){
-			$(this).css({"cursor":"pointer","color":"gold"})
+			$(this).css({"font-size":"20px"})
 		});
 		$('.far, .fas').on('mouseleave',function(){
-			$(this).css("color","black")
+			$(this).css("font-size","17px")
 		});
 		$('.fas').on('click',function(){
 			var g = $(this).attr('name').split("_")[0]
@@ -149,85 +219,135 @@
 			numArr = [];
 			numArrIndex = 0;
 		});
-		var num;
+		
 		//ajax good
 		$('i.far').on('click',function(){
+			rnum = $(this).parent().siblings().eq(0).text();
 			
-			num = $(this).parent().siblings().eq(0).text();
-			if(!numArr.includes(eval(num))){
-				ob[num] ={};
-				console.log("0")
-				numArr[numArrIndex] = eval(num);
-				numArrIndex++;
-				ob[num]["good"] = 0; ob[num]['bad'] = 0; ob[num]['gFlag'] = 0; ob[num]['bFlag'] = 0 ;
+// 			if(!numArr.includes(eval(num))){
+				ob[rnum] ={};
+// 				console.log("0")
+// 				numArr[numArrIndex] = eval(num);
+// 				numArrIndex++;
+				ob[rnum]["good"] = 0; ob[rnum]['bad'] = 0; ob[rnum]['gFlag'] = 0; ob[rnum]['bFlag'] = 0 ;
+// 			}
+			var firstCookie = true;
+			//  num=1gb0
+			for(var i = 0 ; i < document.cookie.split(';').length ; i++){
+				var r = document.cookie.split(';')[i].split('='); 
+				if(r[0]  == ' '+num+'gb'+rnum ){
+					var g = r[1].split('gb')[0];
+					var b = r[1].split('gb')[1];
+// 					console.log("if 문 안의 쿠키 g : " + g + ",b " + b)
+					ob[rnum]['gFlag'] =eval( g);
+					ob[rnum]['bFlag'] = eval(b);
+// 					console.log('ob[num][gflag] : ' + ob[rnum]['gFlag'] + ", bFlag : "+ob[rnum]['bFlag'])
+					firstCookie =false;// 아래서 쓰임 cookie set 할떼
+					break;
+				}
 			}
-			console.log(ob[num]['gFlag'])
+// 					console.log('ob[num][gflag] : ' + ob[rnum]['gFlag'] + ", bFlag : "+ob[rnum]['bFlag'])
+			
 			if($(this).hasClass('good')){
-				if(ob[num]['gFlag'] == 1){
-					console.log("1")
+				if(ob[rnum].gFlag == 1){
+// 					console.log("1")
 					good = eval($(this).text()) - eval(1);
 					bad = eval($(this).next().text());
-					ob[num]['gFlag'] = 0;
-					ob[num]['bFlag'] = 0;
+					ob[rnum]['gFlag'] = 0;
+					ob[rnum]['bFlag'] = 0;
 					$(this).text(good);
+					$(this).css("color","black")
 					
 					//ob[num]['gFlag'] == 0 이다
 					//이미 bad를 누른 상태 --> change
-				}else if(ob[num]['bFlag'] == 1){ 
-					console.log("2")
+				}else if(ob[rnum]['bFlag'] == 1){ 
+// 					console.log("2")
 					good = eval($(this).text()) + eval(1);
 					bad = eval($(this).next().text()) - eval(1);
-					ob[num]['gFlag'] = 1;
-					ob[num]['bFlag'] = 0;
+					ob[rnum]['gFlag'] = 1;
+					ob[rnum]['bFlag'] = 0;
 					$(this).text(good);
 					$(this).next().text(bad);
+					$(this).css('color','gold');
+					$(this).next().css('color','black')
 					
 					
 					//둘다 아직 안눌렀다.
 				}else{
-					console.log("3")
-					console.log
+// 					console.log("3")
+// 					console.log(ob[rnum].gFlag)
 					good = eval($(this).text()) + eval(1);
 					bad = eval($(this).next().text());
-					ob[num]['gFlag'] = 1;
-					ob[num]['bFlag'] = 0;
+					ob[rnum]['gFlag'] = 1;
+					ob[rnum]['bFlag'] = 0;
 					$(this).text(good);
+					$(this).css('color','gold');
+
 				}
 				
 				//hasClass('bad') == true
 			}else{
-				if(ob[num]['bFlag'] == 1){
-					console.log("4")
+				if(ob[rnum]['bFlag'] == 1){
+// 					console.log("4")
 					bad = eval($(this).text()) - eval(1);
 					good = eval($(this).prev().text()) ;
-					ob[num]['bFlag'] = 0;
-					ob[num]['gFlag'] = 0;
+					ob[rnum]['bFlag'] = 0;
+					ob[rnum]['gFlag'] = 0;
 					$(this).text(bad);
+					
+					$(this).css("color",'black');
 					//ob[num]['bFlag'] == 0 이다
 					//이미 good를 누른 상태 --> change
-				}else if(ob[num]['gFlag'] == 1){ 
-					console.log("5")
+				}else if(ob[rnum]['gFlag'] == 1){ 
+// 					console.log("5")
 					bad = eval($(this).text()) + eval(1);
 					good = eval($(this).prev().text()) - eval(1);
-					ob[num]['bFlag'] = 1;
-					ob[num]['gFlag'] = 0;
+					ob[rnum]['bFlag'] = 1;
+					ob[rnum]['gFlag'] = 0;
 					$(this).text(bad);
 					$(this).prev().text(good);
+					$(this).css('color','gold')
+					$(this).prev().css("color",'black');
 					
 					//둘다 아직 안눌렀다.
 				}else{
-					console.log("6")
+// 					console.log("6")
 					bad = eval($(this).text()) + eval(1);
 					good = eval($(this).prev().text());
-					ob[num]['bFlag'] = 1;
-					ob[num]['gFlag'] = 0;
+					ob[rnum]['bFlag'] = 1;
+					ob[rnum]['gFlag'] = 0;
 					$(this).text(bad);
+					$(this).css('color','gold')
 				}
 			}
-			ob[num]["good"] = good; ob[num]['bad'] = bad; 
-			console.log(ob);
+// 			console.log(ob)
+			
+// 			setCookie 
+// 			setCookie(num+'gb'+rnum,  ob[rnum]['gFlag'] + "gb" + ob[rnum]['bFlag'],  365);
+			if(setCookie(num+'gb'+rnum,  ob[rnum]['gFlag'] + "gb" + ob[rnum]['bFlag'],  365)){
+				console.log("set cookie!!")
+			}
+			ob[rnum]["good"] = good; ob[rnum]['bad'] = bad; 
+		
+			
+			ob[rnum]["num"] = num;
+			
+			var dt = {"gb" : JSON.stringify(ob) };
+			console.log(dt)
+			$.ajax({
+				data:dt,
+				dataType:"text",
+				type:"post",
+				url:"goodBad.do",
+				success:function(data){
+					console.log("좋아요 성공 : " + data)
+					
+				}
+				
+			});
 		});
 	};
+	checkGB();
 	forGoodBad();
 	
 function formatDate(date) {
@@ -299,8 +419,11 @@ function formatDate(date) {
 			    			$('div.table > h1').remove();
 			    		},3000);
 			    		
-			    		SetDivPosition();
-			    		forGoodBad();
+// 			    		SetDivPosition();
+			    		setTimeout(function(){
+			    			location.reload();
+			    		},3000)
+			    		//forGoodBad();
 					}
 					
 					
@@ -332,6 +455,7 @@ function formatDate(date) {
 							$("#passwd").val("");
 							$('#contents').attr("readonly" ,true);
 							$('#title').attr("readonly",true);
+							
 						}
 						
 					}

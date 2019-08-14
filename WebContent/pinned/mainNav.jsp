@@ -64,7 +64,7 @@
                         My Page&nbsp;&nbsp;&nbsp;
                     </a></li>
 				</c:if>
-				<li><a class="nav-link" href="main.do?logout=true"><i class="fas fa-user-circle"></i>
+				<li><a class="nav-link" href="main.do" id="logoutNav"><i class="fas fa-user-circle"></i>
                      Logout&nbsp;&nbsp;&nbsp;
                 </a></li>
 			</c:when>
@@ -151,5 +151,24 @@
 				});
 			}
 		});
+		
+		
 	});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("#logoutNav").on('click',function(){
+				var dd = {1:"1"};
+				$.ajax({
+					data:dd,
+					dataType:"text",
+					type:"post",
+					url:"logout.do",
+					success:function(){
+						location.reload = "main.do"
+					}
+				
+				})
+			});
+		});
 	</script>
