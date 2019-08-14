@@ -21,7 +21,8 @@ public interface AdminDao {
 	
 	// 동근 작업 - 데이터 관리 쪽
 	public List<Integer> getDataForAll(Map<String, Object> mapForAll);
-	public List<Integer> getDataForEachQ(Map<String, Object> mapForAll);
+	public List<Integer> getTwoDataForEachQ(Map<String, Object> mapForAll);
+	public List<Integer> getFiveDataForEachQ(Map<String, Object> mapForAll);
 	
 	
 	// 아성형님

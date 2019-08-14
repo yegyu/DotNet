@@ -55,7 +55,7 @@ public class MwChartHandler implements CommandHandler {
 		request.setAttribute("dataForAll", dataForAll);
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
 															//    보기1번        보기2번
 															// [ 전체선택수, 전체선택수
 															//   남자선택수, 남자선택수
@@ -90,7 +90,7 @@ public class MwChartHandler implements CommandHandler {
 															// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
 															//    보기1번        보기2번
 															// [ 전체선택수, 전체선택수
 															//   남자선택수, 남자선택수
