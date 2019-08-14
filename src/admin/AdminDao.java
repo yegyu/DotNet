@@ -19,6 +19,12 @@ public interface AdminDao {
 	public List<DnSSelDB> getSSel(int s_num);
 	public int getQlen(int s_num);
 	
+	// 동근 작업 - 데이터 관리 쪽
+	public List<Integer> getDataForAll(Map<String, Object> mapForAll);
+	public List<Integer> getTwoDataForEachQ(Map<String, Object> mapForAll);
+	public List<Integer> getFiveDataForEachQ(Map<String, Object> mapForAll);
+	
+	
 	// 아성형님
 	public int getCnt();
 	public int getCatCnt();

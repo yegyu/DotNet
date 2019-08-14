@@ -97,12 +97,7 @@
 
 <body>
 
-	<!-- 상단 바 -->
 
-	<nav class="navbar navbar-expand-md navbar-default" style="margin-bottom:0px">
-		<jsp:include page="../mainNav.do" flush="false"></jsp:include>
-	</nav>
-	<!-- 상단 바  끝-->
 
 
 	<div class="container-fluid">

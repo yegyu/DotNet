@@ -112,6 +112,7 @@
         </div>
     </div>
 
+
 	
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
@@ -155,6 +156,7 @@
 	<script>
 		$(document).ready(function(){
 			$("#logoutNav").on('click',function(){
+				
 				var dd = {1:"1"};
 				$.ajax({
 					data:dd,
@@ -162,6 +164,7 @@
 					type:"post",
 					url:"logout.do",
 					success:function(){
+						alert("로그아웃");
 						location.reload = "main.do"
 					}
 				

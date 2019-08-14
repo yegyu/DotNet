@@ -83,13 +83,13 @@ public class MainNavHandler implements CommandHandler{
 				// �븘�슂�븳 媛믪쓣 map�뿉 �꽔怨�
 				map.put("id", id);
 				map.put("s_numList", s_numList);
-//					System.out.println("李몄뿬�꽕臾� �룷�씤�듃�쉷�뱷�뿬遺� : " + surveyDao.getPartPoint(map));
+				surveyDao.getPartPoint(map);
 			}
 				// �옉�꽦�븳 �꽕臾몄씠 �엳�뒗吏� �솗�씤
 			int wResult = surveyDao.checkWriter(id);			
 //				System.out.println("�옉�꽦�븳 �꽕臾몄뿬遺� : " + wResult);
 			if(wResult != 0) {	// �옉�꽦�븳 �꽕臾몄씠 �엳�떎
-//					System.out.println("�옉�꽦�꽕臾� �룷�씤�듃�뿬遺� : " + surveyDao.getMyPoint(id));
+				surveyDao.getMyPoint(id);
 			}
 			
 			return String.valueOf(result);
