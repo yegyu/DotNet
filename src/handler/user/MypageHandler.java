@@ -26,6 +26,7 @@ public class MypageHandler implements CommandHandler{
 		memberDao.getMember(id);
 		int point = memberDao.getPoint(id);
 		request.setAttribute("point", point);
+		request.setAttribute("memId", id);
 		
 		
 		return new ModelAndView("user/mypage");
