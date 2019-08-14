@@ -47,7 +47,6 @@ public class MainNavHandler implements CommandHandler{
 		HttpSession session = re.getSession();
 		session.removeAttribute("memId");
 		session.removeAttribute("isAdmin");
-		System.out.println("지웠다");
 	}
 	
 	
