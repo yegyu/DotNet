@@ -144,18 +144,13 @@ public class MainHandler implements CommandHandler {
 		
 		HttpSession session = request.getSession(); 
 		
-//		String logout = request.getParameter("logout");
 		int b_tp = 1;
 		if(request.getParameter("b_tp") != null) {
 			b_tp = Integer.parseInt(request.getParameter("b_tp"));
 		};
 		
-//		if(logout != null && logout.equals("true")) {
-//			session.removeAttribute("memId");
-//			session.removeAttribute("isAdmin");
-//			request.setAttribute("logout", "false");
-//			return new ModelAndView("main/main");
-//		}
+	
+
 		// today
 		List<SurveyDataBean> todaysurs = new ArrayList<SurveyDataBean>();
 		if(b_tp == 2) {

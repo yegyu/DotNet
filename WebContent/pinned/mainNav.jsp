@@ -77,7 +77,7 @@
                 </a></li>
                 
                 <li><a class="nav-link" href="/DotNet/signup.do"><i class="fas fa-user-plus"></i>
-                         Sign Up&nbsp;&nbsp;&nbsp;
+                     Sign Up&nbsp;&nbsp;&nbsp;
                 </a></li>
 			</c:otherwise>
 		
@@ -160,6 +160,7 @@
 	<script>
 		$(document).ready(function(){
 			$("#logoutNav").on('click',function(){
+				
 				var dd = {1:"1"};
 				$.ajax({
 					data:dd,
@@ -167,6 +168,7 @@
 					type:"post",
 					url:"logout.do",
 					success:function(){
+						alert("로그아웃");
 						location.reload = "main.do"
 					}
 				
