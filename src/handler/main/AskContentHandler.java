@@ -191,6 +191,8 @@ public class AskContentHandler implements CommandHandler{
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("myId", myId);
 		map.put("id",frId);
+		int getMaxFrNum = frDao.getMaxFrNum();
+		map.put("num",getMaxFrNum+1);
 		Integer checkRs = frDao.checkFr(map);
 		System.out.println(checkRs +  " <<  친구 상태 확인 ?? 없으면 아직 친구가 아닌거지");
 		if(checkRs != null) {

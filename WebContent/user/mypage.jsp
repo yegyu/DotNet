@@ -254,7 +254,7 @@
                     <a href="main.do" id="logoutSide"><i class="fas fa-user-circle"></i>
                         Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </a><br>
-                    <a href="" data-toggle="modal" data-target="#navMail"><i class="far fa-envelope"></i>쪽지 쓰기<br></a>
+                    <a href="" id="wm" data-toggle="modal"><i class="far fa-envelope"></i>쪽지 쓰기<br></a>
                     <a href="main.do?b_tp=3" ><i class="fas fa-question"></i>...Net 질문<br></a>
                 </div>
             </div>
@@ -505,6 +505,11 @@
 <c:set var="id" value="${sessionScope.memId}" />
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script>
+$('#wm').on('click',function(){
+	$('#navMail').modal("show");
+})
+</script>
 <!-- 사이드바 드롭박스 스크립트 -->
 <script>
 var lh = location.href.split('/');
@@ -548,7 +553,7 @@ if(lastIdx != "mypage.do"){
 </script>
 <!-- 메일쓰기  기능 -->
 <script>
-    $('#writeEmail, .close').on('click', function () {
+    $('#writeEmail').on('click', function () {
         $('#mailCon').toggle("slow");
     })
 
@@ -684,11 +689,11 @@ if(lastIdx != "mypage.do"){
             })
         });
 
-        $('.close').on('click', function () {
-            $('#navMail').modal('toggle');
-            //                 $(this).attr('data-dismiss','modal');
-            //                 console.log("put put")
-        });
+//         $('.close').on('click', function () {
+//             $('#navMail').modal('toggle');
+//             //                 $(this).attr('data-dismiss','modal');
+//             //                 console.log("put put")
+//         });
 
 
     });
