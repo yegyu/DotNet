@@ -5,13 +5,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!-- 사이드바  1-1 start-->
-<div class="page-content">
-<div class="container-fluid">
-<div class="row">
-<div class="col-md-2">
 <jsp:include page="../mypage.do"/>
-</div>
-	<div class="card col-md-10">
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-12">
 		<h2 class="mt-3">내가 작성한 설문</h2>
 		<hr>
 		<h5>내 설문관리 > 내가 작성한 설문</h5>
@@ -35,9 +32,8 @@
 		</table>
 		<!-- 사이드바 2-2 start --> 
 	</div>
-	</div>
 </div>
-</div>
+</main>
 <!-- 사이드바 2-2 end --> 
 <script>
 	$(document)

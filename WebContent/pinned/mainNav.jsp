@@ -25,6 +25,10 @@
 		a {
 			color : black;
 		}
+		.btn{
+		color : white;
+		background-color: rgba(227, 179, 255, 0.938);
+	}
 	</style>
 	
 <!-- <nav class="navbar navbar-expand-lg"> -->

@@ -69,10 +69,6 @@ $(document).ready(
                         
                         $('#top').children().remove();
                         forMainBoard(ob);
-                       
-                    },
-                    error: function (e) {
-                        alert(e + "error");
                     }
                 });
             });
@@ -80,14 +76,17 @@ $(document).ready(
 
 
 
-$(document).ready(
-    function () {
-    	
-        $('select#align').focus();
-        
-       
-    }
-);
+$(document).ready(function () {
+    $('select#align').focus();
+    setTimeout(function() {
+        $('html, body').animate({
+            scrollTop : 0
+        }, 500);
+        return false;
+    },500);
+});
+    
+
 //검색
 $(document).ready(function () {
 	var b_tp = $("input[name=b_tp_num]").attr("value");

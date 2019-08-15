@@ -113,10 +113,10 @@
 		<!-- form 시작 태그는 비회원 이름 받아오는것 때문에 위에 위치함 -->	
 			<!-- 버튼 모음 -->
 			<div class="row justify-content-center">
-				<button type="button" class="btn btn-outline-primary m-3" name="prevButton">이전</button>
-				<input type="submit" class="btn btn-outline-primary m-3" value="설문완료">
-				<input type="reset" class="btn btn-outline-primary m-3" value="설문취소">
-				<button type="button" class="btn btn-outline-primary m-3" name="nextButton">다음</button>
+				<button type="button" class="btn  m-3" name="prevButton">이전</button>
+				<input type="submit" class="btn  m-3" value="설문완료">
+				<input type="reset" class="btn  m-3" value="설문취소">
+				<button type="button" class="btn  m-3" name="nextButton">다음</button>
 			</div>
 			<!-- 숨겨서 넘길 값들 -->
 			<c:forEach var="ii" begin="1" end="${size}">

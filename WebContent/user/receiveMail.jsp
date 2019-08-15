@@ -3,26 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!-- 사이드바  1-1 start-->
-<html>
-<body>
-<div class="container-fluid pc">
-	<div class="row">
-		<div class="col-md-2">
-			<jsp:include page="../mypage.do" />
-		</div>
-	
-		<div class="col-md-10">
-		<div class="card">
+<jsp:include page="../mypage.do" />
+<main class="page-content">
+<div class="container-fluid">
+	<div class="card col-md-12">
 		<h2 class="mt-3">받은 메세지함</h2>
 		<hr>
-		<div class="row">
-			<div class="col-md-10">
-				<h5>내 메세지 관리 > 받은 메세지함</h5>
-			</div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-default btn-sm" id="trash">Trash</button>
-			</div>
-		</div>
+		<h5>내 메세지 관리 > 받은 메세지함</h5>
 		<hr>
 		<!-- 사이드바  1-1 end -->
 		<!-- 사이드바 2-2 start -->
@@ -61,10 +48,10 @@
 			</tbody>
 		</table>
 	</div>
-	</div>
-</div>
+
 
 </div>
+</main>
 <!-- 사이드바 2-2 end --> 
 
 </body>

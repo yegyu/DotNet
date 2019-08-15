@@ -155,12 +155,11 @@ function reqFriend(data1){
 }
 var frid;
 	$('.frfr').on('mouseenter',function(){
-		$('body').append('<div class="animated infinite bounce " id="showBit" style="position:fixed; top:50%; right:30%;"><h1>좋은 친구가 되겠군...Click id </h1></div>')
-		setTimeout(function(){
-			$('#showBit').remove()	
-		},2000)
-		
+		$('body').append('<div class="animated infinite bounce " id="showBit" style="position:fixed; top:50%; left:0%;"><h1>'+$(this).text()+'와<br>좋은 친구가<br> 되겠군요...<br>Click id </h1></div>')
 	})
+	$('.frfr').on('mouseleave',function(){
+		$('#showBit').remove();
+	});
 	$('.frfr').on('click',function(){
 		frid=$(this).attr('id')
 		$('#idFuFr').val(frid).prop("readonly",true);

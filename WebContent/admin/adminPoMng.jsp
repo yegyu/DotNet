@@ -11,7 +11,7 @@
 <jsp:include page="../mypage.do"/>
 <div class="page-content">
 <div class="container-fluid">
-	<div class="card col-md-10">
+	<div class="card col-md-12">
 		<h2 class="mt-3">포인트 결제 관리</h2>
 		<hr>
 		<h5>회원 결제 관련 > 포인트 결제 관리</h5>

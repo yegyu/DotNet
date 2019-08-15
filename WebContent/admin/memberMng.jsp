@@ -5,7 +5,7 @@
 <jsp:include page="/mypage.do"/>
 <main class="page-content">
 <div class="container-fluid">
-	<div class="card col-md-10">
+	<div class="card col-md-12">
 		<h2 class="mt-3">회원활동 관리</h2>
 		<hr>
 		<h5>사이트 관리 > 회원활동 관리</h5>
@@ -37,7 +37,7 @@
 	<c:forEach var="mem" items="${memList }" >
 		<tr >
 			<td>${mem.id }</td>
-				<c:if test="${mem.gender == 2 }">
+				<c:if test="${mem.gender == 0 }">
 				<td>여자</td>
 				</c:if>
 				<c:if test="${mem.gender == 1}">

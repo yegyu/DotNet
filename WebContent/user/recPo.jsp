@@ -7,7 +7,7 @@
 <jsp:include page="../mypage.do"/>
 <div class="page-content">
 <div class="container-fluid">
-	<div class="card col-md-10">
+	<div class="card col-md-12">
 		<h2 class="mt-3">내 포인트 사용/적립내역</h2>
 		<hr>
 		<h5>내 포인트 관리 > 내 포인트 사용/적립내역</h5>

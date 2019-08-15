@@ -6,7 +6,7 @@
 <jsp:include page="../mypage.do"/>
 <main class="page-content">
 <div class="container-fluid">
-	<div class="card col-md-10">
+	<div class="card col-md-12">
 		<h2 class="mt-3">회원 현황</h2>
 		<hr>
 		<h5>사이트 데이터 관리 > 회원 현황</h5>
