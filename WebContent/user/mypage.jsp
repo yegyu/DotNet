@@ -242,14 +242,14 @@
               </span>
             </div>
           </div> -->
-                    <c:if test="${memId != 'admin'}">
-                        <a href="mypage.do">${memId}님의 마이페이지</a>
-                        <br>
-                    </c:if>
-                    <c:if test="${memId	== 'admin'}">
-                        <a href="mypage.do">관리자 페이지</a>
-                        <br>
-                    </c:if>
+<%--                     <c:if test="${memId != 'admin'}"> --%>
+<%--                         <a href="mypage.do">${memId}님의 마이페이지</a> --%>
+<!--                         <br> -->
+<%--                     </c:if> --%>
+<%--                     <c:if test="${memId	== 'admin'}"> --%>
+<!--                         <a href="mypage.do">관리자 페이지</a> -->
+<!--                         <br> -->
+<%--                     </c:if> --%>
 
                     <a href="main.do" id="logoutSide"><i class="fas fa-user-circle"></i>
                         Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -262,6 +262,24 @@
                 <div class="sidebar-menu">
                     <ul>
                         <li class="header-menu"> <span>일반 메뉴</span> </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#"><i class="fas fa-file-invoice"></i>
+                                <span>친구 피드 </span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="/DotNet/mypage.do" id="mpm">친구들 설문 피드
+
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/DotNet/frRepAct.do">친구들 최근 답변, 질문 </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
                         <li class="sidebar-dropdown">
                             <a href="#"><i class="fas fa-file-invoice"></i>
                                 <span>내 설문 관리 </span>
