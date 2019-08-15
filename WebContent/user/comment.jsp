@@ -10,6 +10,34 @@
 <textarea class="form-control" maxlength="50" cols="70px" rows="2px" style="font-size: 20px;" id="commentArea" placeholder="댓글을 입력하세요~!~!~!"></textarea><br>
  <button class="commentbtn btn my-3" style="position:relative; right: 0px" id="inputComment">댓글 입력</button>
 </div>
+ <div class="modal fade modal1" id="reqFr" tabindex="-1" role="dialog" aria-labelledby="reqFrLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reqFrLabel">친구 요청</h5>
+        <button type="button" class="close" data-dismiss="" aria-label="Close" id="closeFromSurFrModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="reqMsg" class="col-form-label">아이디</label>
+            <input type="text" class="form-control" id="idFuFr" >
+          </div>
+          <div class="form-group">
+            <label for="reqMsg" class="col-form-label">인사글을 남겨보세요~~</label>
+            <textarea rows="5" class="form-control" id="reqMsg"></textarea>
+          </div>
+          
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="reqFrBtn">친구 요청</button>
+      </div>
+    </div>
+  </div>
+</div>
 <table width="100%">
 		<thead >
 		<tr >
@@ -17,12 +45,12 @@
 			<th  width="65%">내용</th>
 			<th width="30%">날짜</th>		
 		</tr>
-		</thead>
+		</thead> 
 		
 		<tbody id="conBody">
 		<c:forEach var="con" items="${getComm}">
 		<tr>
-			<td>${con.mem_id }</td>
+			<td class="frfr" id="${con.mem_id }" data-toggle="modal" data-target="#reqFr">${con.mem_id }</td>
 			<td>${con.content }</td>
 			<td><fmt:formatDate value="${con.dt}" pattern="yyyy-MM-dd"/>  </td>
 		</tr>
@@ -33,6 +61,84 @@
 </div>
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script>
+// $('.modal').attr("position","absolute");
+// $('.modal').css({"overflow":"auto";"heigth":"500px"});
+var zIndex;
+$(document).on('show.bs.modal', '.modal', function () {
+    zIndex = 1040 + (10 * $('.modal:visible').length);
+    $(this).css('z-index', zIndex);
+    setTimeout(function() {
+        $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+    }, 0);
+});
+$(document).on('hidden.bs.modal', '.modal', function () {
+
+    $('.modal:visible').length && $(document.body).addClass('modal-open');
+
+});
+
+//////////모달 위에 모달이 안정하게 뜨지는 않음...
+
+function reqFriend(data1){
+	$.ajax({
+		data:data1,
+		type:"post",
+		dataTyp:"text",
+		url:"reqFrAsk.do",
+		success:function(data){
+			switch(data){
+			case "0":alert("본인 아이디네요 ㅎㅎ");break;
+			case "1":alert("이미 친구 요청 상태이네요 한번확인해 보세요");break;
+			case "2":alert("현재 친구 상태입니다.");break;
+			case "3":alert("어이쿠 현재 차단상태입니다. 자세한 사항은 문의해주세요");break;
+			case "4":alert("친구 요청이 완료됐습니다. 요청 수락까지 기다려 주세요.");break;
+			default :alert("알수 없는 결과내요 문의 주시면 고맙겠습니다.")
+			}
+			$("#reqMsg").val("");
+			$('#reqFr').modal('toggle');
+			zIndex-=10;
+// 			$('.close').click();
+// 			$('.modal-backdrop').remove();
+		}
+	})
+}
+var frid;
+$('.frfr').on('mouseenter',function(){
+	$('body').append('<div class="animated infinite bounce " id="showBit" style="position:fixed; top:50%; left:0%;"><h1>'+$(this).text()+'와<br>좋은 친구가<br> 되겠군요...<br>Click id </h1></div>')
+})
+$('.frfr').on('mouseleave',function(){
+	$('#showBit').remove();
+});
+$('.frfr').on('click',function(){
+	frid=$(this).attr('id')
+	$('#idFuFr').val(frid).prop("readonly",true);
+		$('.modal1').css('display','block');
+		if($('.modal1').css('display') == "none"){
+			$('.modal1').css('display','block');
+		}
+	
+});
+$('#reqFrBtn').on('click',function(){
+	if($('#reqMsg').val() ==""){	
+		var confirmFrMsg = confirm('글을 남기지 않겠습니까?')
+		if(confirmFrMsg){
+			var data2 = {id : frid, title:"친구 요청" , contents:"친구 요청이 들어오셨어요 ㅎㅎㅎ" }
+			reqFriend(data2)
+		}else{
+			return false;
+		}
+	
+	}else{
+		var data1 = {id : frid, title:"친구 요청" ,	 contents:$('#reqMsg').val() }
+		reqFriend(data1);
+	}
+	
+});
+$('#closeFromSurFrModal').on('click',function(){
+	$('#reqFr').modal('toggle');
+});
+</script>
 <script>
 var com ;
 function getFormatDate(date){ var year = date.getFullYear();	//yyyy
@@ -50,7 +156,7 @@ $(document).ready(function(){
 			$(".commentbtn").attr("disabled","true");
 		}
 		
-	    com = {"content":$('#commentArea').val(), "s_num":${s_num}};
+	    com = {"content":$('#commentArea').val(), "s_num":'${s_num}'};
 	    $.ajax({
 	    	type:"POST",
 	    	data:com,

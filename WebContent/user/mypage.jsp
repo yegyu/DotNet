@@ -438,6 +438,12 @@
 <!-- sidebar-wrapper  -->
 <!-- 메일 작성 박스 -->
 
+<!--친구들이 참여한 설문 들  +++   -->
+<div class="page-content" id="mpc">
+<div class="container-fluid	">
+	
+</div>
+</div>
 
 <!-- 쪽지 모달 -->
 <div class="modal fade " id="navMail" tabindex="-1" role="dialog" aria-labelledby="navMailTitle" aria-hidden="true">
@@ -482,6 +488,13 @@
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
 <!-- 사이드바 드롭박스 스크립트 -->
+<script>
+var lh = location.href.split('/');
+var lastIdx = lh[lh.length -1]; 
+if(lastIdx != "mypage.do"){
+	$('#mpc').remove();
+}
+</script>
 <script>
     jQuery(function ($) {
 
