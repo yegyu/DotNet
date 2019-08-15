@@ -2,10 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="setting_user.jsp" %>
-<script src="${project_user}/script_user.js"></script>
 
-
-
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+ <jsp:include page="../mypage.do" />
+<div class="page-content">
+<div class="container-fluid">
 <form name="passwdform" method="post" action="modifyUserView.do"
 	onsubmit="return passwdcheck()">
 	<table>
@@ -27,11 +32,12 @@
 		</tr>
 	</table>
 </form>
+</div>
+</div>
+<script src="${project_user}/script_user.js"></script>
+</body>
 
-
-
-
-
+</html>
 
 
 

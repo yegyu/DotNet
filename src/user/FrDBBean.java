@@ -4,10 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import dncommons.SqlMapClient;
+import main.AskReplyDataBean;
 import main.MemberDataBean;
 
 public class FrDBBean implements FrDao{
 
+	@Override
+	public List<AskReplyDataBean> getFrWrFeed(String id) {
+		return SqlMapClient.getSession().selectList("getFrWrFeed", id);
+	}
 	@Override
 	public Integer checkFr(Map<String, Object> map) {
 		return SqlMapClient.getSession().selectOne("checkFr", map);

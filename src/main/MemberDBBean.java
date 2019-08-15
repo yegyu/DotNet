@@ -81,9 +81,13 @@ public class MemberDBBean implements MemberDao{
 		return SqlMapClient.getSession().selectOne("Main.getPoint",id);
 	}
 	@Override
+	public int checkSt(String id) {
+		return SqlMapClient.getSession().selectOne("checkSt", id);
+	}
+	@Override
     public int check(String id, String passwd) {
         int result = checkId(id);
-        if (result == 1) { // 아이디 있다.
+        if (result == 1) { 
             MemberDataBean memberDto = getMember(id);
             System.out.println(memberDto.getId());
             if (!passwd.equals(memberDto.getPasswd())) {

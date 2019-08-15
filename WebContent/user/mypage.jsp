@@ -274,7 +274,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/DotNet/frRepAct.do">친구들 최근 답변, 질문 </a>
+                                        <a href="frWrFeed.do">친구들 최근 답변, 질문 </a>
                                     </li>
 
                                 </ul>
@@ -339,10 +339,10 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="/DotNet/myFr.do">친구 신청 현황</a>
+                                        <a href="frSt.do">친구 신청 현황</a>
                                     </li>
                                     <li>
-                                        <a href="#">내 친구 목록</a>
+                                        <a href="myFr.do">내 친구 목록</a>
                                     </li>
                                     <li>
                                         <a href="/DotNet/recomFr.do">추천 친구 목록</a>
@@ -358,10 +358,10 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">나의 피드 보기</a>
+                                        <a href="myFeed.do">나의 피드 보기</a>
                                     </li>
                                     <li>
-                                        <a href="#">회원 정보 수정</a>
+                                        <a href="modifyUser.do">회원 정보 수정</a>
                                     </li>
                                 </ul>
                             </div>

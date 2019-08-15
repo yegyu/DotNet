@@ -11,6 +11,7 @@ import user.PointDataBean;
 
 public interface MemberDao {
 	public int checkId(String id);
+	public int checkSt(String id);
 	public int check(String id, String passwd);
 	public MemberDataBean getMember(String id);
 	public int insertMember(MemberDataBean memberDto);

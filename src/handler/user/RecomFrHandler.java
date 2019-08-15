@@ -40,21 +40,26 @@ public class RecomFrHandler implements CommandHandler {
 		map.put("id",id);
 		
 		
-		//우선 같은 나이대로 추천한다고 침 Map 에 넣어라 나이를 임의로
-		List<MemberDataBean> getMembers = frDao.getRecomFr(map);
+		//�슦�꽑 媛숈� �굹�씠��濡� 異붿쿇�븳�떎怨� 移� Map �뿉 �꽔�뼱�씪 �굹�씠瑜� �엫�쓽濡�
+		List<MemberDataBean> recomFr = frDao.getRecomFr(map);
+		request.setAttribute("recomFr", recomFr);
 //		for(MemberDataBean el : getMembers) {
-//			System.out.print(" 추천 친구 id : " + el.getId());
+//			System.out.print(" 추천친구 id : " + el.getId());
 //		}System.out.println();
-		String []emo ={"fr1.gif", "fr2.gif", "fr3.gif"};
-		request.setAttribute("emo", emo);
-		
-		
-		
-		MemberDataBean twoDArr[][] = MyFrHandler.frgrid(getMembers);
+//		String []emo ={"fr1.gif", "fr2.gif", "fr3.gif"};
+//		request.setAttribute("emo", emo);
+//		
+//		
+//		MemberDataBean twoDArr[][] = MyFrHandler.frgrid(recomFr);
 //		for(MemberDataBean el : getMembers) {
 //			System.out.print(el.getId() + " ");
 //		}
-		request.setAttribute("twoDArr", twoDArr);
+//		request.setAttribute("twoDArr", twoDArr);
+		
+		
+		
+		
+		
 		return new ModelAndView("user/recomFr");
 	}
 

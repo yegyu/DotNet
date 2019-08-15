@@ -6,16 +6,29 @@
   
 <mapper namespace="Fr">
 
+	<select id="getFrWrFeed" parameterType="String" resultType="main.AskReplyDataBean">
+	
+		select * from dn_askReply where id in
+		(
+		select res_mem_id from dn_friend where req_mem_id = #{id} and  f_st =1
+		union 
+		select req_mem_id from dn_friend where res_mem_id = #{id} and f_st =1
+		)
+		order by rdate desc, good desc
+	</select>
 	<!-- state 0  +  1-->
+	<!-- 얘도 좀 안 맞음 -->
 	<select id = "getFr" parameterType="List" resultType="main.MemberDataBean">
 		select * from dn_member where id in (select res_mem_id from dn_friend where req_mem_id = #{id} and (f_st=0 or f_st =1))
 		 or id in(select req_mem_id from dn_friend where res_mem_id = #{id} and (f_st=0 or f_st =1))
 	</select>
 	
 	<!-- 추천 친구용 현재는 나이가 나와 비슷한 연령대  여러 조건들이 필요시 map에 넣어줌-->
+	
+	<!--이 쿼리가 이상함  -->
 	<select id="getRecomFr" parameterType="Map" resultType="main.MemberDataBean">
 		select * from dn_member where id  not in (select res_mem_id from dn_friend where req_mem_id =#{id})  
-		and id not in  (select req_mem_id from dn_friend where res_mem_id =#{id}  ) and id != #{id} 
+		or id not in  (select req_mem_id from dn_friend where res_mem_id =#{id}  ) and id != #{id} 
 <!-- 		and age = #{age} -->
 	</select>
 	

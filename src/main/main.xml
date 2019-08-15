@@ -5,7 +5,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Main">
-	
+	<select id="checkSt" parameterType="String" resultType="int">
+		select user_state from dn_member where id = #{id}
+	</select>
 	<select id="searchMems" parameterType="String" resultType="main.MemberDataBean">
 		select * from dn_member where id like '%'||#{id}||'%'
 	</select>

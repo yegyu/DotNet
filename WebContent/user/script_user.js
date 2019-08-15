@@ -28,8 +28,8 @@ function erroralert( msg ) {
 }
 
 function memmodifycheck() {
-	alert("삭제비번 : " + memmodifyform.delpasswd.value);
-	alert("원래비번 : " + memmodifyform.passwd.value);
+//	alert("삭제비번 : " + memmodifyform.delpasswd.value);
+//	alert("원래비번 : " + memmodifyform.passwd.value);
     if( ! memmodifyform.passwd.value ) {
         alert( passwderror );
         memmodifyform.passwd.focus();

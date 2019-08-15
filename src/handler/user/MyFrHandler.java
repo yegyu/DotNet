@@ -41,6 +41,7 @@ public class MyFrHandler implements CommandHandler{
 	@RequestMapping(value = "/frBtn" ,method = RequestMethod.POST ,produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> frManage(HttpServletRequest request)throws Exception{
+		
 		HttpSession session = request.getSession();
 		String myId = (String)session.getAttribute("memId");
 		int rs = 0;
@@ -59,7 +60,7 @@ public class MyFrHandler implements CommandHandler{
 //			System.out.println(map);
 	
 //		id = map.get("id");
-//		System.out.println(map.get("btn") == "accBtn" ? "수락 버튼":"차단 버튼");
+//		System.out.println(map.get("btn") == "accBtn" ? "�닔�씫 踰꾪듉":"李⑤떒 踰꾪듉");
 		if(map.get("btn").equals("accBtn")) {
 			map.remove("btn");
 			rs = frDao.updateForAccFr(map);
@@ -75,7 +76,7 @@ public class MyFrHandler implements CommandHandler{
 			map.put("num", maxFrNum + 1);
 			rs = frDao.insertFr(map);
 		}
-//		System.out.println(rs == 1? "update 완료":"update 실패");
+//		System.out.println(rs == 1? "update �셿猷�":"update �떎�뙣");
 		
 		
 		return map;
@@ -85,7 +86,6 @@ public class MyFrHandler implements CommandHandler{
 	@RequestMapping("/myFr")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		FrDBBean frDao = new FrDBBean();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
 		List<MemberDataBean> getFr = frDao.getFr(id);
@@ -93,32 +93,29 @@ public class MyFrHandler implements CommandHandler{
 		List<String> getAccBtnId = frDao.getAccBtnId(id);
 		List<String> getWatiBtnId = frDao.getWatiBtnId(id);
 		List<String> getRealFrBtn = frDao.getRealFrBtn(id);
-		String []emo ={"fr1.gif", "fr2.gif", "fr3.gif"};
-		
-//		System.out.println("내게 친구 신청한 사람들 아이디");
+//		String []emo ={"fr1.gif", "fr2.gif", "fr3.gif"};
+//		System.out.println("getAccBtn");
 //		for(String el : getAccBtnId) {
 //			System.out.print(el + " ");
 //		}System.out.println();
-//		System.out.println("내가 친구 신청한 아이디");
+//		System.out.println("getWaitBtn");
 //		for(String el : getWatiBtnId) {
 //			System.out.println(el + " ");
 //		}System.out.println();
-//		System.out.println("순수 내 친구들 ");
+//		System.out.println("getReadFr");
 //		for(String el : getRealFrBtn) {
 //			System.out.print(el + " ");
 //		}System.out.println();
 
 		
 		
-		//친구 요청 0 ,친구 됨 1,  <-- 친구 페이지    ,,,,,,             차단 2 <--추천페이지
+		//移쒓뎄 �슂泥� 0 ,移쒓뎄 �맖 1,  <-- 移쒓뎄 �럹�씠吏�    ,,,,,,             李⑤떒 2 <--異붿쿇�럹�씠吏�
 		MemberDataBean myFrArr[][] = MyFrHandler.frgrid(getFr);
-//		for(MemberDataBean el : getMembers) {
-//			System.out.print(el.getId() + " ");
-//		}
+		
 		request.setAttribute("getAccBtnId", getAccBtnId);
 		request.setAttribute("getWatiBtnId",getWatiBtnId);
 		request.setAttribute("getRealFrBtn",getRealFrBtn);
-		request.setAttribute("emo", emo);
+//		request.setAttribute("emo", emo);
 		request.setAttribute("myFrArr", myFrArr);
 		
 		
@@ -130,7 +127,7 @@ public class MyFrHandler implements CommandHandler{
 	
 	public static MemberDataBean[][] frgrid(List<MemberDataBean> getMembers){
 		MemberDataBean arr[][];
-		//													한행에 몇개 보일지 
+		//													�븳�뻾�뿉 紐뉕컻 蹂댁씪吏� 
 		arr = new MemberDataBean[getMembers.size() / 3 + 1][5];
 		int c = 0;
 		for (int i = 0; i < arr.length; i++) {

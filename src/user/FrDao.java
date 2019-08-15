@@ -3,6 +3,7 @@ package user;
 import java.util.List;
 import java.util.Map;
 
+import main.AskReplyDataBean;
 import main.MemberDataBean;
 
 public interface FrDao {
@@ -27,4 +28,5 @@ public interface FrDao {
 	public int getMaxFrNum();
 	
 	public Integer checkFr(Map<String,Object> map);
+	public List<AskReplyDataBean> getFrWrFeed(String id);
 }

@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-		
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <jsp:include page="../mypage.do" />
+    <div class="page-content">
+        <div class="container-fluid">
 	
 		<div class="container">
 		  <div class="row">
@@ -53,6 +68,8 @@
 			</div>
 		  </div>	
 		</div>
+		</div>
+		</div>
 		<script type="text/javascript">
 		//<!--
 			$(document).ready(
@@ -83,4 +100,7 @@
 			);
 		//-->
 		</script>
+		
+</body>
+</html>
 		
