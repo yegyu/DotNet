@@ -19,5 +19,5 @@ rDate date not null,
 rState number not null,
 good number not null,
 bad number not null
-)
+);
 
