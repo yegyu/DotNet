@@ -5,6 +5,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="Main">
+
+	<update id="delComm" parameterType="map">
+		update dn_comment set state = -1 where mem_id= #{mem_id} and content =#{content} and s_num =#{s_num}
+	</update>
+	
 	<select id="checkSt" parameterType="String" resultType="int">
 		select user_state from dn_member where id = #{id}
 	</select>

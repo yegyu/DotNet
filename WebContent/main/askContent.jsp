@@ -164,6 +164,10 @@ $('.-1').each(function(){
 var th ;
 var rid;
 $('.del').on('click',function(){
+	if($(this).parent().siblings().eq(3).hasClass('-1')){
+		alert('이미 삭제된 답글입니다.');
+		return false;
+	}
 	th = $(this).parent().siblings().eq(0).text();
 	rid = $(this).parent().siblings().eq(2).text()
 	if(rid != '${sessionScope.memId}'){
@@ -182,11 +186,12 @@ $('#delBtn').on('click',function(){
 			type:"post",
 			success:function(d){
 				if(d == "1"){
-					$('#delP').val("");
-					console.log($('#'+rnum).siblings().eq(2))
-					$('#'+th).siblings().eq(2).text("삭제된 답변입니다.");
-					$("#dr").modal("hide");
-					$('.modal-backdrop').removeClass('show');
+					location.reload();
+// 					$('#delP').val("");
+// 					console.log($('#'+rnum).siblings().eq(2))
+// 					$('#'+th).siblings().eq(2).text("삭제된 답변입니다.");
+// 					$("#dr").modal("hide");
+// 					$('.modal-backdrop').removeClass('show');
 				}else if(d == "-1"){
 					alert("비밀번호가 일치하지 않습니다.")
 				}

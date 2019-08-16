@@ -42,8 +42,9 @@
 		<thead >
 		<tr >
 			<th width="20%" id="${s_num }">ID</th>
-			<th  width="65%">내용</th>
-			<th width="30%">날짜</th>		
+			<th  width="55%">내용</th>
+			<th width="30%">날짜</th>	
+				
 		</tr>
 		</thead> 
 		
@@ -51,17 +52,55 @@
 		<c:forEach var="con" items="${getComm}">
 		<tr>
 			<td class="frfr" id="${con.mem_id }" data-toggle="modal" data-target="#reqFr">${con.mem_id }</td>
-			<td>${con.content }</td>
-			<td><fmt:formatDate value="${con.dt}" pattern="yyyy-MM-dd"/>  </td>
+			<td class="${con.state }">${con.content }</td>
+			
+			<td ><fmt:formatDate value="${con.dt}" pattern="yyyy-MM-dd"/>  
+			<span aria-hidden="true" id="${con.mem_id}" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span>
+			 </td>
 		</tr>
 		</c:forEach>
 		</tbody>
 </table>
 
 </div>
+
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
 <script>
+$('.-1').each(function(){
+	$(this).text("삭제된 답변입니다.")
+});
+$('.del').on("click",function(){
+	if($(this).parent().siblings().eq(1).hasClass('-1')){
+		alert('이미 삭제됐습니다.')
+		return false
+	}else{
+		
+	var id = $(this).prop('id')
+	var s_num = '${s_num}';
+	var content = $(this).parent().siblings().eq(1).text();
+	if('${sessionScope.memId}' == id){
+		var dt = { "s_num" : "${s_num}", "content" : content}
+		console.log(dt)
+		console.log(dt["dt"])
+		$.ajax({
+			data:dt,
+			dataType:"text",
+			url:"delComm.do",
+			type:"post",
+			success:function(dt){
+				if(dt == 1){
+					location.reload();
+					
+				}
+			}
+		});
+		
+	}
+		
+	}
+	
+});
 // $('.modal').attr("position","absolute");
 // $('.modal').css({"overflow":"auto";"heigth":"500px"});
 var zIndex;
@@ -166,7 +205,7 @@ $(document).ready(function(){
 	    		console.log(com[0].mem_id + " 입니다.")
 	    		$("#conBody").children().remove();
 	    		for(var i =0 ; i < com.length; i++){
-	    			$("#conBody").append("<tr><td>" + com[i].mem_id + "</td><td>"+com[i].content+"</td><td>"+getFormatDate(new Date(com[i].dt))+"</td></tr>")
+	    			$("#conBody").append("<tr><td>" + com[i].mem_id + "</td><td>"+com[i].content+"</td><td>"+getFormatDate(new Date(com[i].dt))+'<span aria-hidden="true" id="'+com[i].mem_id+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span></td></tr>')
 	    			
 	    		}
 	    			

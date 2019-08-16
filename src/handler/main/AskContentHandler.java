@@ -252,7 +252,7 @@ public class AskContentHandler implements CommandHandler{
 			map.put("rnum", rnum);
 			map.put("num", num);
 			urs = boardAskDao.delReply(map);
-			System.out.println("urs succsess : "+ urs);
+//			System.out.println("urs succsess : "+ urs);
 		}else {
 			//실패
 			return "-1";

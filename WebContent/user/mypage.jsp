@@ -674,6 +674,7 @@ if(lastIdx != "mypage.do"){
                     if (data == 1) {
                         alert("성공")
                         $('#navMail').modal('toggle');
+                        location.reload();
                     } else if (data == -1) {
                         alert("해당 아이디가 존재하지 않아요ㅠㅠ")
                     } else if (data == 0) {
