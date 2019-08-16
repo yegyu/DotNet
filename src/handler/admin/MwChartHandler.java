@@ -69,9 +69,9 @@ public class MwChartHandler implements CommandHandler {
 		return new ModelAndView("admin/mwChart");
 	}
 
-	@RequestMapping(value = "changeData", method = RequestMethod.POST, produces = "application/json;UTF-8")
+	@RequestMapping(value = "changeDataTwo", method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
-	public Map<String, Object> dataChange(HttpServletRequest request) throws JSONException {
+	public Map<String, Object> dataChangeTwo(HttpServletRequest request) throws JSONException {
 		
 		int s_num = Integer.parseInt(request.getParameter("s_num"));
 		int q_len = adminDao.getQlen(s_num);

@@ -33,8 +33,8 @@
 		<br>
 		<br>
 		<br>
-		<div class=row>
-			<c:forEach begin="1" end="${q_len}" varStatus="i">
+		<div class="row qBtnRow">
+			<c:forEach begin="1" end="5" varStatus="i">
 				<input class="btn btn-primary ml-4" type="button" value="질문${i.count}" id="${i.count}">
 			</c:forEach>
 		</div>
@@ -137,39 +137,44 @@ window.onload = function () {
 			}
 		};
 ///////////////////////////// 초기 데이터 /////////////////////////////////////
+	var dataForAll = new Array();
+		dataForAll = ${dataForAll};
+	var dataForEachQ = new Array();
+		dataForEachQ = ${dataForEachQ};
+		
 	var initData = [
 		[	// 전체 참여 성별 분포 		index : 0
-			{ y : ${dataForAll[0]}, label : "남자" },
-			{ y : ${dataForAll[1]}, label : "여자" }
+			{ y : dataForAll[0], label : "남자" },
+			{ y : dataForAll[1], label : "여자" }
 		],
 		[	// 전체 참여 연령별 분포		index : 1
-			{ y : ${dataForAll[2]}, label : "10대" },
-			{ y : ${dataForAll[3]}, label : "20대" },
-			{ y : ${dataForAll[4]}, label : "30대" },
-			{ y : ${dataForAll[5]}, label : "40대" },
-			{ y : ${dataForAll[6]}, label : "50대" },
-			{ y : ${dataForAll[7]}, label : "60대" },
-			{ y : ${dataForAll[8]}, label : "70대" }
+			{ y : dataForAll[2], label : "10대" },
+			{ y : dataForAll[3], label : "20대" },
+			{ y : dataForAll[4], label : "30대" },
+			{ y : dataForAll[5], label : "40대" },
+			{ y : dataForAll[6], label : "50대" },
+			{ y : dataForAll[7], label : "60대" },
+			{ y : dataForAll[8], label : "70대" }
 		],
 		[   // 해당 질문 전체 보기 분포	index : 2
-			{ y: ${dataForEachQ[0]},	label: "보기1" , value: 0},
-			{ y: ${dataForEachQ[1]},	label: "보기2" , value: 1},
-			{ y: ${dataForEachQ[2]},	label: "보기3" , value: 2},
-			{ y: ${dataForEachQ[3]},	label: "보기4" , value: 3},
-			{ y: ${dataForEachQ[4]},	label: "보기5" , value: 4}
+			{ y: dataForEachQ[0],	label: "보기1" , value: 0},
+			{ y: dataForEachQ[1],	label: "보기2" , value: 1},
+			{ y: dataForEachQ[2],	label: "보기3" , value: 2},
+			{ y: dataForEachQ[3],	label: "보기4" , value: 3},
+			{ y: dataForEachQ[4],	label: "보기5" , value: 4}
 		],
 		[	// 해당 질문 해당 보기 성별 분포	index : 3
-			{y: ${dataForEachQ[5]}, label: "남자"},
-			{y: ${dataForEachQ[10]}, label: "여자"}
+			{y: dataForEachQ[5], label: "남자"},
+			{y: dataForEachQ[10], label: "여자"}
 		],
 		[   // 해당 질문 해당 보기 연령분포	index : 4
-			{ y: ${dataForEachQ[15]},  label: "10대" },
-			{ y: ${dataForEachQ[20]},  label: "20대" },
-			{ y: ${dataForEachQ[25]},  label: "30대" },
-			{ y: ${dataForEachQ[30]},  label: "40대" },
-			{ y: ${dataForEachQ[35]},  label: "50대" },
-			{ y: ${dataForEachQ[40]},  label: "60대" },
-			{ y: ${dataForEachQ[45]},  label: "70대" }
+			{ y: dataForEachQ[15],  label: "10대" },
+			{ y: dataForEachQ[20],  label: "20대" },
+			{ y: dataForEachQ[25],  label: "30대" },
+			{ y: dataForEachQ[30],  label: "40대" },
+			{ y: dataForEachQ[35],  label: "50대" },
+			{ y: dataForEachQ[40],  label: "60대" },
+			{ y: dataForEachQ[45],  label: "70대" }
 		]
 		
 	];
@@ -183,6 +188,7 @@ window.onload = function () {
 		selChartOptions.ageSel.data[0].dataPoints = Data[4];
 	}
 	
+	// 실제 그래프 그리는 부분
 	function makeChart(Data) {
 		// 해당 설문 전체 분포
 		sexAllChart = new CanvasJS.Chart("sexAll", selChartOptions.sexAll); // 해당 설문 전체 참여 성별 분포
@@ -197,14 +203,25 @@ window.onload = function () {
 		sexAllChart.render();
 		ageAllChart.render();
 		selAllChart.render();
+		console.log(Data);
 	}// makeChart
 	makeChart(initData);
 
 	// 해당 질문 전체 보기 데이터 중 하나를 눌렀을 때
 	function onClick(e) {
-		alert(${dataForEachQ[5 + e.dataPoint.value]});
-		initData[3][0].y = ${dataForEachQ[5 + e.dataPoint.value]};
-		initData[3][1].y = ${dataForEachQ[10 + e.dataPoint.value]};
+		
+		
+		// 선택한 보기에 맞는 데이터 세팅
+		initData[3][0].y = dataForEachQ[5 + e.dataPoint.value];		//남
+		initData[3][1].y = dataForEachQ[10 + e.dataPoint.value];	//여
+		initData[4][0].y = dataForEachQ[15 + e.dataPoint.value];	//10
+		initData[4][1].y = dataForEachQ[20 + e.dataPoint.value];	//20
+		initData[4][2].y = dataForEachQ[25 + e.dataPoint.value];	//30
+		initData[4][3].y = dataForEachQ[30 + e.dataPoint.value];	//40
+		initData[4][4].y = dataForEachQ[35 + e.dataPoint.value];	//50
+		initData[4][5].y = dataForEachQ[40 + e.dataPoint.value];	//60
+		initData[4][6].y = dataForEachQ[45 + e.dataPoint.value];	//70
+		
 		setData(initData);
 				
 		$("#chartContainer").remove();
@@ -229,7 +246,75 @@ window.onload = function () {
 		ageSelChart.render();
 	}//onClick
 	
-	
+	////////////////////////// ajax 처리 영역 //////////////////////////////////////////
+	function remakeChart(q_num, s_num){
+		$.ajax({
+			data:{
+				"q_num" : q_num,
+				"s_num" : s_num
+			},
+			dataType:"json",
+			type:"POST",
+			url:"changeDataFive.do",
+			
+			success:function(d){
+				dataForEachQ = d.dataForEachQ;
+				dataForAll = d.dataForAll;
+				
+				var initData = [
+					[	// 전체 참여 성별 분포 		index : 0
+						{ y : dataForAll[0], label : "남자" },
+						{ y : dataForAll[1], label : "여자" }
+					],
+					[	// 전체 참여 연령별 분포		index : 1
+						{ y : dataForAll[2], label : "10대" },
+						{ y : dataForAll[3], label : "20대" },
+						{ y : dataForAll[4], label : "30대" },
+						{ y : dataForAll[5], label : "40대" },
+						{ y : dataForAll[6], label : "50대" },
+						{ y : dataForAll[7], label : "60대" },
+						{ y : dataForAll[8], label : "70대" }
+					],
+					[   // 해당 질문 전체 보기 분포	index : 2
+						{ y: dataForEachQ[0],	label: "보기1" , value: 0},
+						{ y: dataForEachQ[1],	label: "보기2" , value: 1},
+						{ y: dataForEachQ[2],	label: "보기3" , value: 2},
+						{ y: dataForEachQ[3],	label: "보기4" , value: 3},
+						{ y: dataForEachQ[4],	label: "보기5" , value: 4}
+					],
+					[	// 해당 질문 해당 보기 성별 분포	index : 3
+						{y: dataForEachQ[5], label: "남자"},
+						{y: dataForEachQ[10], label: "여자"}
+					],
+					[   // 해당 질문 해당 보기 연령분포	index : 4
+						{ y: dataForEachQ[15],  label: "10대" },
+						{ y: dataForEachQ[20],  label: "20대" },
+						{ y: dataForEachQ[25],  label: "30대" },
+						{ y: dataForEachQ[30],  label: "40대" },
+						{ y: dataForEachQ[35],  label: "50대" },
+						{ y: dataForEachQ[40],  label: "60대" },
+						{ y: dataForEachQ[45],  label: "70대" }
+					]
+					
+				];
+				
+				makeChart(initData);
+			},
+			error:function(){
+				console.log("five data change ajax failed");
+			}
+		});
+	}
+	$(".btn").on("click",function(){
+		var q_num = $(this).attr("id");
+		var s_num = $("#fsnum").val();
+		remakeChart(q_num, s_num);
+	});
+	$("#fsnum").on("change",function(){
+		var q_num = 1;
+		var s_num = $(this).val();
+		remakeChart(q_num, s_num);
+	});
 }
 </script>
 

@@ -47,7 +47,7 @@
 		<br>
 		<br>
 		<div class=row>
-			<c:forEach begin="1" end="${q_len}" varStatus="i">
+			<c:forEach begin="1" end="5" varStatus="i">
 				<input class="btn btn-primary ml-4" type="button" value="질문${i.count}" id="${i.count}">
 			</c:forEach>
 		</div>
@@ -289,7 +289,7 @@ window.onload = function() {
 				"s_num" : s_num },
 			dataType:"json",
 			type:"POST",
-			url:"changeData.do",
+			url:"changeDataTwo.do",
 			
 			success:function(d){
 				var reData =
