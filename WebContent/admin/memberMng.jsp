@@ -30,7 +30,6 @@
 		<th>포인트</th>
 		<th>회원가입일</th>
 		<th>상태</th>
-		<th></th>
 	</tr>
 </thead>
 <tbody class="membersRow">
@@ -38,7 +37,7 @@
 		<tr >
 			<td>${mem.id }</td>
 				<c:if test="${mem.gender == 0 }">
-				<td>여자</td>
+					<td>여자</td>
 				</c:if>
 				<c:if test="${mem.gender == 1}">
 					<td>남자</td>
@@ -49,10 +48,10 @@
 			
 			<td>
 				<c:if test="${mem.userState == 0 }">
-				<button class="btn" name="stop" id="${mem.id}" value="1">중지</button>
+				<button class="btn memMng" name="stop" id="${mem.id}" value="1">중지</button>
 				</c:if>
 				<c:if test="${mem.userState == 1 }">
-				<button class="btn" name="recover" id="${mem.id}" value="0">회복</button>
+				<button class="btn memMng" name="recover" id="${mem.id}" value="0">회복</button>
 				</c:if>
 			</td>
 		</tr>
@@ -70,57 +69,47 @@
 <script>
 var id ={};
 var json = {};
+function stopMem(json){
+	$.ajax({
+		data:json,
+		dataType:"text",
+		url:"stopMem.do",
+		type:"POST",
+		success:function(data){
+			console.log("stop mem succes " + data)
+			$("#" + id["id"]).text("회복");
+			$("#" + id["id"]).prop('name','recover');
+			$("#" + id["id"]).val(0);
+		}
+	})
+}
+function recoverMem(json){
+	$.ajax({
+		data:json,
+		dataType:"text",
+		url:"recoverMem.do",
+		type:"POST",
+		success:function(data){
+			console.log("recover mem succes " + data)
+			$("#" + id["id"]).text("중지").prop('name','stop').val(1);
+			
+		}
+	})
+}
 $(document).ready(function(){
-	$("button[name=stop]").on('click',function(){
+	$(".memMng").on('click',function(){
 		id["id"] = $(this).prop('id');
 		id["state"] = $(this).val();
 		json = {"json" : JSON.stringify(id)}
-		console.log(json)
-		$(this).text("회복");
-		$(this).prop('name','recover');
-		$(this).val(0);
-		$.ajax({
-			data:json,
-			dataType:"text",
-			url:"stopMem.do",
-			type:"POST",
-			success:function(data){
-				console.log("stop mem succes " + data)
-				$(this).text("회복");
-				$(this).prop('name','recover');
-				$(this).val(0);
-			},
-			error:function(){
-				console.log("stop member fail")
-				
-			}
-		})
+		console.log(json);
+		//ajax
+		if($(this).val() == "1"){
+			stopMem(json);
+		}else{
+			recoverMem(json);
+		}
 	})
-	$("button[name=recover]").on('click',function(){
-		id["id"] = $(this).prop('id');
-		id["state"] = $(this).val();
-		json = {"json" : JSON.stringify(id)}
-		console.log(json)
-		$(this).text("중지");
-		$(this).prop('name','stop');
-		$(this).val(1);
-		$.ajax({
-			data:json,
-			dataType:"text",
-			url:"recoverMem.do",
-			type:"POST",
-			success:function(data){
-				console.log("recover mem succes " + data)
-				$(this).text("중지");
-				$(this).prop('name','stop');
-				$(this).val(1);
-			},
-			error:function(){
-				console.log("recover member fail")
-				
-			}
-		})
-	})
+	
 	// 회원검색
 	$("#searchButton").on('click',
         function () {

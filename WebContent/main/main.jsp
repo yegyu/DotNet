@@ -211,8 +211,8 @@
 					<select class="form-control selectpicker" id="align" name="align" >
 		
 						<option value="recent" >최신순</option>
-						<option value="partnum" >조회순</option>
-						<option value="hits">인기순</option>
+						<option value="partnum" >참여자순</option>
+						<option value="hits">조회순</option>
 						<option value="point">포인트순</option>
 					</select>
 				</div>
@@ -332,13 +332,21 @@ $(document).ready(function () {
       });
 });
 
-
-
+var boardtype = sessionStorage.getItem("boardtype");
+/// 메인에서 처음 뿌리는 
  (function () {
         var data = {
             "align": "recent",
             "b_tp" : 1
         };
+        if(boardtype == null || boardtype == 1) {
+//             $(".mainboard").html("<h4> 메인 </h4>");
+        	data["b_tp"] = 1;
+        } else if(boardtype == 2) {
+//             $(".subboard").html("<h4> 보조 </h4>");
+			data["b_tp"] = 2;
+
+        }
         $.ajax({
             type: "POST",
             dataType: "json",
@@ -415,6 +423,7 @@ return year + '-' + month + '-' + day; }
 
 
 	<script>
+	
 	$(function() {
 	    $(window).scroll(function() {
 	        if ($(this).scrollTop() > 700) {
@@ -495,7 +504,7 @@ return year + '-' + month + '-' + day; }
 		);		
 	});
 	
-    var boardtype = sessionStorage.getItem("boardtype");
+   
     if(boardtype == null || boardtype == 1) {
         $(".mainboard").html("<h4> 메인 </h4>");
     } else if(boardtype == 2) {

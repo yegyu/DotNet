@@ -11,7 +11,7 @@
 	</select>
 	<!-- 메인게시판용 정렬시 설문 불러오기 -->
 	<select id="getSurveys" resultType="survey.SurveyDataBean">
-		select * from dn_board where b_tp_num = 1 order by s_num desc 
+		select * from dn_board where b_tp_num=1 order by s_date desc 
 	</select>
 	<select id="getSursView" resultType="survey.SurveyDataBean">
 		select * from dn_board where b_tp_num = 1 order by partnum desc

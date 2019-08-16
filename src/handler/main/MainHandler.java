@@ -60,7 +60,7 @@ public class MainHandler implements CommandHandler {
 		align = request.getParameter("align");
 		search = request.getParameter("search");
 		String b_tp = request.getParameter("b_tp");
-		
+		System.out.println("align : " + align + ", b_tp : " + b_tp);
 		if (align != null && search == null) {
 
 //			System.out.println( "align :"+align);
@@ -72,7 +72,7 @@ public class MainHandler implements CommandHandler {
 				case "partnum":
 					surveys = surveyDao.getSursView2();
 					break;
-				case "hit":
+				case "hits":
 					surveys = surveyDao.getSursHit2();
 					break;
 				case "point":
@@ -80,7 +80,6 @@ public class MainHandler implements CommandHandler {
 					break;
 				default:
 					surveys = surveyDao.getSurs2();
-	//				System.out.println("default surveys");
 					break;
 				}
 			} else {
@@ -91,7 +90,7 @@ public class MainHandler implements CommandHandler {
 				case "partnum":
 					surveys = surveyDao.getSursView();
 					break;
-				case "hit":
+				case "hits":
 					surveys = surveyDao.getSursHit();
 					break;
 				case "point":
@@ -99,12 +98,10 @@ public class MainHandler implements CommandHandler {
 					break;
 				default:
 					surveys = surveyDao.getSurs();
-	//				System.out.println("default surveys");
 					break;
 				}
 			}
 		} else {
-//			System.out.println("search : " + search);
 			surveys = surveyDao.getSearchSursSub(search);
 		}
 		
@@ -122,15 +119,15 @@ public class MainHandler implements CommandHandler {
 			}
 		}
 
+		for(int i = 0 ; i < arr.length ; i++) {
+			for(int j = 0 ; j < arr[0].length; j++) {
+				if(arr[i][j] != null) {
+					
+					System.out.print(arr[i][j].getHits() + " ");
+				}
+			}System.out.println();
+		}
 		map.put("arr", arr);
-
-//		for (SurveyDataBean el : surveys) {
-//			System.out.print(el.getThumb_path() + " ");
-//		}
-//		System.out.println();
-
-//		JsonObject json = new JsonObject();
-
 		return map;
 
 	}
@@ -159,16 +156,11 @@ public class MainHandler implements CommandHandler {
 			todaysurs = surveyDao.getTodaySurs();
 		}
 		if(b_tp == 3) {
-			//ask 寃뚯떆�뙋 
 			int getCount = boardAskDao.getCount();
 			request.setAttribute("asksCnt", getCount);
 			List<BoardAskDataBean> asks = boardAskDao.getAsks();
-//			for(BoardAskDataBean el : asks) {
-//				System.out.println(el.getNum());
-//			}System.out.println("------");
 			request.setAttribute("asks", asks);
 			String id =(String) session.getAttribute("memId");
-//			System.out.println("in MainHanlder of  寃뚯떆�뙋  id : " + id);
 			if(id != null) {
 				request.setAttribute("id", id);
 			}else {
@@ -177,25 +169,15 @@ public class MainHandler implements CommandHandler {
 			return new ModelAndView("main/boardAsk");
 		}
 		
-//
-//		// �젙�젹�뿉�꽌
 		String align = "recent";
 		if (request.getParameter("align") != null)
 			align = request.getParameter("align");
 		request.setAttribute("align", align);
-//
-//		// �쟾泥� �꽕臾� �닔
-//		int cnt = surveyDao.getCountAll();
-//		
-
-		
-//		System.out.println("surveys.size()/3 + 1 = " + surveys.size() / 3);
 
 		SurveyDataBean arrToday[][] = new SurveyDataBean[2][3];
 
 		int c = 0;
 
-		// today (2 x 3 �씠�씪怨� �솗�젙�븿 null �깮媛� x)
 		for (int i = 0; i < arrToday.length; i++) {
 			for (int j = 0; j < arrToday[0].length; j++) {
 				if(c < todaysurs.size()) {
@@ -205,9 +187,6 @@ public class MainHandler implements CommandHandler {
 			}
 		}
 
-//		for (int i = 0; i < todaysurs.size(); i++) {
-//			System.out.print(todaysurs.get(i).getThumb_path() + " ");
-//		}
 
 
 		request.setAttribute("todaysurs", todaysurs);
