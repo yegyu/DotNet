@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class LibDataBean {
 	private int s_num;
-	private String mem_id; //참가 아이디
+	private String mem_id; 
 	private String subject;
 	private int point;
 	private int hits;

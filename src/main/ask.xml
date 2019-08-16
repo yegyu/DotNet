@@ -7,6 +7,12 @@
 <!-- 	board -->
 <mapper namespace="Ask">
 	
+	<update id="delReply" parameterType="map">
+		update dn_askReply set rstate = -1 where num = #{num} and rnum = #{rnum}
+	
+	</update>
+	
+	
 	<select id="getMaxRNum" parameterType="int" resultType="Integer">
 		select max(rnum) from dn_askReply where num =#{num}
 	</select>

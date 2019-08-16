@@ -19,9 +19,9 @@
     <jsp:include page="../mypage.do" />
     <div class="page-content">
         <div class="container-fluid">
-
-            <h1 class="my-4 font-weight-bold"> - 친구들의 답변들</h1>
-
+		<div class="card col-md-12">
+            <h1 class="my-4 font-weight-bold"> - 친구들의 댓글들</h1>
+            <hr>
             <div class="grid">
                 <div class="grid-sizer col-md-3"></div>
 
@@ -64,6 +64,7 @@
 
 
             </div>
+        </div>
         </div>
     </div>
     <script type="text/javascript" src="jquery-3.4.1.js"></script>

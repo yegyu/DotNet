@@ -60,7 +60,7 @@ public class MainHandler implements CommandHandler {
 		align = request.getParameter("align");
 		search = request.getParameter("search");
 		String b_tp = request.getParameter("b_tp");
-		System.out.println("align : " + align + ", b_tp : " + b_tp);
+//		System.out.println("align : " + align + ", b_tp : " + b_tp);
 		if (align != null && search == null) {
 
 //			System.out.println( "align :"+align);
@@ -117,15 +117,6 @@ public class MainHandler implements CommandHandler {
 				}
 				c++;
 			}
-		}
-
-		for(int i = 0 ; i < arr.length ; i++) {
-			for(int j = 0 ; j < arr[0].length; j++) {
-				if(arr[i][j] != null) {
-					
-					System.out.print(arr[i][j].getHits() + " ");
-				}
-			}System.out.println();
 		}
 		map.put("arr", arr);
 		return map;

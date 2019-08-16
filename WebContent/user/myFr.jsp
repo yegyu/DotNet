@@ -10,10 +10,7 @@
     .card-back {
         display: none;
     }
-    .btn{
-    	position: relative;
-    	bottom:0px;
-    }
+    
     .card-front:hover{
     	border : 2px solid rgba(227, 179, 255, 0.938) ;
     }

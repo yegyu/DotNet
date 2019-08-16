@@ -42,7 +42,7 @@
 	</select>
 	<select id="getLib" parameterType="String" resultType="user.LibDataBean">
 		select distinct(dn_s_part.s_num),mem_id, dn_board.subject, point,hits,partnum, thumb_path,s_tp_num from dn_s_part
-        join dn_board on dn_s_part.s_num = dn_board.s_num  where mem_id='aaa' order by s_num desc
+        join dn_board on dn_s_part.s_num = dn_board.s_num  where mem_id=#{id} order by s_num desc
 	</select>
 	<select id="getGoodsSt" parameterType="String" resultType="user.GoodsStDataBean">
 		select g_name,g_point,g_cnt,t_date,tst_num from dn_goods 
