@@ -1,7 +1,10 @@
 package handler.user;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +27,25 @@ public class CommentHandler implements CommandHandler{
 	@Resource
 	private MemberDao memberDao;
 	
+	@RequestMapping("delComm")
+	@ResponseBody
+	public int delComFunc(HttpServletRequest request) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		HttpSession sess = request.getSession();
+		String id = (String)sess.getAttribute("memId");
+		String content =  request.getParameter("content");
+		int s_num = Integer.parseInt(request.getParameter("s_num"));
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("content", content);
+		map.put("mem_id",id);
+		map.put("s_num",s_num);
+		
+		
+		int rs = memberDao.delComm(map);
+		return rs;
+	}
+	
+	
 	@RequestMapping("comment")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -39,7 +61,7 @@ public class CommentHandler implements CommandHandler{
 //			System.out.println(getComm.get(0).getMem_id());
 			request.setAttribute("getComm", getComm);
 		}else {
-//			System.out.println("getComm 은 null 입니다.");
+//			System.out.println("getComm �� null �엯�땲�떎.");
 		}
 //		System.out.println("s_num : " + s_num + ", id : " + id	);
 		return new ModelAndView("user/comment");
@@ -48,7 +70,7 @@ public class CommentHandler implements CommandHandler{
 	@RequestMapping(value = "comm" ,method = RequestMethod.POST)
 	@ResponseBody
 	public List<CommentDataBean> com(HttpServletRequest request){
-//		System.out.println("comment ajax 들어옴");
+//		System.out.println("comment ajax �뱾�뼱�샂");
 		HttpSession sess = request.getSession();
 		String id = (String)sess.getAttribute("memId");
 		int s_num = Integer.parseInt(request.getParameter("s_num"));
@@ -64,7 +86,7 @@ public class CommentHandler implements CommandHandler{
 		
 		int rs= memberDao.insertComm(comm);
 		if(rs == 1)
-			System.out.println("인설트 성공");
+			System.out.println("�씤�꽕�듃 �꽦怨�");
 		List<CommentDataBean> commList = memberDao.getComm(s_num);
 		
 		return commList; 

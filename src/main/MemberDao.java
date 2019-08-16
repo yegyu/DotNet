@@ -10,6 +10,8 @@ import user.LibDataBean;
 import user.PointDataBean;
 
 public interface MemberDao {
+	public int delComm(Map<String,Object> map);
+	
 	public int checkId(String id);
 	public int checkSt(String id);
 	public int check(String id, String passwd);

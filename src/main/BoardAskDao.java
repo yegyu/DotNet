@@ -23,6 +23,7 @@ public interface BoardAskDao {
 	public Integer getMaxRNum(int num);
 	
 	
+	public int delReply(Map<String,Object> map);
 	
 	public int updateView(int num);
 	public int updateGB(Map<String,Integer> map);

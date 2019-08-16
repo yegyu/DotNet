@@ -12,10 +12,10 @@
 
 <title>Insert title here</title>
 <style>
-
+@media(max-length:700px){}
 </style>
 </head>
-<body onscroll="SetDivPosition()">
+<body >
 <!-- 상단 바 -->
 	<nav class="navbar navbar-expand-md navbar-default"
 		style="margin-bottom: 0px">
@@ -73,11 +73,11 @@
 					<table>
 						<thead>
 						<tr>
-							<th style="width:5%">번호</th>
-							<th style="width:11%">Good & Bad</th>	
-							<th style="width:10%" id="${s_num }">ID</th>
-							<th  style="width:45%">답변 내용</th>
-							<th style="width:20%">날짜</th>
+							<th style="width:60px">번호</th>
+							<th style="width:130px">Good & Bad</th>	
+							<th style="width:130px" id="${s_num }">ID</th>
+							<th  style="width:700px;">답변 내용</th>
+							<th style="width:210px">날짜</th>
 								
 						</tr>
 						</thead>
@@ -88,8 +88,11 @@
 							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
 							<td ><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
 							<td class="frfr" id="${re.id }" data-toggle="modal" data-target="#reqFr">${re.id }</td>
-							<td>${re.reply }</td>
-							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/>  </td>
+							<td class="${re.rState }">${re.reply }</td>
+							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/> 
+							<span aria-hidden="true" id="del_${re.rnum }" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span> 
+							</td>
+							
 						</tr>
 						</c:forEach>
 						</tbody>
@@ -127,11 +130,77 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="dr" tabindex="-1" role="dialog" aria-labelledby="drl" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="drl">비밀번호</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input type="password" class="form-control" id="delP" >
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " id="delBtn">삭제</button>
+      </div>
+    </div>
+  </div>
+</div>
 <label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 <script>
+$('.-1').each(function(){
+	$(this).text("삭제된 답변입니다.")
+});
+var th ;
+var rid;
+$('.del').on('click',function(){
+	if($(this).parent().siblings().eq(3).hasClass('-1')){
+		alert('이미 삭제된 답글입니다.');
+		return false;
+	}
+	th = $(this).parent().siblings().eq(0).text();
+	rid = $(this).parent().siblings().eq(2).text()
+	if(rid != '${sessionScope.memId}'){
+		alert('본인 아이디가 아닙니다.')
+		$("#dr").modal("hide")
+		
+		return false;
+	}
+});
+$('#delBtn').on('click',function(){
+		var d = {passwd:$('#delP').val() , "num": num , rnum:th};
+		$.ajax({
+			url:"delR.do",
+			data:d,
+			dataType:"text",
+			type:"post",
+			success:function(d){
+				if(d == "1"){
+					location.reload();
+// 					$('#delP').val("");
+// 					console.log($('#'+rnum).siblings().eq(2))
+// 					$('#'+th).siblings().eq(2).text("삭제된 답변입니다.");
+// 					$("#dr").modal("hide");
+// 					$('.modal-backdrop').removeClass('show');
+				}else if(d == "-1"){
+					alert("비밀번호가 일치하지 않습니다.")
+				}
+			}
+		});
+
+});
+
+
 function reqFriend(data1){
 	$.ajax({
 		data:data1,
@@ -155,10 +224,10 @@ function reqFriend(data1){
 }
 var frid;
 	$('.frfr').on('mouseenter',function(){
-		$('body').append('<div class="animated infinite bounce " id="showBit" style="position:fixed; top:50%; left:0%;"><h1>'+$(this).text()+'와<br>좋은 친구가<br> 되겠군요...<br>Click id </h1></div>')
+		$(this).css('cursor','pointer')
 	})
 	$('.frfr').on('mouseleave',function(){
-		$('#showBit').remove();
+		$(this).css('cursor','default')
 	});
 	$('.frfr').on('click',function(){
 		frid=$(this).attr('id')
@@ -169,7 +238,7 @@ var frid;
 		if($('#reqMsg').val() ==""){			
 			var confirmFrMsg = confirm('글을 남기지 않겠습니까?')
 			if(confirmFrMsg){
-				var data2 = {id : frid, title:"친구 요청" , contents:"친구 요청이 들어오셨어요 ㅎㅎㅎ" }
+				var data2 = {id : frid, title:"친구 요청" , contents:"친구 요청이 들어오셨어요 ㅎㅎㅎ" };
 				reqFriend(data2)
 			}else{
 				return false;

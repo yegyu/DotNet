@@ -11,6 +11,10 @@ import main.BoardAskDataBean;
 public class BoardAskDBBean implements BoardAskDao{
 
 	@Override
+	public int delReply(Map<String, Object> map) {
+		return SqlMapClient.getSession().update("delReply", map);
+	}
+	@Override
 	public int updateGB(Map<String, Integer> map) {
 		return SqlMapClient.getSession().update("updateGB", map);
 	}

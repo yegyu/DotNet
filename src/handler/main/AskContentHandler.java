@@ -234,6 +234,32 @@ public class AskContentHandler implements CommandHandler{
 		return "결과를 알 수없니다. Ask Contnet 로 오세요";
 	}
 	
+	@Resource
+	private MemberDao memberDao;
+	
+	@RequestMapping(value = "delR")
+	@ResponseBody
+	public String delReply(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("memId");
+		String passwd = request.getParameter("passwd");
+		int num = Integer.parseInt(request.getParameter("num"));
+		int rnum = Integer.parseInt(request.getParameter("rnum"));
+		Map<String,Object> map = new HashMap<String, Object>();
+		int urs = 0;
+		int rs = memberDao.check(id, passwd);
+		if(rs == 1) {
+			map.put("rnum", rnum);
+			map.put("num", num);
+			urs = boardAskDao.delReply(map);
+//			System.out.println("urs succsess : "+ urs);
+		}else {
+			//실패
+			return "-1";
+		}
+		return String.valueOf(urs);
+	}
+	
 	
 	
 	

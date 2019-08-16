@@ -14,6 +14,10 @@ import user.PointDataBean;
 
 public class MemberDBBean implements MemberDao{
 	@Override
+	public int delComm(Map<String, Object> map) {
+		return SqlMapClient.getSession().update("Main.delComm", map);
+	}
+	@Override
 	public List<MemberDataBean> searchMems(String id) {
 		return SqlMapClient.getSession().selectList("Main.searchMems",id);
 	}
