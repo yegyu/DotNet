@@ -88,7 +88,7 @@
 							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
 							<td ><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
 							<td class="frfr" id="${re.id }" data-toggle="modal" data-target="#reqFr">${re.id }</td>
-							<td class="${re.rState }">${re.reply }</td>
+							<td class="${re.rState }" >${re.reply }</td>
 							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/> 
 							<span aria-hidden="true" id="del_${re.rnum }" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span> 
 							</td>
@@ -153,11 +153,51 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="ddModal" tabindex="-1" role="dialog" aria-labelledby="rl" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rl">댓글</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <textarea  class="form-control" id="ddContents" ></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " id="ddBtn">쓰기</button>
+      </div>
+    </div>
+  </div>
+</div>
 <label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 <script>
+$('.0').on('mouseenter',function(){
+	$(this).css("cursor","pointer");
+});
+$('.0').on('mouseleave',function(){
+	$(this).css("cursor","default");
+});
+$('.0').on('click',function(){
+	if('${sessionScope.memId}'){
+		$('#ddModal').modal();
+	}else{
+		alert('로그인 후 댓글을 남길 수 있습니다.~~')
+	}
+});
+$('#ddBtn').on('click',function(){
+	var contents = 	$('#ddContents').val();
+});
+
+
 $('.-1').each(function(){
 	$(this).text("삭제된 답변입니다.")
 });
