@@ -43,7 +43,8 @@ public class MainHandler implements CommandHandler {
 	@RequestMapping(value = {"/a", "/search" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
-
+// 동근아 
+// 한글깨짐 테스트
 //		System.out.println("alignAjax �븿�닔 �뱾�뼱�샂");
 
 //		SurveyDBBean surveyDao = new SurveyDBBean();
