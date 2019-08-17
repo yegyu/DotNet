@@ -27,9 +27,7 @@
 
 	<update id="updateUserSt" parameterType="Map" >
 		update dn_member set user_state = #{state} where id = #{id}
-	
 	</update>
-	
 	<select id="getMembers" resultType="main.MemberDataBean">
 	select * from dn_member
 	</select>

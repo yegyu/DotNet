@@ -10,10 +10,17 @@ import main.BoardAskDataBean;
 
 public class BoardAskDBBean implements BoardAskDao{
 
+	
+	@Override
+	public int delDReply(Map<String, Object> map) {
+		return SqlMapClient.getSession().update("delDReply", map);
+	}
 	@Override
 	public int delReply(Map<String, Object> map) {
 		return SqlMapClient.getSession().update("delReply", map);
 	}
+	
+	
 	@Override
 	public int updateGB(Map<String, Integer> map) {
 		return SqlMapClient.getSession().update("updateGB", map);
@@ -33,6 +40,12 @@ public class BoardAskDBBean implements BoardAskDao{
 	@Override
 	public Integer getMaxRNum(int num) {
 		return SqlMapClient.getSession().selectOne("getMaxRNum", num);
+	}
+	
+	
+	@Override
+	public AskReplyDataBean getDDReply(Map<String, Object> map) {
+		return SqlMapClient.getSession().selectOne("getDDReply", map);
 	}
 	
 	@Override

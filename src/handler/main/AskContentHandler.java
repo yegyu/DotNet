@@ -143,6 +143,38 @@ public class AskContentHandler implements CommandHandler{
 		return reply;
 		
 	}
+	//대댓글
+	@RequestMapping(value = "ddr", method= RequestMethod.POST)
+	@ResponseBody
+	public AskReplyDataBean ddReply(HttpServletRequest request) throws Exception {
+		HttpSession s = request.getSession();
+		String id = (String)s.getAttribute("memId");
+		AskReplyDataBean ar = new AskReplyDataBean();
+		int num = Integer.parseInt(request.getParameter("num"));
+		int rnum = Integer.valueOf(request.getParameter("rnum"));
+		String reply = request.getParameter("reply");
+		ar.setRnum(rnum);
+		ar.setNum(num);
+		ar.setReply(reply);
+		ar.setId(id); 
+		ar.setBad(0);
+		ar.setGood(0);
+		ar.setrDate(new Timestamp(System.currentTimeMillis() ));
+		ar.setrState(-2);
+		
+		
+		
+		int rs = boardAskDao.insertReply(ar);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("rnum",rnum);
+		map.put("num", num);
+		
+//		List<AskReplyDataBean> replys = boardAskDao.getReplys(Integer.parseInt(request.getParameter("num")));
+		AskReplyDataBean ddr = boardAskDao.getDDReply(map);
+		
+		return ddr;
+		
+	}
 	
 	@RequestMapping(value = "goodBad", method = RequestMethod.POST)
 	@ResponseBody
@@ -245,18 +277,38 @@ public class AskContentHandler implements CommandHandler{
 		String passwd = request.getParameter("passwd");
 		int num = Integer.parseInt(request.getParameter("num"));
 		int rnum = Integer.parseInt(request.getParameter("rnum"));
+		String rD = request.getParameter("rDate");
+//		System.out.println("rD >> " + rD);
+//		Timestamp rDate = Timestamp.valueOf(rD);
+//		System.out.println("rDate >> " + rDate);
+
+		String type = request.getParameter("type");
+		String reply = request.getParameter("reply");
 		Map<String,Object> map = new HashMap<String, Object>();
 		int urs = 0;
 		int rs = memberDao.check(id, passwd);
 		if(rs == 1) {
 			map.put("rnum", rnum);
 			map.put("num", num);
-			urs = boardAskDao.delReply(map);
+			map.put("rDate",rD);
+			map.put("reply",reply);
+			
+			if(type.equals("0")) {
+				urs = boardAskDao.delReply(map);
+				System.out.println(urs +" <<< ");
+				urs = 1;
+			}else if(type.equals("-2")) {
+				urs = boardAskDao.delDReply(map);
+				urs =2;
+				
+			}
 //			System.out.println("urs succsess : "+ urs);
 		}else {
 			//실패
+			urs = -1;
 			return "-1";
 		}
+		System.out.println("urs >> " + urs + ", type >> " + type);
 		return String.valueOf(urs);
 	}
 	

@@ -11,9 +11,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
 <title>Insert title here</title>
-<style>
-@media(max-length:700px){}
-</style>
 </head>
 <body >
 <!-- 상단 바 -->
@@ -66,6 +63,9 @@
 				<button class="btn" style="position:relative; right: 0px" id="replyBtn">답글 입력</button>
 			 </div>
 		</div>
+		<div class="">
+			답변 내용 더블 클릭 -> 댓글쓰기
+		</div>
 <!-- 		<i class="fas fa-power-off" ></i> : 초기화 버튼<br> -->
 		<div class="row">
 			<div class="col-md-12">
@@ -73,10 +73,10 @@
 					<table>
 						<thead>
 						<tr>
-							<th style="width:60px">번호</th>
-							<th style="width:130px">Good & Bad</th>	
-							<th style="width:130px" id="${s_num }">ID</th>
-							<th  style="width:700px;">답변 내용</th>
+							<th style="width:100px">번호</th>
+							<th style="width:140px">Good & Bad</th>	
+							<th style="width:120px" id="${s_num }">ID</th>
+							<th  style="width:500px;">답변 내용</th>
 							<th style="width:210px">날짜</th>
 								
 						</tr>
@@ -84,15 +84,22 @@
 						<tbody id="reBody">
 						
 						<c:forEach var="re" items="${replys}">
-						<tr>
+						<tr class="tr${re.rState } tr${re.rnum}">
+						
 							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
-							<td ><i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> </td><!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
+							<td >
+							<c:if test="${re.rState == -2}">
+							<i class="fas fa-hashtag"></i> <i class="fab fa-replyd"></i>
+							</c:if>
+							<c:if test="${re.rState == 0 }">
+							<i class="far fa-thumbs-up good">${re.good }</i> <i class="far fa-thumbs-down bad">${re.bad }</i> <!-- <i class="fas fa-power-off" name="${re.good }_${re.bad }"></i> -->
+							</c:if>
+							</td>
 							<td class="frfr" id="${re.id }" data-toggle="modal" data-target="#reqFr">${re.id }</td>
-							<td class="${re.rState }" >${re.reply }</td>
+							<td class="${re.rState } " >${re.reply }</td>
 							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/> 
 							<span aria-hidden="true" id="del_${re.rnum }" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span> 
 							</td>
-							
 						</tr>
 						</c:forEach>
 						</tbody>
@@ -123,6 +130,7 @@
           </div>
           
         </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" id="reqFrBtn">친구 요청</button>
@@ -153,6 +161,8 @@
     </div>
   </div>
 </div>
+
+
 <div class="modal fade" id="ddModal" tabindex="-1" role="dialog" aria-labelledby="rl" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -168,10 +178,13 @@
             <textarea  class="form-control" id="ddContents" ></textarea>
           </div>
         </form>
+       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn " id="ddBtn">쓰기</button>
       </div>
+      
+      
     </div>
   </div>
 </div>
@@ -180,21 +193,94 @@
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 <script>
-$('.0').on('mouseenter',function(){
-	$(this).css("cursor","pointer");
+ddrFunc();
+var rn;
+var ddr;
+$('.tr-2').each(function(i){
+	$(this).hide();
+	$(this).children().eq(0).append('댓'+i);
+	//아무 의미 없음
+	$(this).children().eq(1).children('.fa-hashtag').after(' >>> ')
+	$(this).children().eq(0).addClass('sr-only');
+	
 });
-$('.0').on('mouseleave',function(){
-	$(this).css("cursor","default");
+var DDRlen = $('.tr0').length + $('.tr-1').length;
+// for(var i = 0 ; i < $('.tr0').length; i++){
+// 	var el = $('.tr0.tr'+i);
+//  	var ddl= el.siblings('.tr-2.tr'+i).length;
+//  	if(ddl != 0){
+// 	 	el.siblings().eq(3).append("(댓글 : "+ ddl +")")
+//  	}
+	
+// }
+$('.tr0').each(function(idx,item){
+	var i = DDRlen-idx;
+	var l = $($('.tr0.tr'+i)).siblings('.tr-2.tr'+i).length;
+	if(l != 0)
+	$(this).children().eq(3).append("(댓글 : "+ l +' <i class="fas fa-angle-down"></i>)');
 });
-$('.0').on('click',function(){
-	if('${sessionScope.memId}'){
-		$('#ddModal').modal();
-	}else{
-		alert('로그인 후 댓글을 남길 수 있습니다.~~')
-	}
-});
+function ddrFunc(){
+	$('.0').on('click',function(){
+	 	rn= $(this).siblings().eq(0).text();
+	 	var ddd = $(this).parent().siblings('.tr'+rn).css('background-color','rgba(227, 179, 255, 0.1)');
+		$(this).parent().siblings('.tr'+rn).toggle("slow");
+		if($(this).children('i.fas').hasClass('fa-angle-up')){
+			$(this).children('i.fas').attr('class','fas fa-angle-down')
+		}else{
+			$(this).children('i.fas').attr('class','fas fa-angle-up')
+			
+		}
+//	 	$('.tr'+rn).toggle("slow");
+	});
+
+	$('.0').on('mouseenter',function(){
+		$(this).css("cursor","pointer");
+	});
+	$('.0').on('mouseleave',function(){
+		$(this).css("cursor","default");
+	});
+
+	$('.0').on('dblclick',function(){
+		if('${sessionScope.memId}'){
+			$('#ddModal').modal();
+			ddr = $(this).siblings().eq(0).text();
+		}else{
+			alert('로그인 후 댓글을 남길 수 있습니다.~~')
+		}
+	});
+}
+
+
 $('#ddBtn').on('click',function(){
-	var contents = 	$('#ddContents').val();
+	if($('#ddContents').val() ==""){
+		alert('글을 입력을 깜빡하셨어요 ㅎㅎ');
+		return false;
+	}else{
+		var contents = 	$('#ddContents').val();
+	// 	num  그냥 사용 가능
+		var dt = {reply:contents , num : num, rnum: ddr}
+		$.ajax({
+			url:'ddr.do',
+			data:dt,
+			dataType:"json",
+			type:"post",
+			success:function(re){
+				$('.tr0.tr'+rn).after('<tr class="tr'+re.rState+' tr'+re.rnum+'">'
+						+'<td class="tdRnum sr-only" id="'+re.rnum+'">'+re.rnum+'</td>'
+						+'<td > </td>'
+						+'<td class="frfr" id="'+re.id+'" data-toggle="modal" data-target="#reqFr">'+re.id+'</td>'
+						+'<td class="'+re.rState+'" >'+re.reply+'</td>'
+						+'<td>'+ formatDate(new Date(re.rDate))
+						+' <span aria-hidden="true" id="del_'+re.rnum+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr"> ×</span>' 
+						+'</td>'
+					+'</tr>')
+					$("#ddModal").modal('hide')
+					
+			}
+		})
+	}
+	
+	
 });
 
 
@@ -203,13 +289,29 @@ $('.-1').each(function(){
 });
 var th ;
 var rid;
+var rDate;
+var con;
+var bth;
+var rtp;
 $('.del').on('click',function(){
 	if($(this).parent().siblings().eq(3).hasClass('-1')){
 		alert('이미 삭제된 답글입니다.');
 		return false;
 	}
-	th = $(this).parent().siblings().eq(0).text();
+	bth = $(this).parent().siblings().eq(0).text()
+	
+	if(bth.includes('댓')){
+		th = bth.split('댓')[0]
+		rtp = "-2";
+	}else{
+		th = bth;
+		rtp = "0";
+	}
 	rid = $(this).parent().siblings().eq(2).text()
+	var ar = $(this).parent().text().split(' ');
+	rDate = ar[0] +' '+ ar[1];
+	console.log(rDate);
+	con = $(this).parent().siblings().eq(3).text();
 	if(rid != '${sessionScope.memId}'){
 		alert('본인 아이디가 아닙니다.')
 		$("#dr").modal("hide")
@@ -218,14 +320,16 @@ $('.del').on('click',function(){
 	}
 });
 $('#delBtn').on('click',function(){
-		var d = {passwd:$('#delP').val() , "num": num , rnum:th};
+		var d = {passwd:$('#delP').val() , "num": num , rnum:th ,rDate : rDate, reply :con ,type : rtp};
+		console.log(d)
 		$.ajax({
 			url:"delR.do",
 			data:d,
 			dataType:"text",
 			type:"post",
 			success:function(d){
-				if(d == "1"){
+				if(d == "1" || d == "2"){
+					alert('삭제완료')
 					location.reload();
 // 					$('#delP').val("");
 // 					console.log($('#'+rnum).siblings().eq(2))
@@ -291,7 +395,6 @@ var frid;
 		
 	});
 </script>
-<!-- 스크롤 위치 쿠키에 저장 -->
 
   <script>
   // 질문번호,답글번호=good,bad
@@ -393,15 +496,15 @@ var frid;
 		$('.far, .fas').on('mouseleave',function(){
 			$(this).css("font-size","17px")
 		});
-		$('.fas').on('click',function(){
-			var g = $(this).attr('name').split("_")[0]
-			$(this).siblings().eq(0).text(g)
-			var b = $(this).attr('name').split("_")[1]
-			$(this).siblings().eq(1).text(b)
-			ob = {};
-			numArr = [];
-			numArrIndex = 0;
-		});
+// 		$('.fas').on('click',function(){
+// 			var g = $(this).attr('name').split("_")[0]
+// 			$(this).siblings().eq(0).text(g)
+// 			var b = $(this).attr('name').split("_")[1]
+// 			$(this).siblings().eq(1).text(b)
+// 			ob = {};
+// 			numArr = [];
+// 			numArrIndex = 0;
+// 		});
 		
 		//ajax good
 		$('i.far').on('click',function(){

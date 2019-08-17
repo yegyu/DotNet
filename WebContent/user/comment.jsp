@@ -66,17 +66,51 @@
 
 <script type="text/javascript" src="jquery-3.4.1.js"></script>
 <script type="text/javascript" src="bootstrap.bundle.js"></script>
+
 <script>
-$('.-1').each(function(){
-	$(this).text("삭제된 답변입니다.")
-});
+
+$(document).ready(function(){
+	$('#inputComment').on('click',function(){
+		if(session == null || session == "") {
+			$(".commentbtn").attr("disabled","true");
+		}
+		
+	    com = {"content":$('#commentArea').val(), "s_num":'${s_num}'};
+	    $.ajax({
+	    	type:"POST",
+	    	data:com,
+	    	dataType:"json",
+	    	url:"comm.do",
+	    	success:function(){
+// 	    		console.log(com[0].mem_id + " 입니다.")
+// 	    		$("#conBody").children().remove();
+// 	    		for(var i =0 ; i < com.length; i++){
+// 	    			$("#conBody").append("<tr><td>" + com[i].mem_id + "</td><td>"+com[i].content+"</td><td>"+getFormatDate(new Date(com[i].dt))+'<span aria-hidden="true" id="'+com[i].mem_id+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span></td></tr>')
+// 	    		}
+				//귀찮으면 무조건 reload 
+				//modal 은 자리기억이 안되나???
+				location.reload();
+// 	    			forDelText();
+	    	}
+	    	
+	    });
+	});
+	
+})
+forDelText();
+function forDelText(){
+	$('.-1').each(function(){
+		$(this).text("삭제된 답변입니다.")
+	});
+	
+};
 $('.del').on("click",function(){
+	var id = $(this).prop('id')
 	if($(this).parent().siblings().eq(1).hasClass('-1')){
 		alert('이미 삭제됐습니다.')
 		return false
 	}else{
 		
-	var id = $(this).prop('id')
 	var s_num = '${s_num}';
 	var content = $(this).parent().siblings().eq(1).text();
 	if('${sessionScope.memId}' == id){
@@ -89,13 +123,12 @@ $('.del').on("click",function(){
 			url:"delComm.do",
 			type:"post",
 			success:function(dt){
-				if(dt == 1){
 					location.reload();
-					
-				}
 			}
 		});
 		
+	}else{
+		alert('본인아이디가 아닙니다.')
 	}
 		
 	}
@@ -189,34 +222,5 @@ return year + '-' + month + '-' + day; }
 
 var session = '${sessionScope.memId}';
 
-$(document).ready(function(){
-	$('#inputComment').on('click',function(){
-		if(session == null || session == "") {
-			$(".commentbtn").attr("disabled","true");
-		}
-		
-	    com = {"content":$('#commentArea').val(), "s_num":'${s_num}'};
-	    $.ajax({
-	    	type:"POST",
-	    	data:com,
-	    	dataType:"json",
-	    	url:"comm.do",
-	    	success:function(com){
-	    		console.log(com[0].mem_id + " 입니다.")
-	    		$("#conBody").children().remove();
-	    		for(var i =0 ; i < com.length; i++){
-	    			$("#conBody").append("<tr><td>" + com[i].mem_id + "</td><td>"+com[i].content+"</td><td>"+getFormatDate(new Date(com[i].dt))+'<span aria-hidden="true" id="'+com[i].mem_id+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span></td></tr>')
-	    			
-	    		}
-	    			
-	    	},
-	    	error:function(){
-	    		console.log("comment insert error")
-	    	}
-	    	
-	    });
-	});
-	
-})
 
 </script>

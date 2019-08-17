@@ -3,14 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  
+  <!--to_char(rdate,'YYYY-MM-DD HH:MI:SS')  -->
 <!-- 	board -->
 <mapper namespace="Ask">
 	
 	<update id="delReply" parameterType="map">
-		update dn_askReply set rstate = -1 where num = #{num} and rnum = #{rnum}
+		update dn_askReply set rstate = -1 where num = #{num} and rnum = #{rnum} and rstate=0 
+		
 	
 	</update>
+	<delete id="delDReply" parameterType="map">
+	delete from dn_askReply where num = #{num} and rnum = #{rnum} 
+		and to_char(rdate,'YYYY-MM-DD HH:MI:SS') = #{rDate} and reply = #{reply}
+	</delete>
 	
 	
 	<select id="getMaxRNum" parameterType="int" resultType="Integer">
@@ -18,10 +23,14 @@
 	</select>
 	
 	<select id="getReplys" parameterType="int" resultType="main.AskReplyDataBean">
-		select * from dn_askReply where num = #{num} order by rnum desc
+		select * from dn_askReply where num = #{num}  order by rnum desc,rstate desc,rdate desc
 	</select>
 	<select id="getReply" parameterType="int" resultType="main.AskReplyDataBean">
-		select * from dn_askReply where num = #{num} and  rnum = (select max(rnum) from dn_askReply where num = #{num})
+		select * from dn_askReply where num = #{num} and  rnum = (select max(rnum) from dn_askReply where num = #{num}) and rstate = 0
+	</select>
+	<select id="getDDReply" parameterType="map" resultType="main.AskReplyDataBean">
+		select * from dn_askReply where num = #{num} and  rnum = #{rnum} and rstate = -2 and rdate 
+		= (select max(rdate) from dn_askReply where rnum = #{rnum})   
 	</select>
 	
 	

@@ -24,11 +24,12 @@ public interface BoardAskDao {
 	
 	
 	public int delReply(Map<String,Object> map);
+	public int delDReply(Map<String,Object> map);
 	
 	public int updateView(int num);
 	public int updateGB(Map<String,Integer> map);
 	
-	
+	public AskReplyDataBean getDDReply(Map<String,Object> map);
 	
 
 
