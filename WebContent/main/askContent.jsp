@@ -64,7 +64,8 @@
 			 </div>
 		</div>
 		<div class="">
-			답변 내용 더블 클릭 -> 댓글쓰기
+			답변 내용 더블 클릭 -> 댓글쓰기<br>
+			아이디 클릭 -> 친구 요청
 		</div>
 <!-- 		<i class="fas fa-power-off" ></i> : 초기화 버튼<br> -->
 		<div class="row">
@@ -73,7 +74,7 @@
 					<table>
 						<thead>
 						<tr>
-							<th style="width:100px">번호</th>
+							<th style="width:10px"></th>
 							<th style="width:140px">Good & Bad</th>	
 							<th style="width:120px" id="${s_num }">ID</th>
 							<th  style="width:500px;">답변 내용</th>
@@ -84,9 +85,10 @@
 						<tbody id="reBody">
 						
 						<c:forEach var="re" items="${replys}">
-						<tr class="tr${re.rState } tr${re.rnum}">
+<%-- 						<c:if test="${re.rState != -1 }"> --%>
+						<tr class="tr${re.rState } tr${re.rnum} tr">
 						
-							<td class='tdRnum' id='${re.rnum }'>${re.rnum }</td>
+							<td class='tdRnum sr-only' id='${re.rnum }'>${re.rnum }</td>
 							<td >
 							<c:if test="${re.rState == -2}">
 							<i class="fas fa-hashtag"></i> <i class="fab fa-replyd"></i>
@@ -96,11 +98,12 @@
 							</c:if>
 							</td>
 							<td class="frfr" id="${re.id }" data-toggle="modal" data-target="#reqFr">${re.id }</td>
-							<td class="${re.rState } " >${re.reply }</td>
+							<td class="${re.rState }" >${re.reply }</td>
 							<td><fmt:formatDate value="${re.rDate}" pattern="yyyy-MM-dd hh:mm:ss"/> 
 							<span aria-hidden="true" id="del_${re.rnum }" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr">×</span> 
 							</td>
 						</tr>
+<%-- 						</c:if> --%>
 						</c:forEach>
 						</tbody>
 					</table>
@@ -193,9 +196,16 @@
 	<script type="text/javascript" src="jquery-3.4.1.js"></script>
 	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 <script>
+function SetDivPosition()
+{
+ var intY = document.body.scrollTop;
+ document.cookie = "yPos=!~"+intY+"~!";
+}
 ddrFunc();
 var rn;
 var ddr;
+var DDRlen = $('.tr').length ;
+//////////
 $('.tr-2').each(function(i){
 	$(this).hide();
 	$(this).children().eq(0).append('댓'+i);
@@ -204,24 +214,24 @@ $('.tr-2').each(function(i){
 	$(this).children().eq(0).addClass('sr-only');
 	
 });
-var DDRlen = $('.tr0').length + $('.tr-1').length;
-// for(var i = 0 ; i < $('.tr0').length; i++){
-// 	var el = $('.tr0.tr'+i);
-//  	var ddl= el.siblings('.tr-2.tr'+i).length;
-//  	if(ddl != 0){
-// 	 	el.siblings().eq(3).append("(댓글 : "+ ddl +")")
-//  	}
+
+////////////
+$('.tr').each(function(idx,item){
+// 	console.log($(this).hasClass('tr-2'))
 	
-// }
-$('.tr0').each(function(idx,item){
-	var i = DDRlen-idx;
-	var l = $($('.tr0.tr'+i)).siblings('.tr-2.tr'+i).length;
-	if(l != 0)
-	$(this).children().eq(3).append("(댓글 : "+ l +' <i class="fas fa-angle-down"></i>)');
+	var i = $('.tr').length -idx;
+	if($('.tr'+i).hasClass('tr0')){
+	console.log("i > "+i)
+		var l = $($('.tr0.tr'+i)).siblings('.tr-2.tr'+i).length;
+		if(l != 0)
+			$('.tr0.tr'+i).children().eq(3).append("(댓글 : "+ l +' <i class="fas fa-angle-down"></i>)');
+	}
 });
+///////////////
+// });
 function ddrFunc(){
 	$('.0').on('click',function(){
-	 	rn= $(this).siblings().eq(0).text();
+	 	rn= $(this).siblings().eq(0).prop('id');
 	 	var ddd = $(this).parent().siblings('.tr'+rn).css('background-color','rgba(227, 179, 255, 0.1)');
 		$(this).parent().siblings('.tr'+rn).toggle("slow");
 		if($(this).children('i.fas').hasClass('fa-angle-up')){
@@ -243,7 +253,7 @@ function ddrFunc(){
 	$('.0').on('dblclick',function(){
 		if('${sessionScope.memId}'){
 			$('#ddModal').modal();
-			ddr = $(this).siblings().eq(0).text();
+			ddr = $(this).siblings().eq(0).prop('id');
 		}else{
 			alert('로그인 후 댓글을 남길 수 있습니다.~~')
 		}
@@ -265,16 +275,17 @@ $('#ddBtn').on('click',function(){
 			dataType:"json",
 			type:"post",
 			success:function(re){
-				$('.tr0.tr'+rn).after('<tr class="tr'+re.rState+' tr'+re.rnum+'">'
-						+'<td class="tdRnum sr-only" id="'+re.rnum+'">'+re.rnum+'</td>'
-						+'<td > </td>'
-						+'<td class="frfr" id="'+re.id+'" data-toggle="modal" data-target="#reqFr">'+re.id+'</td>'
-						+'<td class="'+re.rState+'" >'+re.reply+'</td>'
-						+'<td>'+ formatDate(new Date(re.rDate))
-						+' <span aria-hidden="true" id="del_'+re.rnum+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr"> ×</span>' 
-						+'</td>'
-					+'</tr>')
-					$("#ddModal").modal('hide')
+// 				$('.tr0.tr'+rn).after('<tr class="tr'+re.rState+' tr'+re.rnum+' tr">'
+// 						+'<td class="tdRnum sr-only" id="'+re.rnum+'">'+re.rnum+'</td>'
+// 						+'<td > </td>'
+// 						+'<td class="frfr" id="'+re.id+'" data-toggle="modal" data-target="#reqFr">'+re.id+'</td>'
+// 						+'<td class="'+re.rState+'" >'+re.reply+'</td>'
+// 						+'<td>'+ formatDate(new Date(re.rDate))
+// 						+' <span aria-hidden="true" id="del_'+re.rnum+'" class="del" style="cursor: pointer;" data-toggle="modal" data-target="#dr"> ×</span>' 
+// 						+'</td>'
+// 					+'</tr>')
+					location.reload();
+// 					$("#ddModal").modal('hide')
 					
 			}
 		})
@@ -298,26 +309,29 @@ $('.del').on('click',function(){
 		alert('이미 삭제된 답글입니다.');
 		return false;
 	}
-	bth = $(this).parent().siblings().eq(0).text()
-	
+	bth = $(this).parent().siblings().eq(0).text();
+	console.log("bth >> " + bth);
 	if(bth.includes('댓')){
-		th = bth.split('댓')[0]
+		th = $(this).parent().siblings().eq(0).prop('id');
 		rtp = "-2";
 	}else{
-		th = bth;
+		th = $(this).parent().siblings().eq(0).prop('id');
 		rtp = "0";
 	}
 	rid = $(this).parent().siblings().eq(2).text()
-	var ar = $(this).parent().text().split(' ');
-	rDate = ar[0] +' '+ ar[1];
-	console.log(rDate);
-	con = $(this).parent().siblings().eq(3).text();
+	console.log('rid > ' + rid);
+	console.log("r type >> " + rtp)
+	
 	if(rid != '${sessionScope.memId}'){
 		alert('본인 아이디가 아닙니다.')
 		$("#dr").modal("hide")
 		
 		return false;
 	}
+	var ar = $(this).parent().text().split(' ');
+	rDate = ar[0] +' '+ ar[1];
+	console.log(rDate);
+	con = $(this).parent().siblings().eq(3).text();
 });
 $('#delBtn').on('click',function(){
 		var d = {passwd:$('#delP').val() , "num": num , rnum:th ,rDate : rDate, reply :con ,type : rtp};
@@ -328,7 +342,7 @@ $('#delBtn').on('click',function(){
 			dataType:"text",
 			type:"post",
 			success:function(d){
-				if(d == "1" || d == "2"){
+				if(d == "1" ){
 					alert('삭제완료')
 					location.reload();
 // 					$('#delP').val("");
@@ -336,7 +350,12 @@ $('#delBtn').on('click',function(){
 // 					$('#'+th).siblings().eq(2).text("삭제된 답변입니다.");
 // 					$("#dr").modal("hide");
 // 					$('.modal-backdrop').removeClass('show');
-				}else if(d == "-1"){
+				}else if(d == "2"){
+					alert('댓글 삭제 완료')
+					location.reload();
+
+				}
+				else if(d == "-1"){
 					alert("비밀번호가 일치하지 않습니다.")
 				}
 			}
@@ -448,7 +467,7 @@ var frid;
 // // 			}
 // 		})
 		var j = 0 ;
-		 for(var i = 0 ; i < $('.tdRnum').length ; i++){arrr[i] = $('.tdRnum').eq(i).text()}
+		 for(var i = 0 ; i < $('.tdRnum').length ; i++){arrr[i] = $('.tdRnum').eq(i).prop('id')}
 		for(var i =0;i < cookies.length; i++){
 			//c 는 배열들의 집합['num gb rnum','good gb bad']
 			var c = cookies[i].split('=');
@@ -474,13 +493,9 @@ var frid;
 				
 			}
 		}
-	};
+	};/////check 함수 끝(쿠키)
 	
-	 function SetDivPosition()
-	 {
-	  var intY = document.body.scrollTop;
-	  document.cookie = "yPos=!~"+intY+"~!";
-	 }
+	 
  
 	if($('#reBody').children().length == 0){
 		$('div.table').append('<br><br><h1 class="animated infinite bounce">첫 답변을 해주세요 ^^</h1>')
@@ -508,7 +523,7 @@ var frid;
 		
 		//ajax good
 		$('i.far').on('click',function(){
-			rnum = $(this).parent().siblings().eq(0).text();
+			rnum = $(this).parent().siblings().eq(0).prop('id');
 			
 // 			if(!numArr.includes(eval(num))){
 				ob[rnum] ={};
@@ -619,14 +634,14 @@ var frid;
 			ob[rnum]["num"] = num;
 			
 			var dt = {"gb" : JSON.stringify(ob) };
-			console.log(dt)
+// 			console.log(dt)
 			$.ajax({
 				data:dt,
 				dataType:"text",
 				type:"post",
 				url:"goodBad.do",
 				success:function(data){
-					console.log("좋아요 성공 : " + data)
+// 					console.log("좋아요 성공 : " + data)
 					
 				}
 				

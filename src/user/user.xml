@@ -40,7 +40,19 @@
 	</insert>
 	
 	<insert id="insertQuestion" parameterType="user.CompanyDataBean">
-		insert into dn_ask_co values(#(a_num),#(co_email),#(a_name),#(co_content),#(co_type),#(co_code),#(w_date))
+		insert into dn_ask_co values(SEQ_dn_s_ask_co_a_num.nextval,#{co_email},#{co_name},#{a_name},#{co_title},#{co_content},#{co_type},#{co_code},#{co_read},sysdate)
 	</insert>
 	
+	
+	<select id="getQuestions" resultType="user.CompanyDataBean">
+		select * 
+		from dn_ask_co
+		order by w_date desc
+	</select>
+	
+	<select id="getContent"  parameterType="String" resultType="user.CompanyDataBean">
+		select * 
+		from dn_ask_co
+		where a_num=${a_num}
+	</select>
 </mapper>

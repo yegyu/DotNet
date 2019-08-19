@@ -27,8 +27,9 @@
 	
 	<!--이 쿼리가 이상함  -->
 	<select id="getRecomFr" parameterType="Map" resultType="main.MemberDataBean">
-		select * from dn_member where id  not in (select res_mem_id from dn_friend where req_mem_id =#{id})  
-		or id not in  (select req_mem_id from dn_friend where res_mem_id =#{id}  ) and id != #{id} 
+		select id from dn_member where id  not in 
+(select res_mem_id from dn_friend where req_mem_id =#{id} union 
+select req_mem_id from dn_friend where res_mem_id =#{id}  ) and id != #{id}
 <!-- 		and age = #{age} -->
 	</select>
 	

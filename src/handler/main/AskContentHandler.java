@@ -20,10 +20,14 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -38,6 +42,7 @@ import user.FrDao;
 import user.MessageDao;
 import user.MessageDataBean;
 
+
 @Controller
 public class AskContentHandler implements CommandHandler{
 
@@ -47,6 +52,16 @@ public class AskContentHandler implements CommandHandler{
 	@RequestMapping("askContent")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession sess = request.getSession();
+		String id = (String)sess.getAttribute("memId");
+		request.setAttribute("id",id);
+//		Logger log = LoggerFactory.getLogger(AskContentHandler.class);
+//		log.debug(id + " << debug");
+//		log.info(id + " << info");
+		
+//		log.trace(id + " << trace");
+//		log.error(id + " << error");
+		
 		int num = Integer.parseInt(request.getParameter("num"));
 		
 		int check = 0 ;
@@ -72,9 +87,7 @@ public class AskContentHandler implements CommandHandler{
 		request.setAttribute("ask", ask);
 		request.setAttribute("num", num);
 		
-		HttpSession sess = request.getSession();
-		String id = (String)sess.getAttribute("memId");
-		request.setAttribute("id",id);
+		
 		
 		List<AskReplyDataBean> list= boardAskDao.getReplys(num);
 		request.setAttribute("replys", list);
@@ -193,7 +206,7 @@ public class AskContentHandler implements CommandHandler{
 				map1.put("good",map.get(key).get("good"));
 				map1.put("bad",map.get(key).get("bad"));
 				int udateGoodBad = boardAskDao.updateGB(map1);
-				System.out.println(udateGoodBad + " << update result");
+//				System.out.println(udateGoodBad + " << update result");
 			}
 		System.out.println();
 		return 1; 
@@ -226,7 +239,7 @@ public class AskContentHandler implements CommandHandler{
 		int getMaxFrNum = frDao.getMaxFrNum();
 		map.put("num",getMaxFrNum+1);
 		Integer checkRs = frDao.checkFr(map);
-		System.out.println(checkRs +  " <<  친구 상태 확인 ?? 없으면 아직 친구가 아닌거지");
+//		System.out.println(checkRs +  " <<  친구 상태 확인 ?? 없으면 아직 친구가 아닌거지");
 		if(checkRs != null) {
 			if(checkRs == 0) {
 				return "1";
@@ -282,11 +295,14 @@ public class AskContentHandler implements CommandHandler{
 //		Timestamp rDate = Timestamp.valueOf(rD);
 //		System.out.println("rDate >> " + rDate);
 
+		
 		String type = request.getParameter("type");
 		String reply = request.getParameter("reply");
+		System.out.println("type : >>> " + type);
 		Map<String,Object> map = new HashMap<String, Object>();
 		int urs = 0;
 		int rs = memberDao.check(id, passwd);
+		System.out.println("rs >> " + rs);
 		if(rs == 1) {
 			map.put("rnum", rnum);
 			map.put("num", num);
@@ -295,10 +311,11 @@ public class AskContentHandler implements CommandHandler{
 			
 			if(type.equals("0")) {
 				urs = boardAskDao.delReply(map);
-				System.out.println(urs +" <<< ");
+				System.out.println(urs +" <<< in type 0 ");
 				urs = 1;
 			}else if(type.equals("-2")) {
 				urs = boardAskDao.delDReply(map);
+				System.out.println(urs +" <<< in type -2 ");
 				urs =2;
 				
 			}

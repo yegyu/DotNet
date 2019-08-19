@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.javassist.expr.Instanceof;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +25,7 @@ import survey.SurveyDBBean;
 import survey.SurveyDao;
 import survey.SurveyDataBean;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +34,8 @@ import java.util.Map;
 @Controller
 public class MainHandler implements CommandHandler {
 
+	public static Logger logger = LoggerFactory.getLogger(CommandHandler.class);
+	
 	@Resource
 	private MemberDao memberDao;
 
@@ -40,6 +45,60 @@ public class MainHandler implements CommandHandler {
 	@Resource
 	private BoardAskDao boardAskDao;
 
+	
+	@RequestMapping(value = "logout", method = RequestMethod.POST)
+	@ResponseBody
+	public void logoutFunc(HttpServletRequest re) {
+		HttpSession session = re.getSession();
+		String id = (String) session.getAttribute("memId");
+		MainHandler.logger.debug(id + "님 로그아웃!!!");
+		
+		
+		session.removeAttribute("memId");
+		session.removeAttribute("isAdmin");
+	}
+
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	@ResponseBody
+	public String login(HttpServletRequest request) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
+
+		String id = request.getParameter("id");
+		MainHandler.logger.debug(id + "님 로그인~~~");
+		MainHandler.logger.getName();
+
+		String passwd = request.getParameter("passwd");
+		int result = memberDao.check(id, passwd);
+		int userSt = memberDao.checkSt(id);
+		if(userSt == 1) {
+			return "block";
+		}
+		if (result == 1) {
+			if (id.equals("admin")) { // 愿�由ъ옄�씤吏� �솗�씤
+				session.setAttribute("isAdmin", 1);
+			} else {
+				session.setAttribute("isAdmin", 2);
+			}
+			session.setAttribute("memId", id);
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<String> s_numList = new ArrayList<String>(); 
+		int pResult = surveyDao.checkPart(id);
+		if (pResult != 0) { 
+			s_numList = surveyDao.getPartS_num(id);
+			map.put("id", id);
+			map.put("s_numList", s_numList);
+			surveyDao.getPartPoint(map);
+		}
+		int wResult = surveyDao.checkWriter(id);
+		if (wResult != 0) { 
+			surveyDao.getMyPoint(id);
+		}
+
+		return String.valueOf(result);
+
+	}
 	@RequestMapping(value = {"/a", "/search" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
@@ -134,6 +193,8 @@ public class MainHandler implements CommandHandler {
 		SurveyDBBean surveyDao = new SurveyDBBean();
 		
 		HttpSession session = request.getSession(); 
+		
+	
 		
 		int b_tp = 1;
 		if(request.getParameter("b_tp") != null) {

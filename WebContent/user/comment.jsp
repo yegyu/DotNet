@@ -10,6 +10,7 @@
 <textarea class="form-control" maxlength="50" cols="70px" rows="2px" style="font-size: 20px;" id="commentArea" placeholder="댓글을 입력하세요~!~!~!"></textarea><br>
  <button class="commentbtn btn my-3" style="position:relative; right: 0px" id="inputComment">댓글 입력</button>
 </div>
+<div>아이디 클릭 -> 친구 요청 </div>
  <div class="modal fade modal1" id="reqFr" tabindex="-1" role="dialog" aria-labelledby="reqFrLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

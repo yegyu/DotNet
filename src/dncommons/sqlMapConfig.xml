@@ -27,4 +27,6 @@
 		<mapper resource="admin/admin.xml"/>
 		<mapper resource ="main/ask.xml"/>
 	</mappers>
+	
+	
 </configuration>
