@@ -46,7 +46,7 @@
 
        	<div class="mx-auto">
 	        <a class="navbar-brand" href="main.do">
-	            <h1 id="logo">.Net</h1>
+	            <h1 id="logo" class="tomain">.Net</h1>
 	        </a>
        	</div>
         <div class="" id="myNavbar">

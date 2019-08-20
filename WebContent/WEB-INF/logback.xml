@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-    <property name="LOGS_ABSOLUTE_PATH" value="d:/logs" />
+    <property name="LOGS_ABSOLUTE_PATH" value="C:/dn_logs" />
  	<property name="LOG_PATTERN" value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" />
  
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
