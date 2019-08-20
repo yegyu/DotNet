@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.javassist.expr.Instanceof;
+import org.apache.ibatis.logging.slf4j.Slf4jImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -50,9 +51,18 @@ public class MainHandler implements CommandHandler {
 	@ResponseBody
 	public void logoutFunc(HttpServletRequest re) {
 		HttpSession session = re.getSession();
-		String id = (String) session.getAttribute("memId");
-		MainHandler.logger.debug(id + "님 로그아웃!!!");
 		
+		////로깅 테스트
+		
+	
+		
+		
+		String id = (String) session.getAttribute("memId");
+		logger.trace(id + " << trace logout");
+		logger.debug(id +" << debug logout" );
+		logger.info(id +" << info logout" );
+		logger.warn(id +" << warn logout" );
+		logger.error(id +" << error logout" );
 		
 		session.removeAttribute("memId");
 		session.removeAttribute("isAdmin");
@@ -65,8 +75,12 @@ public class MainHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 
 		String id = request.getParameter("id");
-		MainHandler.logger.debug(id + "님 로그인~~~");
-		MainHandler.logger.getName();
+		logger.trace(id + " << trace login");
+		logger.debug(id +" << debug login" );
+		logger.info(id +" << info login" );
+		logger.warn(id +" << warn login" );
+		logger.error(id +" << error login" );
+		//		logger.getName();
 
 		String passwd = request.getParameter("passwd");
 		int result = memberDao.check(id, passwd);
