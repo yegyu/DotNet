@@ -18,6 +18,7 @@ import main.MemberDao;
 import survey.SurveyDBBean;
 import survey.SurveyDao;
 import user.CompDao;
+import user.CompanyDBBean;
 import user.FrDBBean;
 import user.FrDao;
 import user.MessageDBBean;
@@ -71,11 +72,12 @@ public class CreateBean {
 		BoardAskDBBean boardAskDao = new BoardAskDBBean();
 		return boardAskDao;
 	}
-//	@Bean
-//	public CompDao compDao() {
-//		AdminDBBean compDao = new AdminDBBean();
-//		return CompDao;
-//	}
+	@Bean
+	public CompDao compDao() {
+		CompanyDBBean compDao = new CompanyDBBean();
+		return compDao;
+	}
+	
 }
 
 

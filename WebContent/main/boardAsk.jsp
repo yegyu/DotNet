@@ -32,12 +32,16 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-sm-10">
+			<div class="col-sm-8">
 				<h1 align="center" class=" animated rubberBand delay-0.5s">물어보세요 .Net (총 질문 : ${asksCnt })</h1>
 			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-1">
 				<button type="button" class="btn" id="askA" data-toggle="modal"
 					data-target="#askModal" >문의하기</button>
+			</div>
+			<div class="col-sm-1">
+				<a href="askComp.do"><button type="button" class="btn" >기업 문의</button></a>
+					
 			</div>
 		</div>
 		<br>

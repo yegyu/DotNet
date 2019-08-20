@@ -42,50 +42,5 @@ public class MainNavHandler implements CommandHandler {
 		return new ModelAndView("pinned/mainNav");
 	}
 
-	@RequestMapping(value = "logout", method = RequestMethod.POST)
-	@ResponseBody
-	public void logoutFunc(HttpServletRequest re) {
-		HttpSession session = re.getSession();
-		session.removeAttribute("memId");
-		session.removeAttribute("isAdmin");
-	}
-
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	@ResponseBody
-	public String login(HttpServletRequest request) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-
-		String id = request.getParameter("id");
-		String passwd = request.getParameter("passwd");
-		int result = memberDao.check(id, passwd);
-		int userSt = memberDao.checkSt(id);
-		if(userSt == 1) {
-			return "block";
-		}
-		if (result == 1) {
-			if (id.equals("admin")) { // 愿�由ъ옄�씤吏� �솗�씤
-				session.setAttribute("isAdmin", 1);
-			} else {
-				session.setAttribute("isAdmin", 2);
-			}
-			session.setAttribute("memId", id);
-		}
-		Map<String, Object> map = new HashMap<String, Object>();
-		List<String> s_numList = new ArrayList<String>(); 
-		int pResult = surveyDao.checkPart(id);
-		if (pResult != 0) { 
-			s_numList = surveyDao.getPartS_num(id);
-			map.put("id", id);
-			map.put("s_numList", s_numList);
-			surveyDao.getPartPoint(map);
-		}
-		int wResult = surveyDao.checkWriter(id);
-		if (wResult != 0) { 
-			surveyDao.getMyPoint(id);
-		}
-
-		return String.valueOf(result);
-
-	}
+	
 }

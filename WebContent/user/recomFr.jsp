@@ -37,7 +37,7 @@
 			        <div class="card-body">
 			       	 	<img class="card-img" src="/DotNet/defaultImg/fr1.gif">
 			            <footer class="btn-footer">
-			            	<button class="btn reqBtn" id="${r.id } " data-toggle="modal" >
+			            	<button class="btn reqBtn" id="${r.id }" data-toggle="modal" data-target="#recommModal">
 			            		친구 요청
 			            	</button>
 			            </footer>
@@ -53,7 +53,7 @@
    
 </div>
 </div>
-<div class="modal fade" id="rrr" tabindex="-1" role="dialog" aria-labelledby="reqFrLabel" aria-hidden="true">
+<div class="modal fade" id="recommModal" tabindex="-1" role="dialog" aria-labelledby="reqFrLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -105,14 +105,17 @@ function reqFriend(data1){
 			case "4":alert("친구 요청이 완료됐습니다. 요청 수락까지 기다려 주세요.");break;
 			default :alert("알수 없는 결과내요 문의 주시면 고맙겠습니다.")
 			}
-			$('#rrr').modal('hide');
+// 			$('#rrr').modal('hide');
+			location.reload();
+			
 		}
 	})
 }
 var frid;
 	
 	$('.reqBtn').on('click',function(){
-		$('#rrr').modal('show');
+// 		$('#rrr').modal('toggle');
+		console.log("show")
 		frid=$(this).attr('id');
 		$('#idFuFr').val(frid);
 		$('#idFuFr').prop("readonly",true);

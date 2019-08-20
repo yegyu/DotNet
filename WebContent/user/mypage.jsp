@@ -132,7 +132,7 @@
         margin: 0;
         padding: 0;
         width: 280px;
-        background-color: #2FD6FF;
+        background-color: white;
         position: fixed;
         height: 100%;
         overflow: auto;
