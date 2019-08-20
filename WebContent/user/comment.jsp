@@ -70,10 +70,10 @@
 <script>
 
 $(document).ready(function(){
+	if(session == null || session == "") {
+		$(".commentbtn").attr("disabled","true");
+	}
 	$('#inputComment').on('click',function(){
-		if(session == null || session == "") {
-			$(".commentbtn").attr("disabled","true");
-		}
 		
 	    com = {"content":$('#commentArea').val(), "s_num":'${s_num}'};
 	    $.ajax({
