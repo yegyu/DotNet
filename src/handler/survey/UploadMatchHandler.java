@@ -32,13 +32,10 @@ public class UploadMatchHandler implements CommandHandler {
 		String size = request.getParameter("size");
 		List<String> selectList = new ArrayList<String>();
 		Map<String, Object> map = new HashMap<String, Object>();
-		// 결과 페이지를 위한 List
 		List<String> resultList = new ArrayList<String>();
 		
-		// 설문 정보 넘기기
 		TwoDataBean two = surveyDao.getTwo(s_num);
 		
-		// 설문 질문 넘기기
 		List<String> qList = new ArrayList<String>();
 		qList.add(two.getQ1());
 		qList.add(two.getQ2());
@@ -46,7 +43,6 @@ public class UploadMatchHandler implements CommandHandler {
 		qList.add(two.getQ4());
 		qList.add(two.getQ5());
 				
-		// 설문 이미지 경로 넘기기
 		List<String> iList = new ArrayList<String>();
 		iList.add(two.getImgname1());
 		iList.add(two.getImgname2());
@@ -62,16 +58,15 @@ public class UploadMatchHandler implements CommandHandler {
 		map.put("s_num", s_num);
 		map.put("size", size);
 		map.put("id", name);
-		if(isMem.equals("1")) {	//회원이 로그인 상태에서 보낸경우
+		if(isMem.equals("1")) {	
 			selectList = surveyDao.selected(map);
-		} else { // 비회원이 보낸경우
+		} else { 
 			selectList = surveyDao.selectedTemp(map);
 		}
 		
 		int index = 0;
 		for(int i = 0; i < selectList.size(); i++) {
 			Map<String, Object> choicemap = new HashMap<String, Object>();
-			// 질문번호와 그에 대한 답 mapping
 			resultList.add(qList.get(i));
 			switch(selectList.get(i)) {
 				case "1" : resultList.add(iList.get(index)); break;

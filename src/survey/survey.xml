@@ -108,7 +108,7 @@
 		update dn_member set point = point + #{point} where id=#{id}
 	</update>
 	<update id="addPart" parameterType="String">
-		update dn_board set partnum = partnum+1 where s_num = #{s_num}
+		update dn_board set partnum = partnum + 1 where s_num = #{s_num}
 	</update>
 	<update id="getPartPoint" parameterType="java.util.Map">	
 		update dn_member set point = 0  

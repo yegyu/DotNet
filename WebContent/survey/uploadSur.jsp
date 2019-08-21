@@ -53,8 +53,6 @@ BootStrap cdn 인터넷에서 끌어 사용
 	rel="stylesheet">
 <!-- style_dotnet.csa -->
 <link rel="stylesheet" type="text/css" href="style_dotnet.css" />
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
 
 
 <style>
@@ -102,7 +100,7 @@ img {
 </style>
 </head>
 <body>
-<h1 align="center">설문번호 : ${two.s_num}</h1>
+<h1 align="center" id="${two.s_num}">설문번호 : ${two.s_num}</h1>
 <br>
 <!-- 추가~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ id = intro -->
 <div class="container-fluid mt-5" id="intro">
@@ -111,7 +109,7 @@ img {
 			<label class="col-sm-2 col-form-label text-right">이름</label>
 			<div class="col-sm-8">
 				<c:if test="${sessionScope.memId eq null}">
-					<input type="text" class="form-control"  name="name"
+					<input type="text" class="form-control"  name="name" id="noMem"
 						placeholder="이름을 입력해주세요" form="choiceInfo" ><!--    -->
 				</c:if>
 				<c:if test="${sessionScope.memId ne null}">
@@ -148,10 +146,10 @@ img {
 	</c:forEach>
 	
 	<div class="bottom">
-		<input type="submit" value="완료" hidden>
+		<input type="button" value="완료" id="cbtn" hidden>
 		<form action="uploadResult.do" method="post" name="choiceInfo" id="choiceInfo">
 			<c:forEach var="ii" begin="${1}" end="${size}">
-				<input type="hidden" name="q${ii}">
+				<input type="hidden" name="q${ii}" class="qList" >
 			</c:forEach>
 			<input type="hidden" name="s_num" value="${two.s_num}"> <input
 				type="hidden" name="point" value="${boardDto.point }">
@@ -160,6 +158,9 @@ img {
 		<a href="main.do" class="tomain">메인으로</a>
 	</div>
 </div>
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<script type="text/javascript" src="bootstrap.bundle.js"></script>
+
 <script>
 /////////////추가!!!!!!!!!?//////////////////
 $(document).ready(function(){
@@ -217,10 +218,6 @@ $(document).ready(function(){
 	}
 	$(document).ready(function() {
 
-		// 		$.ajax({
-
-		// 			data:
-		// 		})
 		show(0, 1, 0);
 		img.on('click', function() {
 			img.not($(this)).animate({
@@ -236,14 +233,33 @@ $(document).ready(function(){
 // 			console.log(i1 + " , " + i2 + "  , " + qn)
 			show(i1, i2, qn);
 			if (qn == qlen) {
+				var snum = $('h1').prop('id')
+				var data = { cnt : clickCnt , s_num : snum, type : "2" , id :$('#noMem').val()};
+				$.ajax({
+					url:"clickLog.do",
+					type:"post",
+					data:data,
+					dataType:"text",
+					success:function(data){
+						/// 광클시 에러 --> 처음으로 되돌리기
+						
+					}
+													
+				});
 				setTimeout(function() {
-					$("input[type=submit]").click()
+					$("#cbtn").click();
 				}, 2000);
 			}
 		});
 
 	});
 </script>
+		<script>
+			var clickCnt = 0;
+			$('body, html').on('click',function(){
+				clickCnt++;
+			});
+		</script>
 <script>
 	var q_num = 0;
 	$(document).ready(
@@ -262,19 +278,32 @@ $(document).ready(function(){
 					// 선택정보 저장
 					localStorage.setItem("q" + q_num, $(this).attr("name"));
 				});
-				$("input:submit").click(
+				$("#cbtn").click(
 						function() {
 							var params = document.choiceInfo;
-							var size = ${size}
+							var size = "${size}"
 // 							alert("size = " + size);
 							for (var i = 1; i <= size; i++) {
-								$("input[name=q" + i + "]").attr("value",
-										localStorage.getItem("q" + i));
-// 								alert("q"+i+"="+localStorage.getItem("q"+i)); 
+								$("input[name=q" + i + "]").attr("value", localStorage.getItem("q" + i));
+								
+							}
+							if($('.qList').length != localStorage.length){
+								alert("클릭를 조금 교양있게 해주셔야 반영이 됩니다 ^^");
+								var result = confirm('다시 하시겠습니까??\n ok(확인)->처음, cancel(취소)->메인');
+								if(result){
+									location.reload();
+								}else{
+									localStorage.clear();
+									location.href = "main.do"
+								}
+
+							}else{
+								params.submit();
+								localStorage.clear();
 							}
 
-							params.submit();
-							localStorage.clear();
+							
+							
 						});
 				$(".tomain").on("click", function() {
 					localStorage.clear();

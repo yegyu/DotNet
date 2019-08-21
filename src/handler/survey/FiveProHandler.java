@@ -39,33 +39,24 @@ public class FiveProHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 		int isAdmin = (Integer) session.getAttribute("isAdmin");
 		
-		// 이미지 저장될 경로
 		// "C:\Users\Playdata\Desktop\dotnet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DotNetEx\save"
 		String path = request.getSession().getServletContext().getRealPath("/save"); 
 
-		// 지정된 경로에 파일이 없으면 생성
 		File file = new File( path );
 		if(!file.exists()) {
 			file.mkdir();
 		}
 		
-		// 지정된 파일에 이미지 저장
 		MultipartRequest multi = 
 				new MultipartRequest(request, path, 1024 * 1024 * 50, "utf-8", new DefaultFileRenamePolicy());
 		
 		Iterator<String> e = (Iterator<String>) multi.getParameterNames();
-		// 설문 정보를 받는 map - subject, thumbnail_img name, point, s_type_number
 		Map<String, Object> info = new HashMap<String, Object>();
-		// mybatis 넘길 map
 		Map<String, Object> map = new HashMap<String, Object>();
-		// map에 담기위한 List(질문, 보기내용 들어가있음)
 		List<Map<String, Object>> qList = new ArrayList<Map<String, Object>>();
-		// 질문, 보기 내용을 담는 List
 		List<String> contentList = new ArrayList<String>();
-		// parameter 이름 정렬용 List
 		List<String> nameList = new ArrayList<String>();
 		
-		// 받은 parameter들 나눠서 넣기
 		while(e.hasNext()) {
 			String name = e.next();
 			if(name.startsWith("Q")) {
@@ -73,21 +64,17 @@ public class FiveProHandler implements CommandHandler {
 					nameList.add(name);
 				}
 			} else {
-				info.put(name, multi.getParameter(name));	// 질문 외의 정보들
+				info.put(name, multi.getParameter(name));	
 			}
 			
 		}
-		// 이름  순으로 질문,보기 내용 담기
 		nameList.sort(null);
 		for(int i=0; i < nameList.size(); i++) {
 			contentList.add(multi.getParameter(nameList.get(i)));
 		}
-//		System.out.println("contentList : " + contentList);
 		
-		// 이미지 경로 넣기
 		info.put("upload1",multi.getFilesystemName("upload1"));
 
-		// dn_board에 넣기
 		BoardDataBean boardDto = new BoardDataBean();
 		boardDto.setB_tp_num(isAdmin);
 		boardDto.setCt_num(1);
@@ -104,7 +91,6 @@ public class FiveProHandler implements CommandHandler {
 		
 //		System.out.println("info : " + info);
 		
-		// dn_s_five에 넣기
 		int cnt=0;
 		
 		for(int i = 0; i < contentList.size()/6; i++) {

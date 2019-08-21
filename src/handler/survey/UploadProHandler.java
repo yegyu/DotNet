@@ -39,26 +39,20 @@ public class UploadProHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 		int isAdmin = (Integer)session.getAttribute("isAdmin");
 		
-		// �씠誘몄� ���옣�맆 寃쎈줈
 		// "C:\Users\Playdata\Desktop\dotnet\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\DotNetEx\save"
 		String path = request.getSession().getServletContext().getRealPath("/save"); 
 //		System.out.println("path :" +  path);
-		// 吏��젙�맂 寃쎈줈�뿉 �뙆�씪�씠 �뾾�쑝硫� �깮�꽦
 		File file = new File( path );
 		if(!file.exists()) {
 			file.mkdir();
 		}
 		
-		// 吏��젙�맂 �뙆�씪�뿉 �씠誘몄� ���옣
 		MultipartRequest multi = 
 				new MultipartRequest(request, path, 1024 * 1024 * 50, "utf-8", new DefaultFileRenamePolicy());
 
 		
-		// 吏덈Ц 紐⑥븘�몢�뒗 踰≫꽣
 		Vector<String> qList = new Vector<>();
-		// �궗吏� 2�옣
 		TreeMap<String,String> fileMap = new TreeMap<String,String>();
-		// �씠誘몄� 寃쎈줈 紐⑥븘�넃�뒗 iterator
 		
 		Iterator<String> e = (Iterator<String>) multi.getFileNames();
 		
@@ -76,7 +70,6 @@ public class UploadProHandler implements CommandHandler {
 		}
 		
 //		System.out.println("isAdmin : " + isAdmin);
-		// dn_board�뿉 �젙蹂댁��옣
 		BoardDataBean boardDto = new BoardDataBean();
 		boardDto.setB_tp_num(isAdmin);
 		boardDto.setCt_num(1);
@@ -93,7 +86,6 @@ public class UploadProHandler implements CommandHandler {
 //		System.out.println("ins_sur_result : " + ins_sur_result);
 		request.setAttribute("ins_sur_result", ins_sur_result);
 		
-		// dn_s_two�뿉 �젙蹂댁��옣
 		
 
 		String q1 = multi.getParameter("question1");
@@ -111,7 +103,6 @@ public class UploadProHandler implements CommandHandler {
 		
 		 
 		 
-		// qAndImg�뿉 吏덈Ц1 �씠誘몄�1 �씠誘몄�2 /  吏덈Ц2 �씠誘몄�3 �씠誘몄�4... �삎�떇�쑝濡� 吏묒뼱�꽔湲�
 		String upload[] = new String[] {"upload1","upload2","upload3","upload4","upload5",
 										"upload6","upload7","upload8","upload9","upload10"};
 		Vector<String> qAndImg = new Vector<String>();

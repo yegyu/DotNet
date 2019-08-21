@@ -40,7 +40,6 @@ public class RecomFrHandler implements CommandHandler {
 		map.put("id",id);
 		
 		
-		//�슦�꽑 媛숈� �굹�씠��濡� 異붿쿇�븳�떎怨� 移� Map �뿉 �꽔�뼱�씪 �굹�씠瑜� �엫�쓽濡�
 		List<MemberDataBean> recomFr = frDao.getRecomFr(map);
 		request.setAttribute("recomFr", recomFr);
 //		for(MemberDataBean el : getMembers) {

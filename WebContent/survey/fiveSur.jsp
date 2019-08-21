@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-expand-md navbar-default">
 			<jsp:include page="../mainNav.do" flush="false"></jsp:include>
 		</nav>
-		
+		<h1 align="center" id="${s_num }">${s_num }번 설문</h1>
 		<form action="fiveResult.do" method="post" name="choiceInfo">
 		<!-- 캐로슬(슬라이딩) - 질문 및 보기 -->
 		<div id="fiveCarousel" class="carousel slide">
@@ -34,7 +34,7 @@
 								<label class="col-sm-2 col-form-label text-right">이름</label>
 								<div class="col-sm-10">
 									<c:if test="${sessionScope.memId eq null}">
-										<input type="text" class="form-control" name="name" placeholder="이름을 입력해주세요">
+										<input type="text" class="form-control" name="name" id="noMem" placeholder="이름을 입력해주세요">
 									</c:if>
 									<c:if test="${sessionScope.memId ne null}">
 										<div class="alert alert-success" role="alert">
@@ -114,7 +114,7 @@
 			<!-- 버튼 모음 -->
 			<div class="row justify-content-center">
 				<button type="button" class="btn  m-3" name="prevButton">이전</button>
-				<input type="submit" class="btn  m-3" value="설문완료">
+				<input type="button" class="btn  m-3" id = "cbt" value="설문완료">
 				<input type="reset" class="btn  m-3" value="설문취소">
 				<button type="button" class="btn  m-3" name="nextButton">다음</button>
 			</div>
@@ -128,57 +128,59 @@
 		</form>
 		
 		<!-- bootstrap js -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	
+<!-- 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<!-- 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+		<script type="text/javascript" src="jquery-3.4.1.js"></script>
+		<script type="text/javascript" src="bootstrap.bundle.js"></script>
+		
 		<!-- event for this page -->
 		<script type="text/javascript">
 		//<!--
 			
-			jQuery(document).ready(
+			$(document).ready(
 				function(){
 					// 슬라이드 자동으로 넘어가는 것 방지
-					jQuery("#fiveCarousel").carousel('pause');
+					$("#fiveCarousel").carousel('pause');
 					
 					// 이전, 다음 버튼 누르면 넘어가도록
-					jQuery("button[name=prevButton]").on(
+					$("button[name=prevButton]").on(
 						"click",
 						function(){
-							jQuery("#fiveCarousel").carousel('prev');
+							$("#fiveCarousel").carousel('prev');
 						}
 					);
-					jQuery("button[name=nextButton]").on(
+					$("button[name=nextButton]").on(
 						"click",
 						function(){
-							jQuery("#fiveCarousel").carousel('next');
+							$("#fiveCarousel").carousel('next');
 						}
 					);
-					jQuery(".sel").on(
+					$(".sel").on(
 						{
 						"mouseenter" : function(){
-											jQuery(this).css("opacity", "0.6");
+											$(this).css("opacity", "0.6");
 										},
 						"mouseleave" : function(){
-											jQuery(this).css("opacity", "1");
+											$(this).css("opacity", "1");
 										},
 						"click" : function(){
-									  var num = jQuery(this).attr("id");
-									  var q_num = jQuery(this).parents(".Qbox").attr("id");
+									  var num = $(this).attr("id");
+									  var q_num = $(this).parents(".Qbox").attr("id");
 									  if(localStorage.getItem(q_num) == null) {
-										  jQuery(this).addClass("bg-success");
+										  $(this).addClass("bg-success");
 										  localStorage.setItem(q_num, num); 
-										  jQuery("#fiveCarousel").carousel("next");
+										  $("#fiveCarousel").carousel("next");
 									  } else {
-										  jQuery(this).parents(".Qbox").find(".sel").removeClass("bg-success");
-										  jQuery(this).addClass("bg-success");
+										  $(this).parents(".Qbox").find(".sel").removeClass("bg-success");
+										  $(this).addClass("bg-success");
 										  localStorage.setItem(q_num, num);
-										  jQuery("#fiveCarousel").carousel("next");
+										  $("#fiveCarousel").carousel("next");
 									  }
 								  }
 						}
 					);
-					jQuery("input:submit").click(function() {
+					$("#cbt").click(function() {
 						var params = document.choiceInfo;
 						var size = ${size};
 						var flag = 0;
@@ -193,18 +195,42 @@
 						}
 						if (flag == 1){
 							alert("질문에 모두 답해주세요");
+						
 							return false;
 						} else {
 							for(var i=1; i <= size; i++) {
 								$("input[name=q"+i+"]").attr("value", localStorage.getItem("q"+i));
 							}
-							params.submit();
-							localStorage.clear();
+							
+							
+							var snum = $('h1').prop('id')
+							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val()};
+							$.ajax({
+								url:"clickLog.do",
+								type:"post",
+								data:data,
+								dataType:"text",
+								success:function(data){
+									if(data == "1"){
+										params.submit();
+										localStorage.clear();
+										$('form[name=choiceInfo]').submit();
+									}
+									
+								}
+																
+							});
 						}
 					});
 				}		
 			);
 		//-->
+		</script>
+		<script>
+			var clickCnt = 0;
+			$('body, html').on('click',function(){
+				clickCnt++;
+			});
 		</script>
 	</body>
 </html>

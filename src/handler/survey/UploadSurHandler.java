@@ -39,21 +39,17 @@ public class UploadSurHandler implements CommandHandler {
 		
 		String s_num = request.getParameter("s_num");
 		
-		//경로 확인 정확히 해라!!
 //		"C:\\ExpertJava\\Java2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BoardEx\\save"
 		String path = request.getSession().getServletContext().getRealPath("/save"); 
 
-		// 조회수 증가
 		int result = 0;
 		result = surveyDao.addHits(s_num);
 		
-		// 설문 정보 넘기기
 		TwoDataBean two = surveyDao.getTwo(s_num);
 		BoardDataBean boardDto = surveyDao.getSurvey(s_num);
 		request.setAttribute("boardDto", boardDto);
 		request.setAttribute("two", two);
 		
-		// 설문 질문 넘기기
 		List<String> qList = new ArrayList<String>();
 		qList.add(two.getQ1());
 		qList.add(two.getQ2());
@@ -61,7 +57,6 @@ public class UploadSurHandler implements CommandHandler {
 		qList.add(two.getQ4());
 		qList.add(two.getQ5());
 		
-		// 설문 이미지 경로 넘기기
 		List<String> iList = new ArrayList<String>();
 		iList.add(two.getImgname1());
 		iList.add(two.getImgname2());
@@ -74,7 +69,6 @@ public class UploadSurHandler implements CommandHandler {
 		iList.add(two.getImgname9());
 		iList.add(two.getImgname10());
 		
-//		각 보기별 선택수보기 위한 부분		
 //		Map<String, Object> map1 = new HashMap<String, Object>();
 //		List<Map<String, Object>> cList = new ArrayList<Map<String, Object>>();
 //		int cnt = 0;

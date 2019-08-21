@@ -29,13 +29,10 @@ public class EightSurHandler implements CommandHandler{
 		EightDataBean eight = new EightDataBean();
 		List<EightDataBean> eightList = new ArrayList<EightDataBean>();
 		
-		// 조회수 증가
 		surveyDao.addHits(s_num);
 		
-		// 질문, 보기 목록 가져오기
 		eightList = surveyDao.getEights(s_num);
 		
-		// 설문정보 가져오기
 		BoardDataBean boardDto = surveyDao.getSurvey(s_num);
 		
 		
