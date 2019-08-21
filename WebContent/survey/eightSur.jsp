@@ -194,6 +194,17 @@
 							localStorage.clear();
 						}
 					});
+					// 설문 취소를 누를 경우
+					jQuery("input:reset").click(function(){
+						if(confirm("설문을 그만하시겠습니까?")){
+							localStorage.clear();
+							history.back();
+						}
+					});
+					// 메인로고를 눌렀을 경우
+					$(".tomain").on("click", function() {
+						localStorage.clear();
+					});
 				}		
 			);
 		//-->

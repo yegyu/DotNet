@@ -291,6 +291,7 @@ $(document).ready(function(){
 								alert("클릭를 조금 교양있게 해주셔야 반영이 됩니다 ^^");
 								var result = confirm('다시 하시겠습니까??\n ok(확인)->처음, cancel(취소)->메인');
 								if(result){
+									localStorage.clear();
 									location.reload();
 								}else{
 									localStorage.clear();
@@ -301,12 +302,18 @@ $(document).ready(function(){
 								params.submit();
 								localStorage.clear();
 							}
-
-							
-							
 						});
+
+				// 메인으로 가는 경우
 				$(".tomain").on("click", function() {
 					localStorage.clear();
+				});
+				// 설문 취소를 누를 경우
+				jQuery("input:reset").click(function(){
+					if(confirm("설문을 그만하시겠습니까?")){
+						localStorage.clear();
+						history.back();
+					}
 				});
 			});
 </script>

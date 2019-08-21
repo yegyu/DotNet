@@ -222,6 +222,17 @@
 							});
 						}
 					});
+					// 설문 취소를 누를 경우
+					jQuery("input:reset").click(function(){
+						if(confirm("설문을 그만하시겠습니까?")){
+							localStorage.clear();
+							history.back();
+						}
+					});
+					// 메인로고를 눌렀을 경우
+					$(window).bind("beforeunload",function() {
+						alert("설문페이지를 나가시겠습니까?");
+					});
 				}		
 			);
 		//-->
