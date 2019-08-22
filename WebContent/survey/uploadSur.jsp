@@ -16,43 +16,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
-
-<!-- 자바스크립트 -->
-
-<!-- JQuery -->
-<!-- <script type="text/javascript" src="/DotNet/jquery-3.4.1.js"></script> -->
-<!-- <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
-
-BootStrap cdn 인터넷에서 끌어 사용
-<link rel="stylesheet" href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
-<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
-<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
-<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script> -->
-
-
-
-<!-- 상단 바 -->
-
-<!-- 	<nav class="navbar navbar-expand-md navbar-default"> -->
-<%-- 		<jsp:include page="../mainNav.do" flush="false"></jsp:include> --%>
-<!-- 	</nav> -->
-<!-- 상단 바  끝-->
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>결과</title>
-<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap"
 	rel="stylesheet">
 <!-- style_dotnet.csa -->
-<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
+
+<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
+
 
 
 <style>
