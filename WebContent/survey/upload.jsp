@@ -26,7 +26,7 @@
 	<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
 	<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 
-	<link rel="stylesheet" href="bootstrap.css">
+	<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 	

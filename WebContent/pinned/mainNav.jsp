@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	<link rel="stylesheet" href="/DotNet/bootstrap.css">
+	<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 	
 	<!-- bootstrap css -->
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -17,7 +17,7 @@
 		rel="stylesheet">
 		
 	<!-- style_dotnet.css -->
-	<link rel="stylesheet" type="text/css" href="/DotNet/style_dotnet.css" />
+	<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
 	
 	<!-- css for this page -->
 	<style type="text/css">
@@ -118,8 +118,8 @@
 
 
 	
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 	<script>
 	$(document).ready(function(){
 		$('#loginBtn').on('click',function(){

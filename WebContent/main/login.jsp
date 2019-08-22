@@ -10,11 +10,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 <!-- style_dotnet.csa -->
-<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
+<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
 
 
 <style>
@@ -119,8 +119,8 @@ input.btn-info {
 		</div>
 	</div>
 	<!--   </div> -->
-	<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
-<script type="text/javascript" src="script_main.js"></script>
+	<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/script_main.js"></script>
 </body>
 </html>

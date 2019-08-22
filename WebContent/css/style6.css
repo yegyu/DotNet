@@ -10,8 +10,8 @@
 .ch-info-wrap, 
 .ch-info{
 	position: absolute;
-	width: 180px;
-	height: 180px;
+	width: 210px;
+	height: 210px;
 	border-radius: 50%;
 	
 	-webkit-transition: all 0.4s ease-in-out;
@@ -30,7 +30,7 @@
 .ch-info-wrap {
 	top: 20px;
 	left: 20px;
-	background: #f9f9f9 url(../images/bg.jpg);
+	background: #f9f9f9 url(../defaultImg/matchs/bg.jpg);
 	box-shadow: 
 		0 0 0 20px rgba(255,255,255,0.2), 
 		inset 0 0 3px rgba(115,114, 23, 0.8);
@@ -76,15 +76,21 @@
 }
 
 .ch-img-1 { 
-	background-image: url(../images/16.jpg);
+	background-image: url(../defaultImg/matchs/eyes.jpg);
 }
 
 .ch-img-2 { 
-	background-image: url(../images/17.jpg);
+	background-image: url(../defaultImg/matchs/eyes.jpg);
 }
 
 .ch-img-3 { 
-	background-image: url(../images/18.jpg);
+	background-image: url(../defaultImg/matchs/eyes.jpg);
+}
+.ch-img-4 { 
+	background-image: url(../defaultImg/matchs/eyes.jpg);
+}
+.ch-img-5 { 
+	background-image: url(../defaultImg/matchs/eyes.jpg);
 }
 
 .ch-info h3 {
@@ -94,7 +100,7 @@
 	font-size: 14px;
 	margin: 0 25px;
 	padding: 40px 0 0 0;
-	height: 90px;
+	height: 110px;
 	font-family: 'Open Sans', Arial, sans-serif;
 	text-shadow: 
 		0 0 1px #fff, 
@@ -106,7 +112,7 @@
 	padding: 10px 5px;
 	font-style: italic;
 	margin: 0 30px;
-	font-size: 12px;
+	font-size: 16px;
 	border-top: 1px solid rgba(255,255,255,0.5);
 }
 
