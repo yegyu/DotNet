@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- 사이드바  1-1 start-->
 <jsp:include page="/mypage.do"/>
-<main class="page-content">
+<div class="page-content">
 <div class="container-fluid">
 	<div class="card col-md-12">
 		<h2 class="mt-3">회원활동 관리</h2>
@@ -36,12 +36,14 @@
 	<c:forEach var="mem" items="${memList }" >
 		<tr >
 			<td>${mem.id }</td>
-				<c:if test="${mem.gender == 0 }">
-					<td>여자</td>
+			<td>
+				<c:if test="${mem.gender == 2 }">
+					여자
 				</c:if>
 				<c:if test="${mem.gender == 1}">
-					<td>남자</td>
+					남자
 				</c:if>
+			</td>
 			<td>${mem.age }</td>
 			<td>${mem.point }</td>
 			<td>${mem.signup_date }</td>
@@ -64,7 +66,7 @@
 	</div>
 	
 </div>
-</main>
+</div>
 <!-- 사이드바 2-2 end --> 
 <script>
 var id ={};

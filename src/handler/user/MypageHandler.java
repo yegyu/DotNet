@@ -65,11 +65,13 @@ public class MypageHandler implements CommandHandler{
 		}
 		///////////////////////////
 		request.setAttribute("frLib", frPartBoard);
-		
+		if(id.equals("admin")) {
+			
+		}
 		
 		return new ModelAndView("user/mypage");
 	}
-	
+//	
 	
 	@RequestMapping(value = "sendMail", method = RequestMethod.POST)
 	@ResponseBody
