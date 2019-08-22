@@ -59,12 +59,12 @@
                             ${sessionScope.memId} 님
                         </li>
                         <c:if test="${sessionScope.isAdmin eq 2}">
-                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                            <li><a class="nav-link" href="myFrSur.do"><i class="fas fa-portrait"></i>
                                     My Page&nbsp;&nbsp;&nbsp;
                                 </a></li>
                         </c:if>
                         <c:if test="${sessionScope.isAdmin eq 1}">
-                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                            <li><a class="nav-link" href="memberMng.do"><i class="fas fa-portrait"></i>
                                     My Page&nbsp;&nbsp;&nbsp;
                                 </a></li>
                         </c:if>

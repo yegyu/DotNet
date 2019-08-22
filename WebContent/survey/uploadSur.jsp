@@ -277,7 +277,6 @@ $(document).ready(function(){
 									localStorage.clear();
 									location.href = "main.do"
 								}
-
 							}else{
 								params.submit();
 								localStorage.clear();

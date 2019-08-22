@@ -315,7 +315,6 @@
 		    mi + ':'+
 		    s;
 		}
-	
 	//질문 modal 에서
 	function checkAsk(){
 		if($("#askTitle").val() =="" ){
@@ -328,6 +327,7 @@
 			alert("내용을 입력하세요");
 			return false;
 		}else{
+			
 			alert("질문 작성 완료")
 			$("#askSubmit").attr("data-dismiss","modal");
 			
