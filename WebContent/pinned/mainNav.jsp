@@ -119,7 +119,7 @@
 
 	
 <script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
+<!-- <script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script> -->
 	<script>
 	$(document).ready(function(){
 		$('#loginBtn').on('click',function(){

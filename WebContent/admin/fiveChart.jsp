@@ -103,6 +103,12 @@ window.onload = function () {
 				title:{
 					text: "설문 보기별 선택수"
 				},
+				subtitles:[{
+					text: "각 보기를 클릭하여 자세한 정보를 확인하세요"
+					//Uncomment properties below to see how they behave
+					//fontColor: "red",
+					//fontSize: 30
+				}],
 				data: [{        
 					type: "column",
 					click: onClick,
@@ -113,7 +119,7 @@ window.onload = function () {
 			sexSel : {
 				animationEnabled: true,
 				title: {
-					text: "보기# 성별"
+					text: "성별"
 				},
 				data: [{
 					type: "pie",
@@ -128,7 +134,7 @@ window.onload = function () {
 				animationEnabled: true,
 				theme: "light2", // "light1", "light2", "dark1", "dark2"
 				title:{
-					text: "보기# 연령별"
+					text: "연령별"
 				},
 				data: [{        
 					type: "column",  
