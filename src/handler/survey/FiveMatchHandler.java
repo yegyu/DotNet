@@ -60,7 +60,8 @@ public class FiveMatchHandler implements CommandHandler {
 		
 		request.setAttribute("fiveList", fiveList);
 		request.setAttribute("resultList", resultList);
-		
+		System.out.println("fiveList : " + fiveList);
+		System.out.println("resultList : " + resultList);
 		return new ModelAndView("/survey/fiveMatch");
 	}
 

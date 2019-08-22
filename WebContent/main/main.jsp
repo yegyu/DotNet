@@ -15,12 +15,12 @@
 		
 		
 		<!-- bootstrap CDN -->
-		<link rel="stylesheet" href="bootstrap.css">
+		<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 		<link href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 		
 		<!-- style_dotnet.css -->
-		<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
-		<link rel="stylesheet" type="text/css" href="mainCss.css" />
+		<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
+		<link rel="stylesheet" type="text/css" href="/DotNet/css/mainCss.css" />
 		
 		<head>
  		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
@@ -159,7 +159,7 @@
 		                            <h6 class="small text-wide p-b-2">포인트:${col.point}</h6>
 		                            <h2>
 		                                <a href>참여자 수 : ${col.partnum}<br>like : ${col.hits }<br>
-		                                    ${index.index }
+		                                    type:${col.s_tp_num}
 		                                </a>
 		                            </h2>
 		                        </div>
@@ -254,8 +254,8 @@
 
 
 
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 <!-- <script type="text/javascript" src="script_main.js"></script> -->
 <script>
 //jQuery(function ($) {

@@ -230,8 +230,8 @@
 						}
 					});
 					// 메인로고를 눌렀을 경우
-					$(window).bind("beforeunload",function() {
-						alert("설문페이지를 나가시겠습니까?");
+					$(".tomain").on("click", function() {
+						localStorage.clear();
 					});
 				}		
 			);

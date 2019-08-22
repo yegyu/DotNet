@@ -10,8 +10,8 @@
 <meta charset="UTF-8">
 <title>마이페이지</title>
 
-<link rel="stylesheet" type="text/css" href="style_dotnet.css" />
-<link rel="stylesheet" type="text/css" href="mypage.css" />
+<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
+<link rel="stylesheet" type="text/css" href="/DotNet/css/mypage.css" />
 
 <link
     href="https://fonts.googleapis.com/css?family=Caveat|Concert+One|Dancing+Script|Fredoka+One|Kalam|Kaushan+Script|Lobster|Luckiest+Guy|Merienda|Neucha|Sniglet|ZCOOL+QingKe+HuangYou&display=swap"
@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
     integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> -->
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -598,8 +598,8 @@
 </div>
 <!-- 작성자는 세션 ID -->
 <c:set var="id" value="${sessionScope.memId}" />
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 <script>
 // $('.carousel-inner > .carousel-item').eq(0).addClass('active');
 
