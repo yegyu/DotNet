@@ -13,7 +13,6 @@
 <body>
 <jsp:include page="/mypage.do"/>
 <div class="page-content" id="mpc">
-
 <div class="container-fluid	">
 <div class="card col-md-12">
             <h1 class="my-4 font-weight-bold"> - 친구들의 활동</h1>
