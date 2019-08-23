@@ -44,8 +44,10 @@ public class AskCompProHandler implements CommandHandler {
 	// email split
 	if( ! email1.equals( "" ) ) {
 		if( email2.equals( "0" ) ) {
+			// 吏곸젒�엯�젰
 			co_email = email1;
 		} else {
+			// �꽑�깮�엯�젰
 			co_email = email1 + "@" + email2;
 		}
 	}
@@ -55,19 +57,24 @@ public class AskCompProHandler implements CommandHandler {
 	int dupCd = 0;
 	int len = 0;
 	Random rand = new Random();
-	int  co_code = 0; 
+	int  co_code = 0; //�궃�닔媛� ���옣�맆 蹂��닔
     
     for(int i=0;i<len;i++) {
         
+        //0~9 난수 생성
         int ran = rand.nextInt(10);
         
         if(dupCd==1) {
+            // 중복되는 숫자를 검색/배제
        	 co_code += ran;
         }
         else if(dupCd==2) {
+            // 
             if(!(co_code==(ran))) {
+                //
            	 co_code += ran;
             }else {
+                //
                 i-=1;
             }
         }

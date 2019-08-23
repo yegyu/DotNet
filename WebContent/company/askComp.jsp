@@ -64,31 +64,56 @@
 <input type="hidden" value="0" name="co_read">
 <div class="card">
 <table class="table table-hover text-center">
+	<input type='hidden' id='co_code'>
+	<input type='hidden' id='co_read'>
 	<th colspan=4 class="text-center">
 	<center><h3>기업이용자 사용문의 접수</h3></center>
 	</th>
 	<tr>
-		<th id="name">
-			<p class="mt-4">이메일</p>
+		<th id="co_name">
+			<p class="mt-4">기업명</p>
+		</th>
+		<td>
+		  <div class="mdl-textfield mdl-js-textfield">
+		    <input class="mdl-textfield__input mb-2" type="text" id="compName" name="co_name" required>
+		    <label class="mdl-textfield__label mb-2 text-center" for="compName">업체명</label>
+  		</div>
+		</td>
+		<th id="a_name">
+			<p class="mt-4">문의자 성명</p>
+		</th>
+		<td>
+			<div class="mdl-textfield mdl-js-textfield">
+		    <input class="mdl-textfield__input mb-2" type="text" id="ask_name" name="a_name" required>
+		    <label class="mdl-textfield__label mb-2 text-center" >문의자 성명</label>
+  		</div>
+		</td>
+	</tr>
+	<tr>
+		<th id="email">
+			<p class="mt-4">이메일	
 		</th>
 		
-		<td colspan="2" id="email">
-		<div id=email class="mt-2">
-			  <div class="mdl-textfield mdl-js-textfield">
-			    <input class="mdl-textfield__input mb-2" type="text" name="email1" required>
-			    <label class="mdl-textfield__label mb-2 text-center">E-mail</label>
-	  		</div>
-	  		@
-	  		<div class="mdl-textfield mdl-js-textfield" >
-			    <input class="mdl-textfield__input mb-2" type="text" name="email2"   placeholder="직접입력" value="" id="self">
-			    <label class="mdl-textfield__label mb-2 text-center"></label>
+		<td colspan="3" id="email">
+		<div class="float-left">
+			<div id=email class="mt-2 md-2">
+				  <div class="mdl-textfield mdl-js-textfield md-2">
+				    <input class="mdl-textfield__input mb-2" type="text" name="email1" id = "email1" required>
+				    <label class="mdl-textfield__label mb-2 text-center">E-mail</label>
+		  		</div>
+		  		
+		  		@
+		  		
+		  		<div class="mdl-textfield mdl-js-textfield md-2">
+				    <input class="mdl-textfield__input mb-2" type="text" name="email2"   placeholder="직접입력" value="" id="email2">
+				    <label class="mdl-textfield__label mb-2 text-center"></label>
+		  		</div>
 	  		</div>
   		</div>
-  		</td>
   		
-  		<td>
-  		<div class="select float-left" id="select">
-  		    <select class="selectpicker mt-4" name="email2" id="picker">
+  		
+  		<div class="select float-right" id="select">
+  		    <select class="selectpicker w-75 mt-4" name="email2" id="picker">
 				<option value="self">직접입력</option>
 				<option value="google.com">구글(Gmail)</option>
 				<option value="naver.com">네이버(NAVER)</option>
@@ -100,36 +125,13 @@
 		</td>
 	</tr>
 	<tr>
-		<th id="name">
-			<p class="mt-4">기업명</p>
-		</th>
-		<td>
-		  <div class="mdl-textfield mdl-js-textfield">
-		    <input class="mdl-textfield__input mb-2" type="text" id="compName" name="co_name" required>
-		    <label class="mdl-textfield__label mb-2 text-center" for="compName">업체명</label>
-  		</div>
-		</td>
-		<th id=name>
-			<p class="mt-4">문의자 성명</p>
-		</th>
-		<td>
-			<div class="mdl-textfield mdl-js-textfield">
-		    <input class="mdl-textfield__input mb-2" type="text" id="sample1" name=a_name required>
-		    <label class="mdl-textfield__label mb-2 text-center" >문의자 성명</label>
-  		</div>
-		</td>
-	</tr>
-	<tr>
-		<th colspan=3>
+		<th colspan=4>
 		문의 제목
-		</th>
-		<th colspan=1>
-		문의 유형
 		</th>
 	</tr>
 	<tr>
 		<td colspan=3>
-		  <div class="mdl-textfield mdl-js-textfield float-left">
+		  <div class="mdl-textfield mdl-js-textfield float-center">
 		    <input class="mdl-textfield__input mb-2" type="text" id="title" name="co_title" required>
 		    <label class="mdl-textfield__label mb-2" for="title" id="titleLabel">제목을 입력해주세요</label>
   		</div>		
@@ -174,22 +176,50 @@
 </div>
 
 </form>
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 
 <script>
 
 $("select").on('click',function(){
 	var state = $('#picker option:selected').val();
 	if (state == 'self'){
-		$('#self').val("");
-		$('#self').attr('readonly', false);
-		$('#self').attr('required', true);
-	} else{
-		$('#self').val("");
-		$('input#self').val(state);
-		$('#self').attr('readonly', true);
+		$('#email2').val("");
+		$('#email2').attr('readonly', false);
+		$('#email2').addAttr('required');
+	} else {
+		$('#email2').val("");
+		$('input#email2').val(state);
+		$('#email2').attr('readonly', true);
 	}
 });
 
+</script>
+
+<script>
+// 기업이름 유효성 검사(1 = 중복 / 0 != 중복)
+	$("input[name=co_name]").on('keyup', function() {
+		var co_name = $('#compName').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/user/checkCo.do?co_name='+ co_name,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data.dto != "null") {
+						// 1 : 아이디가 중복되는 문구
+						console.log(data.dto.co_email);
+						var e1 = (data.dto.co_email).split('@')[0];
+						var e2 = (data.dto.co_email).split('@')[1]
+						$("#email1").val(e1);
+						$("#email2").val(e2);
+						$("#co_code").val(data.dto.co_code);
+					} 
+				}, error : function() {
+						console.log("회원조회 실패 고객센터에 문의해주세요");
+				}
+			});
+		});
 </script>
 
 
