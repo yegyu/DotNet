@@ -4,9 +4,11 @@ import java.util.List;
 
 import user.CompanyDataBean;
 
-//query는 user.xml에서 통합운용
+//query�뒗 user.xml�뿉�꽌 �넻�빀�슫�슜
 public interface CompDao {
 	
 	public int insertQuestion(CompanyDataBean companyDto);
 	List<CompanyDataBean> getQuestions(CompanyDataBean companyDto);
+	public CompanyDataBean checkCo(String co_name);
+	
 }

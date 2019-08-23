@@ -95,7 +95,7 @@
 						</div>
 						<c:if test="${sessionScope.memId == null }">
 							<label for="askId" class="col-form-label">아이디</label>
-							<input type="text" class="form-control" id="askId" placeholder="비회원용 아이디">
+							<input type="text" class="form-control" id="askId" placeholder="비회원용 아이디" required>
 						</c:if>
 						<div class="form-group">
 							<label for="askPasswd" class="col-form-label">비밀번호</label>
@@ -317,17 +317,24 @@
 		}
 	
 	//질문 modal 에서
+	var memId = "${sessionScope.memId}"
 	function checkAsk(){
 		if($("#askTitle").val() =="" ){
 			alert("제목을 입력하세요");
 			return false;
-		}else if($("#askPasswd").val() == ""){
+		} else if($("#askPasswd").val() == ""){
 			alert("비밀번호를 입력해 주세용~!~!");
 			return false;
-		}else if($("#askContents").val() == ""){
+		} else if($("#askContents").val() == ""){
 			alert("내용을 입력하세요");
 			return false;
-		}else{
+		} else if( memId == "" ){
+			if($("#askId").val() == ""){
+				alert("아이디를 입력하세요");
+			return false;
+			
+			} else {
+			
 			alert("질문 작성 완료")
 			$("#askSubmit").attr("data-dismiss","modal");
 			
@@ -352,6 +359,7 @@
 						SetDivPosition()
 				}
 			})
+		}
 		}
 	}
 

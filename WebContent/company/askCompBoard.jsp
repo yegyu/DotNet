@@ -32,13 +32,13 @@ th#content{
 }
 </style>
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
   <thead>
     <tr>
 		<th class="mdl-data-table__cell--non-numeric" style="width:15%">문의유형</th>
 		<th class="mdl-data-table__cell--non-numeric" style="width:10%">작성자</th>
 		<th class="mdl-data-table__cell--non-numeric" style="width:15%">기업명</th>
-		<th class="mdl-data-table__cell--non-numeric" style="width:40%"> 제 목 </th>
+		<th class="mdl-data-table__cell--non-numeric text-center" style="width:40%"> 제 목 </th>
 		<th class="mdl-data-table__cell--non-numeric"style="width:20%">문의상태</th>
     </tr>
   </thead>
@@ -49,7 +49,7 @@ th#content{
 				<th class="mdl-data-table__cell--non-numeric">${asks.co_type}</th>
 				<th class="mdl-data-table__cell--non-numeric">${asks.a_name}</th>
 				<th class="mdl-data-table__cell--non-numeric">${asks.co_name}</th>
-				<th id="title${c}"><a href="">${asks.co_title }</a></th>
+				<th id="title${c}"><div class="text-center"><a href="">${asks.co_title }</a></div></th>
 				<th><fmt:formatDate value="${asks.w_date}" pattern="yyyy년 MM월 dd일 hh:mm" /></th>
 			</tr>
 		  </tbody>

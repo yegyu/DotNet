@@ -25,10 +25,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<!-- <script type="text/javascript" src="jquery-3.4.1.js"></script> -->
-<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-<!-- <script type="text/javascript" src="bootstrap.bundle.js"></script> -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -139,7 +135,11 @@
         text-align: center;
         font-size: 25px;
     }
-
+	
+	.sidebar-header{
+		background-color:#DAD9FF;
+	}
+	
     .sidebar a {
         display: block;
         color: black;
@@ -185,11 +185,38 @@
             float: none;
         }
     }
+    span{
+    font-size:15px;
+    }
+    a{
+    color:white;
+    }
+    button{
+    width:115px;
+    height:35px;
+    }
+    i{
+    font-size:30px;
+    }
 </style>
 <!-- </head> -->
 
 <!-- <body> -->
+	<div class="logout">
+	<button style="font-size:10px;" class="float1 btn-danger" onclick="location='main.do'" id="logoutSide"><i
+	class="fas fa-user-circle"></i>
+	</button>
+	<div class="label-container1">
+	<div class="label-text">로그아웃</div>
+	</div>
+	</div>
 
+	<button style="font-size:10px; color:white;" class="float" id="wm" data-toggle="modal"><i
+	class="far fa-envelope"></i>
+	</button>
+	<div class="label-container">
+	<div class="label-text">쪽지쓰기</div>
+	</div>
 <div class="page-wrapper chiller-theme toggled">
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
@@ -216,53 +243,37 @@
 	                <div class="col-xs-1">
 	                	
 		                <div class="user-info">
-		                    <span class="user-name">
+		                    <span style="font-size:20px;" class="user-name">
 								아이디 : ${memId}
 		                    </span>
 		                    <c:if test="${memId != 'admin'}">
-		                        <span class="badge badge-pill badge-primary">일반회원</span>
-		                        <span class="badge badge-pill badge-warning mt-1">보유 포인트 ${point}P</span>
+		                        <span style="font-size:17px;" class="badge badge-pill badge-success mt-1">일반회원</span>
+		                        <span style="font-size:17px;" class="badge badge-pill badge-warning mt-1">보유 포인트 ${point}P</span>
 		                    </c:if>
 		                    <c:if test="${memId == 'admin'}">
-		                        <span class="badge badge-pill badge-primary">관리자</span>
-		                        <span class="badge badge-pill badge-warning mt-1"> 기업사용자 문의</span>
-		                        <span class="badge badge-pill badge-warning mt-1"> 일반회원 문의</span>
-		                    </c:if>
+		                        <span style="font-size:17px;" class="badge badge-pill badge-primary mt-1">관리자</span>
+<!-- 		                        <span class="badge badge-pill badge-warning mt-1"> 기업사용자 문의</span> -->
+<!-- 		                        <span class="badge badge-pill badge-warning mt-1"> 일반회원 문의</span> -->
+							</c:if>
 		                  </div>
 	                </div>
+
                 </div>
             </div>
             <!-- sidebar-header  -->
-            <div class="sidebar-search">
+            <div class="sidebar-header">
                 <div>
-                    <!--         <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-          </div> -->
-<%--                     <c:if test="${memId != 'admin'}"> --%>
-<%--                         <a href="mypage.do">${memId}님의 마이페이지</a> --%>
-<!--                         <br> -->
-<%--                     </c:if> --%>
-<%--                     <c:if test="${memId	== 'admin'}"> --%>
-<!--                         <a href="mypage.do">관리자 페이지</a> -->
-<!--                         <br> -->
-<%--                     </c:if> --%>
-
-                    <a href="main.do" id="logoutSide"><i class="fas fa-user-circle"></i>
-                        Logout&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    </a><br>
-                    <a href="" id="wm" data-toggle="modal"><i class="far fa-envelope"></i>쪽지 쓰기<br></a>
+            		<ul>
+                        <li class="header-menu"> <span>문의 관리</span> </li>
                     <a href="main.do?b_tp=3" ><i class="fas fa-question"></i>...Net 질문<br></a>
+                    </ul>
                 </div>
             </div>
-            <c:if test="${memId != 'admin'}">
                 <div class="sidebar-menu">
+          		  <c:if test="${memId != 'admin'}">
                     <ul>
-                        <li class="header-menu"> <span>일반 메뉴</span> </li>
+                    	
+                        <li class="header-menu"> <span>사이트 관리</span> </li>
                         <li class="sidebar-dropdown">
                             <a href="#"><i class="fas fa-file-invoice"></i>
                                 <span>친구 피드 </span>

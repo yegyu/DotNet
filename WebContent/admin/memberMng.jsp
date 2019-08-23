@@ -36,12 +36,16 @@
 	<c:forEach var="mem" items="${memList }" >
 		<tr >
 			<td>${mem.id }</td>
-				<c:if test="${mem.gender == 0 }">
-					<td>여자</td>
+			<td>
+				<c:if test="${mem.gender == 1 }">
+					여자
 				</c:if>
-				<c:if test="${mem.gender == 1}">
-					<td>남자</td>
+				
+				<c:if test="${mem.gender == 2}">
+					남자
 				</c:if>
+				
+				</td>
 			<td>${mem.age }</td>
 			<td>${mem.point }</td>
 			<td>${mem.signup_date }</td>
