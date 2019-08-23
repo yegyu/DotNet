@@ -15,7 +15,7 @@
 
 <!-- 사이드바  1-1 start-->
 <jsp:include page="../mypage.do"/>
-<main class="page-content">
+<div class="page-content">
 <div class="container-fluid">
 	<div class="card col-md-12">
 		<h2 class="mt-3">내 최근 참여 설문</h2>
@@ -23,8 +23,6 @@
 		<h5>내 설문관리 > 내 최근 참여 설문</h5>
 		<hr>
 		<!-- 사이드바  1-1 end -->
-
-    
 	<br>   
 	<div> 
 		<c:if test="${cnt == 0}">
@@ -257,7 +255,7 @@
 			<!-- 사이드바 2-2 start --> 
 	</div>
 </div>
-</main>
+</div>
 <!-- 사이드바 2-2 end --> 
 	
 	<!-- script for thispage -->

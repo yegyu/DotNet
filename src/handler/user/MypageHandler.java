@@ -49,27 +49,9 @@ public class MypageHandler implements CommandHandler{
 		request.setAttribute("point", point);
 		request.setAttribute("memId", id);
 		//--------------------------
-		List<String> frid = frDao.getRealFrBtn(id);
-		///////////////친구 최근 설문 피드
-		Map<String,List<LibDataBean>> frPartBoard = new HashMap<String, List<LibDataBean>>(); 
-		for(String el : frid) {
-			List<LibDataBean> list = memberDao.getLib(el);  
-//			for(LibDataBean l : list) {
-//				System.out.println(el +" ; "  + l.getThumb_path());
-//			}System.out.println();
-			if(list.size() > 6) {
-				frPartBoard.put(el, list.subList(0, 6));
-			}else {
-				frPartBoard.put(el, list);
-			}
-		}
-		///////////////////////////
-		request.setAttribute("frLib", frPartBoard);
-		
-		
 		return new ModelAndView("user/mypage");
 	}
-	
+//	
 	
 	@RequestMapping(value = "sendMail", method = RequestMethod.POST)
 	@ResponseBody

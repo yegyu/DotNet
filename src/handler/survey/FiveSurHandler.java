@@ -29,13 +29,10 @@ public class FiveSurHandler implements CommandHandler {
 		
 		List<FiveDataBean> fiveList = new ArrayList<FiveDataBean>();
 		
-		// 조회수 증가
 		surveyDao.addHits(s_num);
 		
-		// 질문, 보기 목록 가져오기
 		fiveList = surveyDao.getFives(s_num);
 		
-		// 설문정보 가져오기
 		BoardDataBean boardDto = surveyDao.getSurvey(s_num);
 		
 		request.setAttribute("boardDto", boardDto);

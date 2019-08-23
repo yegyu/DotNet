@@ -199,7 +199,7 @@ public class AskContentHandler implements CommandHandler{
 		map = mapper.readValue(gb.toString(), new TypeReference<HashMap<String, Map<String,Integer	>>>() {} );
 		
 		for ( String key : map.keySet()) {
-			System.out.println("key :" +  key +  ", good : " + map.get(key).get("good") + " , bad : " + map.get(key).get("bad") + ",num : " + map.get(key).get("num"));
+//			System.out.println("key :" +  key +  ", good : " + map.get(key).get("good") + " , bad : " + map.get(key).get("bad") + ",num : " + map.get(key).get("num"));
 				Map<String, Integer> map1 = new HashMap<String, Integer>(); 
 				map1.put("num", map.get(key).get("num"));
 				map1.put("rnum", Integer.parseInt(key));
@@ -208,7 +208,7 @@ public class AskContentHandler implements CommandHandler{
 				int udateGoodBad = boardAskDao.updateGB(map1);
 //				System.out.println(udateGoodBad + " << update result");
 			}
-		System.out.println();
+//		System.out.println();
 		return 1; 
 	}
 	
@@ -298,11 +298,11 @@ public class AskContentHandler implements CommandHandler{
 		
 		String type = request.getParameter("type");
 		String reply = request.getParameter("reply");
-		System.out.println("type : >>> " + type);
+//		System.out.println("type : >>> " + type);
 		Map<String,Object> map = new HashMap<String, Object>();
 		int urs = 0;
 		int rs = memberDao.check(id, passwd);
-		System.out.println("rs >> " + rs);
+//		System.out.println("rs >> " + rs);
 		if(rs == 1) {
 			map.put("rnum", rnum);
 			map.put("num", num);
@@ -311,11 +311,11 @@ public class AskContentHandler implements CommandHandler{
 			
 			if(type.equals("0")) {
 				urs = boardAskDao.delReply(map);
-				System.out.println(urs +" <<< in type 0 ");
+//				System.out.println(urs +" <<< in type 0 ");
 				urs = 1;
 			}else if(type.equals("-2")) {
 				urs = boardAskDao.delDReply(map);
-				System.out.println(urs +" <<< in type -2 ");
+//				System.out.println(urs +" <<< in type -2 ");
 				urs =2;
 				
 			}
@@ -325,7 +325,7 @@ public class AskContentHandler implements CommandHandler{
 			urs = -1;
 			return "-1";
 		}
-		System.out.println("urs >> " + urs + ", type >> " + type);
+//		System.out.println("urs >> " + urs + ", type >> " + type);
 		return String.valueOf(urs);
 	}
 	

@@ -75,7 +75,7 @@ public class CommentHandler implements CommandHandler{
 		String id = (String)sess.getAttribute("memId");
 		int s_num = Integer.parseInt(request.getParameter("s_num"));
 		String content = request.getParameter("content");
-		System.out.println("id : "+ id + ", s_num : " + s_num + ", content : "+ content);
+//		System.out.println("id : "+ id + ", s_num : " + s_num + ", content : "+ content);
 		CommentDataBean comm = new CommentDataBean();
 		
 		comm.setS_num(s_num);
@@ -85,8 +85,7 @@ public class CommentHandler implements CommandHandler{
 		comm.setState(0);
 		
 		int rs= memberDao.insertComm(comm);
-		if(rs == 1)
-			System.out.println("�씤�꽕�듃 �꽦怨�");
+		
 		List<CommentDataBean> commList = memberDao.getComm(s_num);
 		
 		return commList; 

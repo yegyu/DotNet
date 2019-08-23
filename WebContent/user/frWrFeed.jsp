@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="/DotNet/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <title>Insert title here</title>
 </head>
@@ -67,8 +67,8 @@
         </div>
         </div>
     </div>
-    <script type="text/javascript" src="jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="bootstrap.bundle.js"></script>
+    <script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
     <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
     <script>
         $('.grid').masonry({

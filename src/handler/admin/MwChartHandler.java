@@ -47,22 +47,22 @@ public class MwChartHandler implements CommandHandler {
 		mapForAll.put("q_num", q_num);
 		mapForAll.put("strForData", strForData);
 		
-		dataForAll = adminDao.getDataForAll(mapForAll);		// 해당 설문의 전체 참여 정보를 불러온다. 
-															// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
+		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
+															// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
 		
 		request.setAttribute("q_len", q_len);
 		request.setAttribute("getS_numList", getS_numList);
 		request.setAttribute("dataForAll", dataForAll);
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
-															//    보기1번        보기2번
-															// [ 전체선택수, 전체선택수
-															//   남자선택수, 남자선택수
-															//   여자선택수, 여자선택수			전체,성별,연령 순. 홀수 index는 보기1번, 짝수 index는 보기2번
-															//   10대선택수, 10대선택수
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
+															//    蹂닿린1踰�        蹂닿린2踰�
+															// [ �쟾泥댁꽑�깮�닔, �쟾泥댁꽑�깮�닔
+															//   �궓�옄�꽑�깮�닔, �궓�옄�꽑�깮�닔
+															//   �뿬�옄�꽑�깮�닔, �뿬�옄�꽑�깮�닔			�쟾泥�,�꽦蹂�,�뿰�졊 �닚. ���닔 index�뒗 蹂닿린1踰�, 吏앹닔 index�뒗 蹂닿린2踰�
+															//   10���꽑�깮�닔, 10���꽑�깮�닔
 															//   		~
-															//   70대선택수, 70대선택수
+															//   70���꽑�깮�닔, 70���꽑�깮�닔
 															
 		request.setAttribute("dataForEachQ", dataForEachQ);
 
@@ -78,7 +78,7 @@ public class MwChartHandler implements CommandHandler {
 		int q_num = Integer.parseInt(request.getParameter("q_num"));
 		String[] strForData = {"gender=1", "gender=2", 
 				"age=10", "age=20", "age=30", "age=40", "age=50", "age=60", "age=70"};
-		System.out.println("들어왔다. q_num : " + q_num + " s_num : " + s_num);
+//		System.out.println("�뱾�뼱�솕�떎. q_num : " + q_num + " s_num : " + s_num);
 		List<Integer> dataForAll = new ArrayList<Integer>();
 		Map<String,Object> mapForAll = new HashMap<String, Object>();
 		mapForAll.put("s_num", s_num);
@@ -86,20 +86,20 @@ public class MwChartHandler implements CommandHandler {
 		mapForAll.put("q_num", q_num);
 		mapForAll.put("strForData", strForData);
 		
-		dataForAll = adminDao.getDataForAll(mapForAll);		// 해당 설문의 전체 참여 정보를 불러온다. 
-															// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
+		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
+															// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
-															//    보기1번        보기2번
-															// [ 전체선택수, 전체선택수
-															//   남자선택수, 남자선택수
-															//   여자선택수, 여자선택수			전체,성별,연령 순. 홀수 index는 보기1번, 짝수 index는 보기2번
-															//   10대선택수, 10대선택수
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
+															//    蹂닿린1踰�        蹂닿린2踰�
+															// [ �쟾泥댁꽑�깮�닔, �쟾泥댁꽑�깮�닔
+															//   �궓�옄�꽑�깮�닔, �궓�옄�꽑�깮�닔
+															//   �뿬�옄�꽑�깮�닔, �뿬�옄�꽑�깮�닔			�쟾泥�,�꽦蹂�,�뿰�졊 �닚. ���닔 index�뒗 蹂닿린1踰�, 吏앹닔 index�뒗 蹂닿린2踰�
+															//   10���꽑�깮�닔, 10���꽑�깮�닔
 															//   		~
-															//   70대선택수, 70대선택수
+															//   70���꽑�깮�닔, 70���꽑�깮�닔
 															
-		// ajax로 넘겨줄 데이터 map
+		// ajax濡� �꽆寃⑥쨪 �뜲�씠�꽣 map
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("dataForEachQ", dataForEachQ);
 		map.put("dataForAll", dataForAll);

@@ -38,7 +38,7 @@ public class MemberMngHandler implements CommandHandler{
 		List<MemberDataBean> memList = memberDao.getMembers();
 		request.setAttribute("memList", memList);
 		
-		return new ModelAndView("admin/memberMng");
+	return new ModelAndView("admin/memberMng");
 	}
 
 	

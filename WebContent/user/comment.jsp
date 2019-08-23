@@ -65,16 +65,16 @@
 
 </div>
 
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 
 <script>
 
 $(document).ready(function(){
+	if(session == null || session == "") {
+		$(".commentbtn").attr("disabled","true");
+	}
 	$('#inputComment').on('click',function(){
-		if(session == null || session == "") {
-			$(".commentbtn").attr("disabled","true");
-		}
 		
 	    com = {"content":$('#commentArea').val(), "s_num":'${s_num}'};
 	    $.ajax({

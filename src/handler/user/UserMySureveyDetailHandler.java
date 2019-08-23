@@ -27,7 +27,6 @@ public class UserMySureveyDetailHandler implements CommandHandler {
 	@RequestMapping("/userMySurveyDetail.do")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		//경로 확인 정확히 해라!!
 //		"C:\\ExpertJava\\Java2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BoardEx\\save"
 		String path = request.getSession().getServletContext().getRealPath("/save"); 
 		String s_num = (String) request.getParameter("s_num");
@@ -36,24 +35,20 @@ public class UserMySureveyDetailHandler implements CommandHandler {
 		// List for countChoice columns(q_num, cho_num, c_name)
 		String q[] = new String[] {"1","2","3","4","5"};
 		String cho[] = new String[] {"1","2"};
-		//조회수 카운트
 		int hits = 0;
 		hits = surveyDao.countHits(s_num);
 		request.setAttribute("hits", hits);
-		//참여수 카운트
 		int parts = 0;
 		parts = surveyDao.countParts(s_num);
 		request.setAttribute("parts", parts);
-		//제목 출력
 		String subject = "";
 		subject = surveyDao.getTitle(s_num);
 		request.setAttribute("subject", subject);
 		
 		
-//		System.out.println("조회수"+hits);
+//		System.out.println("議고쉶�닔"+hits);
 		TwoDataBean two = SqlMapClient.getSession().selectOne("Survey.getTwo", s_num);
 //		System.out.println("s_num : " + s_num);
-		// 질문 개수
 		List<String> qList = new ArrayList<String>();
 		qList.add(two.getQ1());
 		qList.add(two.getQ2());
@@ -62,7 +57,6 @@ public class UserMySureveyDetailHandler implements CommandHandler {
 		qList.add(two.getQ5());
 		qList.size();
 		
-		//이미지 개수(링크 저장 경로)
 		List<String> iList = new ArrayList<String>();
 		iList.add(two.getImgname1());
 		iList.add(two.getImgname2());
@@ -90,15 +84,15 @@ public class UserMySureveyDetailHandler implements CommandHandler {
 		}
 		map1.put("s_num", s_num);
 		map1.put("cList", cList);
-//		System.out.println("번호 : "+s_num);
+//		System.out.println("踰덊샇 : "+s_num);
 		
 		List<Integer> test1 = new ArrayList<Integer>();
 		test1 = surveyDao.countList(map1);
 		
 //		System.out.println("cList : " + cList);
-//		System.out.println("LIst 결과 : " + test1);
+//		System.out.println("LIst 寃곌낵 : " + test1);
 
-		//질문 개수 -> ,, count 만들기(ArrayList or List) param=int
+		//吏덈Ц 媛쒖닔 -> ,, count 留뚮뱾湲�(ArrayList or List) param=int
 		//1. s_num = key value / Map( q_num, cho_num, c_name ) /
 		request.setAttribute( "qList", qList );
 		request.setAttribute( "iList", iList );

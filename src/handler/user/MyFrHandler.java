@@ -109,7 +109,6 @@ public class MyFrHandler implements CommandHandler{
 
 		
 		
-		//移쒓뎄 �슂泥� 0 ,移쒓뎄 �맖 1,  <-- 移쒓뎄 �럹�씠吏�    ,,,,,,             李⑤떒 2 <--異붿쿇�럹�씠吏�
 		MemberDataBean myFrArr[][] = MyFrHandler.frgrid(getFr);
 		
 		request.setAttribute("getAccBtnId", getAccBtnId);

@@ -36,7 +36,6 @@ public class UploadViewHandler implements CommandHandler {
 		
 		String s_num = request.getParameter("s_num");
 		
-		//경로 확인 정확히 해라!!
 //		"C:\\ExpertJava\\Java2\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\BoardEx\\save"
 		String path = request.getSession().getServletContext().getRealPath("/save"); 
 

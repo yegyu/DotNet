@@ -28,21 +28,17 @@ public class EightPartDetailHandler implements CommandHandler {
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		// 인코드 : 한글
 		request.setCharacterEncoding("utf-8");
 		
 
-		// 유저의 아이디 호출
 		String id =  (String)request.getSession().getAttribute("memId");
 	
-		// 기본 출력 요소 호출
 		
 		List<EightDataBean> eightList = new ArrayList<EightDataBean>();
 		String s_num = (String) request.getParameter("s_num");
 		String q_num = (String) request.getParameter("q_num");
 		String q_content = (String) request.getParameter("q_content");
 		
-		// 질문, 보기 목록 가져오기
 		eightList = surveyDao.getEights(s_num);
 //		System.out.println("eightList" + eightList);
 		EightDataBean eight = new EightDataBean();
@@ -77,26 +73,20 @@ public class EightPartDetailHandler implements CommandHandler {
 		cMap.put("cList", cList );
 		cMap.put("id", id);
 		cMap.put("size", size);
-//		System.out.println("번호 : "+s_num);
 
-		//  총 선택 개수 카운터
 		List<String> counter = new ArrayList<String>();
 		counter=surveyDao.selectCount(cMap);
 		
-		// 선택 정보 전송
 		selList = surveyDao.selected(cMap);
 		
-		// 조회수 카운트
 		int hits = 0;
 		hits = surveyDao.countHits(s_num);
 		request.setAttribute("hits", hits);
 		
-		// 참여수 카운트
 		int parts = 0;
 		parts = surveyDao.countParts(s_num);
 		request.setAttribute("parts", parts);
 		
-		// 제목 출력
 		String subject = "";
 		subject = surveyDao.getTitle(s_num);
 		request.setAttribute("subject", subject);
@@ -104,7 +94,6 @@ public class EightPartDetailHandler implements CommandHandler {
 //		System.out.println("List : " + counter );
 //		System.out.println("q_content : " + q_content);
 		
-		// MAP 객체 	
 		request.setAttribute("counter", counter);
 		request.setAttribute("q_content" , q_num );
 		request.setAttribute("cList", cList);

@@ -95,7 +95,6 @@ public class AdminBoardHandler implements CommandHandler {
 		String page2 = request.getParameter("page2");
 		int listSize = 5;
 		
-		// 硫붿씤寃뚯떆�뙋�슜
 		List<SurveyDataBean> allMainSurveys = surveyDao.getSurs();
 		List<List<SurveyDataBean>> mainSurveys = new ArrayList<List<SurveyDataBean>>();
 		int mainCnt = allMainSurveys.size();
@@ -114,7 +113,6 @@ public class AdminBoardHandler implements CommandHandler {
 			mainSurveys.add(mainSurPage);
 		}
 		
-		// 蹂댁“寃뚯떆�뙋�슜
 		List<SurveyDataBean> allSubSurveys = surveyDao.getSurs2();
 		List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 		int subCnt = allSubSurveys.size();
@@ -145,9 +143,8 @@ public class AdminBoardHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {		
 				
 			int listSize = 5;
-			int pageNum = 0;	// 泥섏쓬 �럹�씠吏� 踰덊샇(+1濡� 怨꾩궛)
+			int pageNum = 0;	
 			
-			// 硫붿씤寃뚯떆�뙋�슜
 			List<SurveyDataBean> allMainSurveys = surveyDao.getSurs();
 			List<List<SurveyDataBean>> mainSurveys = new ArrayList<List<SurveyDataBean>>();
 			int mainCnt = allMainSurveys.size();
@@ -173,7 +170,6 @@ public class AdminBoardHandler implements CommandHandler {
 			request.setAttribute("realSize", realSize);
 			request.setAttribute("pageNum", pageNum);
 			
-			// 蹂댁“寃뚯떆�뙋�슜
 			List<SurveyDataBean> allSubSurveys = surveyDao.getSurs2();
 			List<List<SurveyDataBean>> subSurveys = new ArrayList<List<SurveyDataBean>>();
 			int subCnt = allSubSurveys.size();

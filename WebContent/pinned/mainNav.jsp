@@ -3,7 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-	<link rel="stylesheet" href="/DotNet/bootstrap.css">
+	<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
 	
 	<!-- bootstrap css -->
 	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -17,7 +17,7 @@
 		rel="stylesheet">
 		
 	<!-- style_dotnet.css -->
-	<link rel="stylesheet" type="text/css" href="/DotNet/style_dotnet.css" />
+	<link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
 	
 	<!-- css for this page -->
 	<style type="text/css">
@@ -46,7 +46,7 @@
 
        	<div class="mx-auto">
 	        <a class="navbar-brand" href="main.do">
-	            <h1 id="logo">.Net</h1>
+	            <h1 id="logo" class="tomain">.Net</h1>
 	        </a>
        	</div>
         <div class="" id="myNavbar">
@@ -59,12 +59,12 @@
                             ${sessionScope.memId} 님
                         </li>
                         <c:if test="${sessionScope.isAdmin eq 2}">
-                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                            <li><a class="nav-link" href="myFrSur.do"><i class="fas fa-portrait"></i>
                                     My Page&nbsp;&nbsp;&nbsp;
                                 </a></li>
                         </c:if>
                         <c:if test="${sessionScope.isAdmin eq 1}">
-                            <li><a class="nav-link" href="mypage.do"><i class="fas fa-portrait"></i>
+                            <li><a class="nav-link" href="memberMng.do"><i class="fas fa-portrait"></i>
                                     My Page&nbsp;&nbsp;&nbsp;
                                 </a></li>
                         </c:if>
@@ -118,8 +118,8 @@
 
 
 	
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<!-- <script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script> -->
 	<script>
 	$(document).ready(function(){
 		$('#loginBtn').on('click',function(){
