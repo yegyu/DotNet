@@ -219,10 +219,10 @@ button.float1:hover + div.label-container1{
 .float:hover{
 	position:fixed;
 	opacity: 1;	
-	width:80px;
-	height:80px;
+	width:75px;
+	height:75px;
 	bottom:40px;
-	right:37px;
+	right:40px;
 	background-color:#0C9;
 	color:#FFF;
 	border-radius:50px;
@@ -234,8 +234,8 @@ button.float1:hover + div.label-container1{
 .float1:hover{
 	position:fixed;
 	opacity: 1;	
-	width:80px;
-	height:80px;
+	width:75px;
+	height:75px;
 	bottom:135px;
 	right:40px;
 	background-color:#06C;

@@ -16,10 +16,6 @@ public class BoardAskDataBean {
 	private int aState;
 	private int views;
 	private int secret;
-	
-	
-	
-	
 	public int getSecret() {
 		return secret;
 	}

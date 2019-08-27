@@ -36,8 +36,9 @@
 	<c:forEach var="mem" items="${memList }" >
 		<tr >
 			<td>${mem.id }</td>
+			<td>
 				<c:if test="${mem.gender == 2}">
-					<td>여자</td>
+					여자
 				</c:if>
 				<c:if test="${mem.gender == 1}">
 					남자

@@ -24,6 +24,7 @@ public class AskCompBoardHandler implements CommandHandler {
 		CompanyDataBean companyDto = new CompanyDataBean();	
 		List<CompanyDataBean> getQuestions = compDao.getQuestions(companyDto);
 		request.setAttribute("getQuestions", getQuestions);
+		System.out.println("getQ : " + getQuestions);
 		return new ModelAndView("company/askCompBoard");
 	}
 
