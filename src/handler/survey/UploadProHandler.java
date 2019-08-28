@@ -72,7 +72,7 @@ public class UploadProHandler implements CommandHandler {
 //		System.out.println("isAdmin : " + isAdmin);
 		BoardDataBean boardDto = new BoardDataBean();
 		boardDto.setB_tp_num(isAdmin);
-		boardDto.setCt_num(1);
+		boardDto.setCt_num(Integer.parseInt(multi.getParameter("cate_num")));
 		boardDto.setS_tp_num(2);
 		boardDto.setSubject(multi.getParameter("subject"));
 		boardDto.setWriter( (String)session.getAttribute("memId") );

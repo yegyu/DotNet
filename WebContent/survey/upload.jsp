@@ -157,7 +157,7 @@
 			<div class="card col-md-7"  id="card${len.count}">
 				<div class="card-header">
 					<div class="mdl-textfield mdl-js-textfield">
-						    <input class="mdl-textfield__input mb-2" type="text"  name="question${len.count}">
+						    <input class="mdl-textfield__input mb-2" type="text"  name="question${len.count}" value="">
 						    <label class="mdl-textfield__label">${len.count}번 질문을 입력해주세요</label>
 					  </div>
 						<hr>
@@ -244,9 +244,6 @@
 		if(  jQuery("input[name=subject]").val()=="" || jQuery("input[name=point]").val() ==""){
 			alert("제목, 포인트, 썸네일 이미지를 다시 확인해 주세요!!")
 			return false
-		}else if(typeof parseInt(jQuery("input[name=point]").val()) != "number" || isNaN(parseInt(jQuery("input[name=point]").val()))){
-			alert("point 에 숫자를 넣어 주세요");
-			return false
 		}else if(cnt==1){
 			if(jQuery("div.mdl-textfield.mdl-js-textfield.is-upgraded > input").eq(2).val()==""){
 				alert("질문을 넣어주세요!!")
@@ -255,7 +252,7 @@
 				alert("이미지를 양쪽에 모두 넣어 주세요")
 				return false;
 			}
-		}else if(cnt==2){
+		} if(cnt==2){
 			if(jQuery("div.mdl-textfield.mdl-js-textfield.is-upgraded > input").eq(3).val()==""){
 				alert("질문을 넣어주세요!!")
 				return false;

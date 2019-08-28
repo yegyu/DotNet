@@ -26,7 +26,6 @@
 		<br>
 		<br>
 		<div class="row">
-		
 			<label>양자 택일 번호</label>
 			<div class="col-md-4">
 				<select class="form-control" id="s_num" >
@@ -36,19 +35,20 @@
 				</select>
 			</div>
 			<div class="col-md-4"></div>
-		
+			
 			<br>
 			<br>
+			<h3 class="noData"></h3>
 		
-			<div id="sexAll" style="height: 30rem; width: 50%;"></div>
-			<div id="ageAll" style="height: 30rem; width: 50%;"></div>
+			<div id="sexAll" style="height: 30rem; width: 50%;" class="dataArea"></div>
+			<div id="ageAll" style="height: 30rem; width: 50%;" class="dataArea"></div>
 		</div>
 		<br>
 		<br>
 		<br>
 		<div class=row>
 			<c:forEach begin="1" end="5" varStatus="i">
-				<input class="btn btn-primary ml-4" type="button" value="질문${i.count}" id="${i.count}">
+				<input class="btn btn-primary ml-4 dataArea" type="button" value="질문${i.count}" id="${i.count}">
 			</c:forEach>
 		</div>
 		<br>
@@ -57,26 +57,26 @@
 		<div class="row">
 			<div class="col">
 				<div class="row">
-					<div id="sexSel1" class="mini"></div>
+					<div id="sexSel1" class="mini dataArea"></div>
 				</div>
 				<div class="row">
-					<div id="ageSel1" class="mini"></div>
+					<div id="ageSel1" class="mini dataArea"></div>
 				</div>
 			</div>
 			<div class="col-5">
 				<br><br><br>
-				<div id="selAll" style="width: 100%;"></div>
+				<div id="selAll" class="dataArea" style="width: 100%;"></div>
 			</div>
 			<div class="col">
 				<div class="row">
-					<div id="sexSel2" class="mini"></div>
+					<div id="sexSel2" class="mini dataArea"></div>
 				</div>
 				<div class="row">
-					<div id="ageSel2" class="mini"></div>
+					<div id="ageSel2" class="mini dataArea"></div>
 				</div>
 			</div>
 		</div>
-
+	
 		<!-- 사이드바 2-2 start --> 
 	</div>
 </div>
@@ -95,7 +95,11 @@ window.onload = function() {
 	var ageSel1Chart = null;	// 보기 1번 연령별
 	var sexSel2Chart = null;	// 보기 2번 성별
 	var ageSel2Chart = null;	// 보기 2번 연령별
-	
+
+	if( ${q_len} == 0 ) {
+		$(".noData").text("이 설문에 대한 참여정보가 아직 없습니다.");
+		$(".dataArea").hide();
+	}
 	//////////////////////////// 초기 데이터 ////////////////////////////////////////
 	var initData =
 	[
@@ -276,7 +280,7 @@ window.onload = function() {
 		ageSel2Chart.render();
 	}
 	
-	makeChart(initData);
+	makeChart(initData);	
 	
 	///////////////////////////////////////// ajax 처리 영역 //////////////////////////////////////////////
 	//sexAllChart.options.data[0].dataPoints = sacData;
@@ -292,56 +296,63 @@ window.onload = function() {
 			url:"changeDataTwo.do",
 			
 			success:function(d){
-				var reData =
-				[
-					[	// 전체 참여 성별
-						{ y : d.dataForAll[0], label : "남자" },
-						{ y : d.dataForAll[1], label : "여자" }
-					],
-					[	// 전체 참여 연령별
-						{ y : d.dataForAll[2], label : "10대" },
-						{ y : d.dataForAll[3], label : "20대" },
-						{ y : d.dataForAll[4], label : "30대" },
-						{ y : d.dataForAll[5], label : "40대" },
-						{ y : d.dataForAll[6], label : "50대" },
-						{ y : d.dataForAll[7], label : "60대" },
-						{ y : d.dataForAll[8], label : "70대" }
-					],
-					[	// 전체 보기 선택수
-						{ label : "보기1번선택수", y: d.dataForEachQ[0] },
-						{ label : "보기2번선택수", y: d.dataForEachQ[1] }
-					],
-					[	// 보기 1번 성별
-						{ y: d.dataForEachQ[2], label: "남자" },
-						{ y: d.dataForEachQ[4], label: "여자" },
-					],
-					[	// 보기 1번 연령별
-						{ x: 10, y: d.dataForEachQ[6] },
-						{ x: 20, y: d.dataForEachQ[8] },
-						{ x: 30, y: d.dataForEachQ[10] },
-						{ x: 40, y: d.dataForEachQ[12] },
-						{ x: 50, y: d.dataForEachQ[14] },
-						{ x: 60, y: d.dataForEachQ[16] },
-						{ x: 70, y: d.dataForEachQ[18] },
-						
-					],
-					[	// 보기 2번 성별
-						{ y: d.dataForEachQ[3], label: "남자" },
-						{ y: d.dataForEachQ[5], label: "여자" },
-					],
-					[	// 보기 2번 연령별
-						{ x: 10, y: d.dataForEachQ[7] },
-						{ x: 20, y: d.dataForEachQ[9] },
-						{ x: 30, y: d.dataForEachQ[11] },
-						{ x: 40, y: d.dataForEachQ[13] },
-						{ x: 50, y: d.dataForEachQ[15] },
-						{ x: 60, y: d.dataForEachQ[17] },
-						{ x: 70, y: d.dataForEachQ[19] },
-						
-					]
-				];
-				
-				makeChart(reData);
+				if(d.q_len == 0) {
+					$(".noData").text("이 설문에 대한 참여정보가 아직 없습니다.");
+					$(".dataArea").hide();
+				} else {
+					$(".noData").text("");
+					$(".dataArea").show();
+					var reData =
+					[
+						[	// 전체 참여 성별
+							{ y : d.dataForAll[0], label : "남자" },
+							{ y : d.dataForAll[1], label : "여자" }
+						],
+						[	// 전체 참여 연령별
+							{ y : d.dataForAll[2], label : "10대" },
+							{ y : d.dataForAll[3], label : "20대" },
+							{ y : d.dataForAll[4], label : "30대" },
+							{ y : d.dataForAll[5], label : "40대" },
+							{ y : d.dataForAll[6], label : "50대" },
+							{ y : d.dataForAll[7], label : "60대" },
+							{ y : d.dataForAll[8], label : "70대" }
+						],
+						[	// 전체 보기 선택수
+							{ label : "보기1번선택수", y: d.dataForEachQ[0] },
+							{ label : "보기2번선택수", y: d.dataForEachQ[1] }
+						],
+						[	// 보기 1번 성별
+							{ y: d.dataForEachQ[2], label: "남자" },
+							{ y: d.dataForEachQ[4], label: "여자" },
+						],
+						[	// 보기 1번 연령별
+							{ x: 10, y: d.dataForEachQ[6] },
+							{ x: 20, y: d.dataForEachQ[8] },
+							{ x: 30, y: d.dataForEachQ[10] },
+							{ x: 40, y: d.dataForEachQ[12] },
+							{ x: 50, y: d.dataForEachQ[14] },
+							{ x: 60, y: d.dataForEachQ[16] },
+							{ x: 70, y: d.dataForEachQ[18] },
+							
+						],
+						[	// 보기 2번 성별
+							{ y: d.dataForEachQ[3], label: "남자" },
+							{ y: d.dataForEachQ[5], label: "여자" },
+						],
+						[	// 보기 2번 연령별
+							{ x: 10, y: d.dataForEachQ[7] },
+							{ x: 20, y: d.dataForEachQ[9] },
+							{ x: 30, y: d.dataForEachQ[11] },
+							{ x: 40, y: d.dataForEachQ[13] },
+							{ x: 50, y: d.dataForEachQ[15] },
+							{ x: 60, y: d.dataForEachQ[17] },
+							{ x: 70, y: d.dataForEachQ[19] },
+							
+						]
+					];
+					
+					makeChart(reData);
+				}
 			},
 			error:function(){
 				console.log("data ajax fail");
