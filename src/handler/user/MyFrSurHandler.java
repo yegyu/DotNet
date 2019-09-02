@@ -25,12 +25,12 @@ public class MyFrSurHandler implements CommandHandler {
 	@Resource
 	private FrDao frDao;
 
-	@RequestMapping("myFrSur")
+	@RequestMapping("/myFrSur")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String id = (String) request.getSession().getAttribute("memId");
 		List<String> frid = frDao.getRealFrBtn(id);
-		/////////////// Ä£±¸ ÃÖ±Ù ¼³¹® ÇÇµå
+		/////////////// Ä£ï¿½ï¿½ ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Çµï¿½
 		Map<String, List<LibDataBean>> frPartBoard = new HashMap<String, List<LibDataBean>>();
 		for (String el : frid) {
 			List<LibDataBean> list = memberDao.getLib(el);

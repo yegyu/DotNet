@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
-	<property name="LOGS_ABSOLUTE_PATH" value="d:/logs" />
+	<property name="LOGS_ABSOLUTE_PATH" value="c:/dn_logs" />
 	<property name="LOG_PATTERN"
 		value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" />
 
@@ -38,7 +38,7 @@
 
 
 
-	<logger name="src.Main" level="debug" additivity="false">
+	<logger name="src.Main" level="info" additivity="false">
 		<appender-ref ref="ROLLING" />
 	</logger>
 
