@@ -3,5 +3,3 @@
 
 <h2> default page </h2>
 ${result}
-
-정예규 보아라

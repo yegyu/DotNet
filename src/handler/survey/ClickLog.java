@@ -24,10 +24,10 @@ public class ClickLog {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
 		if(id != null) {
-			logger.info("회원 :"+id +",설문 번호 :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger.info("id :"+id +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
 			
 		}else {
-			logger.info("비회원 :"+noMem +",설문 번호 :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger.info("id :"+noMem +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
 		}
 		
 		

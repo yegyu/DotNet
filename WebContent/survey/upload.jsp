@@ -121,9 +121,19 @@
 						</div>
 
 						<div class="col">
-							<div class="mdl-textfield mdl-js-textfield">
-								<input id="hideP" class="mdl-textfield__input mb-2" type="text" name="point"> 
-									<label class="mdl-textfield__label hideP">포인트 설정</label>
+							<input id="hideP" type="hidden" name="point">
+							<input id="category" type="hidden" name="cate_num">
+							<div class="dropdown">
+								<button class="btn btn-outline-success btn-lg dropdown-toggle" type="button"
+									id="dropdownMenuButton" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false" style="width:40%">
+									카테고리 선택
+								</button>
+								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<c:forEach items="${categorys}" var="cate">
+										<a class="dropdown-item" href="#" title="${cate.ct_num}">${cate.ct_name}</a> 
+									</c:forEach>
+								</div>
 							</div>
 						</div>
 
@@ -147,7 +157,7 @@
 			<div class="card col-md-7"  id="card${len.count}">
 				<div class="card-header">
 					<div class="mdl-textfield mdl-js-textfield">
-						    <input class="mdl-textfield__input mb-2" type="text"  name="question${len.count}">
+						    <input class="mdl-textfield__input mb-2" type="text"  name="question${len.count}" value="">
 						    <label class="mdl-textfield__label">${len.count}번 질문을 입력해주세요</label>
 					  </div>
 						<hr>
@@ -234,9 +244,6 @@
 		if(  jQuery("input[name=subject]").val()=="" || jQuery("input[name=point]").val() ==""){
 			alert("제목, 포인트, 썸네일 이미지를 다시 확인해 주세요!!")
 			return false
-		}else if(typeof parseInt(jQuery("input[name=point]").val()) != "number" || isNaN(parseInt(jQuery("input[name=point]").val()))){
-			alert("point 에 숫자를 넣어 주세요");
-			return false
 		}else if(cnt==1){
 			if(jQuery("div.mdl-textfield.mdl-js-textfield.is-upgraded > input").eq(2).val()==""){
 				alert("질문을 넣어주세요!!")
@@ -245,7 +252,7 @@
 				alert("이미지를 양쪽에 모두 넣어 주세요")
 				return false;
 			}
-		}else if(cnt==2){
+		} if(cnt==2){
 			if(jQuery("div.mdl-textfield.mdl-js-textfield.is-upgraded > input").eq(3).val()==""){
 				alert("질문을 넣어주세요!!")
 				return false;
@@ -282,16 +289,29 @@
 	
   </script>
   <script>
+	// 파일 업로드 버튼을 숨긴다
 	jQuery("input[type=file]").attr("hidden",true);
-	// 회원일 때는 포인트 입력 칸을 숨긴다.
+	
+	
+
 	jQuery(document).ready(
 		function(){
+			// 회원이면 포인트 0 
+			// 관리자이면 포인트 100
 			var isAdmin = "${sessionScope.isAdmin}";
+			
 			if(isAdmin == 2) {
-				var clone = jQuery("#hideP").children().clone();
-				jQuery(".hideP").text("").append(clone);
-				jQuery("input[name=point]").attr("hidden","true").attr("value",0);
+				jQuery("input[name=point]").attr("value",0);
+			} else{
+				jQuery("input[name=point]").attr("value",100);				
 			}
+			
+			// 카테고리 선택되었을때
+			jQuery(".dropdown-item").on("click",
+				function(){
+					jQuery("#dropdownMenuButton").text(jQuery(this).text());
+					jQuery("#category").attr("value",jQuery(this).attr("title"));
+			});
 		}		
 	);
   </script>

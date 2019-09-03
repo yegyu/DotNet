@@ -58,8 +58,21 @@
 						<input type="text" class="form-control" name="subject" placeholder="글 제목을 적어주세요">
 						<br>
 						
-						<label class="point"> 포인트 </label>
-						<input type="text" class="form-control" name="point" placeholder="포인트">
+						
+						<input type="hidden" class="form-control" name="point" placeholder="포인트">
+						<input id="category" type="hidden" name="cate_num">
+						<div class="dropdown row justify-content-end pr-3">
+							<button class="btn btn-outline-success btn-lg dropdown-toggle" type="button"
+								id="dropdownMenuButton" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false" style="width:40%">
+								카테고리 선택
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<c:forEach items="${categorys}" var="cate">
+									<a class="dropdown-item" href="#" title="${cate.ct_num}">${cate.ct_name}</a> 
+								</c:forEach>
+							</div>
+						</div>
 					</div>
 					<div class="dad" id="userActions1" ondragover="dragOver()" >
 			            <img id="img1" alt="uploaded image placeholder">
@@ -147,9 +160,6 @@
 					if(jQuery('input[placeholder="글 제목을 적어주세요"]').val()=="" ){
 						alert("제목을 넣어 주세용!!")
 						return false;
-					}else if(isNaN(parseInt(jQuery('input[placeholder="포인트"]').val()))){
-						alert("포인트는 숫자를 입력해주세요")
-						return false;
 					}else if(jQuery('input[name=Q1]').val()==""	){
 						alert("질문을 입력해 주세요!!");
 						return false;
@@ -221,12 +231,22 @@
 					// 슬라이드 자동으로 넘어가는 것 방지
 					jQuery("#fiveCarousel").carousel('pause');
 					
-					// 관리자가 아니면 point입력 부분 숨기기
+					// 회원이면 포인트 0 
+					// 관리자이면 포인트 100
 					var isAdmin = "${sessionScope.isAdmin}";
+					
 					if(isAdmin == 2) {
-						jQuery(".point").text("");
-						jQuery("input[name=point]").attr("hidden","true").attr("value", "0");
+						jQuery("input[name=point]").attr("value",0);
+					} else{
+						jQuery("input[name=point]").attr("value",100);				
 					}
+					
+					// 카테고리 선택되었을때
+					jQuery(".dropdown-item").on("click",
+						function(){
+							jQuery("#dropdownMenuButton").text(jQuery(this).text());
+							jQuery("#category").attr("value",jQuery(this).attr("title"));
+					});
 					
 					// 파일업로드 버튼 숨기기
 					jQuery("input[type=file]").attr("hidden",true);

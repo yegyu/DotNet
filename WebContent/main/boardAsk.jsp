@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap.css">
 <style>
 /* div.table { */
 /* 	height: 600px; */
@@ -95,7 +95,7 @@
 						</div>
 						<c:if test="${sessionScope.memId == null }">
 							<label for="askId" class="col-form-label">아이디</label>
-							<input type="text" class="form-control" id="askId" placeholder="비회원용 아이디">
+							<input type="text" class="form-control" id="askId" placeholder="비회원용 아이디" required>
 						</c:if>
 						<div class="form-group">
 							<label for="askPasswd" class="col-form-label">비밀번호</label>
@@ -153,8 +153,8 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
-	<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="bootstrap.bundle.js"></script>
 	<label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 	<script>
 	
@@ -315,18 +315,25 @@
 		    mi + ':'+
 		    s;
 		}
+	
 	//질문 modal 에서
+	var memId = "${sessionScope.memId}"
 	function checkAsk(){
 		if($("#askTitle").val() =="" ){
 			alert("제목을 입력하세요");
 			return false;
-		}else if($("#askPasswd").val() == ""){
+		} else if($("#askPasswd").val() == ""){
 			alert("비밀번호를 입력해 주세용~!~!");
 			return false;
-		}else if($("#askContents").val() == ""){
+		} else if($("#askContents").val() == ""){
 			alert("내용을 입력하세요");
 			return false;
-		}else{
+		} else if( memId == "" ){
+			if($("#askId").val() == ""){
+				alert("아이디를 입력하세요");
+			return false;
+			
+			} else {
 			
 			alert("질문 작성 완료")
 			$("#askSubmit").attr("data-dismiss","modal");
@@ -352,6 +359,7 @@
 						SetDivPosition()
 				}
 			})
+		}
 		}
 	}
 

@@ -77,7 +77,7 @@ public class FiveProHandler implements CommandHandler {
 
 		BoardDataBean boardDto = new BoardDataBean();
 		boardDto.setB_tp_num(isAdmin);
-		boardDto.setCt_num(1);
+		boardDto.setCt_num(Integer.parseInt(multi.getParameter("cate_num")));
 		boardDto.setS_tp_num(Integer.parseInt((String)info.get("s_tp_num")));
 		boardDto.setSubject((String)info.get("subject"));
 		boardDto.setWriter((String)session.getAttribute("memId"));

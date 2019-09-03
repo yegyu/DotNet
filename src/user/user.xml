@@ -55,4 +55,9 @@
 		from dn_ask_co
 		where a_num=${a_num}
 	</select>
+	
+	<select id="checkCo" parameterType="String" resultType="user.CompanyDataBean">
+		select distinct(co_email),(co_name),(co_code) from dn_ask_co where co_name=#{co_name}
+	</select>
+	
 </mapper>

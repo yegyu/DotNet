@@ -100,6 +100,156 @@ body {
 .page-wrapper.toggled #show-sidebar {
   left: -40px;
 }
+
+.btn-circle.btn-xl {
+    width: 80px;
+    height: 80px;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+
+.label-container{
+	position:fixed;
+	bottom:53px;
+	right:120px;
+	display:table;
+	visibility: hidden;
+}
+
+.label-container1{
+	position:fixed;
+	bottom:150px;
+	right:120px;
+	display:table;
+	visibility: hidden;
+}
+
+.label-text{
+	color:#FFF;
+	background:rgba(51,51,51,0.5);
+	display:table-cell;
+	vertical-align:middle;
+	padding:10px;
+	border-radius:4px;
+	width:100px;
+	text-align:center;
+	
+}
+
+.label-arrow{
+	display:table-cell;
+	vertical-align:middle;
+	color:#333;
+	opacity:0.5;
+}
+
+
+.my-float{
+	font-size:24px;
+	margin-top:18px;
+}
+
+button.float + div.label-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+  z-index:1;
+}
+
+button.float:hover + div.label-container{
+  visibility: visible;
+  opacity: 1;
+  z-index:1;
+}
+button.float1 + div.label-container1 {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+  z-index:1;
+}
+button.float1:hover + div.label-container1{
+  visibility: visible;
+  opacity: 1;
+  z-index:1;
+}
+
+.float{
+	position:fixed;
+	opacity: 0.3;	
+	width:70px;
+	height:70px;
+	bottom:42px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index:1;
+}
+
+.float1{
+	position:fixed;
+	opacity: 0.3;	
+	width:70px;
+	height:70px;
+	bottom:137px;
+	right:40px;
+	background-color:#06C;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index:1;
+}
+
+.float:hover{
+	position:fixed;
+	opacity: 1;	
+	width:80px;
+	height:80px;
+	bottom:40px;
+	right:37px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index:1;
+}
+
+.float1:hover{
+	position:fixed;
+	opacity: 1;	
+	width:80px;
+	height:80px;
+	bottom:135px;
+	right:40px;
+	background-color:#06C;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	z-index:1;
+}
+
+
+.my-float{
+	margin-top:22px;
+}
 /*----------------sidebar-wrapper----------------*/
 
 .sidebar-wrapper {
@@ -411,7 +561,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-header,
 .chiller-theme .sidebar-wrapper .sidebar-search,
 .chiller-theme .sidebar-wrapper .sidebar-menu {
-    border-top: 1px solid #3a3f48;
+    border-top: 1px solid #bdbdbd;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
@@ -458,7 +608,7 @@ body {
 .chiller-theme .sidebar-wrapper .sidebar-menu .sidebar-dropdown div,
 .chiller-theme .sidebar-wrapper .sidebar-search input.search-menu,
 .chiller-theme .sidebar-wrapper .sidebar-search .input-group-text {
-    background: #3a3f48;
+    background: #16c7ff;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
@@ -466,7 +616,7 @@ body {
 }
 
 .chiller-theme .sidebar-footer {
-    background: #3a3f48;
+    background: #bdbdbd;
     box-shadow: 0px -1px 5px #282c33;
     border-top: 1px solid #464a52;
 }

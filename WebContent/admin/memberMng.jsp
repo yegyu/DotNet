@@ -37,7 +37,7 @@
 		<tr >
 			<td>${mem.id }</td>
 			<td>
-				<c:if test="${mem.gender == 2 }">
+				<c:if test="${mem.gender == 2}">
 					여자
 				</c:if>
 				<c:if test="${mem.gender == 1}">

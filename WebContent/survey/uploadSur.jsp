@@ -30,8 +30,7 @@
 <!-- style_dotnet.csa -->
 
 <link rel="stylesheet" type="text/css" href="/DotNet/css/style_dotnet.css" />
-<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
+
 
 
 
@@ -138,9 +137,8 @@ img {
 		<a href="main.do" class="tomain">메인으로</a>
 	</div>
 </div>
-<script type="text/javascript" src="jquery-3.4.1.js"></script>
-<script type="text/javascript" src="bootstrap.bundle.js"></script>
-
+<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 <script>
 /////////////추가!!!!!!!!!?//////////////////
 $(document).ready(function(){
