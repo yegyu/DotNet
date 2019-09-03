@@ -35,7 +35,7 @@ import java.util.Map;
 @Controller
 public class MainHandler implements CommandHandler {
 
-	public static Logger logger = LoggerFactory.getLogger(CommandHandler.class);
+	public static Logger logger = LoggerFactory.getLogger(MainHandler.class);
 	
 	@Resource
 	private MemberDao memberDao;
@@ -52,17 +52,8 @@ public class MainHandler implements CommandHandler {
 	public void logoutFunc(HttpServletRequest re) {
 		HttpSession session = re.getSession();
 		
-		////로깅 테스트
-		
-	
-		
-		
 		String id = (String) session.getAttribute("memId");
-		logger.trace(id + " << trace logout");
-		logger.debug(id +" << debug logout" );
-		logger.info(id +" << info logout" );
-		logger.warn(id +" << warn logout" );
-		logger.error(id +" << error logout" );
+		logger.info("logout:"+id );
 		
 		session.removeAttribute("memId");
 		session.removeAttribute("isAdmin");
@@ -75,11 +66,7 @@ public class MainHandler implements CommandHandler {
 		HttpSession session = request.getSession();
 
 		String id = request.getParameter("id");
-		logger.trace(id + " << trace login");
-		logger.debug(id +" << debug login" );
-		logger.info(id +" << info login" );
-		logger.warn(id +" << warn login" );
-		logger.error(id +" << error login" );
+		
 		//		logger.getName();
 
 		String passwd = request.getParameter("passwd");
@@ -95,6 +82,7 @@ public class MainHandler implements CommandHandler {
 				session.setAttribute("isAdmin", 2);
 			}
 			session.setAttribute("memId", id);
+			logger.info("login:"+id );
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<String> s_numList = new ArrayList<String>(); 
@@ -116,13 +104,6 @@ public class MainHandler implements CommandHandler {
 	@RequestMapping(value = {"/a", "/search" }, method = RequestMethod.POST, produces = "application/json;UTF-8")
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
-// 동근아 
-		//동근아
-
-// 한글깨짐 테스트
-//		System.out.println("alignAjax �븿�닔 �뱾�뼱�샂");
-
-//		SurveyDBBean surveyDao = new SurveyDBBean();
 
 		List<SurveyDataBean> surveys = new ArrayList<SurveyDataBean>();// surveyDao.getSurveys();
 
@@ -136,10 +117,16 @@ public class MainHandler implements CommandHandler {
 		align = request.getParameter("align");
 		search = request.getParameter("search");
 		String b_tp = request.getParameter("b_tp");
-//		System.out.println("align : " + align + ", b_tp : " + b_tp);
+		HttpSession sess = request.getSession();
+		if(sess.getAttribute("memId") != null) {
+			String id = (String)sess.getAttribute("memId");
+			logger.info(id+",search:"+search+",boardType:"+b_tp+",align:"+align);
+		}else {
+			logger.info("noMem,search:"+search+",boardType:"+b_tp+",align:"+align);
+			
+		}
 		if (align != null && search == null) {
 
-//			System.out.println( "align :"+align);
 			if(b_tp.equals("2")) {
 				switch (align) {
 				case "recent":

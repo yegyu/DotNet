@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,26 +29,23 @@ public class BoardAskHandler implements CommandHandler{
 	@Resource
 	private BoardAskDao boardAskDao;
 	
+	public static Logger logger = LoggerFactory.getLogger(BoardAskHandler.class);
 	@RequestMapping(value = "boardAsk")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-//		request.setCharacterEncoding("utf-8");
-//		String id = (String)request.getSession().getAttribute("memId");
-//		request.setAttribute("id", id);
-		
-		
-		
-		//MainHandler 에서 보냄
-//		List<BoardAskDataBean> getAsks = boardAskDao.getAsks();
-		
+		request.setCharacterEncoding("utf-8");
+		String id = (String)request.getSession().getAttribute("memId");
+		if(id != null) {
+			logger.info("enterBoardAsk:"+id);
+		}
 		return new ModelAndView("main/boardAsk");
 	}
 	
 	@RequestMapping(value = "boardAskAjax", method = RequestMethod.POST)
 	@ResponseBody
 	public BoardAskDataBean askAjax(HttpServletRequest request){
-//		System.out.println("Ask ajax 들어옴");
+//		System.out.println("Ask ajax �뱾�뼱�샂");
 		HttpSession sess= request.getSession();
 		BoardAskDataBean getAsk = new BoardAskDataBean();
 		Integer num = boardAskDao.getMaxNum();
@@ -56,10 +55,10 @@ public class BoardAskHandler implements CommandHandler{
 		String id = (String)sess.getAttribute("memId");
 		if(id == null) {
 			id=request.getParameter("id");
-			//비회원
+			//鍮꾪쉶�썝
 			getAsk.setaState(1);
 		}else {
-			//회원
+			//�쉶�썝
 			getAsk.setaState(0);
 		}
 		getAsk.setNum(num+1);
@@ -71,10 +70,10 @@ public class BoardAskHandler implements CommandHandler{
 		getAsk.setaDate(new Timestamp(System.currentTimeMillis() ));
 		getAsk.setViews(0);
 		if(request.getParameter("secret").equals("true") ) {
-			//비밀
+			//鍮꾨�
 			getAsk.setSecret(1);
 		}else {
-			//안 비밀
+			//�븞 鍮꾨�
 			getAsk.setSecret(0);
 		}
 		
@@ -127,10 +126,10 @@ public class BoardAskHandler implements CommandHandler{
 		String check = boardAskDao.checkPasswd(num);
 		
 		if(check.equals(passwd)) {
-//			System.out.println("비밀번호 같음  real passwd : " + check);
+//			System.out.println("鍮꾨�踰덊샇 媛숈쓬  real passwd : " + check);
 			return true;
 		}else {
-//			System.out.println("비번 다름  real passwd : " + check);
+//			System.out.println("鍮꾨쾲 �떎由�  real passwd : " + check);
 			return false;
 		}
 		

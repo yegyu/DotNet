@@ -48,6 +48,7 @@ public class AskContentHandler implements CommandHandler{
 
 	@Resource
 	private BoardAskDao boardAskDao;
+ 	private static Logger logger = LoggerFactory.getLogger(AskContentHandler.class);
 	
 	@RequestMapping("askContent")
 	@Override
@@ -55,14 +56,13 @@ public class AskContentHandler implements CommandHandler{
 		HttpSession sess = request.getSession();
 		String id = (String)sess.getAttribute("memId");
 		request.setAttribute("id",id);
-//		Logger log = LoggerFactory.getLogger(AskContentHandler.class);
-//		log.debug(id + " << debug");
-//		log.info(id + " << info");
-		
-//		log.trace(id + " << trace");
-//		log.error(id + " << error");
-		
 		int num = Integer.parseInt(request.getParameter("num"));
+		if(id != null) {
+			logger.info("askContent:"+id+",num:"+num);
+		}else {
+			logger.info("askContent:noMem,num:"+num);
+			
+		}
 		
 		int check = 0 ;
 		Cookie[] cookies = request.getCookies();

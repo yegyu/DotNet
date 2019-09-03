@@ -93,7 +93,6 @@ public class MemberDBBean implements MemberDao{
         int result = checkId(id);
         if (result == 1) { 
             MemberDataBean memberDto = getMember(id);
-            System.out.println(memberDto.getId());
             if (!passwd.equals(memberDto.getPasswd())) {
                 result = -1;
             }
