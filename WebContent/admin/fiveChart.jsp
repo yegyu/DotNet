@@ -24,25 +24,27 @@
 					</c:forEach>
 				</select>
 			</div>
-			<br><br><br>
+			<br><br>
 		</div>
+		<h3 class="noData"></h3>
+		
 		<div class="row">
-			<div id="sexAll" style="height: 30rem; width: 50%;"></div>
-			<div id="ageAll" style="height: 30rem; width: 50%;"></div>
+			<div id="sexAll" class="dataArea" style="height: 30rem; width: 50%;"></div>
+			<div id="ageAll" class="dataArea" style="height: 30rem; width: 50%;"></div>
 		</div>
 		<br>
 		<br>
 		<br>
 		<div class="row qBtnRow">
 			<c:forEach begin="1" end="5" varStatus="i">
-				<input class="btn btn-primary ml-4" type="button" value="질문${i.count}" id="${i.count}">
+				<input class="btn btn-primary ml-4 dataArea" type="button" value="질문${i.count}" id="${i.count}">
 			</c:forEach>
 		</div>
 		<br>
 		<br>
 		<br>
 		<div class="row chartRow justify-content-center">
-			<div id="chartContainer" style="height: 30rem; width: 100%;"></div>
+			<div id="chartContainer" class="dataArea" style="height: 30rem; width: 100%;"></div>
 		</div>
 		
 
@@ -64,6 +66,10 @@ window.onload = function () {
 	var sexSelChart = null;		// 선택 보기 성별
 	var ageSelChart = null;		// 선택 보기 연령별
 	
+	if( ${q_len} == 0 ) {
+		$(".noData").text("이 설문에 대한 참여정보가 아직 없습니다.");
+		$(".dataArea").hide();
+	}
 //////////////////////////// 그래프 안에 들어갈 옵션을 담은 변수 //////////////////
 	var selChartOptions = {
 			// 전체 참여 성별
@@ -209,7 +215,6 @@ window.onload = function () {
 		sexAllChart.render();
 		ageAllChart.render();
 		selAllChart.render();
-		console.log(Data);
 	}// makeChart
 	makeChart(initData);
 
@@ -244,6 +249,7 @@ window.onload = function () {
 			);
 			selAllChart = new CanvasJS.Chart("chartContainer", selChartOptions.selAll);
 			selAllChart.render();
+			
 		});
 		sexSelChart = new CanvasJS.Chart("sexSel", selChartOptions.sexSel);			// 해당 질문 해당 보기 성별
 		ageSelChart = new CanvasJS.Chart("ageSel", selChartOptions.ageSel);			// 해당 질문 해당 보기 연령별
@@ -266,45 +272,51 @@ window.onload = function () {
 			success:function(d){
 				dataForEachQ = d.dataForEachQ;
 				dataForAll = d.dataForAll;
-				
-				var initData = [
-					[	// 전체 참여 성별 분포 		index : 0
-						{ y : dataForAll[0], label : "남자" },
-						{ y : dataForAll[1], label : "여자" }
-					],
-					[	// 전체 참여 연령별 분포		index : 1
-						{ y : dataForAll[2], label : "10대" },
-						{ y : dataForAll[3], label : "20대" },
-						{ y : dataForAll[4], label : "30대" },
-						{ y : dataForAll[5], label : "40대" },
-						{ y : dataForAll[6], label : "50대" },
-						{ y : dataForAll[7], label : "60대" },
-						{ y : dataForAll[8], label : "70대" }
-					],
-					[   // 해당 질문 전체 보기 분포	index : 2
-						{ y: dataForEachQ[0],	label: "보기1" , value: 0},
-						{ y: dataForEachQ[1],	label: "보기2" , value: 1},
-						{ y: dataForEachQ[2],	label: "보기3" , value: 2},
-						{ y: dataForEachQ[3],	label: "보기4" , value: 3},
-						{ y: dataForEachQ[4],	label: "보기5" , value: 4}
-					],
-					[	// 해당 질문 해당 보기 성별 분포	index : 3
-						{y: dataForEachQ[5], label: "남자"},
-						{y: dataForEachQ[10], label: "여자"}
-					],
-					[   // 해당 질문 해당 보기 연령분포	index : 4
-						{ y: dataForEachQ[15],  label: "10대" },
-						{ y: dataForEachQ[20],  label: "20대" },
-						{ y: dataForEachQ[25],  label: "30대" },
-						{ y: dataForEachQ[30],  label: "40대" },
-						{ y: dataForEachQ[35],  label: "50대" },
-						{ y: dataForEachQ[40],  label: "60대" },
-						{ y: dataForEachQ[45],  label: "70대" }
-					]
+				if(d.q_len == 0) {
+					$(".noData").text("이 설문에 대한 참여정보가 아직 없습니다.");
+					$(".dataArea").hide();
+				} else {
+					$(".noData").text("");
+					$(".dataArea").show();
+					initData = [
+						[	// 전체 참여 성별 분포 		index : 0
+							{ y : dataForAll[0], label : "남자" },
+							{ y : dataForAll[1], label : "여자" }
+						],
+						[	// 전체 참여 연령별 분포		index : 1
+							{ y : dataForAll[2], label : "10대" },
+							{ y : dataForAll[3], label : "20대" },
+							{ y : dataForAll[4], label : "30대" },
+							{ y : dataForAll[5], label : "40대" },
+							{ y : dataForAll[6], label : "50대" },
+							{ y : dataForAll[7], label : "60대" },
+							{ y : dataForAll[8], label : "70대" }
+						],
+						[   // 해당 질문 전체 보기 분포	index : 2
+							{ y: dataForEachQ[0],	label: "보기1" , value: 0},
+							{ y: dataForEachQ[1],	label: "보기2" , value: 1},
+							{ y: dataForEachQ[2],	label: "보기3" , value: 2},
+							{ y: dataForEachQ[3],	label: "보기4" , value: 3},
+							{ y: dataForEachQ[4],	label: "보기5" , value: 4}
+						],
+						[	// 해당 질문 해당 보기 성별 분포	index : 3
+							{y: dataForEachQ[5], label: "남자"},
+							{y: dataForEachQ[10], label: "여자"}
+						],
+						[   // 해당 질문 해당 보기 연령분포	index : 4
+							{ y: dataForEachQ[15],  label: "10대" },
+							{ y: dataForEachQ[20],  label: "20대" },
+							{ y: dataForEachQ[25],  label: "30대" },
+							{ y: dataForEachQ[30],  label: "40대" },
+							{ y: dataForEachQ[35],  label: "50대" },
+							{ y: dataForEachQ[40],  label: "60대" },
+							{ y: dataForEachQ[45],  label: "70대" }
+						]
+						
+					];
 					
-				];
-				
-				makeChart(initData);
+					makeChart(initData);
+				}
 			},
 			error:function(){
 				console.log("five data change ajax failed");

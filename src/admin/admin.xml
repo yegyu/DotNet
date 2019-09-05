@@ -62,7 +62,7 @@
 	<select id="getDataForAll" parameterType="java.util.Map" resultType="int">
 		<foreach collection="strForData" item="str" separator="UNION ALL">
 			<![CDATA[
-			select count(case when ${str} then 1 end)/#{q_len} from
+			select count(case when ${str} then 1 end)/(case when ${q_len}=0 then 1 else #{q_len} end) from
 			(select * from dn_s_sel where s_num = #{s_num})
 			]]>
 		</foreach>

@@ -7,7 +7,7 @@
 
 
 
-<c:redirect url="login.do" />
+<c:redirect url="main.do" />
 </c:if>
 
 
