@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-expand-md navbar-default">
 			<jsp:include page="../mainNav.do" flush="false"></jsp:include>
 		</nav>
-		<h1 align="center" id="${s_num }">${s_num }번 설문</h1>
+		<h1 align="center" id="${s_num}" class="snum">${s_num}번 설문</h1>
 		<form action="fiveResult.do" method="post" name="choiceInfo">
 		<!-- 캐로슬(슬라이딩) - 질문 및 보기 -->
 		<div id="fiveCarousel" class="carousel slide">
@@ -203,7 +203,7 @@
 							}
 							
 							
-							var snum = $('h1').prop('id')
+							var snum = $('h1.snum').prop('id')
 							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val()};
 							$.ajax({
 								url:"clickLog.do",
@@ -239,8 +239,9 @@
 		</script>
 		<script>
 			var clickCnt = 0;
-			$('body, html').on('click',function(){
+			$('body').on('click',function(){
 				clickCnt++;
+				console.log(clickCnt);
 			});
 		</script>
 	</body>

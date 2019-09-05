@@ -542,31 +542,28 @@ return year + '-' + month + '-' + day; }
 	</script>
 
 <!-- 스크롤 위치 기억하여 뿌려주기 시작 -->
-<script language="javascript" for="plan6" event="onload">
+	<script language="javascript" for="plan6" event="onload">
+		//plan6이라는 frame이 onload될때 스크립트를 실행.
 
-//plan6이라는 frame이 onload될때 스크립트를 실행.
+		var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
+		if (strCook.indexOf("!~") != 0) {
+			var intS = strCook.indexOf("!~");
+			var intE = strCook.indexOf("~!");
+			var strPos = strCook.substring(intS + 2, intE);//스크롤 위치를 구한다.
+			document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
+		}
+		document.plan6.resizeFrame(this);
+	</script>
 
- var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
- if(strCook.indexOf("!~")!=0) {
-  var intS = strCook.indexOf("!~");
-  var intE = strCook.indexOf("~!");
-  var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
-  document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
-  }
- document.plan6.resizeFrame(this);
-</script>
+	<!-- 스크롤 위치 쿠키에 저장 -->
 
-<!-- 스크롤 위치 쿠키에 저장 -->
+	<script type="text/javascript">
+		function SetDivPosition() {
+			var intY = document.body.scrollTop;
+			document.cookie = "yPos=!~" + intY + "~!";
+		}
+	</script>
 
-  <script type = "text/javascript">
-
- function SetDivPosition()
- {
-  var intY = document.body.scrollTop;
-  document.cookie = "yPos=!~"+intY+"~!";
- }
- </script>
- 
 </body>
 </html>
 
