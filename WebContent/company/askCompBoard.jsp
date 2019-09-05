@@ -50,71 +50,68 @@ th#title{
 		<hr>
 		<!-- 사이드바  1-1 end -->
 
-<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-		<th id="head" class="mdl-data-table__cell--non-numeric" style="width:15%">문의유형</th>
-		<th id="head" class="mdl-data-table__cell--non-numeric" style="width:10%">작성자</th>
-		<th id="head" class="mdl-data-table__cell--non-numeric" style="width:15%">기업명</th>
-		<th id="head" class="mdl-data-table__cell--non-numeric text-center" style="width:50%;"> 제 목 </th>
-		<th id="head" class="mdl-data-table__cell--non-numeric"style="width:10%">문의상태</th>
-    </tr>
-  </thead>
-<c:if test="${getQuestion == ''}">
-	<tr>
-		<th style="text-align:center;" colspan="5">
-			[아직 작성된 문의가 없습니다...]
-		</th>
-	</tr>
-</c:if> 
-<c:if test="${getQuestion != ''}">
-<c:set var="c" value="0"/>
-	<c:forEach var="asks" items="${getQuestions}">
-		  <tbody>
- 			<tr>
-				<th id="title" class="mdl-data-table__cell--non-numeric">[${asks.co_type}]</th>
-				<th id="title" class="mdl-data-table__cell--non-numeric">${asks.a_name}</th>
-				<th id="title" class="mdl-data-table__cell--non-numeric">${asks.co_name}</th>
-				<th id="title"><div class="text-center"><a id="show-dialog" href="" style="color:black;" data-toggle="modal" data-target="#content">${asks.co_title}</a></div></th>
-				<th id="title" class="mdl-data-table__cell--non-numeric">${asks.co_read}</th>
-<%-- 				<th><fmt:formatDate value="${asks.w_date}" pattern="yyyy년 MM월 dd일 hh:mm" /></th> --%>
+		<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">
+		  <thead>
+		    <tr>
+				<th id="head" class="mdl-data-table__cell--non-numeric" style="width:15%">문의유형</th>
+				<th id="head" class="mdl-data-table__cell--non-numeric" style="width:10%">작성자</th>
+				<th id="head" class="mdl-data-table__cell--non-numeric" style="width:15%">기업명</th>
+				<th id="head" class="mdl-data-table__cell--non-numeric text-center" style="width:50%;"> 제 목 </th>
+				<th id="head" class="mdl-data-table__cell--non-numeric"style="width:10%">문의상태</th>
+		    </tr>
+		  </thead>
+		<c:if test="${getQuestion == ''}">
+			<tr>
+				<th style="text-align:center;" colspan="5">
+					[아직 작성된 문의가 없습니다...]
+				</th>
 			</tr>
-		  </tbody>
-		<c:set var="c" value="${c+1}"/>
-</c:forEach>
-</c:if>
-  
-</table>
+		</c:if> 
+		<c:if test="${getQuestion != ''}">
+			<c:set var="c" value="0"/>
+				<c:forEach var="asks" items="${getQuestions}" varStatus="len">
+					  <tbody>
+			 			<tr>
+							<th id="title" class="mdl-data-table__cell--non-numeric">[${asks.co_type}]</th>
+							<th id="title" class="mdl-data-table__cell--non-numeric">${asks.a_name}</th>
+							<th id="title" class="mdl-data-table__cell--non-numeric">${asks.co_name}</th>
+							<th id="title"><div class="text-center"><a id="show-dialog${c}" href="" style="color:black;" data-toggle="modal" data-target="#content">${asks.co_title}</a></div></th>
+							<th id="title" class="mdl-data-table__cell--non-numeric">${asks.co_read}</th>
+						</tr>
+					  </tbody>
+					<dialog class="mdl-dialog" id="content${c}" >
+					    <h4 class="mdl-dialog__title">문의번호 : ${asks.a_num}</h4>
+					    <div class="mdl-dialog__content">
+					      <p>
+					        문의 내용 : ${asks.co_content }
+					      </p>
+					    </div>
+							<div class="mdl-dialog__footer"></div>작성일 : <fmt:formatDate value="${asks.w_date}" pattern="yyyy년 MM월 dd일 hh:mm" />
+					    <div class="mdl-dialog__actions">
+					      <button type="button" class="mdl-button">Agree</button>
+					      <button type="button" class="mdl-button close">Disagree</button>
+					    </div>
+					  </dialog>
+		
+					  <script>
+					  var c = ${c}
+					  
+					  $(document).ready(
+							  function(){
+								  for(c)
+						  $(document).querySelector('#show-dialog'+)
+					  });
+					  </script>
+					  
 
+					<c:set var="c" value="${c+1}"/>
+				</c:forEach>
+			</c:if>
+		</table>
 		<!-- 사이드바 2-2 start --> 
 	</div>
 </div>
 </main>
 <!-- 사이드바 2-2 end --> 
 
-  <dialog class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Allow data collection?</h4>
-    <div class="mdl-dialog__content">
-      <p>
-        ${asks.co_content}
-      </p>
-    </div>
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button">Agree</button>
-      <button type="button" class="mdl-button close">Disagree</button>
-    </div>
-  </dialog>
 
-  <script>
-    var dialog = document.querySelector('dialog');
-    var showDialogButton = document.querySelector('#show-dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    showDialogButton.addEventListener('click', function() {
-      dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-      location.reload();
-    });
-  </script>

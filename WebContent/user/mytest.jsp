@@ -36,35 +36,30 @@
 </main>
 <!-- 사이드바 2-2 end --> 
 <script>
-	$(document)
-			.ready(
-					function() {
-						$('.mytestimg')
-								.on(
-										'click',
-										function() {
-											var url;
-											console.log($(this).prop('name'))
-											switch ($(this).prop('name')) {
-											case "2":
-												url = "userMySurveyDetail.do?s_num="
-														+ $(this).prop('id');
-												break;
-											case "5":
-												url = "fiveDetail.do?s_num="
-														+ $(this).prop('id');
-												break;
-											case "8":
-												url = "eightDetail.do?s_num="
-														+ $(this).prop('id');
-												break;
-											}
-											console.log(url);
-											window
-													.open(url, '결과 테이블',
-															"width=880, height=760, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	$(document).ready(
+		function() {
+			$('.mytestimg').on('click', function() {
+				var url;
+				console.log($(this).prop('name'))
+				switch ($(this).prop('name')) {
+				case "2":
+					url = "userMySurveyDetail.do?s_num="
+							+ $(this).prop('id');
+					break;
+				case "5":
+					url = "fiveDetail.do?s_num="
+							+ $(this).prop('id');
+					break;
+				case "8":
+					url = "eightDetail.do?s_num="
+							+ $(this).prop('id');
+					break;
+				}
+				console.log(url);
+				window.open(url, '결과 테이블',
+								"width=880, height=760, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 
-										});
+						});
 					});
 </script>
 </body>

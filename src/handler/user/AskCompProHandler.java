@@ -24,9 +24,6 @@ public class AskCompProHandler implements CommandHandler {
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	
 		CompanyDataBean companyDto = new CompanyDataBean();	
-	
-	
-
 
 	int a_num = 0;
 	String co_email = request.getParameter("co_email");
@@ -34,6 +31,7 @@ public class AskCompProHandler implements CommandHandler {
 	String email2 = request.getParameter("email2");
 	String a_name = request.getParameter("a_name");
 	String co_name = request.getParameter("co_name");
+	int co_code = Integer.parseInt(request.getParameter("co_code"));
 	String co_title = request.getParameter("co_title");
 	String co_content = request.getParameter("co_content");
 	String co_type = request.getParameter("co_type");
@@ -44,41 +42,13 @@ public class AskCompProHandler implements CommandHandler {
 	// email split
 	if( ! email1.equals( "" ) ) {
 		if( email2.equals( "0" ) ) {
-			// 吏곸젒�엯�젰
 			co_email = email1;
 		} else {
-			// �꽑�깮�엯�젰
 			co_email = email1 + "@" + email2;
 		}
 	}
 	
-//	 email1 = co_email.split("")[0];
-//	 email2 = co_email.split("")[1];
-	int dupCd = 0;
-	int len = 0;
-	Random rand = new Random();
-	int  co_code = 0; //�궃�닔媛� ���옣�맆 蹂��닔
     
-    for(int i=0;i<len;i++) {
-        
-        //0~9 난수 생성
-        int ran = rand.nextInt(10);
-        
-        if(dupCd==1) {
-            // 중복되는 숫자를 검색/배제
-       	 co_code += ran;
-        }
-        else if(dupCd==2) {
-            // 
-            if(!(co_code==(ran))) {
-                //
-           	 co_code += ran;
-            }else {
-                //
-                i-=1;
-            }
-        }
-    }
 	companyDto.setA_num(a_num);
     companyDto.setCo_email(co_email);
     companyDto.setA_name(a_name);
@@ -98,7 +68,7 @@ public class AskCompProHandler implements CommandHandler {
 	request.setAttribute("co_content", co_title);
 	request.setAttribute("co_content", co_content);
 	request.setAttribute("co_type", co_type);
-//	request.setAttribute("co_code", co_code);
+	request.setAttribute("co_code", co_code);
 //	request.setAttribute("co_read", co_read);
 //	request.setAttribute("w_date", w_date);
 //	request.setAttribute("co_email", email2);

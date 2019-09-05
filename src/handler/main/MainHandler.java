@@ -35,7 +35,7 @@ import java.util.Map;
 @Controller
 public class MainHandler implements CommandHandler {
 // 메인핸들러에 한글 주석이 깨지는지 실험
-	
+	//아직은 안깨짐
 	
 	@Resource
 	private MemberDao memberDao;
