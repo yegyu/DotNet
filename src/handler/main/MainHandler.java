@@ -35,8 +35,10 @@ import java.util.Map;
 @Controller
 public class MainHandler implements CommandHandler {
 
+
 	public static Logger userLogger = LoggerFactory.getLogger("user");
  	public static Logger mainlogger = LoggerFactory.getLogger("main");	
+
 	@Resource
 	private MemberDao memberDao;
 
@@ -49,6 +51,7 @@ public class MainHandler implements CommandHandler {
 	@RequestMapping(value = "logout", method = RequestMethod.POST)
 	@ResponseBody
 	public void logoutFunc(HttpServletRequest re) {
+		Logger logger = LoggerFactory.getLogger("MAIN_LOG");
 		HttpSession session = re.getSession();
 		
 		String id = (String) session.getAttribute("memId");
@@ -63,7 +66,8 @@ public class MainHandler implements CommandHandler {
 	public String login(HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-
+		Logger logger = LoggerFactory.getLogger("MAIN_LOG");
+		
 		String id = request.getParameter("id");
 		
 		//		logger.getName();
@@ -104,7 +108,7 @@ public class MainHandler implements CommandHandler {
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
 
-		request.setCharacterEncoding("utf-8");
+		Logger logger = LoggerFactory.getLogger("MAIN_LOG");
 		List<SurveyDataBean> surveys = new ArrayList<SurveyDataBean>();// surveyDao.getSurveys();
 
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -113,8 +117,10 @@ public class MainHandler implements CommandHandler {
 		String align = null;
 		String search = null;
 		SurveyDataBean arr[][] = null;
+		//request.setCharacterEncoding("utf-8");
 		
-
+		
+		
 		align = request.getParameter("align");
 		search = request.getParameter("search");
 //		System.out.println(search);
@@ -122,9 +128,10 @@ public class MainHandler implements CommandHandler {
 		HttpSession sess = request.getSession();
 		if(sess.getAttribute("memId") != null) {
 			String id = (String)sess.getAttribute("memId");
-			mainlogger.info(id+",search:"+search+",boardType:"+b_tp+",align:"+align);
+
+			logger.info("id:"+id+",search:"+search+",boardType:"+b_tp+",align:"+align);
 		}else {
-			mainlogger.info("noMem,search:"+search+",boardType:"+b_tp+",align:"+align);
+			logger.info("id:noMem,search:"+search+",boardType:"+b_tp+",align:"+align);
 			
 		}
 		if (align != null && search == null) {
@@ -200,6 +207,7 @@ public class MainHandler implements CommandHandler {
 		if(request.getParameter("b_tp") != null) {
 			b_tp = Integer.parseInt(request.getParameter("b_tp"));
 		};
+
 		// today
 		List<SurveyDataBean> todaysurs = new ArrayList<SurveyDataBean>();
 		if(b_tp == 2) {

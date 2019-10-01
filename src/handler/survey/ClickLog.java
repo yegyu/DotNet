@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClickLog {
 
-	Logger logger = LoggerFactory.getLogger("user");
+
+	public Logger logger2 = LoggerFactory.getLogger("SURVEY_LOG");
 		
 	@RequestMapping(value = "clickLog" , method = RequestMethod.POST)
 	public String clickLogFunc(HttpServletRequest request) {
@@ -24,10 +25,10 @@ public class ClickLog {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
 		if(id != null) {
-			logger.info("id :"+id +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger2.info("id :"+id +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
 			
 		}else {
-			logger.info("id :"+noMem +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger2.info("id :"+noMem +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
 		}
 		
 		

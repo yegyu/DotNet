@@ -17,5 +17,10 @@ public class CompanyDBBean implements CompDao {
 	@Override
 	public CompanyDataBean checkCo(String co_name) {
 		return SqlMapClient.getSession().selectOne("User.checkCo", co_name);
-	} 
+	}
+//	@Override
+//	public String getContent(String a_num) {
+//		return SqlMapClient.getSession().selectOne("User.getContent", a_num);
+//	}
+//	
 }

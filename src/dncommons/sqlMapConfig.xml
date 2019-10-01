@@ -20,12 +20,12 @@
 	</environments>
 	
 	<mappers>
+		<mapper resource="main/main.xml"/>
+		<mapper resource="main/ask.xml"/>
 		<mapper resource="user/user.xml"/>
 		<mapper resource="user/fr.xml"/>
-		<mapper resource="main/main.xml"/>
-		<mapper resource="survey/survey.xml"/>
 		<mapper resource="admin/admin.xml"/>
-		<mapper resource ="main/ask.xml"/>
+		<mapper resource="survey/survey.xml"/>
 	</mappers>
 	
 	

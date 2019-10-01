@@ -21,9 +21,18 @@ public class AskCompBoardHandler implements CommandHandler {
 	@RequestMapping("askCompBoard.do")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		CompanyDataBean companyDto = new CompanyDataBean();	
+		//declarations
+		CompanyDataBean companyDto = new CompanyDataBean();
+		String a_num = null;
 		List<CompanyDataBean> getQuestions = compDao.getQuestions(companyDto);
+		
+		//Attributes 
 		request.setAttribute("getQuestions", getQuestions);
+		request.setAttribute("a_num", a_num);
+		
+		//check
+		System.out.println("getQ : " + getQuestions);
+		
 		return new ModelAndView("company/askCompBoard");
 	}
 

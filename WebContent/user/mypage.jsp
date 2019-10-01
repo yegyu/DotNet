@@ -260,15 +260,20 @@
 
                 </div>
             </div>
+            
             <!-- sidebar-header  -->
-            <div class="sidebar-header">
-                <div>
-            		<ul>
-                        <li class="header-menu"> <span>문의 관리</span> </li>
-                    <a href="main.do?b_tp=3" ><i class="fas fa-question"></i>...Net 질문<br></a>
+            	<div class="sidebar-menu">
+                    <ul>
+                   		<li class="header-menu"> <span>문의 관리</span> </li>
+                       	<li class="sidebar-dropdown">
+                    		<a href="main.do?b_tp=3" ><i class="fas fa-question"></i>...Net 질문<br></a>
+                    	</li>
+                    	<li class="sidebar-dropdown">
+                    		<a href="/DotNet/askCompBoard.do" ><i class="fas fa-question"></i>기업 문의 / 신청<br></a>
+                    	</li>
                     </ul>
                 </div>
-            </div>
+               
                 <div class="sidebar-menu">
           		  <c:if test="${memId != 'admin'}">
                     <ul>
@@ -409,8 +414,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="/DotNet/memChart.do">회원 현황
-                                        </a>
+                                        <a href="/DotNet/memChart.do">회원 현황</a>
                                     </li>
                                     <li>
                                         <a href="/DotNet/mwChart.do">설문유형 2 </a>
@@ -535,8 +539,7 @@ if(lastIdx != "mypage.do"){
 
         $(".sidebar-dropdown > a").click(function () {
             $(".sidebar-submenu").slideUp(200);
-            if (
-                $(this)
+            if ($(this)
                     .parent()
                     .hasClass("active")
             ) {

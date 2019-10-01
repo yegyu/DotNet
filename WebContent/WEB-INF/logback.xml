@@ -1,48 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="30 seconds">
 	<property name="LOGS_ABSOLUTE_PATH" value="c:/dn_logs" />
-	<property name="LOG_PATTERN"
-		value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" />
+	<!-- <property name="LOG_PATTERN"
+		value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" /> -->
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+
+		<withJansi>true</withJansi>
 			<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 				<charset>UTF-8</charset>
 				<layout class="main.LogBackLayout"></layout>
 			</encoder>
 	</appender>
 	
-	<appender name="USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOGS_ABSOLUTE_PATH}/logdn.csv</file>
+	<appender name="SURVEY_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_ABSOLUTE_PATH}/survey_log.csv</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			
-			<fileNamePattern >${LOGS_ABSOLUTE_PATH}/logdn.%d{yyyy-MM-dd HH}.%i.csv
-			</fileNamePattern>
+			<fileNamePattern>${LOGS_ABSOLUTE_PATH}/survey_log-%d{yyyy-MM-dd}.%i.csv</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 				<!-- or whenever the file size reaches 100MB -->
 				<maxFileSize>100MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
-		<ImmediateFlush>true</ImmediateFlush>
 		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 			<charset>UTF-8</charset>
 			<layout class="main.LogBackLayout"></layout>
 		</encoder>
 	</appender>
 <!-- 	같은 로그만 나오게 할 수 없나  --> 
-	<appender name="MAIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${LOGS_ABSOLUTE_PATH}/logMain.csv</file>
+	<appender name="MAIN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_ABSOLUTE_PATH}/main_log.csv</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			
-			<fileNamePattern >${LOGS_ABSOLUTE_PATH}/logMain.%d{yyyy-MM-dd HH}.%i.csv
-			</fileNamePattern>
+	
+			<fileNamePattern >${LOGS_ABSOLUTE_PATH}/main_log-%d{yyyy-MM-dd}.%i.csv</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-				or whenever the file size reaches 100MB
+				<!-- or whenever the file size reaches 100MB -->
 				<maxFileSize>100MB</maxFileSize>
 			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
-		<ImmediateFlush>true</ImmediateFlush>
 		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 			<charset>UTF-8</charset>
 			<layout class="main.LogBackLayout"></layout>
@@ -51,40 +49,14 @@
 
 
 
-<!-- 	<logger name="src.Main" level="debug" additivity="false"> -->
-<!-- 		<appender-ref ref="user" /> -->
-<!-- 	</logger> -->
-
-
-	<root level="debug" >
+	<logger name="MAIN_LOG" level="INFO">
+		<appender-ref ref="MAIN_LOG" />
+	</logger>
+	<logger name="SURVEY_LOG" level="INFO">
+		<appender-ref ref="SURVEY_LOG" />
+	</logger>
+	<root level="info">
 		<appender-ref ref="CONSOLE" />
-		
 	</root>
-	 <logger name="main" level="INFO" additivity="false">
-       	<appender-ref ref="MAIN"/>
- 		</logger>
-  	<logger name="user" level="INFO" additivity="false">
-       	<appender-ref ref="USER"/>
-   	</logger>
-	
-	 
-<!-- 	<root level="error"> -->
-<!-- 		<appender-ref ref="CONSOLE" /> -->
-<!-- 	</root> -->
-<!-- 	<root level="trace"> -->
-<!-- 		<appender-ref ref="CONSOLE" /> -->
-<!-- 	</root> -->
-<!-- 	<root level="warn"> -->
-<!-- 		<appender-ref ref="CONSOLE" /> -->
-<!-- 	</root> -->
-<!-- 	<root level="debug"> -->
-<!-- 		<appender-ref ref="CONSOLE" /> -->
-<!-- 		<appender-ref ref="main" /> -->
-<!-- 			<appender-ref ref="user" /> -->
-<!-- 	</root> -->
-
-
-
-
 
 </configuration>

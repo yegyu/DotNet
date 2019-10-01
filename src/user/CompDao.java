@@ -10,5 +10,4 @@ public interface CompDao {
 	public int insertQuestion(CompanyDataBean companyDto);
 	List<CompanyDataBean> getQuestions(CompanyDataBean companyDto);
 	public CompanyDataBean checkCo(String co_name);
-	
 }
