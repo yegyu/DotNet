@@ -195,7 +195,10 @@ $(document).ready(function(){
 
 	}
 	$(document).ready(function() {
-
+		// 설문페이지 들어오면 설문시간 측정 시작
+		var start = new Date();
+		var startTime = start.getTime();
+		
 		show(0, 1, 0);
 		img.on('click', function() {
 			img.not($(this)).animate({
@@ -211,8 +214,11 @@ $(document).ready(function(){
 // 			console.log(i1 + " , " + i2 + "  , " + qn)
 			show(i1, i2, qn);
 			if (qn == qlen) {
+				var end = new Date();
+				var endTime = end.getTime();
+				var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
 				var snum = $('h1').prop('id')
-				var data = { cnt : clickCnt , s_num : snum, type : "2" , id :$('#noMem').val()};
+				var data = { cnt : clickCnt , s_num : snum, type : "2" , id :$('#noMem').val(), surveyTime : differTime};
 				$.ajax({
 					url:"clickLog.do",
 					type:"post",
@@ -232,12 +238,12 @@ $(document).ready(function(){
 
 	});
 </script>
-		<script>
-			var clickCnt = 0;
-			$('body, html').on('click',function(){
-				clickCnt++;
-			});
-		</script>
+<script>
+	var clickCnt = 0;
+	$('body, html').on('click',function(){
+		clickCnt++;
+	});
+</script>
 <script>
 	var q_num = 0;
 	$(document).ready(

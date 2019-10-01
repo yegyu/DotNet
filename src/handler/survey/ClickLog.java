@@ -23,11 +23,12 @@ public class ClickLog {
 		String noMem = request.getParameter("id");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
+		String surveyTime = request.getParameter("surveyTime");
 		if(id != null) {
-			logger2.info("id :"+id +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger2.info("id:"+id +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime);
 			
 		}else {
-			logger2.info("id :"+noMem +",s_num :"+s_num+ ",click:"+cnt  +",type:" + type);
+			logger2.info("id:"+noMem +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime);
 		}
 		
 		

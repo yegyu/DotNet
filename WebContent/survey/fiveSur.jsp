@@ -140,6 +140,9 @@
 			
 			$(document).ready(
 				function(){
+					// 설문페이지 들어오면 설문시간 측정 시작
+					var start = new Date();
+					var startTime = start.getTime();
 					// 슬라이드 자동으로 넘어가는 것 방지
 					$("#fiveCarousel").carousel('pause');
 					
@@ -156,6 +159,7 @@
 							$("#fiveCarousel").carousel('next');
 						}
 					);
+					// 보기 관련
 					$(".sel").on(
 						{
 						"mouseenter" : function(){
@@ -180,6 +184,7 @@
 								  }
 						}
 					);
+					// 설문 완료 눌렀을 시 
 					$("#cbt").click(function() {
 						var params = document.choiceInfo;
 						var size = ${size};
@@ -202,9 +207,11 @@
 								$("input[name=q"+i+"]").attr("value", localStorage.getItem("q"+i));
 							}
 							
-							
+							var end = new Date();
+							var endTime = end.getTime();
+							var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
 							var snum = $('h1.snum').prop('id')
-							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val()};
+							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val(), surveyTime : differTime};
 							$.ajax({
 								url:"clickLog.do",
 								type:"post",
@@ -241,7 +248,6 @@
 			var clickCnt = 0;
 			$('body').on('click',function(){
 				clickCnt++;
-				console.log(clickCnt);
 			});
 		</script>
 	</body>

@@ -130,6 +130,9 @@
 			
 			jQuery(document).ready(
 				function(){
+					// 설문페이지 들어오면 설문시간 측정 시작
+					var start = new Date();
+					var startTime = start.getTime();
 					// 슬라이드 자동으로 넘어가는 것 방지
 					jQuery("#eightCarousel").carousel('pause');
 					
@@ -170,6 +173,7 @@
 								  }
 						}
 					);
+					// 설문완료 누를시 
 					jQuery("input:submit").click(function() {
 						var params = document.choiceInfo;
 						var size = ${size}
@@ -190,8 +194,26 @@
 							for(var i=1; i <= size; i++) {
 								$("input[name=q"+i+"]").attr("value", localStorage.getItem("q"+i));
 							}
-							params.submit();
-							localStorage.clear();
+							var end = new Date();
+							var endTime = end.getTime();
+							var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
+							var snum = $('h1.snum').prop('id')
+							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val(), surveyTime : differTime};
+							$.ajax({
+								url:"clickLog.do",
+								type:"post",
+								data:data,
+								dataType:"text",
+								success:function(data){
+									if(data == "1"){
+										params.submit();
+										localStorage.clear();
+										$('form[name=choiceInfo]').submit();
+									}
+									
+								}
+																
+							});
 						}
 					});
 					// 설문 취소를 누를 경우
@@ -204,6 +226,11 @@
 					// 메인로고를 눌렀을 경우
 					$(".tomain").on("click", function() {
 						localStorage.clear();
+					});
+					// 클릭수 측정
+					var clickCnt = 0;
+					$('body').on('click',function(){
+						clickCnt++;
 					});
 				}		
 			);
