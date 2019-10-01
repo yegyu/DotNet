@@ -28,7 +28,7 @@ public class BoardAskHandler implements CommandHandler{
 	@Resource
 	private BoardAskDao boardAskDao;
 	
-	public static Logger logger = LoggerFactory.getLogger(BoardAskHandler.class);
+	
 	@RequestMapping(value = "boardAsk")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -36,7 +36,7 @@ public class BoardAskHandler implements CommandHandler{
 		request.setCharacterEncoding("utf-8");
 		String id = (String)request.getSession().getAttribute("memId");
 		if(id != null) {
-			logger.info("enterBoardAsk:"+id);
+			MainHandler.userLogger.info("enterBoardAsk:"+id);
 		}
 		return new ModelAndView("main/boardAsk");
 	}

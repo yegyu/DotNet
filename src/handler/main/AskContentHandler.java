@@ -48,7 +48,7 @@ public class AskContentHandler implements CommandHandler{
 
 	@Resource
 	private BoardAskDao boardAskDao;
- 	private static Logger logger = LoggerFactory.getLogger(AskContentHandler.class);
+ 	
 	
 	@RequestMapping("askContent")
 	@Override
@@ -58,9 +58,9 @@ public class AskContentHandler implements CommandHandler{
 		request.setAttribute("id",id);
 		int num = Integer.parseInt(request.getParameter("num"));
 		if(id != null) {
-			logger.info("askContent:"+id+",num:"+num);
+			MainHandler.userLogger.info("askContent:"+id+",num:"+num);
 		}else {
-			logger.info("askContent:noMem,num:"+num);
+			MainHandler.userLogger.info("askContent:noMem,num:"+num);
 			
 		}
 		

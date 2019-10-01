@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClickLog {
 
+
 	public Logger logger2 = LoggerFactory.getLogger("SURVEY_LOG");
 		
 	@RequestMapping(value = "clickLog" , method = RequestMethod.POST)

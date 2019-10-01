@@ -5,8 +5,6 @@
 
 <c:if test="${result == 1 }">
 
-
-
 <c:redirect url="main.do" />
 </c:if>
 
