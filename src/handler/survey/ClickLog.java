@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ClickLog {
 
-	Logger logger = LoggerFactory.getLogger(ClickLog.class);
+	Logger logger = LoggerFactory.getLogger("user");
 		
 	@RequestMapping(value = "clickLog" , method = RequestMethod.POST)
 	public String clickLogFunc(HttpServletRequest request) {

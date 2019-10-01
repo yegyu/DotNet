@@ -35,8 +35,8 @@ import java.util.Map;
 @Controller
 public class MainHandler implements CommandHandler {
 
-	public static Logger logger = LoggerFactory.getLogger(MainHandler.class);
-	
+	public static Logger userLogger = LoggerFactory.getLogger("user");
+ 	public static Logger mainlogger = LoggerFactory.getLogger("main");	
 	@Resource
 	private MemberDao memberDao;
 
@@ -45,7 +45,6 @@ public class MainHandler implements CommandHandler {
 	
 	@Resource
 	private BoardAskDao boardAskDao;
-
 	
 	@RequestMapping(value = "logout", method = RequestMethod.POST)
 	@ResponseBody
@@ -53,7 +52,7 @@ public class MainHandler implements CommandHandler {
 		HttpSession session = re.getSession();
 		
 		String id = (String) session.getAttribute("memId");
-		logger.info("logout:"+id );
+		mainlogger.info("logout:"+id );
 		
 		session.removeAttribute("memId");
 		session.removeAttribute("isAdmin");
@@ -82,7 +81,7 @@ public class MainHandler implements CommandHandler {
 				session.setAttribute("isAdmin", 2);
 			}
 			session.setAttribute("memId", id);
-			logger.info("login:"+id );
+			mainlogger.info("login:"+id );
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<String> s_numList = new ArrayList<String>(); 
@@ -105,9 +104,11 @@ public class MainHandler implements CommandHandler {
 	@ResponseBody
 	public Map<String, Object> alignAjax(HttpServletRequest request) throws Exception {
 
+		request.setCharacterEncoding("utf-8");
 		List<SurveyDataBean> surveys = new ArrayList<SurveyDataBean>();// surveyDao.getSurveys();
 
 		Map<String, Object> map = new HashMap<String, Object>();
+
 
 		String align = null;
 		String search = null;
@@ -116,13 +117,14 @@ public class MainHandler implements CommandHandler {
 
 		align = request.getParameter("align");
 		search = request.getParameter("search");
+//		System.out.println(search);
 		String b_tp = request.getParameter("b_tp");
 		HttpSession sess = request.getSession();
 		if(sess.getAttribute("memId") != null) {
 			String id = (String)sess.getAttribute("memId");
-			logger.info(id+",search:"+search+",boardType:"+b_tp+",align:"+align);
+			mainlogger.info(id+",search:"+search+",boardType:"+b_tp+",align:"+align);
 		}else {
-			logger.info("noMem,search:"+search+",boardType:"+b_tp+",align:"+align);
+			mainlogger.info("noMem,search:"+search+",boardType:"+b_tp+",align:"+align);
 			
 		}
 		if (align != null && search == null) {
@@ -194,16 +196,10 @@ public class MainHandler implements CommandHandler {
 		SurveyDBBean surveyDao = new SurveyDBBean();
 		
 		HttpSession session = request.getSession(); 
-		
-	
-		
 		int b_tp = 1;
 		if(request.getParameter("b_tp") != null) {
 			b_tp = Integer.parseInt(request.getParameter("b_tp"));
 		};
-		
-	
-
 		// today
 		List<SurveyDataBean> todaysurs = new ArrayList<SurveyDataBean>();
 		if(b_tp == 2) {
@@ -243,13 +239,9 @@ public class MainHandler implements CommandHandler {
 			}
 		}
 
-
-
 		request.setAttribute("todaysurs", todaysurs);
 		request.setAttribute("b_tp", b_tp);
 		request.setAttribute("arrToday", arrToday);
-
-
 
 		return new ModelAndView("main/main");
 	}

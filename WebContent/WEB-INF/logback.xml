@@ -5,17 +5,13 @@
 		value="%-5level %d{yyyy-MM-dd HH:mm:ss}[%thread] %logger[%method:%line] - %msg%n" />
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-		<withJansi>true</withJansi>
-<!-- 		<encoder> -->
-<!-- 			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%logger{36}] - %msg%n</pattern> -->
-<!-- 		</encoder> -->
 			<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
 				<charset>UTF-8</charset>
 				<layout class="main.LogBackLayout"></layout>
 			</encoder>
 	</appender>
 	
-	<appender name="user" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="USER" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGS_ABSOLUTE_PATH}/logdn.csv</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			
@@ -34,7 +30,7 @@
 		</encoder>
 	</appender>
 <!-- 	같은 로그만 나오게 할 수 없나  --> 
-	<appender name="main" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="MAIN" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGS_ABSOLUTE_PATH}/logMain.csv</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			
@@ -58,33 +54,34 @@
 <!-- 	<logger name="src.Main" level="debug" additivity="false"> -->
 <!-- 		<appender-ref ref="user" /> -->
 <!-- 	</logger> -->
-	<logger name="src.Main" level="info" additivity="false">
-		<appender-ref ref="ROLLING" />
-	</logger>
 
-	<logger name="src.Main.Child" additivity="true" />
 
-	<root level="info">
+	<root level="debug" >
 		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="user" />
+		
+	</root>
+	 <logger name="main" level="INFO" additivity="false">
+       	<appender-ref ref="MAIN"/>
+ 		</logger>
+  	<logger name="user" level="INFO" additivity="false">
+       	<appender-ref ref="USER"/>
+   	</logger>
+	
+	 
+<!-- 	<root level="error"> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!-- 	</root> -->
+<!-- 	<root level="trace"> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!-- 	</root> -->
+<!-- 	<root level="warn"> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!-- 	</root> -->
+<!-- 	<root level="debug"> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
 <!-- 		<appender-ref ref="main" /> -->
-	</root>
-	<root level="error">
-		<appender-ref ref="CONSOLE" />
-<!-- 		<appender-ref ref="ROLLING" /> -->
-	</root>
-	<root level="trace">
-		<appender-ref ref="CONSOLE" />
-<!-- 		<appender-ref ref="ROLLING" /> -->
-	</root>
-	<root level="warn">
-		<appender-ref ref="CONSOLE" />
-<!-- 		<appender-ref ref="ROLLING" /> -->
-	</root>
-	<root level="debug">
-		<appender-ref ref="CONSOLE" />
-		<appender-ref ref="main" />
-	</root>
+<!-- 			<appender-ref ref="user" /> -->
+<!-- 	</root> -->
 
 
 
