@@ -13,6 +13,23 @@
 			</encoder>
 	</appender>
 	
+	<appender name="INSERT_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOGS_ABSOLUTE_PATH}/insert_log.txt</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			
+			<fileNamePattern>${LOGS_ABSOLUTE_PATH}/insert_log-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 100MB -->
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>UTF-8</charset>
+			<layout class="main.LogBackLayout"></layout>
+		</encoder>
+	</appender>
+	
 	<appender name="SURVEY_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOGS_ABSOLUTE_PATH}/survey_log.csv</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -47,7 +64,12 @@
 		</encoder>
 	</appender>
 
-
+	<logger name="Survey.insertPart" level="DEBUG">
+		<appender-ref ref="INSERT_LOG"/>
+	</logger>
+	<logger name="Survey.insertSel" level="DEBUG">
+		<appender-ref ref="INSERT_LOG"/>
+	</logger>
 
 	<logger name="MAIN_LOG" level="INFO">
 		<appender-ref ref="MAIN_LOG" />

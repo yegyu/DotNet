@@ -67,7 +67,7 @@ public class FiveResultHandler implements CommandHandler {
 		List<FiveDataBean> fiveList = new ArrayList<FiveDataBean>();
 		fiveList = surveyDao.getFives(s_num);
 		List<String> resultList = new ArrayList<String>();
-				
+
 		for(int i = 0; i < choList.size(); i++) {
 			Map<String, Object> choicemap = new HashMap<String, Object>();
 			choicemap.put("q_num", i+1);
@@ -75,6 +75,7 @@ public class FiveResultHandler implements CommandHandler {
 			choiceList.add(choicemap);
 			
 			resultList.add(fiveList.get(i).getQ_content());
+			
 			switch(choList.get(i)) {
 			case 1 : resultList.add(fiveList.get(i).getSel1_content()); break;
 			case 2 : resultList.add(fiveList.get(i).getSel2_content()); break;
@@ -83,6 +84,7 @@ public class FiveResultHandler implements CommandHandler {
 			case 5 : resultList.add(fiveList.get(i).getSel5_content()); break;
 			}
 		}
+		
 		
 		map.put("choiceList", choiceList);
 		
@@ -96,6 +98,7 @@ public class FiveResultHandler implements CommandHandler {
 			surveyDao.insertSel(map);
 			
 			surveyDao.updatePoint(map);
+			System.out.println("실행");
 		} else {	
 			surveyDao.insertTemp(map);
 		}

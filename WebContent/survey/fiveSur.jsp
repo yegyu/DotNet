@@ -114,7 +114,7 @@
 			<!-- 버튼 모음 -->
 			<div class="row justify-content-center">
 				<button type="button" class="btn  m-3" name="prevButton">이전</button>
-				<input type="button" class="btn  m-3" id = "cbt" value="설문완료">
+				<input type="button" class="btn  m-3" id="cbt" value="설문완료">
 				<input type="reset" class="btn  m-3" value="설문취소">
 				<button type="button" class="btn  m-3" name="nextButton">다음</button>
 			</div>
@@ -221,7 +221,7 @@
 									if(data == "1"){
 										params.submit();
 										localStorage.clear();
-										$('form[name=choiceInfo]').submit();
+										//$('form[name=choiceInfo]').submit();
 									}
 									
 								}

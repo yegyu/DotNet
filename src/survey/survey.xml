@@ -85,7 +85,7 @@
 				sysdate
 			from dual
 		</foreach>
-		)A
+		) A
 	</insert>
 	
 	<insert id="insertSel" parameterType="java.util.Map">
