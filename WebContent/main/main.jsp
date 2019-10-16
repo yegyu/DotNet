@@ -13,6 +13,8 @@
 		<meta name="author" content="">
 		<title>.NET Sample</title>
 		
+<!-- 		kakao api -->
+		<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 		
 		<!-- bootstrap CDN -->
 		<link rel="stylesheet" href="/DotNet/css/bootstrap.css">
@@ -77,6 +79,8 @@
 		</style>
 	</head>
 <body onscroll="SetDivPosition()">
+
+
 	<!-- 상단 바 -->
 	<section>
 	</section>
@@ -234,8 +238,10 @@
 	<a href="" class="btn ">
 		<span class="glyphicon glyphicon-chevron-up" id="MOVE_TOP_BTN"></span> TOP
 	</a>
+		
 	</div>
 	<br>
+	
 	
 
 	<!-- Ajax 영역 -->
@@ -251,6 +257,7 @@
 		<!--test board end  -->
 	</div>
 </div>
+
 
 
 
