@@ -1,4 +1,4 @@
-package handler.survey;
+package logset;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClickLog {
 
 
-	public Logger logger2 = LoggerFactory.getLogger("SURVEY_LOG");
+	
 		
 	@RequestMapping(value = "clickLog" , method = RequestMethod.POST)
 	public String clickLogFunc(HttpServletRequest request) {
+		
+		Logger logger2 = LoggerFactory.getLogger("SURVEY_LOG");
 		
 		String cnt = request.getParameter("cnt");
 		String s_num = request.getParameter("s_num");
@@ -25,13 +27,13 @@ public class ClickLog {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("memId");
 		String surveyTime = request.getParameter("surveyTime");
+		String q_len = request.getParameter("q_len");
 		if(id != null) {
-			logger2.info("id:"+id +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime);
+			logger2.info("id:"+id +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime + ",q_len:" + q_len);
 			
 		}else {
-			logger2.info("id:"+noMem +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime);
+			logger2.info("id:"+noMem +",s_num:"+s_num+ ",click:"+cnt  +",type:" + type + ",surveyTime:" + surveyTime + ",q_len:" + q_len);
 		}
-		
 		
 		return "1";
 	}

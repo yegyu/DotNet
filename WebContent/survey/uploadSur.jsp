@@ -218,7 +218,7 @@ $(document).ready(function(){
 				var endTime = end.getTime();
 				var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
 				var snum = $('h1').prop('id')
-				var data = { cnt : clickCnt , s_num : snum, type : "2" , id :$('#noMem').val(), surveyTime : differTime};
+				var data = { cnt : clickCnt , s_num : snum, type : "2" , id :$('#noMem').val(), surveyTime : differTime, q_len : qlen};
 				$.ajax({
 					url:"clickLog.do",
 					type:"post",

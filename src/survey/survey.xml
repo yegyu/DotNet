@@ -48,7 +48,7 @@
 	
 	<insert id="insertSurvey" parameterType="main.BoardDataBean">
 		<selectKey keyProperty="s_num" resultType="int" order="BEFORE">
-			select nvl(max(s_num),0)+1 from dn_board	
+			select SEQ_dn_board_s_num.nextval from dual
 		</selectKey>
 		
 		insert into dn_board values(#{s_num},
@@ -224,5 +224,7 @@
         	SELECT COUNT(*) cnt FROM dn_s_part WHERE q_num=#{item.q_num} and cho_num=#{item.cho_num} and s_num=#{s_num}
         </foreach>
     </select> 
-    
+    <select id="getLastSel" resultType="admin.DnSSelDB">
+    	select * from (select * from dn_s_sel order by sel_id desc) where ROWNUM=1
+    </select>
 </mapper>

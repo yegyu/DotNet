@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import admin.DnSSelDB;
 import main.BoardDataBean;
 
 public interface SurveyDao {
@@ -55,4 +56,5 @@ public interface SurveyDao {
     public List<Integer> getMyFeed(Map<String, Object> map);
     
     public List<String> selectCount(Map<String,Object> map);
+    public DnSSelDB getLastSel();
 }

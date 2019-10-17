@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import admin.DnSSelDB;
 import handler.CommandHandler;
 import main.MemberDao;
 import main.MemberDataBean;
@@ -41,6 +44,8 @@ public class FiveResultHandler implements CommandHandler {
 		int point = Integer.parseInt((String) request.getParameter("point"));
 		Enumeration<String> e = request.getParameterNames();
 		String id = null;
+		Logger logger = LoggerFactory.getLogger("SURVEY_ADD");
+		DnSSelDB selDto = new DnSSelDB();
 		
 		if(session.getAttribute("memId") != null) {
 			id = (String)session.getAttribute("memId");
@@ -97,8 +102,10 @@ public class FiveResultHandler implements CommandHandler {
 			map.put("member",memberDto);
 			surveyDao.insertSel(map);
 			
+			selDto = surveyDao.getLastSel();
+			logger.info("gender:" + selDto.getGender() + ",age:" + selDto.getAge() + ",sel_id:" + selDto.getSel_id());
+			
 			surveyDao.updatePoint(map);
-			System.out.println("실행");
 		} else {	
 			surveyDao.insertTemp(map);
 		}
