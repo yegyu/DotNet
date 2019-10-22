@@ -98,7 +98,6 @@ public class FiveResultHandler implements CommandHandler {
 			surveyDao.insertSel(map);
 			
 			surveyDao.updatePoint(map);
-			System.out.println("실행");
 		} else {	
 			surveyDao.insertTemp(map);
 		}

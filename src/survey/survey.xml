@@ -77,7 +77,10 @@
 	
 	<insert id="insertPart" parameterType="java.util.Map">
 		insert into dn_s_part( part_num, mem_id, s_num, q_num, cho_num, part_date )
-		select SEQ_dn_s_part_part_num.nextval, A.* from (
+		select
+		
+		SEQ_dn_s_part_part_num.nextval
+		, A.* from (
 		<foreach collection="choiceList" item="item" separator="UNION ALL">
 			select
 				#{id}, #{s_num},
@@ -172,8 +175,8 @@
 	</select>
 	
 	<insert id="insertTemp" parameterType="java.util.Map">
-		insert into dn_s_part_temp( part_num_t, id, s_num, q_num, cho_num)
-		select SEQ_dn_s_part_temp_part_num_t.nextval, A.* from (
+		insert into dn_s_part_temp( id, s_num, q_num, cho_num)
+		select  A.* from (
 		<foreach collection="choiceList" item="item" separator="UNION ALL">
 			select
 				#{id}, #{s_num},
