@@ -3,6 +3,7 @@ package survey;
 import java.util.List;
 import java.util.Map;
 
+import admin.DnSSelDB;
 import dncommons.SqlMapClient;
 import main.BoardDataBean;
 
@@ -220,5 +221,10 @@ public class SurveyDBBean implements SurveyDao{
 	@Override
 	public List<String> selectCount(Map<String, Object> map) {
 		return SqlMapClient.getSession().selectList("Survey.selectCount", map);
+	}
+	
+	@Override
+	public DnSSelDB getLastSel() {
+		return SqlMapClient.getSession().selectOne("Survey.getLastSel");
 	}
 }

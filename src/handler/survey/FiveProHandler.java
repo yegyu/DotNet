@@ -108,6 +108,7 @@ public class FiveProHandler implements CommandHandler {
 		
 		map.put("qList", qList);
 		map.put("s_num", boardDto.getS_num());
+		System.out.println(boardDto.getS_num());
 //		System.out.println("map : " + map);
 		int fResult = surveyDao.insertFive(map);
 		

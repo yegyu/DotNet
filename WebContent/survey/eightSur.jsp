@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-expand-md navbar-default">
 			<jsp:include page="../mainNav.do" flush="false"></jsp:include>
 		</nav>
-		
+		<h1 align="center" id="${s_num}" class="snum">${s_num}번 설문</h1>
 		<form action="eightResult.do" method="post" name="choiceInfo">	
 		<!-- 캐로슬(슬라이딩) - 질문 및 보기 -->
 		<div id="eightCarousel" class="carousel slide">
@@ -120,10 +120,13 @@
 		</form>
 		
 		<!-- bootstrap js -->
+<!-- 
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	
+ -->
+		<script type="text/javascript" src="/DotNet/js/jquery-3.4.1.js"></script>
+		<script type="text/javascript" src="/DotNet/js/bootstrap.bundle.js"></script>
 		<!-- event for this page -->
 		<script type="text/javascript">
 		//<!--
@@ -197,8 +200,8 @@
 							var end = new Date();
 							var endTime = end.getTime();
 							var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
-							var snum = $('h1.snum').prop('id')
-							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val(), surveyTime : differTime};
+							var snum = $('h1.snum').prop('id');
+							var data = { cnt : clickCnt , s_num : snum, type : "8", id : $('#noMem').val(), surveyTime : differTime, q_len : size};
 							$.ajax({
 								url:"clickLog.do",
 								type:"post",
@@ -208,7 +211,7 @@
 									if(data == "1"){
 										params.submit();
 										localStorage.clear();
-										$('form[name=choiceInfo]').submit();
+										//$('form[name=choiceInfo]').submit();
 									}
 									
 								}

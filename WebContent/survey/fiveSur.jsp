@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -210,8 +210,8 @@
 							var end = new Date();
 							var endTime = end.getTime();
 							var differTime = (endTime - startTime)/1000;	// 특정 시점이후 지난 시간이라서 거꾸로 빼야 됨
-							var snum = $('h1.snum').prop('id')
-							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val(), surveyTime : differTime};
+							var snum = $('h1.snum').prop('id');
+							var data = { cnt : clickCnt , s_num : snum, type : "5", id : $('#noMem').val(), surveyTime : differTime, q_len : size};
 							$.ajax({
 								url:"clickLog.do",
 								type:"post",
@@ -223,7 +223,6 @@
 										localStorage.clear();
 										//$('form[name=choiceInfo]').submit();
 									}
-									
 								}
 																
 							});
