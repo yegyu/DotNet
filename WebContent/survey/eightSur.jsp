@@ -106,7 +106,7 @@
 			<!-- 버튼 모음 -->
 			<div class="row justify-content-center">
 				<button type="button" class="btn btn-outline-primary m-3" name="prevButton">이전</button>
-				<input type="submit" class="btn btn-outline-primary m-3" value="설문완료">
+				<input type="button" class="btn btn-outline-primary m-3" value="설문완료" id= "cbt">
 				<input type="reset" class="btn btn-outline-primary m-3" value="설문취소">
 				<button type="button" class="btn btn-outline-primary m-3" name="nextButton">다음</button>
 			</div>
@@ -177,7 +177,7 @@
 						}
 					);
 					// 설문완료 누를시 
-					jQuery("input:submit").click(function() {
+					jQuery("#cbt").click(function() {
 						var params = document.choiceInfo;
 						var size = ${size}
 						var flag = 0;

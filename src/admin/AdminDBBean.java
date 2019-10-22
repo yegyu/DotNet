@@ -7,6 +7,25 @@ import dncommons.SqlMapClient;
 import user.GoodsStDataBean;
 
 public class AdminDBBean implements AdminDao{
+	
+	@Override
+	public List<DnSSelDB> getTwoSSelAllNotChecked() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Admin.getTwoSSelAllNotChecked");
+	}
+	@Override
+	public int twoCheckAdmin() {
+		return SqlMapClient.getSession().update("Admin.twoCheckAdmin");
+	}
+	@Override
+	public List<DnSSelDB> getFiveSSelAllNotChecked() {
+		// TODO Auto-generated method stub
+		return SqlMapClient.getSession().selectList("Admin.getFiveSSelAllNotChecked");
+	}
+	@Override
+	public int fiveCheckAdmin() {
+		return SqlMapClient.getSession().update("Admin.fiveCheckAdmin");
+	}
 	@Override
 	public List<Integer> getFiveDataForEachQ(Map<String, Object> mapForAll) {
 		return SqlMapClient.getSession().selectList("Admin.getFiveDataForEachQ", mapForAll);
@@ -52,7 +71,7 @@ public class AdminDBBean implements AdminDao{
 		return SqlMapClient.getSession().update("Admin.updateTST", t_num);
 	}
 	
-	// 아성형님
+	// �븘�꽦�삎�떂
 	public List<AdminMemberBean> getMembers( Map<String, Integer> map ) {		
 		return SqlMapClient.getSession().selectList( "Admin.getMembers", map );
 	}	

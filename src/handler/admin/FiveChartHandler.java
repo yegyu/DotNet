@@ -47,29 +47,33 @@ public class FiveChartHandler implements CommandHandler {
 		mapForAll.put("q_num", q_num);
 		mapForAll.put("strForData", strForData);
 		
-		dataForAll = adminDao.getDataForAll(mapForAll);		// 해당 설문의 전체 참여 정보를 불러온다. 
-		// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
+		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
+		// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
 
 		request.setAttribute("q_len", q_len);
 		request.setAttribute("getS_numList", getS_numList);
 		request.setAttribute("dataForAll", dataForAll);
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getFiveDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
-				// index표시		보기1번	보기2번	보기3번	보기4번	보기5번
-				// 전체선택수		0		1		2		3		4		
-				// 남자선택수		5		6		7		8		9
-				// 여자선택수		10		11		12		13		14
-				// 10대선택수		15		16		17		18		19
-				// 20대선택수 	 	20		21		22		23		24
-				// 30대선택수 		25		26		27		28		29
-				// 40대선택수		30		31		32		33		34
-				// 50대선택수		35		36		37		38		39
-				// 60대선택수 	 	40		41		42		43		44
-				// 70대선택수		45		46		47		48		49
+		dataForEachQ = adminDao.getFiveDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
+				// index�몴�떆		蹂닿린1踰�	蹂닿린2踰�	蹂닿린3踰�	蹂닿린4踰�	蹂닿린5踰�
+				// �쟾泥댁꽑�깮�닔		0		1		2		3		4		
+				// �궓�옄�꽑�깮�닔		5		6		7		8		9
+				// �뿬�옄�꽑�깮�닔		10		11		12		13		14
+				// 10���꽑�깮�닔		15		16		17		18		19
+				// 20���꽑�깮�닔 	 	20		21		22		23		24
+				// 30���꽑�깮�닔 		25		26		27		28		29
+				// 40���꽑�깮�닔		30		31		32		33		34
+				// 50���꽑�깮�닔		35		36		37		38		39
+				// 60���꽑�깮�닔 	 	40		41		42		43		44
+				// 70���꽑�깮�닔		45		46		47		48		49
 //		System.out.println("dataForEachQ" + dataForEachQ);		
 		request.setAttribute("dataForEachQ", dataForEachQ);
 
+		List<DnSSelDB> allList = adminDao.getFiveSSelAllNotChecked();
+		request.setAttribute("getFiveSSelAllNotChecked", allList);
+		
+		
 		return new ModelAndView("admin/fiveChart");
 	}
 
@@ -90,22 +94,22 @@ public class FiveChartHandler implements CommandHandler {
 		mapForAll.put("q_num", q_num);
 		mapForAll.put("strForData", strForData);
 		
-		dataForAll = adminDao.getDataForAll(mapForAll);		// 해당 설문의 전체 참여 정보를 불러온다. 
-		// [해당설문참여 남, 여, 10 ~ 70대] 순으로 List로 저장
+		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
+		// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForEachQ = adminDao.getFiveDataForEachQ(mapForAll);	// 해당 설문 해당 질문의 참여 정보를 불러온다.
-				// index표시		보기1번	보기2번	보기3번	보기4번	보기5번
-				// 전체선택수		0		1		2		3		4		
-				// 남자선택수		5		6		7		8		9
-				// 여자선택수		10		11		12		13		14
-				// 10대선택수		15		16		17		18		19
-				// 20대선택수 	 	20		21		22		23		24
-				// 30대선택수 		25		26		27		28		29
-				// 40대선택수		30		31		32		33		34
-				// 50대선택수		35		36		37		38		39
-				// 60대선택수 	 	40		41		42		43		44
-				// 70대선택수		45		46		47		48		49
+		dataForEachQ = adminDao.getFiveDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
+				// index�몴�떆		蹂닿린1踰�	蹂닿린2踰�	蹂닿린3踰�	蹂닿린4踰�	蹂닿린5踰�
+				// �쟾泥댁꽑�깮�닔		0		1		2		3		4		
+				// �궓�옄�꽑�깮�닔		5		6		7		8		9
+				// �뿬�옄�꽑�깮�닔		10		11		12		13		14
+				// 10���꽑�깮�닔		15		16		17		18		19
+				// 20���꽑�깮�닔 	 	20		21		22		23		24
+				// 30���꽑�깮�닔 		25		26		27		28		29
+				// 40���꽑�깮�닔		30		31		32		33		34
+				// 50���꽑�깮�닔		35		36		37		38		39
+				// 60���꽑�깮�닔 	 	40		41		42		43		44
+				// 70���꽑�깮�닔		45		46		47		48		49
 //		System.out.println("dataForEachQ" + dataForEachQ);		
 		
 		Map<String, Object> map = new HashMap<String, Object>();

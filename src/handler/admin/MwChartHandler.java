@@ -30,6 +30,26 @@ public class MwChartHandler implements CommandHandler {
 	@Resource
 	private AdminDao adminDao;
 
+	@RequestMapping("updateCheckAdmin")
+	@ResponseBody
+	public String checkAdmin(HttpServletRequest request) {
+	
+		int type = Integer.valueOf(request.getParameter("type"));
+//		System.out.println("type"  + type);
+		int rs = 0;
+		if(type == 2) {
+			rs = adminDao.twoCheckAdmin();
+		}else {
+			rs = adminDao.fiveCheckAdmin();
+		}
+		//rs is just update number...
+//		System.out.println("updateCheckAdmin AJAX WELCOME  rs" + rs);
+		
+		
+		return String.valueOf(rs);
+	}
+	
+	
 	@RequestMapping(value = "mwChart")
 	@Override
 	public ModelAndView process(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -54,19 +74,34 @@ public class MwChartHandler implements CommandHandler {
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
 		
 
-		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
-															// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
-		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
-															//    蹂닿린1踰�        蹂닿린2踰�
-															// [ �쟾泥댁꽑�깮�닔, �쟾泥댁꽑�깮�닔
-															//   �궓�옄�꽑�깮�닔, �궓�옄�꽑�깮�닔
-															//   �뿬�옄�꽑�깮�닔, �뿬�옄�꽑�깮�닔			�쟾泥�,�꽦蹂�,�뿰�졊 �닚. ���닔 index�뒗 蹂닿린1踰�, 吏앹닔 index�뒗 蹂닿린2踰�
-															//   10���꽑�깮�닔, 10���꽑�깮�닔
+		dataForAll = adminDao.getDataForAll(mapForAll);		// 占쎈퉸占쎈뼣 占쎄퐬�눧紐꾩벥 占쎌읈筌ｏ옙 筌〓챷肉� 占쎌젟癰귣�占쏙옙 �겫�뜄�쑎占쎌궔占쎈뼄. 
+															// [占쎈퉸占쎈뼣占쎄퐬�눧紐꾧강占쎈연 占쎄텚, 占쎈연, 10 ~ 70占쏙옙] 占쎈떄占쎌몵嚥∽옙 List嚥∽옙 占쏙옙占쎌삢
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 占쎈퉸占쎈뼣 占쎄퐬�눧占� 占쎈퉸占쎈뼣 筌욌뜄揆占쎌벥 筌〓챷肉� 占쎌젟癰귣�占쏙옙 �겫�뜄�쑎占쎌궔占쎈뼄.
+															//    癰귣떯由�1甕곤옙        癰귣떯由�2甕곤옙
+															// [ 占쎌읈筌ｋ똻苑묕옙源�占쎈땾, 占쎌읈筌ｋ똻苑묕옙源�占쎈땾
+															//   占쎄텚占쎌쁽占쎄퐨占쎄문占쎈땾, 占쎄텚占쎌쁽占쎄퐨占쎄문占쎈땾
+															//   占쎈연占쎌쁽占쎄퐨占쎄문占쎈땾, 占쎈연占쎌쁽占쎄퐨占쎄문占쎈땾			占쎌읈筌ｏ옙,占쎄쉐癰귨옙,占쎈염占쎌죯 占쎈떄. 占쏙옙占쎈땾 index占쎈뮉 癰귣떯由�1甕곤옙, 筌욎빘�땾 index占쎈뮉 癰귣떯由�2甕곤옙
+															//   10占쏙옙占쎄퐨占쎄문占쎈땾, 10占쏙옙占쎄퐨占쎄문占쎈땾
 															//   		~
-															//   70���꽑�깮�닔, 70���꽑�깮�닔
+															//   70占쏙옙占쎄퐨占쎄문占쎈땾, 70占쏙옙占쎄퐨占쎄문占쎈땾
 															
 		request.setAttribute("dataForAll", dataForAll);
 		request.setAttribute("dataForEachQ", dataForEachQ);
+		
+		//1.modal 창에 보내줘야 할 값들을 보낸다.
+		//아직 관리자가 확인하지 않은 값들 , checkAdmin == null 인 것 , 
+		//만약없으면 alert 로 현재 정보가 최시이라고 알려준다.
+		List<DnSSelDB> allList = adminDao.getTwoSSelAllNotChecked();
+		request.setAttribute("getTwoSSelAllNotChecked", allList);
+		for(DnSSelDB el : allList) {
+			System.out.println(el.getCheckAdmin());
+		}
+		
+		//2.최신화 버튼을 누른다. 1에서 전달한 값들을 모달창에 보인다. clear
+		
+		//3.닫기를 누르면 checkAdmin == 1 로 된다. 그리고 새로고침을 하고 그래프를 최신화 한다. clear
+		
+		
 
 		
 		
@@ -93,18 +128,18 @@ public class MwChartHandler implements CommandHandler {
 		
 		
 		List<Integer> dataForEachQ = new ArrayList<Integer>();
-		dataForAll = adminDao.getDataForAll(mapForAll);		// �빐�떦 �꽕臾몄쓽 �쟾泥� 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎. 
-															// [�빐�떦�꽕臾몄갭�뿬 �궓, �뿬, 10 ~ 70��] �닚�쑝濡� List濡� ���옣
-		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// �빐�떦 �꽕臾� �빐�떦 吏덈Ц�쓽 李몄뿬 �젙蹂대�� 遺덈윭�삩�떎.
-															//    蹂닿린1踰�        蹂닿린2踰�
-															// [ �쟾泥댁꽑�깮�닔, �쟾泥댁꽑�깮�닔
-															//   �궓�옄�꽑�깮�닔, �궓�옄�꽑�깮�닔
-															//   �뿬�옄�꽑�깮�닔, �뿬�옄�꽑�깮�닔			�쟾泥�,�꽦蹂�,�뿰�졊 �닚. ���닔 index�뒗 蹂닿린1踰�, 吏앹닔 index�뒗 蹂닿린2踰�
-															//   10���꽑�깮�닔, 10���꽑�깮�닔
+		dataForAll = adminDao.getDataForAll(mapForAll);		// 占쎈퉸占쎈뼣 占쎄퐬�눧紐꾩벥 占쎌읈筌ｏ옙 筌〓챷肉� 占쎌젟癰귣�占쏙옙 �겫�뜄�쑎占쎌궔占쎈뼄. 
+															// [占쎈퉸占쎈뼣占쎄퐬�눧紐꾧강占쎈연 占쎄텚, 占쎈연, 10 ~ 70占쏙옙] 占쎈떄占쎌몵嚥∽옙 List嚥∽옙 占쏙옙占쎌삢
+		dataForEachQ = adminDao.getTwoDataForEachQ(mapForAll);	// 占쎈퉸占쎈뼣 占쎄퐬�눧占� 占쎈퉸占쎈뼣 筌욌뜄揆占쎌벥 筌〓챷肉� 占쎌젟癰귣�占쏙옙 �겫�뜄�쑎占쎌궔占쎈뼄.
+															//    癰귣떯由�1甕곤옙        癰귣떯由�2甕곤옙
+															// [ 占쎌읈筌ｋ똻苑묕옙源�占쎈땾, 占쎌읈筌ｋ똻苑묕옙源�占쎈땾
+															//   占쎄텚占쎌쁽占쎄퐨占쎄문占쎈땾, 占쎄텚占쎌쁽占쎄퐨占쎄문占쎈땾
+															//   占쎈연占쎌쁽占쎄퐨占쎄문占쎈땾, 占쎈연占쎌쁽占쎄퐨占쎄문占쎈땾			占쎌읈筌ｏ옙,占쎄쉐癰귨옙,占쎈염占쎌죯 占쎈떄. 占쏙옙占쎈땾 index占쎈뮉 癰귣떯由�1甕곤옙, 筌욎빘�땾 index占쎈뮉 癰귣떯由�2甕곤옙
+															//   10占쏙옙占쎄퐨占쎄문占쎈땾, 10占쏙옙占쎄퐨占쎄문占쎈땾
 															//   		~
-															//   70���꽑�깮�닔, 70���꽑�깮�닔
+															//   70占쏙옙占쎄퐨占쎄문占쎈땾, 70占쏙옙占쎄퐨占쎄문占쎈땾
 															
-		// ajax濡� �꽆寃⑥쨪 �뜲�씠�꽣 map
+		// ajax嚥∽옙 占쎄퐜野꺿뫁夷� 占쎈쑓占쎌뵠占쎄숲 map
 		map.put("dataForEachQ", dataForEachQ);
 		map.put("dataForAll", dataForAll);
 		map.put("q_len", q_len);	

@@ -1,7 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<div class="modal fade" id="reGraphModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">오지선다 데이터 분석 결과</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <c:if test="${empty getFiveSSelAllNotChecked  }">
+        		현재 최신 상태 입니다.
+       </c:if>
+       <c:set value="${0 }" var="t"/>
+       <c:set value="${0 }" var="f"/>
+       <c:if test="${!empty getFiveSSelAllNotChecked  }">
+        <c:forEach items="${getFiveSSelAllNotChecked }" var="el">
+        	<c:if test="${el.q_num eq 1 }">
+        		<br> id : ${el.mem_id }, 설문번호 : ${ el.s_num}, 
+        		<c:if test="${el.isRightSur  eq 1 }">
+        		<c:set var="t" value="${t+1 }"/> 
+        			진실
+        		</c:if>
+        		<c:if test="${el.isRightSur  eq 0 }">
+        		<c:set var="f" value="${f+1 }"/> 
+        			거짓
+        		</c:if>
+        		<br>
+        	</c:if>
+        	
+        </c:forEach>
+       		 참:${t },
+       	 	거짓:${f }
+        </c:if>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn " data-dismiss="modal" id ="closeModalBtn">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- 사이드바  1-1 start-->
 <jsp:include page="../mypage.do"/>
 <main class="page-content">
@@ -13,6 +53,9 @@
 		<hr>
 		<!-- 사이드바  1-1 end -->
 		<br>
+		<div class="col-md-2">
+			<button class="btn" id="reGraph" data-toggle="modal" data-target="#reGraphModal">최신화</button>
+		</div>
 		<br>
 		<div class="row">
 		
@@ -58,6 +101,25 @@
 <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
+$( document ).ready(function() {
+    $("#reGraphModal").modal('show')
+});
+//modal close 하면 새로고침됨 <<-- 마지막 작업 (checkAdmin ==> 1)
+$("#closeModal,#closeModalBtn").on("click",function(){
+	var dt = {"type":5}
+	$.ajax({
+		
+		data:dt,
+		dataType:"text",
+		type:"post",
+		url:"updateCheckAdmin.do",
+		success:function(rs){
+			if(rs != "0")
+				location.reload()
+		}
+	});
+});
+
 window.onload = function () {
 ////////////////////////////그래프 담을 변수들 /////////////////////////////////
 	var sexAllChart = null;		// 전체 참여 성별
@@ -323,7 +385,7 @@ window.onload = function () {
 			}
 		});
 	}
-	$(".btn").on("click",function(){
+	$(".btn.btn-primary").on("click",function(){
 		var q_num = $(this).attr("id");
 		var s_num = $("#fsnum").val();
 		remakeChart(q_num, s_num);

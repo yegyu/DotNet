@@ -6,6 +6,10 @@ import java.util.Map;
 import user.GoodsStDataBean;
 
 public interface AdminDao {
+	public int twoCheckAdmin();
+	public List<DnSSelDB> getTwoSSelAllNotChecked();
+	public int fiveCheckAdmin();
+	public List<DnSSelDB> getFiveSSelAllNotChecked();
 
 	public int updateTST(int t_num);
 	public List<GoodsStDataBean> getPayHistory();
@@ -19,13 +23,13 @@ public interface AdminDao {
 	public List<DnSSelDB> getSSel(int s_num);
 	public int getQlen(int s_num);
 	
-	// 동근 작업 - 데이터 관리 쪽
+	// �룞洹� �옉�뾽 - �뜲�씠�꽣 愿�由� 履�
 	public List<Integer> getDataForAll(Map<String, Object> mapForAll);
 	public List<Integer> getTwoDataForEachQ(Map<String, Object> mapForAll);
 	public List<Integer> getFiveDataForEachQ(Map<String, Object> mapForAll);
 	
 	
-	// 아성형님
+	// �븘�꽦�삎�떂
 	public int getCnt();
 	public int getCatCnt();
 	public int getSvyCnt();

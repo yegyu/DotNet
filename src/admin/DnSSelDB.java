@@ -10,7 +10,22 @@ public class DnSSelDB {
 	private int gender;
 	private int age;
 	private String location;
+	private Integer isRightSur;
+	private Integer checkAdmin;
 	
+	
+	public Integer getIsRightSur() {
+		return isRightSur;
+	}
+	public void setIsRightSur(Integer isRightSur) {
+		this.isRightSur = isRightSur;
+	}
+	public Integer getCheckAdmin() {
+		return checkAdmin;
+	}
+	public void setCheckAdmin(Integer checkAdmin) {
+		this.checkAdmin = checkAdmin;
+	}
 	public int getSel_id() {
 		return sel_id;
 	}

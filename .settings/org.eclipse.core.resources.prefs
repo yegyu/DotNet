@@ -1,7 +1,11 @@
 eclipse.preferences.version=1
+encoding//src/admin/AdminDBBean.java=UTF-8
+encoding//src/admin/AdminDao.java=UTF-8
 encoding//src/handler/admin/AdminBoardHandler.java=UTF-8
 encoding//src/handler/admin/AdminPoMngHandler.java=UTF-8
+encoding//src/handler/admin/FiveChartHandler.java=UTF-8
 encoding//src/handler/admin/MemberMngHandler.java=UTF-8
+encoding//src/handler/admin/MwChartHandler.java=UTF-8
 encoding//src/handler/main/AskContentHandler.java=UTF-8
 encoding//src/handler/main/BoardAskHandler.java=UTF-8
 encoding//src/handler/main/MainHandler.java=UTF-8
