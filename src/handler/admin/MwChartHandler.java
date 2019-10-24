@@ -30,23 +30,39 @@ public class MwChartHandler implements CommandHandler {
 	@Resource
 	private AdminDao adminDao;
 
-	@RequestMapping("updateCheckAdmin")
+	@RequestMapping(value = "CheckAdmin" ,produces = "application/json;UTF-8")
 	@ResponseBody
-	public String checkAdmin(HttpServletRequest request) {
-	
+	public List<DnSSelDB> checkAdmin(HttpServletRequest request) {
+		List<DnSSelDB> uncheckedlist = null;
 		int type = Integer.valueOf(request.getParameter("type"));
 //		System.out.println("type"  + type);
 		int rs = 0;
 		if(type == 2) {
-			rs = adminDao.twoCheckAdmin();
+//			rs = adminDao.twoCheckAdmin();
+			uncheckedlist = adminDao.getTwoSSelAllNotChecked();
 		}else {
-			rs = adminDao.fiveCheckAdmin();
+//			rs = adminDao.fiveCheckAdmin();
+			uncheckedlist = adminDao.getFiveSSelAllNotChecked();
 		}
-		//rs is just update number...
-//		System.out.println("updateCheckAdmin AJAX WELCOME  rs" + rs);
 		
+		return uncheckedlist;
+	}
+	@RequestMapping(value = "updateCheckAdmin" ,produces = "application/json;UTF-8")
+	@ResponseBody
+	public void checkAdminUpdate(HttpServletRequest request) {
+//		List<DnSSelDB> uncheckedlist = null;
+		int type = Integer.valueOf(request.getParameter("type"));
+//		System.out.println("type"  + type);
+//		int rs = 0;
+		if(type == 2) {
+			adminDao.twoCheckAdmin();
+//			uncheckedlist = adminDao.getTwoSSelAllNotChecked();
+		}else {
+			adminDao.fiveCheckAdmin();
+//			uncheckedlist = adminDao.getFiveSSelAllNotChecked();
+		}
 		
-		return String.valueOf(rs);
+//		return uncheckedlist;
 	}
 	
 	
