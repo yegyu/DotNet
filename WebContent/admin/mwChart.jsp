@@ -54,9 +54,9 @@
 		<hr>
 		<!-- 사이드바  1-1 end -->
 		<br>
-		<div class="col-md-2">
-			<button class="btn" id="reGraph" data-toggle="modal" data-target="#reGraphModal">최신화</button>
-		</div>
+<!-- 		<div class="col-md-2"> -->
+<!-- 			<button class="btn" id="reGraph" data-toggle="modal" data-target="#reGraphModal">최신화</button> -->
+<!-- 		</div> -->
 		<br>
 		<div class="row">
 			<label>양자 택일 번호</label>
@@ -148,15 +148,19 @@ $( document ).ready(function() {
 					},1000);
 					
 					 $("#reGraphModal").modal('show')
+					 isChecked=false
+
 				}else{
-					console.log("none")
+					$(".modal-body").html("<h1>현재 최신 상태입니다.</h1>")
+					 $("#reGraphModal").modal('show');
+					 isChecked=false
 				}
 					
 			}
 		});
 // },2000);
 });
-
+var isChecked = true
 //modal close 하면 새로고침됨 <<-- 마지막 작업 (checkAdmin ==> 1)
 $("#closeModal,#closeModalBtn").on("click",function(){
 
@@ -167,8 +171,8 @@ $("#closeModal,#closeModalBtn").on("click",function(){
 		type:"post",
 		url:"updateCheckAdmin.do",
 		success:function(rs){
-			if(rs != "0")
-				location.reload()
+				if(isChecked)
+					location.reload()
 		}
 	});
 });

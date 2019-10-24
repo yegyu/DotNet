@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<style>
+.modal-row{
+		font-size: 2em;
+		
+	}
+</style>
 <div class="modal fade" id="reGraphModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">오지선다 데이터 분석 결과</h5>
@@ -11,30 +18,14 @@
         </button>
       </div>
       <div class="modal-body">
-      <c:if test="${empty getFiveSSelAllNotChecked  }">
-        		현재 최신 상태 입니다.
-       </c:if>
-       <c:set value="${0 }" var="t"/>
-       <c:set value="${0 }" var="f"/>
-       <c:if test="${!empty getFiveSSelAllNotChecked  }">
-        <c:forEach items="${getFiveSSelAllNotChecked }" var="el">
-        	<c:if test="${el.q_num eq 1 }">
-        		<br> id : ${el.mem_id }, 설문번호 : ${ el.s_num}, 
-        		<c:if test="${el.isRightSur  eq 1 }">
-        		<c:set var="t" value="${t+1 }"/> 
-        			진실
-        		</c:if>
-        		<c:if test="${el.isRightSur  eq 0 }">
-        		<c:set var="f" value="${f+1 }"/> 
-        			거짓
-        		</c:if>
-        		<br>
-        	</c:if>
-        	
-        </c:forEach>
-       		 참:${t },
-       	 	거짓:${f }
-        </c:if>
+      <div class="row justify-content-md-center modal-row">
+			총:
+			<div id="totalCheck"></div>
+		</div>
+		<div class="row modal-row ">
+			<div class="col-sm-6 text-center" >True Count<div id="trueCheck"></div></div>
+			<div class="col-sm-6 text-center" >False Count<div id="falseCheck"></div></div>
+		</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn " data-dismiss="modal" id ="closeModalBtn">Close</button>
@@ -53,9 +44,9 @@
 		<hr>
 		<!-- 사이드바  1-1 end -->
 		<br>
-		<div class="col-md-2">
-			<button class="btn" id="reGraph" data-toggle="modal" data-target="#reGraphModal">최신화</button>
-		</div>
+<!-- 		<div class="col-md-2"> -->
+<!-- 			<button class="btn" id="reGraph" data-toggle="modal" data-target="#reGraphModal">최신화</button> -->
+<!-- 		</div> -->
 		<br>
 		<div class="row">
 		
@@ -98,12 +89,52 @@
 </main>
 <!-- 사이드바 2-2 end --> 
 
-<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<!-- <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script> -->
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script>
+var dttt = {"type":5}
 $( document ).ready(function() {
-    $("#reGraphModal").modal('show')
+// 	setInterval(()=>{
+		$.ajax({
+	
+			data:dttt,
+			dataType:"json",
+			type:"post",
+			url:"CheckAdmin.do",
+			success:function(rs){
+				var total = rs.length
+				var t ,f ,tper,fper
+				if(rs.length != 0){
+					t = rs.filter(el=>el.isRightSur == 1).length
+					f = total - t
+					tper = t/total * 100
+					fper = f/total * 100
+					tper = tper.toFixed(2)
+					fper = fper.toFixed(2)
+					
+					console.log("총 미검사 수 : " +total+ ",진실:" + t  + ",거짓: " + f)
+					$("#totalCheck").text(total).addClass("animated bounceInDown");
+				
+					setTimeout(()=>{
+						$("#trueCheck").html(t + "<br>" +tper + "%").css({"font-size":"2.5em","color":"gold"}).addClass("animated zoomInLeft fast");
+						$("#falseCheck").html(f + "<br>" + fper + "%").css({"font-size":"2.5em"}).addClass("animated zoomInRight fast");
+					},1000);
+					
+					 $("#reGraphModal").modal('show')
+					 isChecked=false
+
+				}else{
+					$(".modal-body").html("<h1>현재 최신 상태입니다.</h1>");
+					 $("#reGraphModal").modal('show')
+					 isChecked=false
+				}
+					
+			}
+		});
+// },2000);
 });
+var isChecked = true
+
 //modal close 하면 새로고침됨 <<-- 마지막 작업 (checkAdmin ==> 1)
 $("#closeModal,#closeModalBtn").on("click",function(){
 	var dt = {"type":5}
@@ -114,7 +145,7 @@ $("#closeModal,#closeModalBtn").on("click",function(){
 		type:"post",
 		url:"updateCheckAdmin.do",
 		success:function(rs){
-			if(rs != "0")
+			if(isChecked)	
 				location.reload()
 		}
 	});
