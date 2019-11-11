@@ -11,43 +11,43 @@ portfolio
  At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br><img src="https://www.windowsmode.com/wp-content/uploads/2019/01/Animotica-Official-Logo-e1547328051516.png" width="200px" height="200px"></img>
 > 결제 (pay and check)
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/pay.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/pay.gif)
 ***
 <br>
 
 > drag & drop
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/d&d.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/d&d.gif)
 ***
 <br>
 
 > 친구설문 피드보기(watch friend's recent survey and comment)
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/frSurFeed.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/frSurFeed.gif)
 ***
 <br>
 
 > 무한스크롤(infinit scroll)
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/infinit.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/infinit.gif)
 ***
 <br>
 
 > 쪽지(send & receive mail and remove)
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/mail.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/mail.gif)
 ***
 <br>
 
 > Q & A
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/q&a.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/q&a.gif)
 ***
 <br>
 
 > 친구 추가(request and add friend)
 
-![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/recomFr.gif)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/recomFr.gif)
 ***
 <br>
 
