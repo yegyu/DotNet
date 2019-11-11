@@ -82,4 +82,6 @@ portfolio
 (beginner)
 * shell script : 구구단 정도 해봄
 (beginner)
+* mysql on linux
+(beginner)
 
