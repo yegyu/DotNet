@@ -12,6 +12,7 @@
 		<hr>
 		<h5>내 메세지 관리 > 보낸 메세지함</h5>
 		<hr>
+		<button class="btn" id="trash" style="margin:10px">쪽지 삭제</button>
 		<!-- 사이드바  1-1 end -->
 		<!-- 사이드바 2-2 start -->
 		<table class="table">

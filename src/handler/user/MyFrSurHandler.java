@@ -41,6 +41,11 @@ public class MyFrSurHandler implements CommandHandler {
 			}
 		}
 		request.setAttribute("frLib", frPartBoard);
+		
+//		for(Map.Entry<String, List<LibDataBean>> el : frPartBoard.entrySet()) {
+//			
+//			System.out.println(el.getValue().get(0).getThumb_path() + " " + el.getKey());
+//		}
 		return new ModelAndView("user/myFrSur");
 	}
 

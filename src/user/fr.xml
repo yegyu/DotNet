@@ -39,7 +39,7 @@ select req_mem_id from dn_friend where res_mem_id =#{id}  ) and id != #{id}
 	</select>
 	<!-- 	//친구 요청한 사람의 친구창에 상대방 사진에 요청 대기 버튼 --> 
 	<select id="getWatiBtnId" parameterType="String" resultType="String">
-		select res_mem_id from dn_friend where req_mem_id = #{id} and f_st = 0
+		select res_mem_id from dn_friend where req_mem_id = #{id} and f_st = 0 
 	</select>
 	<!--  순순 내 친구 친구 상테 1-->
 	<select id="getRealFrBtn" parameterType="String" resultType="String">

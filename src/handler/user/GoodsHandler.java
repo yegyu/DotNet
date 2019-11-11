@@ -65,13 +65,15 @@ public class GoodsHandler implements CommandHandler{
 
 		ObjectMapper mapper = new ObjectMapper();
 		map = mapper.readValue(json,new TypeReference<Map<String,Object>>(){});
-		
+//		for(Map.Entry<String, Object> el : map.entrySet()) {
+//			System.out.println(el.getKey() + " " + el.getValue().toString());
+//				map.remove(el.getKey());
+//		}
 		Map<String,Object> rmap = new TreeMap<String, Object>();
 //		System.out.println(map);
 		Integer maplen = (Integer) map.get("clen"); 
 		Integer tnum = 0;
 		int rs=0;
-		int rs1=0;
 		rmap.put("mem_id",id);
 		rmap.put("point",map.get("myPo"));
 		for(int i = 0 ; i  < maplen ; i++ ) {
@@ -88,10 +90,10 @@ public class GoodsHandler implements CommandHandler{
 			}
 		}
 		if(rs == 1) {
-			rs1 = memberDao.updatePoint(rmap);
+			 memberDao.updatePoint(rmap);
 		}
 		
-		return "삭제 임무 완수";
+		return "�궘�젣 �엫臾� �셿�닔";
 	}
 
 }

@@ -29,10 +29,12 @@
 			        <div class="card-body">
 			       	 	<img class="card-img" src="/DotNet/defaultImg/fr1.gif">
 			            <footer class="btn-footer">
+			            <div class="row">
 			            	<button class="btn accBtn" id="${r }"  >
-			            		친구 요청 수락
-			            	</button>
+			            		수락
+			            	</button>&nbsp;
 			            	<button class="btn  rejBtn" id="${r }">차단</button>
+		            	</div>
 			            </footer>
 			        </div>
 			      </div>

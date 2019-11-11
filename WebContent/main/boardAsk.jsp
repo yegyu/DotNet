@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap.css">
+<link rel="stylesheet" href="css/bootstrap.css">
 <style>
 /* div.table { */
 /* 	height: 600px; */
@@ -153,8 +153,8 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="jquery-3.4.1.js"></script>
-	<script type="text/javascript" src="bootstrap.bundle.js"></script>
+	<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="js/bootstrap.bundle.js"></script>
 	<label class="mr-sm-2 mb-0 sr-only" id="hidid">${id }</label>
 	<script>
 	
@@ -328,12 +328,14 @@
 		} else if($("#askContents").val() == ""){
 			alert("내용을 입력하세요");
 			return false;
-		} else if( memId == "" ){
-			if($("#askId").val() == ""){
-				alert("아이디를 입력하세요");
-			return false;
-			
-			} else {
+		}else {
+			 if( memId == "" ){
+				if($("#askId").val() == ""){
+					alert("아이디를 입력하세요");
+				return false;
+				
+				}
+			 }
 			
 			alert("질문 작성 완료")
 			$("#askSubmit").attr("data-dismiss","modal");
@@ -361,7 +363,6 @@
 			})
 		}
 		}
-	}
 
 	</script>
 	<!-- 스크롤 위치 기억하여 뿌려주기 시작 -->

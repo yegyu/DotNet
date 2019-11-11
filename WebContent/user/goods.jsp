@@ -74,7 +74,7 @@ input {
                             <li>결제후 포인트가 마이너스가 아니라면 결제 버튼을 누릅니다.(마이너스상태에서 결제는 되지 않습니다.)</li>
                             <li>결제가 완료됩니다.</li>
                         </ol>
-                    </div>
+<!--                     </div> -->
                 </div>
 
 
@@ -104,7 +104,7 @@ function checkPay(){
 			data: goodsOb,
 			url:"pay.do",
 			success:function(data){
-				console.log("paymet ajax 성공" + data)
+				alert("결제가 완료되었습니다.")
 				location.reload();
 			},
 			error: function () {
@@ -114,40 +114,60 @@ function checkPay(){
 	}
 };
 function reset(){
-		$('.gn').val("");
-		$('#fuMy').val($('#myPo').val());
-		ob={};
-		rob={};
-		clen = 0;
-// 		 $('#selgoods').children().remove();
+		$('#fuMy').val("");
+		cnt = 0;
+		sum = 0;
+		ob = {};
+		rob ={};
+		goodsOb = {};
+		clen = 0
+		 $('#selgoods').children().remove();
 }
 
 $(document).ready(function(){
-
+	
 	$('.list-group-item').on('click',function(){
-		
-		$("#selgoods").append('<tr><th>'+$(this).prop("id").split(" ")[0]+'</th><td><input type="text" readonly="readonly" class = "gc' + ' gc'+ cnt +'" id="'+ $(this).prop("id") + '" style="margin-left:;" align="right">&nbsp;&nbsp;<input type="text" class="gn" id="gn'+ cnt +'" placeholder="수량"  style="width: 50px;margin-left:;" align="right">개</td></tr>')
-		$(".gc"+cnt).val($(this).val())
-		cnt++;
-		$(this).off('click');
-		clen = $('input.gn').length;
-		
-		$("input.gn").on('keyup',function(){
-			setTimeout(function(){
-				sum=0;
-				for(var i = 0 ; i < clen; i++){
-					sum+=$('.gc'+i).val() * $('#gn'+i).val();
-					ob['g_num'+i] = $('.gc'+i).prop('id').split(" ")[1];
-					ob['g_cnt'+i] = $('#gn'+i).val();
-				}
-				$("#fuMy").val($('#myPo').val() - sum);
-				ob["myPo"] = $("#fuMy").val();
-				ob['clen'] = clen;
-				console.log(ob);
-			},100);
-		});
+			let gc = $(this).prop('id') + " " +"sparse"
+			let name = gc.split(" ")[0]
+			let num = gc.split(" ")[1]
+	// 		let idForNew = name + num
+	// 		console.log(document.getElementById(idForNew))
+			if(document.getElementById(gc) == null){
+				$("#selgoods").append(
+						'<tr><th>'+name+
+						'</th><td><input type="text" readonly="readonly" class = "gc' + ' gc'+ cnt +'" id="'+ gc +
+						'" style="margin-left;" align="right">&nbsp;&nbsp;<input type="text" class="gn" id="gn'+ cnt +
+						'" placeholder="수량"  style="width: 50px;margin-left:;" align="right">개</td></tr>')
+				$(".gc"+cnt).val($(this).val())
+				cnt++;
+				
+	//	 		$(this).off('click');
+	// 			console.log($(this))
+				clen = $('input.gn').length;
+				$(".gn").on('keyup',function(){
+					sum=0
+					for(var i = 0 ; i < clen; i++){
+						sum+=$('.gc'+i).val() * $('#gn'+i).val();
+						console.log($('.gc'+i).prop('id'))
+						ob['g_num'+i] = $('.gc'+i).prop('id').split(" ")[1];
+						ob['g_cnt'+i] = $('#gn'+i).val();
+					}
+					console.log($('#myPo').val() - sum)
+					
+					$("#fuMy").val($('#myPo').val() - sum);
+					ob["myPo"] = $("#fuMy").val();
+					ob['clen'] = clen;
+					console.log(ob);
+				});
+			}
+			
+			
+			
 	});
+
 });
+	
+
 </script>
 
 </body>
