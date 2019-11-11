@@ -1,8 +1,9 @@
 # DotNet
-
+portfolio
 ### These was some of my job in the project
 1. animaiton in the web-site
-2. 개발 환경
+2. 개발 환경(development environment)
+3. 프로젝트 중 건드려 본것
 
 ## example
 
@@ -52,8 +53,10 @@
 
 
 
-## 개발 환경
+## 개발 환경(languages, ide, dbms)
 <img src="https://images.velog.io/post-images/lockstom/7229f590-7fc8-11e9-bc69-63b1b898b1df/Java%EC%82%AC%EC%A7%84.jpg" width="200px" height="200px"></img>
+<img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99716D335A01A6381D" width="200px" heigth="200px"></img>
+<img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_960_720.png" width="200px" heigth="200px"></img>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="200px" heigth="200px"></img>
 <img src="https://poiemaweb.com/img/jquery-logo.png" width="200px" heigth="200px"></img>
 <img src="http://www.focustraining.in/new/wp-content/uploads/2018/09/Oracle-SQL-logo.png" width="200px" heigth="200px"></img>
@@ -61,7 +64,22 @@
 <img src="http://www.bloter.net/wp-content/uploads/2016/08/eclipse_logo.jpg" width="200px" heigth="200px"></img>
 <img src="https://www.viralpatel.net/app/uploads/2016/06/spring-mvc-4-hello-world.png" width="200px" heigth="200px"></img>
 <img src="https://t1.daumcdn.net/cfile/tistory/999D624C5A4CCEA223" width="200px" heigth="200px"></img>
-<img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_960_720.png" width="200px" heigth="200px"></img>
-<img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99716D335A01A6381D" width="200px" heigth="200px"></img>
 
+
+
+## 건드려 본 것(languages, ide, dbms, os)
+* linux 
+(lt basic)
+* vim : 좋아함 
+(gt basic)
+* python : 크롤링 및 selenium 자동화 및 기본적인 데이터 분석(tensorflow, scikit-learn, numpy, pandas, matplotlib etc) 
+(gt basic on crolling and data preprocessing)
+* scala : 인터넷 보고 따라해봄
+(lt basic)
+* spark : 예제 따라 해
+(beginner)
+* hadoop and its ecosystem(sqoop, flume)
+(beginner)
+* shell script : 구구단 정도 해봄
+(beginner)
 
