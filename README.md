@@ -1,48 +1,55 @@
 # DotNet
 
-###These was some of my job in the project
+### These was some of my job in the project
 1. animaiton in the web-site
 2. 개발 환경
 
-##example
+## example
 > 결제 (pay and check)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/pay.gif)
 ***
-<br/>
+<br>
+
 > drag & drop
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/d&d.gif)
 ***
-<br/>
+<br>
+
 > 친구설문 피드보기(watch friend's recent survey and comment)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/frSurFeed.gif)
 ***
-<br/>
+<br>
+
 > 무한스크롤(infinit scroll)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/infinit.gif)
 ***
-<br/>
+<br>
+
 > 쪽지(send & receive mail and remove)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/mail.gif)
 ***
-<br/>
+<br>
+
 > Q & A
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/q&a.gif)
 ***
-<br/>
+<br>
+
 > 친구 추가(request and add friend)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/develop/gif/recomFr.gif)
 ***
-<br/>
+<br>
 
 
-##개발 환경
+
+## 개발 환경
 <img src="https://images.velog.io/post-images/lockstom/7229f590-7fc8-11e9-bc69-63b1b898b1df/Java%EC%82%AC%EC%A7%84.jpg" width="200px" height="200px"></img>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="200px" heigth="200px"></img>
 <img src="https://poiemaweb.com/img/jquery-logo.png" width="200px" heigth="200px"></img>
@@ -51,8 +58,6 @@
 <img src="http://www.bloter.net/wp-content/uploads/2016/08/eclipse_logo.jpg" width="200px" heigth="200px"></img>
 <img src="https://www.viralpatel.net/app/uploads/2016/06/spring-mvc-4-hello-world.png" width="200px" heigth="200px"></img>
 <img src="https://t1.daumcdn.net/cfile/tistory/999D624C5A4CCEA223" width="200px" heigth="200px"></img>
-<img src="https://pluralsight.imgix.net/paths/path-icons/html5-7ac65c8ec0.png" width="200px" heigth="200px"></img>
-<img src="" width="200px" heigth="200px"></img>
-<img src="" width="200px" heigth="200px"></img>
+<img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_960_720.png" width="200px" heigth="200px"></img>
 
 
