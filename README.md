@@ -58,7 +58,7 @@ portfolio
 <img src="https://img1.daumcdn.net/thumb/R800x0/?scode=mtistory2&fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99716D335A01A6381D" width="200px" heigth="200px"></img>
 
 <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_960_720.png" width="200px" heigth="200px"></img>
-<img src="https://cdn.imgbin.com/7/20/10/imgbin-bootstrap-responsive-web-design-web-development-logo-django-others-DVmFqezakGNu0BPT6R3Dk8BTi.jpg" width="200px" heigth="200px"></img>
+<img src="https://fuzati.com/wp-content/uploads/2016/12/Bootstrap-Logo.png" width="200px" heigth="200px"></img>
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png" width="200px" heigth="200px"></img>
 <img src="https://poiemaweb.com/img/jquery-logo.png" width="200px" heigth="200px"></img>
 <img src="http://www.focustraining.in/new/wp-content/uploads/2018/09/Oracle-SQL-logo.png" width="200px" heigth="200px"></img>
