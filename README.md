@@ -3,7 +3,7 @@ portfolio
 ### These was some of my job in the project
 1. animaiton in the web-site
 2. 개발 환경(development environment)
-3. 프로젝트 중 건드려 본것
+3. 프로젝트 중 건드려 본것 (Other things I done on project)
 
 ## example
 
