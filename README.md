@@ -65,7 +65,7 @@ portfolio
 <img src="https://www.viralpatel.net/app/uploads/2016/06/spring-mvc-4-hello-world.png" width="200px" heigth="200px"></img>
 <img src="https://t1.daumcdn.net/cfile/tistory/999D624C5A4CCEA223" width="200px" heigth="200px"></img>
 
-
+<
 
 ## 건드려 본 것(languages, ide, dbms, os)
 * linux 
@@ -84,4 +84,33 @@ portfolio
 (beginner)
 * mysql on linux
 (beginner)
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>portfolio</title>
+</head>
+
+<body>
+
+    <h1 align="center">DotNet 일부 영상</h1>
+    
+    <div id="main" style="text-align:center"></div>
+    <script>
+        const mp4s = ['pay.mp4','comment.mp4','dd.mp4',
+        'mail.mp4','infinite.mp4','qa.mp4','frSurFeed.mp4','addFr.mp4']
+        let getMain = document.getElementById('main')
+        mp4s.forEach((el)=>
+            getMain.innerHTML +=el.split(".")[0]+
+                '<br>'+
+                '<video width="800px" controls>'+
+                    '<source src="https://github.com/yegyu/DotNet/blob/develop/dn_video/'+el+'" type="video/mp4">'+
+                '</video><br><hr width="900px"><br>'
+            
+        );
+    </script>
+</body>
+
+</html>
 
