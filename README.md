@@ -73,7 +73,7 @@ portfolio
 ## 건드려 본 것(languages, ide, dbms, os)
 * linux 
 (lt basic)
-* vim : 좋아함 
+* vi : 좋아함 
 (gt basic)
 * python : 크롤링 및 selenium 자동화 및 기본적인 데이터 분석(tensorflow, scikit-learn, numpy, pandas, matplotlib etc) 
 (gt basic on crolling and data preprocessing)
