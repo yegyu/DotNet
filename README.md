@@ -9,45 +9,59 @@ portfolio
 
  애니매이션의 시작 위치는 이 영어가 오른쪽 하단에서 보일 때입니다.(없는 것도 있습니다.) 
  At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br><img src="https://www.windowsmode.com/wp-content/uploads/2019/01/Animotica-Official-Logo-e1547328051516.png" width="200px" height="200px"></img>
+ 
+> 댓글 (comment)
+![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/comment.gif)
+https://drive.google.com/open?id=13YbhKIEoE7hsFmqyTidwWjwlNNNICibB
+***
+<br>
+
 > 결제 (pay and check)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/pay.gif)
+https://drive.google.com/open?id=1DH6C_IQNc6qo-J2u54GzkIbHlgAfiYkk
 ***
 <br>
 
 > drag & drop
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/d&d.gif)
+https://drive.google.com/open?id=1Uj6lZFeyKUD5Lcb3CH7xzeSb-xU8HjtB
 ***
 <br>
 
 > 친구설문 피드보기(watch friend's recent survey and comment)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/frSurFeed.gif)
+https://drive.google.com/open?id=1CnS9aO6oMbpnK_R4Ru8neX3j92Ar0OGs
 ***
 <br>
 
 > 무한스크롤(infinit scroll)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/infinit.gif)
+https://drive.google.com/open?id=1R27p_LqjWoAY-9ZRWMrEAqfZW1IU9e7A
 ***
 <br>
 
 > 쪽지(send & receive mail and remove)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/mail.gif)
+https://drive.google.com/open?id=1qfGql8YoWFDX4Ed1DPQTzo9ICE1m-5Kt
 ***
 <br>
 
 > Q & A
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/q&a.gif)
+https://drive.google.com/open?id=10EyTv56Tv4YaBU7YFByJQs1za6Fa8oc4
 ***
 <br>
 
 > 친구 추가(request and add friend)
 
 ![Alt Text](https://github.com/yegyu/DotNet/blob/master/gif/recomFr.gif)
+https://drive.google.com/open?id=1_lW3O0aQHsNC5zq130_hnXV_cHud6Wix
 ***
 <br>
 
