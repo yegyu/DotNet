@@ -11,7 +11,7 @@ portfolio
  At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br><img src="https://www.windowsmode.com/wp-content/uploads/2019/01/Animotica-Official-Logo-e1547328051516.png" width="200px" height="200px"></img>
  
  
- ## 1
+ ## animaiton in the web-site
  * 링크는 해당 영상
  
 > 댓글 (comment)
