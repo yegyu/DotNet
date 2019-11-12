@@ -1,7 +1,7 @@
 # DotNet
-portfolio
+<b>portfolio</b>
 
-ppt link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p5
+ppt(pdf) link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p5
 
 ## example
 
