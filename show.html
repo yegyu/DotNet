@@ -11,14 +11,20 @@
     
     <div id="main" style="text-align:center"></div>
     <script>
-        const mp4s = ['pay.mp4','comment.mp4','dd.mp4',
-        'mail.mp4','infinite.mp4','qa.mp4','frSurFeed.mp4','addFr.mp4']
+        const mp4s = ['1_lW3O0aQHsNC5zq130_hnXV_cHud6Wix',
+                      '13YbhKIEoE7hsFmqyTidwWjwlNNNICibB',
+                      '1Uj6lZFeyKUD5Lcb3CH7xzeSb-xU8HjtB',
+                      '1CnS9aO6oMbpnK_R4Ru8neX3j92Ar0OGs',
+                      '1R27p_LqjWoAY-9ZRWMrEAqfZW1IU9e7A',
+                      '1qfGql8YoWFDX4Ed1DPQTzo9ICE1m-5Kt',
+                      '10EyTv56Tv4YaBU7YFByJQs1za6Fa8oc4',
+                      '1DH6C_IQNc6qo-J2u54GzkIbHlgAfiYkk']
         let getMain = document.getElementById('main')
         mp4s.forEach((el)=>
             getMain.innerHTML +=el.split(".")[0]+
                 '<br>'+
                 '<video width="800px" controls>'+
-                    '<source src="https://github.com/yegyu/DotNet/blob/master/dn_video/'+el+'" type="video/mp4">'+
+                    '<source src="https://drive.google.com/open?id='+el+'" type="video/mp4">'+
                 '</video><br><hr width="900px"><br>'
             
         );
@@ -26,3 +32,4 @@
 </body>
 
 </html>
+
