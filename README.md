@@ -10,8 +10,8 @@ ppt(pdf) link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p
 
 ## example
 
- 애니매이션의 시작 위치는 이 영어가 오른쪽 하단에서 보일 때입니다.(없는 것도 있습니다.) 
- At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br><img src="https://www.windowsmode.com/wp-content/uploads/2019/01/Animotica-Official-Logo-e1547328051516.png" width="200px" height="200px"></img>
+ 애니매이션의 시작 위치는 이 영어(made with ANIMOTICA)가 오른쪽 하단에서 보일 때입니다.(없는 것도 있습니다.) 
+ At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br>
  
  
  ## animaiton in the web-site
@@ -24,6 +24,7 @@ ppt(pdf) link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p
 https://drive.google.com/open?id=13YbhKIEoE7hsFmqyTidwWjwlNNNICibB
 ***
 <br>
+<br>
 
 > 결제 (pay and check)
 
@@ -31,6 +32,7 @@ https://drive.google.com/open?id=13YbhKIEoE7hsFmqyTidwWjwlNNNICibB
 <br>
 https://drive.google.com/open?id=1DH6C_IQNc6qo-J2u54GzkIbHlgAfiYkk
 ***
+<br>
 <br>
 
 > drag & drop
@@ -40,6 +42,7 @@ https://drive.google.com/open?id=1DH6C_IQNc6qo-J2u54GzkIbHlgAfiYkk
 https://drive.google.com/open?id=1Uj6lZFeyKUD5Lcb3CH7xzeSb-xU8HjtB
 ***
 <br>
+<br>
 
 > 친구설문 피드보기(watch friend's recent survey and comment)
 
@@ -47,6 +50,7 @@ https://drive.google.com/open?id=1Uj6lZFeyKUD5Lcb3CH7xzeSb-xU8HjtB
 <br>
 https://drive.google.com/open?id=1CnS9aO6oMbpnK_R4Ru8neX3j92Ar0OGs
 ***
+<br>
 <br>
 
 > 무한스크롤(infinit scroll)
@@ -56,6 +60,7 @@ https://drive.google.com/open?id=1CnS9aO6oMbpnK_R4Ru8neX3j92Ar0OGs
 https://drive.google.com/open?id=1R27p_LqjWoAY-9ZRWMrEAqfZW1IU9e7A
 ***
 <br>
+<br>
 
 > 쪽지(send & receive mail and remove)
 
@@ -63,6 +68,7 @@ https://drive.google.com/open?id=1R27p_LqjWoAY-9ZRWMrEAqfZW1IU9e7A
 <br>
 https://drive.google.com/open?id=1qfGql8YoWFDX4Ed1DPQTzo9ICE1m-5Kt
 ***
+<br>
 <br>
 
 > Q & A
@@ -72,6 +78,7 @@ https://drive.google.com/open?id=1qfGql8YoWFDX4Ed1DPQTzo9ICE1m-5Kt
 https://drive.google.com/open?id=10EyTv56Tv4YaBU7YFByJQs1za6Fa8oc4
 ***
 <br>
+<br>
 
 > 친구 추가(request and add friend)
 
@@ -79,6 +86,7 @@ https://drive.google.com/open?id=10EyTv56Tv4YaBU7YFByJQs1za6Fa8oc4
 <br>
 https://drive.google.com/open?id=1_lW3O0aQHsNC5zq130_hnXV_cHud6Wix
 ***
+<br>
 <br>
 
 
