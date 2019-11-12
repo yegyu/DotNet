@@ -1,14 +1,14 @@
 # DotNet
-<b>portfolio</b>
+<b>Portfolio</b>
 
-ppt(pdf) link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p5
+Project pdf link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p5
 
 ### These was some of my job in the project	
 1. animaiton in the web-site	
 2. 개발 환경(development environment)	
 3. 프로젝트 중 건드려 본것 (Other things I done on project)
 
-## example
+## Example
 
  애니매이션의 시작 위치는 이 영어(made with ANIMOTICA)가 오른쪽 하단에서 보일 때입니다.(없는 것도 있습니다.) 
  At starting point is when this logo shows on right-bottom in the screen( animation ) but some don't<br>
