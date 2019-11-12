@@ -1,7 +1,7 @@
 # DotNet
 portfolio
 
-ppt link :https://drive.google.com/open?id=1FFahG9MDNT574xtQmfDfYQ3LEpm-uzUL
+ppt link :https://drive.google.com/open?id=1kbusbCadKoaGZyeo-WWOaOyKHoP4m1p5
 
 ## example
 
