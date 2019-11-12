@@ -1,11 +1,7 @@
 # DotNet
 portfolio
 
-ppt link : https://webproject2019group.slack.com/files/UKDQTP5TP/FNZCY6GDU/_____________________________________________3____.pptx
-### These was some of my job in the project
-1. animaiton in the web-site
-2. 개발 환경(development environment)
-3. 프로젝트 중 건드려 본것 (Other things I done on project)
+ppt link :https://drive.google.com/open?id=1FFahG9MDNT574xtQmfDfYQ3LEpm-uzUL
 
 ## example
 
